@@ -94,3 +94,9 @@ visuals and grounding rules are preserved. A per-process 16MiB / 32-image cache
 keeps recently used public previews for 10 minutes; this helps warm repeat
 requests, not cold starts. Streaming improves time to visible text; model and
 network latency still vary.
+
+## Appearance
+
+Use the sun/moon button in the top bar to switch light and dark mode. The initial
+theme follows the device setting; an explicit choice is saved on the device and
+synchronized between tabs. Course page images retain their original colors.

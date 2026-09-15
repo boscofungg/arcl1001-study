@@ -6,6 +6,7 @@ import Link from 'next/link';
 import documents from '@/lib/documents.json';
 import { weeks } from '@/lib/course';
 import type { Source } from '@/lib/retrieval';
+import ThemeToggle from '@/components/theme-toggle';
 import MaterialReader from '@/components/material-reader';
 import type { PageContext } from '@/lib/media-types';
 import { parseSSE } from '@/lib/sse';
@@ -91,7 +92,7 @@ export default function Home() {
    <div className="sidebar-bottom"><div className="progress-label"><span>Your review progress</span><b>{reviewed.length}/6</b></div><div className="progress-track"><span style={{width:`${reviewed.length/6*100}%`}}/></div><p>Saved on this device</p><div className="student"><span>✦</span><div>A little curiosity, every day.<small>Your archaeology field notes</small></div></div></div>
   </aside>
   <div className="workspace">
-   <header className="topbar"><div>ARCL1001 <ChevronRight size={13}/> <span>{view==='library'?'Course library':`Week ${String(week).padStart(2,'0')}`}</span></div><div className="topbar-right"><span className="status-dot"/> Course materials connected<button className="mobile-tutor-button" onClick={()=>setMobileChat(true)}><MessageSquare size={16}/> Tutor</button></div></header>
+   <header className="topbar"><div>ARCL1001 <ChevronRight size={13}/> <span>{view==='library'?'Course library':`Week ${String(week).padStart(2,'0')}`}</span></div><div className="topbar-right"><ThemeToggle/><span className="status-dot"/> Course materials connected<button className="mobile-tutor-button" onClick={()=>setMobileChat(true)}><MessageSquare size={16}/> Tutor</button></div></header>
    <div className="work-columns">
     <main className="study-pane">
      <div className="section-kicker">{view==='library'?'YOUR REFERENCE SHELF':`WEEK ${String(week).padStart(2,'0')} / ${unit.region.toUpperCase()}`}</div>
