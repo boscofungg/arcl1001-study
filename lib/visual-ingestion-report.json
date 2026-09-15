@@ -1,0 +1,18 @@
+{
+  "documents": 88,
+  "pages": 4018,
+  "imageOnlyPages": 630,
+  "images": 4018,
+  "assetBytes": 423322570,
+  "maximumDimension": 1400,
+  "quality": 65,
+  "renderer": "LibreOffice",
+  "fallbackDocuments": [],
+  "errors": [],
+  "limitations": [
+    "Previews preserve original content; no generated captions or automatic claims about figures.",
+    "PPTX slides are rendered by LibreOffice; unusual fonts, animations and external media may differ from PowerPoint.",
+    "Scanned pages are visible but have no new searchable OCR text.",
+    "Charts are visible; only native PPTX chart/table values are extracted as additional text."
+  ]
+}

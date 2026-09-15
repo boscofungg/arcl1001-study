@@ -1,8 +1,10 @@
 import corpus from './corpus.json' with { type: 'json' };
 import documents from './documents.json' with { type: 'json' };
+import { getPageVisual } from './material-visuals.ts';
+import type { VisualImage } from './media-types.ts';
 
 export type Passage = { id: string; docId: string; page: number; text: string };
-export type Source = Passage & { title: string; kind: string; week: number; label: string };
+export type Source = Passage & { title: string; kind: string; week: number; label: string; images?: VisualImage[]; visualRepresentation?: string; supplementalText?: string };
 const docs = new Map(documents.map(d => [d.id, d]));
 const stop = new Set('a an the and or of for to in on is are was were be been with from by this that it as at what how why when where which who explain describe compare about can could would should me you i my we our course content please give tell some more does do did than between their they them into also using use ask practice question questions knowledge test quiz help understand summarize summary remember revision review study evidence archaeological archaeology'.split(' '));
 export function retrieve(query: string, week = 0, docId?: string, count = 7): Source[] {
@@ -34,15 +36,34 @@ export function retrieve(query: string, week = 0, docId?: string, count = 7): So
     const key = `${doc.id}-${chunk.page}`;
     if (seen.has(key) || (perDoc.get(doc.id)||0)>=3) continue;
     seen.add(key); perDoc.set(doc.id,(perDoc.get(doc.id)||0)+1);
-    results.push({...chunk,title:doc.title,kind:doc.kind,week:doc.week,label:`${doc.kind === 'Lecture' ? 'Slide' : 'Page'} ${chunk.page}`});
+    results.push({...chunk,title:doc.title,kind:doc.kind,week:doc.week,label:`${doc.kind === 'Lecture' ? 'Slide' : 'Page'} ${chunk.page}`,images:getPageVisual(doc.id,chunk.page)?.images,visualRepresentation:getPageVisual(doc.id,chunk.page)?.representation,supplementalText:getPageVisual(doc.id,chunk.page)?.text});
     if(results.length>=count) break;
   }
   return results;
 }
+export function mergePageText(passages: Passage[]): string {
+  return passages.reduce((text, p) => {
+    if (!text) return p.text;
+    const overlap = p.text.slice(0, 200);
+    return text.endsWith(overlap) ? text + p.text.slice(200) : text + '\n\n' + p.text;
+  }, '');
+}
+export function getPageSource(docId: string, page: number): Source | null {
+  const doc=docs.get(docId);
+  if(!doc || !Number.isInteger(page) || page<1 || page>doc.pages) return null;
+  const passages=corpus.filter(c=>c.docId===docId && c.page===page);
+  const visual=getPageVisual(docId,page);
+  return {id:passages[0]?.id || `${docId}-p${page}-visual`,docId,page,
+    text:mergePageText(passages),title:doc.title,kind:doc.kind,week:doc.week,
+    label:`${doc.kind==='Lecture'?'Slide':'Page'} ${page}`,
+    images:visual?.images || [],visualRepresentation:visual?.representation,supplementalText:visual?.text};
+}
 export function getSource(id: string) {
   const passage = corpus.find(c=>c.id===id);
-  if(!passage) return null;
-  return {...passage,document:docs.get(passage.docId)};
+  if(passage) return {...passage,document:docs.get(passage.docId),visual:getPageVisual(passage.docId,passage.page)};
+  const match=/^(d\d+)-p(\d+)-visual$/.exec(id);
+  const source=match ? getPageSource(match[1],Number(match[2])) : null;
+  return source ? {...source,document:docs.get(source.docId),visual:getPageVisual(source.docId,source.page)} : null;
 }
 export function getDocumentPages(docId: string) {
   return corpus.filter(c=>c.docId===docId);
