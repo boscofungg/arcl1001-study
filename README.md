@@ -79,3 +79,18 @@ at most four images from the project's public production domain and sends their
 bytes to Gemini. Failed image loads are reported instead of pretending a visual
 was inspected. AI descriptions may still be wrong; check labels and values in
 the original preview, using zoom or Open image.
+
+## Streaming replies
+
+The browser requests `stream:true` from `/api/chat`. The API immediately sends
+source metadata and progress events, then forwards Gemini answer text as real
+server-sent events. Citations work while the answer is arriving. Stop aborts the
+request and upstream work; partial answers are retained with an interruption
+notice and are excluded from later conversation context. Non-streaming JSON
+requests remain supported for older clients.
+
+Gemini 3 models use LOW thinking effort to reduce startup latency. Source
+visuals and grounding rules are preserved. A per-process 16MiB / 32-image cache
+keeps recently used public previews for 10 minutes; this helps warm repeat
+requests, not cold starts. Streaming improves time to visible text; model and
+network latency still vary.

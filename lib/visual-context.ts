@@ -5,29 +5,51 @@ import type { Source } from './retrieval';
 type ImagePart = {text:string} | {inlineData:{mimeType:string;data:string}};
 const maxImageBytes=1500000;
 
-async function loadPreview(src:string): Promise<Buffer> {
+const previewCache=new Map<string,{buffer:Buffer;expires:number}>();
+let cachedBytes=0;
+const cacheBudget=16*1024*1024;
+async function loadPreview(src:string, signal?:AbortSignal): Promise<Buffer> {
   // Image paths originate in the checked-in manifest, never in a user-supplied URL.
   if(!/^\/materials\/d\d+\/[a-zA-Z0-9._-]+\.webp$/.test(src))throw new Error('Unsupported source image');
+  signal?.throwIfAborted();
+  const cached=previewCache.get(src);
+  if(cached && cached.expires>Date.now()) {
+    previewCache.delete(src);previewCache.set(src,cached);
+    return cached.buffer;
+  }
+  if(cached){cachedBytes-=cached.buffer.length;previewCache.delete(src);}
+  const save=(buffer:Buffer)=>{
+    const previous=previewCache.get(src);
+    if(previous){cachedBytes-=previous.buffer.length;previewCache.delete(src);}
+    while(cachedBytes+buffer.length>cacheBudget || previewCache.size>=32){
+      const oldest=previewCache.keys().next().value;
+      if(!oldest)break;
+      cachedBytes-=previewCache.get(oldest)!.buffer.length;previewCache.delete(oldest);
+    }
+    previewCache.set(src,{buffer,expires:Date.now()+10*60*1000});cachedBytes+=buffer.length;
+    return buffer;
+  };
   if(process.env.VERCEL){
     const hostname=process.env.VERCEL_PROJECT_PRODUCTION_URL || 'arcl1001-study-boscofungg.vercel.app';
     if(!/^[a-zA-Z0-9.-]+$/.test(hostname))throw new Error('Invalid asset host');
-    const response=await fetch(`https://${hostname}${src}`,{signal:AbortSignal.timeout(10000),redirect:'error'});
+    const response=await fetch(`https://${hostname}${src}`,{signal:signal?AbortSignal.any([signal,AbortSignal.timeout(8000)]):AbortSignal.timeout(8000),redirect:'error'});
     if(!response.ok || !response.headers.get('content-type')?.startsWith('image/'))throw new Error('Image unavailable');
     const length=Number(response.headers.get('content-length')||0);
     if(length>maxImageBytes)throw new Error('Image too large');
     const buffer=Buffer.from(await response.arrayBuffer());
     if(buffer.length>maxImageBytes)throw new Error('Image too large');
-    return buffer;
+    return save(buffer);
   }
-  const buffer=await readFile(join(process.cwd(),'public',src.slice(1)));
+  const buffer=await readFile(join(process.cwd(),'public',src.slice(1)),{signal});
   if(buffer.length>maxImageBytes)throw new Error('Image too large');
-  return buffer;
+  return save(buffer);
 }
-export async function buildVisualContext(sources:Source[]) {
+export async function buildVisualContext(sources:Source[], signal?:AbortSignal) {
   const candidates=sources.flatMap((source,index)=>(source.images||[]).slice(0,2).map(image=>({source,index,image}))).slice(0,4);
   const loaded=await Promise.all(candidates.map(async candidate=>{
-    try{return {...candidate,buffer:await loadPreview(candidate.image.src)};}catch{return {...candidate,buffer:null};}
+    try{return {...candidate,buffer:await loadPreview(candidate.image.src,signal)};}catch{return {...candidate,buffer:null};}
   }));
+  signal?.throwIfAborted();
   const parts:ImagePart[]=[];
   const reviewedSources:number[]=[];
   for(const {source,index,image,buffer} of loaded){

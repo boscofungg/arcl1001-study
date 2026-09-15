@@ -1,16 +1,18 @@
 'use client';
 
 import { useEffect, useRef, useState, useSyncExternalStore } from 'react';
-import { ArrowRight, BookOpen, Check, ChevronRight, FileText, Layers, MessageSquare, Search, Send, Sparkles, X } from 'lucide-react';
+import { ArrowRight, BookOpen, Check, ChevronRight, FileText, Layers, MessageSquare, Search, Send, Sparkles, Square, X } from 'lucide-react';
 import Link from 'next/link';
 import documents from '@/lib/documents.json';
 import { weeks } from '@/lib/course';
 import type { Source } from '@/lib/retrieval';
 import MaterialReader from '@/components/material-reader';
 import type { PageContext } from '@/lib/media-types';
+import { parseSSE } from '@/lib/sse';
+import type { ChatEvent } from '@/lib/chat-events';
 
 type Doc = typeof documents[number];
-type Message = {role:'user'|'assistant';text:string;sources?:Source[];error?:boolean;visualsUsed?:number;visualWarning?:string};
+type Message = {id?:string;incomplete?:boolean;notice?:string;role:'user'|'assistant';text:string;sources?:Source[];error?:boolean;visualsUsed?:number;visualWarning?:string};
 let reviewFallback = '[]';
 function saveReview(next:number[]){reviewFallback=JSON.stringify(next);try{localStorage.setItem('stratum-reviewed',reviewFallback);}catch{}window.dispatchEvent(new Event('stratum-review'));}
 function reviewSnapshot(){try{return localStorage.getItem('stratum-reviewed')||reviewFallback;}catch{return reviewFallback;}}
@@ -19,6 +21,8 @@ export default function Home() {
  const [week,setWeek]=useState(2), [view,setView]=useState<'learn'|'library'>('learn');
  const [query,setQuery]=useState(''), [scope,setScope]=useState('all'), [draft,setDraft]=useState('');
  const [messages,setMessages]=useState<Message[]>([]), [busy,setBusy]=useState(false);
+ const [replyStatus,setReplyStatus]=useState('Finding evidence in your materials…');
+ const activeRequest=useRef<AbortController|null>(null);
  const [reader,setReader]=useState<{document:Doc;initialPage:number}|null>(null);
  const [pageContext,setPageContext]=useState<PageContext|null>(null);
  const [mobileChat,setMobileChat]=useState(false);
@@ -29,10 +33,46 @@ export default function Home() {
  const weeklyDocs=documents.filter(d=>d.week===week);
  const lecture=weeklyDocs.find(d=>d.kind==='Lecture');
  const filtered=(view==='library'?documents:weeklyDocs).filter(d=>(d.title+' '+d.kind).toLowerCase().includes(query.toLowerCase()));
- useEffect(()=>{end.current?.scrollIntoView({behavior:'smooth',block:'nearest'});},[messages,busy]);
+ useEffect(()=>{end.current?.scrollIntoView({behavior:busy?'auto':'smooth',block:'nearest'});},[messages,busy]);
+ useEffect(()=>()=>activeRequest.current?.abort(),[]);
  function toggleReviewed(){const next=reviewed.includes(week)?reviewed.filter(w=>w!==week):[...reviewed,week];saveReview(next);}
  function openDoc(doc:Doc,page:number|null=null){setReader({document:doc,initialPage:page||1});}
- async function ask(question:string){if(busy||!question.trim())return;setMobileChat(true);const q=question.trim();const history=messages.filter(m=>!m.error).slice(-6).map(m=>({role:m.role,text:m.text.slice(0,4000)}));setDraft('');setMessages(old=>[...old,{role:'user',text:q}]);setBusy(true);try{const r=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({question:q,week:scope==='week'?week:0,...(pageContext||{}),history})});const data=await r.json() as {error?:string;answer:string;sources?:Source[];visualsUsed?:number;visualWarning?:string};setMessages(old=>[...old,{role:'assistant',text:data.error||data.answer,sources:data.sources,error:!r.ok,visualsUsed:data.visualsUsed,visualWarning:data.visualWarning}]);}catch{setMessages(old=>[...old,{role:'assistant',text:'Could not connect to the tutor. Check your connection and try again.',error:true}]);}finally{setBusy(false);}}
+ async function ask(question:string){
+   if(activeRequest.current||!question.trim())return;
+   const controller=new AbortController();activeRequest.current=controller;
+   const id=crypto.randomUUID(),q=question.trim();
+   const history=messages.filter(m=>!m.error&&!m.incomplete&&m.text).slice(-6).map(m=>({role:m.role,text:m.text.slice(0,4000)}));
+   setMobileChat(true);setDraft('');setBusy(true);setReplyStatus('Finding evidence in your materials…');
+   setMessages(old=>[...old,{role:'user',text:q},{id,role:'assistant',text:'',incomplete:true}]);
+   const update=(change:Partial<Message>)=>setMessages(old=>old.map(m=>m.id===id?{...m,...change}:m));
+   let text='',finished=false;
+   try{
+     const response=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json','Accept':'text/event-stream'},signal:AbortSignal.any([controller.signal,AbortSignal.timeout(65000)]),body:JSON.stringify({question:q,stream:true,week:scope==='week'?week:0,...(pageContext||{}),history})});
+     if(!response.headers.get('content-type')?.includes('text/event-stream')){
+       const data=await response.json() as {error?:string;answer:string;sources?:Source[];visualsUsed?:number;visualWarning?:string};
+       if(data.error)throw new Error(data.error);
+       if(!response.ok||!data.answer)throw new Error('The tutor could not return an answer. Please try again.');
+       text=data.answer;finished=true;update({text,sources:data.sources,visualsUsed:data.visualsUsed,visualWarning:data.visualWarning,incomplete:false});
+     }else{
+       if(!response.body)throw new Error('No response stream was received. Please try again.');
+       for await(const frame of parseSSE(response.body)){
+         const event=JSON.parse(frame.data) as ChatEvent;
+         if(event.type==='status')setReplyStatus(event.message);
+         else if(event.type==='metadata')update({sources:event.sources,visualsUsed:event.visualsUsed,visualWarning:event.visualWarning});
+         else if(event.type==='delta'){text+=event.text;update({text});}
+         else if(event.type==='done'){finished=true;update({incomplete:false});}
+         else if(event.type==='error')throw new Error(event.message);
+       }
+       if(!finished)throw new Error('The connection ended before the answer was complete. Please try again.');
+     }
+   }catch(error){
+     const notice=controller.signal.aborted?'Response stopped.':error instanceof Error&&!/JSON|Unexpected|fetch|network/i.test(error.message)?error.message:'Could not finish receiving the response. Please try again.';
+     update({text:text||notice,notice:text?notice:undefined,incomplete:true,error:!text});
+   }finally{
+     if(activeRequest.current===controller){activeRequest.current=null;setBusy(false);}
+   }
+ }
+
  useEffect(()=>{
   type Context={registerTool:(tool:unknown,options:{signal:AbortSignal})=>unknown};
   const context=(document as Document & {modelContext?:Context}).modelContext;
@@ -67,8 +107,8 @@ export default function Home() {
     </main>
     <aside className={`tutor-pane ${mobileChat?'mobile-open':''}`} aria-label="Course tutor"><div className="tutor-header"><span className="tutor-icon"><Sparkles size={19}/></span><div><h2>Your study companion</h2><p>Grounded in your course materials</p></div><button className="close-mobile" aria-label="Close tutor" onClick={()=>setMobileChat(false)}><X size={19}/></button></div>
      <div className="scope-row"><BookOpen size={14}/><select aria-label="Tutor source scope" value={pageContext?'page':scope} disabled={busy||!!pageContext} onChange={e=>setScope(e.target.value)}>{pageContext&&<option value="page">Selected page {pageContext.page}</option>}<option value="all">All course materials</option><option value="week">Week {week} materials</option></select><span className="scope-badge">CITED</span></div>
-     <div className="conversation" role="log" aria-live="polite">{!messages.length?<div className="tutor-welcome"><div className="welcome-symbol"><Sparkles size={28}/></div><h3>Start with a question.</h3><p>Untangle a concept, connect ideas, or test what you remember. We’ll go back to the evidence together.</p><div className="starter-questions">{['What makes Uruk a city?','Compare Mohenjo-daro and Erlitou.','Ask me a practice question about urbanization.'].map((p,i)=><button key={p} onClick={()=>ask(p)}><span>{['Understand a concept','Connect two ideas','Test your knowledge'][i]}<small>{p}</small></span><ArrowRight size={15}/></button>)}</div><div className="citation-hint"><span>1</span> Answers link back to the source.<br/>You can always check the evidence.</div></div>:messages.map((m,i)=><div className={`message ${m.role} ${m.error?'error':''}`} key={i}><span className="message-label">{m.role==='user'?'YOU':'STRATUM'}</span><div className="message-text">{renderText(m.text,m.sources)}</div>{!!m.visualsUsed&&<p className="visual-evidence-note">Used {m.visualsUsed} original page visual{m.visualsUsed===1?'':'s'}</p>}{m.visualWarning&&<p className="visual-evidence-warning">{m.visualWarning}</p>}{!!m.sources?.length&&<details className="source-details"><summary>{m.error?'Related course passages': 'Retrieved sources'} · {m.sources.length}</summary>{m.sources.map((s,j)=><button key={s.id} onClick={()=>openDoc(documents.find(d=>d.id===s.docId)!,s.page)}><b>{j+1}</b><span>{s.title}<small>{s.label}</small></span></button>)}</details>}</div>)}{busy&&<div className="thinking"><span/><span/><span/> Finding evidence in your materials…</div>}<div ref={end}/></div>
-     <div className="composer-wrap">{messages.length>0&&<button className="new-chat" disabled={busy} onClick={()=>{setMessages([]);setPageContext(null);}}>Start a new conversation</button>}{pageContext&&<div className="page-context-chip"><FileText size={14}/><span>{documents.find(d=>d.id===pageContext.docId)?.kind==='Lecture'?'Slide':'Page'} {pageContext.page} · {documents.find(d=>d.id===pageContext.docId)?.title}</span><button aria-label="Clear selected page" disabled={busy} onClick={()=>setPageContext(null)}><X size={14}/></button></div>}<form className="composer" onSubmit={e=>{e.preventDefault();void ask(draft);}}><textarea ref={input} aria-label="Ask the course tutor" placeholder="Ask about your course…" value={draft} maxLength={2000} disabled={busy} onChange={e=>setDraft(e.target.value)} onKeyDown={e=>{if(e.key==='Enter'&&!e.shiftKey&&!e.nativeEvent.isComposing){e.preventDefault();void ask(draft);}}}/><div><span>Enter to send · Shift + Enter for a new line</span><button type="submit" aria-label="Send question" disabled={busy||!draft.trim()}><Send size={16}/></button></div></form><p className="tutor-disclaimer">AI can make mistakes. Check the cited course sources.</p></div>
+     <div className="conversation" role="log" aria-live="polite">{!messages.length?<div className="tutor-welcome"><div className="welcome-symbol"><Sparkles size={28}/></div><h3>Start with a question.</h3><p>Untangle a concept, connect ideas, or test what you remember. We’ll go back to the evidence together.</p><div className="starter-questions">{['What makes Uruk a city?','Compare Mohenjo-daro and Erlitou.','Ask me a practice question about urbanization.'].map((p,i)=><button key={p} onClick={()=>ask(p)}><span>{['Understand a concept','Connect two ideas','Test your knowledge'][i]}<small>{p}</small></span><ArrowRight size={15}/></button>)}</div><div className="citation-hint"><span>1</span> Answers link back to the source.<br/>You can always check the evidence.</div></div>:messages.map((m,i)=><div className={`message ${m.role} ${m.error?'error':''}`} key={i}><span className="message-label">{m.role==='user'?'YOU':'STRATUM'}</span><div className="message-text">{renderText(m.text,m.sources)}</div>{m.notice&&<p className="response-notice" role="status">{m.notice}</p>}{!!m.visualsUsed&&<p className="visual-evidence-note">Used {m.visualsUsed} original page visual{m.visualsUsed===1?'':'s'}</p>}{m.visualWarning&&<p className="visual-evidence-warning">{m.visualWarning}</p>}{!!m.sources?.length&&<details className="source-details"><summary>{m.error?'Related course passages': 'Retrieved sources'} · {m.sources.length}</summary>{m.sources.map((s,j)=><button key={s.id} onClick={()=>openDoc(documents.find(d=>d.id===s.docId)!,s.page)}><b>{j+1}</b><span>{s.title}<small>{s.label}</small></span></button>)}</details>}</div>)}{busy&&!messages[messages.length-1]?.text&&<div className="thinking" role="status"><span/><span/><span/> {replyStatus}</div>}<div ref={end}/></div>
+     <div className="composer-wrap">{messages.length>0&&<button className="new-chat" disabled={busy} onClick={()=>{setMessages([]);setPageContext(null);}}>Start a new conversation</button>}{pageContext&&<div className="page-context-chip"><FileText size={14}/><span>{documents.find(d=>d.id===pageContext.docId)?.kind==='Lecture'?'Slide':'Page'} {pageContext.page} · {documents.find(d=>d.id===pageContext.docId)?.title}</span><button aria-label="Clear selected page" disabled={busy} onClick={()=>setPageContext(null)}><X size={14}/></button></div>}<form className="composer" onSubmit={e=>{e.preventDefault();void ask(draft);}}><textarea ref={input} aria-label="Ask the course tutor" placeholder="Ask about your course…" value={draft} maxLength={2000} disabled={busy} onChange={e=>setDraft(e.target.value)} onKeyDown={e=>{if(e.key==='Enter'&&!e.shiftKey&&!e.nativeEvent.isComposing){e.preventDefault();void ask(draft);}}}/><div><span>Enter to send · Shift + Enter for a new line</span><button type={busy?'button':'submit'} aria-label={busy?'Stop response':'Send question'} title={busy?'Stop response':'Send question'} disabled={!busy&&!draft.trim()} onClick={busy?()=>activeRequest.current?.abort():undefined}>{busy?<Square size={15}/>:<Send size={16}/>}</button></div></form><p className="tutor-disclaimer">AI can make mistakes. Check the cited course sources.</p></div>
     </aside>
    </div>
   </div>

@@ -46,3 +46,18 @@ test('invalid image paths fail safely instead of reading arbitrary files',async(
  const result=await buildVisualContext([source]);
  assert.equal(result.visualsUsed,0);assert.equal(result.failedVisuals,1);assert.deepEqual(result.parts,[]);
 });
+test('repeat questions reuse page-image bytes and cancelled requests stop before work',async(t)=>{
+ const previous=process.env.VERCEL;
+ process.env.VERCEL='1';
+ let downloads=0;
+ const bytes=Buffer.from('RIFF0000WEBPtest');
+ const fetchMock=t.mock.method(globalThis,'fetch',async()=>{downloads++;return new Response(bytes,{headers:{'Content-Type':'image/webp'}});});
+ try{
+   const source=getPageSource('d001',169);
+   await buildVisualContext([source]);await buildVisualContext([source]);
+   assert.equal(downloads,1);
+   const controller=new AbortController();controller.abort();
+   await assert.rejects(buildVisualContext([source],controller.signal),{name:'AbortError'});
+   assert.equal(downloads,1);
+ }finally{fetchMock.mock.restore();if(previous===undefined)delete process.env.VERCEL;else process.env.VERCEL=previous;}
+});
