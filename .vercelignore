@@ -9,3 +9,5 @@ dist
 node_modules
 *.tar.gz
 *.tsbuildinfo
+vite.config.ts
+build/
