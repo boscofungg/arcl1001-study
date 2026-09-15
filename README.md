@@ -38,7 +38,7 @@ Only the selected course passages, up to four original page previews, and recent
 ```sh
 npm run lint
 npx tsc --noEmit
-node --experimental-strip-types --test tests/retrieval.test.mjs
+npm test
 npm run build
 ```
 
@@ -59,8 +59,7 @@ npx vercel --prod
 Use the production domain to share with students. Preview URLs may have Vercel
 Authentication enabled; production access must be public to avoid a login prompt.
 The chat function runs on Node.js with a 60-second maximum execution time.
-The old `.openai/hosting.json` records the earlier Sites deployment; it is not used
-by Vercel. Gemini requests use the server environment and never return its key.
+Gemini requests use the server environment and never return its key.
 
 ## Original visuals
 
