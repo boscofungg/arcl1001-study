@@ -1,0 +1,11 @@
+.env
+.env.*
+.git
+.omx
+.openai
+.wrangler
+.sites-runtime
+dist
+node_modules
+*.tar.gz
+*.tsbuildinfo

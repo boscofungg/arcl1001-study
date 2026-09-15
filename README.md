@@ -5,11 +5,11 @@ Interactive study browser and Gemini tutor for **Archaeology Around the Globe**.
 ## Run locally
 
 ```sh
-npm run install:ci
+npm ci
 npm run dev
 ```
 
-Copy `.env.example` to `.env`, then set the server-side Gemini key. Never put it in a `NEXT_PUBLIC_` variable. Hosted secrets are configured through Sites. The private deployment is owner-only; sharing with classmates requires a deliberate access change and a production abuse-control review.
+Copy `.env.example` to `.env`, then set the server-side Gemini key. Never put it in a `NEXT_PUBLIC_` variable. Hosted secrets are configured in Vercel environment variables. The production site is intended for direct student access without a ChatGPT account. The GitHub repository remains private.
 
 ## What is included
 
@@ -43,3 +43,21 @@ npm run build
 ```
 
 The source folder is isolated from the existing parent repository and its deleted files.
+
+## Deploy on Vercel
+
+This project uses standard Next.js for local development and Vercel deployment.
+Set `GEMINI_API_KEY` as a sensitive production environment variable and
+`GEMINI_MODEL=gemini-3.5-flash`. Neither variable uses the `NEXT_PUBLIC_` prefix.
+
+```sh
+npx vercel login
+npx vercel link
+npx vercel --prod
+```
+
+Use the production domain to share with students. Preview URLs may have Vercel
+Authentication enabled; production access must be public to avoid a login prompt.
+The chat function runs on Node.js with a 60-second maximum execution time.
+The old `.openai/hosting.json` records the earlier Sites deployment; it is not used
+by Vercel. Gemini requests use the server environment and never return its key.
