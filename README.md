@@ -99,3 +99,10 @@ network latency still vary.
 Use the sun/moon button in the top bar to switch light and dark mode. The initial
 theme follows the device setting; an explicit choice is saved on the device and
 synchronized between tabs. Course page images retain their original colors.
+
+## Images in answers
+
+Chat replies display up to three unique cited source previews below the answer.
+Only visuals actually attached to the model are eligible; invented citations and
+external image URLs are ignored. Select a preview or caption to open its original
+page in the visual reader. Whole source pages preserve figure labels and context.

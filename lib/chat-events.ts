@@ -1,7 +1,7 @@
 import type { Source } from './retrieval';
 export type ChatEvent =
   | {type:'status';message:string}
-  | {type:'metadata';sources:Source[];visualsUsed?:number;visualWarning?:string}
+  | {type:'metadata';sources:Source[];visualsUsed?:number;visualWarning?:string;reviewedSources?:number[]}
   | {type:'delta';text:string}
   | {type:'done'}
   | {type:'error';message:string};
