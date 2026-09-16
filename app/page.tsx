@@ -1,11 +1,12 @@
 'use client';
 
 import { useEffect, useRef, useState, useSyncExternalStore } from 'react';
-import { ArrowRight, BookOpen, Check, ChevronRight, FileText, Layers, MessageSquare, Search, Send, Sparkles, Square, X } from 'lucide-react';
+import { ArrowRight, BookOpen, Brain, Check, ChevronRight, FileText, Layers, MessageSquare, Search, Send, Sparkles, Square, X } from 'lucide-react';
 import Link from 'next/link';
 import documents from '@/lib/documents.json';
 import { weeks } from '@/lib/course';
 import type { Source } from '@/lib/retrieval';
+import FlashcardStudy from '@/components/flashcard-study';
 import ThemeToggle from '@/components/theme-toggle';
 import AnswerVisuals from '@/components/answer-visuals';
 import MaterialReader from '@/components/material-reader';
@@ -20,7 +21,7 @@ function saveReview(next:number[]){reviewFallback=JSON.stringify(next);try{local
 function reviewSnapshot(){try{return localStorage.getItem('stratum-reviewed')||reviewFallback;}catch{return reviewFallback;}}
 function subscribeReview(callback:()=>void){window.addEventListener('storage',callback);window.addEventListener('stratum-review',callback);return()=>{window.removeEventListener('storage',callback);window.removeEventListener('stratum-review',callback);};}
 export default function Home() {
- const [week,setWeek]=useState(2), [view,setView]=useState<'learn'|'library'>('learn');
+ const [week,setWeek]=useState(2), [view,setView]=useState<'learn'|'library'|'flashcards'>('learn');
  const [query,setQuery]=useState(''), [scope,setScope]=useState('all'), [draft,setDraft]=useState('');
  const [messages,setMessages]=useState<Message[]>([]), [busy,setBusy]=useState(false);
  const [replyStatus,setReplyStatus]=useState('Finding evidence in your materials…');
@@ -87,15 +88,15 @@ export default function Home() {
   <aside className="sidebar">
    <Link className="brand" href="/" aria-label="Stratum home"><span className="brandmark"><Layers size={23}/></span><span>stratum<span className="branddot">.</span></span></Link>
    <div className="course-label">YOUR COURSE</div><div className="course-name">ARCL1001 <span>2026</span></div><p className="course-sub">Archaeology Around<br/>the Globe</p>
-   <nav aria-label="Study navigation"><button className={view==='learn'?'nav-item active':'nav-item'} onClick={()=>{setView('learn');setQuery('');}}><BookOpen size={18}/> Study workspace</button><button className={view==='library'?'nav-item active':'nav-item'} onClick={()=>{setView('library');setQuery('');}}><Layers size={18}/> Course library <span>{documents.length}</span></button></nav>
+   <nav aria-label="Study navigation"><button className={view==='learn'?'nav-item active':'nav-item'} onClick={()=>{setView('learn');setQuery('');}}><BookOpen size={18}/> Study workspace</button><button className={view==='library'?'nav-item active':'nav-item'} onClick={()=>{setView('library');setQuery('');}}><Layers size={18}/> Course library <span>{documents.length}</span></button><button className={view==='flashcards'?'nav-item active':'nav-item'} onClick={()=>{setView('flashcards');setQuery('');}}><Brain size={18}/> Flashcards</button></nav>
    <div className="course-label week-label">LECTURE WEEKS <span>02—07</span></div>
-   <div className="week-list">{weeks.map(w=><button key={w.n} className={week===w.n&&view==='learn'?'week-item selected':'week-item'} onClick={()=>{setWeek(w.n);setView('learn');setQuery('');}}><span className="week-number">{String(w.n).padStart(2,'0')}</span><span>{w.topic}</span>{reviewed.includes(w.n)?<Check size={14}/>:week===w.n&&view==='learn'?<span className="selected-dot"/>:null}</button>)}</div>
+   <div className="week-list">{weeks.map(w=><button key={w.n} className={week===w.n&&view!=='library'?'week-item selected':'week-item'} onClick={()=>{setWeek(w.n);if(view!=='flashcards')setView('learn');setQuery('');}}><span className="week-number">{String(w.n).padStart(2,'0')}</span><span>{w.topic}</span>{reviewed.includes(w.n)?<Check size={14}/>:week===w.n&&view!=='library'?<span className="selected-dot"/>:null}</button>)}</div>
    <div className="sidebar-bottom"><div className="progress-label"><span>Your review progress</span><b>{reviewed.length}/6</b></div><div className="progress-track"><span style={{width:`${reviewed.length/6*100}%`}}/></div><p>Saved on this device</p><div className="student"><span>✦</span><div>A little curiosity, every day.<small>Your archaeology field notes</small></div></div></div>
   </aside>
   <div className="workspace">
-   <header className="topbar"><div>ARCL1001 <ChevronRight size={13}/> <span>{view==='library'?'Course library':`Week ${String(week).padStart(2,'0')}`}</span></div><div className="topbar-right"><ThemeToggle/><span className="status-dot"/> Course materials connected<button className="mobile-tutor-button" onClick={()=>setMobileChat(true)}><MessageSquare size={16}/> Tutor</button></div></header>
+   <header className="topbar"><div>ARCL1001 <ChevronRight size={13}/> <span>{view==='library'?'Course library':view==='flashcards'?`Flashcards · Week ${String(week).padStart(2,'0')}`:`Week ${String(week).padStart(2,'0')}`}</span></div><div className="topbar-right"><ThemeToggle/><span className="status-dot"/> Course materials connected<button className="mobile-tutor-button" onClick={()=>setMobileChat(true)}><MessageSquare size={16}/> Tutor</button></div></header>
    <div className="work-columns">
-    <main className="study-pane">
+    <main className="study-pane">{view==='flashcards'?<FlashcardStudy key={week} week={week} topic={unit.topic} onOpen={(docId,page)=>{const doc=documents.find(d=>d.id===docId);if(doc)openDoc(doc,page);}}/>:<>
      <div className="section-kicker">{view==='library'?'YOUR REFERENCE SHELF':`WEEK ${String(week).padStart(2,'0')} / ${unit.region.toUpperCase()}`}</div>
      <h1>{view==='library'?'The course library':unit.title}</h1><p className="intro">{view==='library'?'Lecture slides, readings, and research. Open a source to explore its original visuals alongside the text.':unit.intro}</p>
      {view==='learn'&&<><div className="unit-meta"><span><FileText size={14}/>{weeklyDocs.length} materials</span><span>{unit.sites}</span></div>
@@ -106,7 +107,7 @@ export default function Home() {
      <div className="material-list">{filtered.length?filtered.map(d=><button className="material-row" key={d.id} onClick={()=>openDoc(d)}><span className={`file-icon ${d.kind==='Lecture'?'slides':''}`}><FileText size={19}/></span><span className="material-title">{d.title}<small>{d.kind} · {d.week?`Week ${d.week} · `:''}{d.pages} {d.kind==='Lecture'?'slides':'pages'}{d.indexedPages<d.pages?' · Partial text coverage':''}</small></span><ChevronRight size={16}/></button>):<p className="empty">No materials match “{query}”. Try a site or author name.</p>}</div>
      {view==='learn'&&<div className="review-footer"><span>Finished revisiting this week?</span><button className={reviewed.includes(week)?'review-button done':'review-button'} onClick={toggleReviewed}><Check size={15}/>{reviewed.includes(week)?'Reviewed':'Mark as reviewed'}</button></div>}
      <p className="coverage-note">Includes supplied materials for Weeks 2–7 and the syllabus. Original page previews preserve figures and layout. AI visual interpretations should be checked against the source. Weeks 1 and 8–12 are awaiting materials.</p>
-    </main>
+    </>}</main>
     <aside className={`tutor-pane ${mobileChat?'mobile-open':''}`} aria-label="Course tutor"><div className="tutor-header"><span className="tutor-icon"><Sparkles size={19}/></span><div><h2>Your study companion</h2><p>Grounded in your course materials</p></div><button className="close-mobile" aria-label="Close tutor" onClick={()=>setMobileChat(false)}><X size={19}/></button></div>
      <div className="scope-row"><BookOpen size={14}/><select aria-label="Tutor source scope" value={pageContext?'page':scope} disabled={busy||!!pageContext} onChange={e=>setScope(e.target.value)}>{pageContext&&<option value="page">Selected page {pageContext.page}</option>}<option value="all">All course materials</option><option value="week">Week {week} materials</option></select><span className="scope-badge">CITED</span></div>
      <div className="conversation" role="log" aria-live="polite">{!messages.length?<div className="tutor-welcome"><div className="welcome-symbol"><Sparkles size={28}/></div><h3>Start with a question.</h3><p>Untangle a concept, connect ideas, or test what you remember. We’ll go back to the evidence together.</p><div className="starter-questions">{['What makes Uruk a city?','Compare Mohenjo-daro and Erlitou.','Ask me a practice question about urbanization.'].map((p,i)=><button key={p} onClick={()=>ask(p)}><span>{['Understand a concept','Connect two ideas','Test your knowledge'][i]}<small>{p}</small></span><ArrowRight size={15}/></button>)}</div><div className="citation-hint"><span>1</span> Answers link back to the source.<br/>You can always check the evidence.</div></div>:messages.map((m,i)=><div className={`message ${m.role} ${m.error?'error':''}`} key={i}><span className="message-label">{m.role==='user'?'YOU':'STRATUM'}</span><div className="message-text">{renderText(m.text,m.sources)}</div>{m.role==='assistant'&&!m.error&&<AnswerVisuals text={m.text} sources={m.sources||[]} reviewedSources={m.reviewedSources} onOpen={source=>openDoc(documents.find(d=>d.id===source.docId)!,source.page)}/>} {m.notice&&<p className="response-notice" role="status">{m.notice}</p>}{!!m.visualsUsed&&<p className="visual-evidence-note">Used {m.visualsUsed} original page visual{m.visualsUsed===1?'':'s'}</p>}{m.visualWarning&&<p className="visual-evidence-warning">{m.visualWarning}</p>}{!!m.sources?.length&&<details className="source-details"><summary>{m.error?'Related course passages': 'Retrieved sources'} · {m.sources.length}</summary>{m.sources.map((s,j)=><button key={s.id} onClick={()=>openDoc(documents.find(d=>d.id===s.docId)!,s.page)}><b>{j+1}</b><span>{s.title}<small>{s.label}</small></span></button>)}</details>}</div>)}{busy&&!messages[messages.length-1]?.text&&<div className="thinking" role="status"><span/><span/><span/> {replyStatus}</div>}<div ref={end}/></div>

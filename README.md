@@ -106,3 +106,22 @@ Chat replies display up to three unique cited source previews below the answer.
 Only visuals actually attached to the model are eligible; invented citations and
 external image URLs are ignored. Select a preview or caption to open its original
 page in the visual reader. Whole source pages preserve figure labels and context.
+
+## Flashcards
+
+Open Flashcards in the sidebar and choose a week, a lecture/reading (or the whole
+week), and a 6- or 10-card target. Generation uses the current live Gemini
+configuration and selected readable course excerpts. Every accepted card must
+include a valid source reference and a matching verbatim evidence quote.
+Unsupported cards are discarded; the UI reports when a set is smaller than the
+requested size. These checks validate provenance, not full semantic accuracy.
+
+The question appears before the answer. Reveal it after attempting recall,
+then choose Again or Got it. At round completion, review missed cards or start
+another pass through the set. The latest deck and review position for each week
+are saved on that device; unavailable device storage falls back to memory with
+a notice. Existing decks survive failed regeneration requests.
+
+Scanned/image-only content is not used to generate text flashcards. Source links
+open the existing visual reader for checking the supporting page. Ratings are
+self-assessments, not automated marks or claims of mastery.
