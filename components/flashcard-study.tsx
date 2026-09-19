@@ -10,8 +10,8 @@ function subscribe(listener:()=>void){window.addEventListener('storage',listener
 function read(key:string){if(temporarySets.has(key))return temporarySets.get(key)!;try{return localStorage.getItem(key)||'';}catch{return '';}}
 function save(key:string,review:FlashcardReview){const value=JSON.stringify(review);try{localStorage.setItem(key,value);temporarySets.delete(key);}catch{temporarySets.set(key,value);}window.dispatchEvent(new Event('stratum-flashcards'));}
 const emptySnapshot=()=>'';
-export default function FlashcardStudy({week,topic,onOpen}:{week:number;topic:string;onOpen:(docId:string,page:number)=>void}){
-  const key=`stratum-flashcards-v1-week${week}`;
+export default function FlashcardStudy({week,topic,onOpen}:{week:number;topic:string;onOpen:(docId:string,page:number,quote?:string)=>void}){
+  const key=`stratum-flashcards-quiz1-v2-week${week}`;
   const raw=useSyncExternalStore(subscribe,()=>read(key),emptySnapshot);
   const parsed=parseReview(raw);
   const review=parsed?.deck.week===week?parsed:null;
@@ -45,11 +45,11 @@ export default function FlashcardStudy({week,topic,onOpen}:{week:number;topic:st
   }
   function rate(rating:'again'|'known'){if(!review||!showingAnswer)return;save(key,rateCard(review,rating));setRevealed(null);}
   return <section className="flashcard-study" aria-labelledby="flashcard-title">
-    <div className="section-kicker">ACTIVE RECALL / WEEK {String(week).padStart(2,'0')}</div><h1 id="flashcard-title">Flashcards</h1><p className="intro">Recall the answer before you reveal it. Revisit the cards that need another look.</p>
+    <div className="section-kicker">QUIZ 1 ACTIVE RECALL / LECTURE {String(week).padStart(2,'0')}</div><h1 id="flashcard-title">Flashcards</h1><p className="intro">Recall the answer before you reveal it. Revisit the cards that need another look.</p>
     <form className="flashcard-generator" onSubmit={event=>{event.preventDefault();void generate();}}>
-      <label>Source material<select aria-label="Flashcard source material" value={selected} disabled={busy} onChange={event=>setSelection(event.target.value)}><option value="">All Week {week} materials</option>{materials.map(doc=><option key={doc.id} value={doc.id}>{doc.kind} · {doc.title}</option>)}</select></label>
+      <label>Source material<select aria-label="Flashcard source material" value={selected} disabled={busy} onChange={event=>setSelection(event.target.value)}><option value="">All Lecture {week} materials</option>{materials.map(doc=><option key={doc.id} value={doc.id}>{doc.kind} · {doc.title}</option>)}</select></label>
       <div className="flashcard-generate-row"><label>Set size<select aria-label="Number of flashcards" value={count} disabled={busy} onChange={event=>setCount(Number(event.target.value) as 6|10)}><option value={6}>6 cards</option><option value={10}>10 cards</option></select></label><button className="primary-button" disabled={busy} type="submit"><Sparkles size={15}/>{busy?'Generating…':review?'Generate a new set':'Generate flashcards'}</button></div>
-      <p>Questions and answers are generated from the selected course text.</p>
+      <p>Concise short-answer practice from the selected Quiz 1 course text. These are study aids, not official quiz questions.</p>
     </form>
     {busy&&<div className="flashcard-status" role="status">Reading the materials and checking the cards’ source references…</div>}
     {error&&<p className="flashcard-error" role="alert">{error}{review?' Your existing set is still available.':''}</p>}
@@ -61,12 +61,12 @@ export default function FlashcardStudy({week,topic,onOpen}:{week:number;topic:st
       <div className="flashcard-progress" role="progressbar" aria-label="Cards reviewed this round" aria-valuemin={0} aria-valuemax={review.queue.length} aria-valuenow={review.position}><span style={{width:`${review.position/review.queue.length*100}%`}}/></div>
       {card?<>
         <article className="recall-card" aria-live="polite"><div className="recall-card-top"><span>QUESTION</span><span>{String(review.position+1).padStart(2,'0')} / {String(review.queue.length).padStart(2,'0')}</span></div><h2>{card.question}</h2>
-          {showingAnswer?<div className="recall-answer"><span className="eyebrow">ANSWER</span><p>{card.answer}</p><details><summary>Check the supporting evidence</summary><blockquote>{card.evidence}</blockquote></details><button className="flashcard-source" onClick={()=>onOpen(card.source.docId,card.source.page)}><BookOpen size={14}/><span>{card.source.label} · {card.source.title}</span><ArrowRight size={14}/></button></div>:<div className="recall-prompt"><p>Say the answer in your own words before checking.</p><button className="primary-button" onClick={()=>setRevealed(face)}>Reveal answer <ArrowRight size={16}/></button></div>}
+          {showingAnswer?<div className="recall-answer"><span className="eyebrow">ANSWER</span><p>{card.answer}</p><details><summary>Check the supporting evidence</summary><blockquote>{card.evidence}</blockquote></details><button className="flashcard-source" onClick={()=>onOpen(card.source.docId,card.source.page,card.evidence)}><BookOpen size={14}/><span>{card.source.label} · {card.source.title}</span><ArrowRight size={14}/></button></div>:<div className="recall-prompt"><p>Say the answer in your own words before checking.</p><button className="primary-button" onClick={()=>setRevealed(face)}>Reveal answer <ArrowRight size={16}/></button></div>}
         </article>
         {showingAnswer&&<div className="recall-rating"><p>How did you do?</p><div><button className="recall-again" onClick={()=>rate('again')}><RotateCcw size={16}/> Again</button><button className="recall-known" onClick={()=>rate('known')}><Check size={16}/> Got it</button></div></div>}
       </>:<div className="recall-complete" role="status"><Check size={28}/><h2>Round complete</h2><p>You marked <strong>{known}</strong> of {review.deck.cards.length} cards recalled and <strong>{missed}</strong> for more practice.</p><div>{missed>0&&<button className="primary-button" onClick={()=>{save(key,reviewMissed(review));setRevealed(null);}}><RotateCcw size={15}/> Review missed cards ({missed})</button>}<button className="flashcard-secondary" onClick={()=>{save(key,startReview(review.deck));setRevealed(null);}}>Review all again</button></div></div>}
       <p className="flashcard-save-note">{temporarySets.has(key)?'Device storage is unavailable. This set lasts until you reload.':'Your current set and review progress are saved on this device.'}</p>
     </div>}
-    <p className="coverage-note">AI-generated study aids. Check the linked source if an answer seems unclear. Your ratings reflect your own recall, not an exam score.</p>
+    <p className="coverage-note">Generated or reviewed study aids. Check the linked source if an answer seems unclear. Your ratings reflect your own recall, not an exam score.</p>
   </section>;
 }

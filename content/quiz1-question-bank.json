@@ -1,0 +1,263 @@
+[
+  {
+    "id": "q1-text-01",
+    "kind": "short-answer",
+    "question": "How does archaeology study the human past?",
+    "answer": "It studies the human past scientifically through material remains.",
+    "evidence": "Archaeology is the scientific study of the \nhuman past\n through \nmaterial remains\n.\nLandscapes\nArchitecture\nObjects",
+    "source": {
+      "docId": "d101",
+      "page": 2,
+      "title": "L1 lecture slides",
+      "label": "Slide 2"
+    }
+  },
+  {
+    "id": "q1-text-02",
+    "kind": "short-answer",
+    "question": "Name the five archaeological activities introduced in Lecture 1.",
+    "answer": "Finding, excavating, analyzing, preserving and sharing.",
+    "evidence": "Evidence about the past:\nFinding\nExcavating\nAnalyzing\nPreserving\nSharing",
+    "source": {
+      "docId": "d101",
+      "page": 7,
+      "title": "L1 lecture slides",
+      "label": "Slide 7"
+    }
+  },
+  {
+    "id": "q1-text-03",
+    "kind": "short-answer",
+    "question": "What does LiDAR stand for?",
+    "answer": "Light Detection and Ranging.",
+    "evidence": "LiDAR: Light Detection and Ranging",
+    "source": {
+      "docId": "d101",
+      "page": 24,
+      "title": "L1 lecture slides",
+      "label": "Slide 24"
+    }
+  },
+  {
+    "id": "q1-text-04",
+    "kind": "short-answer",
+    "question": "What relative dating principle is summarized in the stratigraphy slide?",
+    "answer": "Deeper is older: the slide summarizes the ordering of layers. This is a relative sequence, not a calendar date.",
+    "evidence": "Stratigraphy: Deeper is Older",
+    "source": {
+      "docId": "d101",
+      "page": 31,
+      "title": "L1 lecture slides",
+      "label": "Slide 31"
+    }
+  },
+  {
+    "id": "q1-text-05",
+    "kind": "short-answer",
+    "question": "What does lithic analysis study, and what makes knapping possible?",
+    "answer": "It studies human-made stone tools or chipped rock artifacts. Predictable fracture mechanics make it possible to remove flakes by knapping.",
+    "evidence": "Lithics Analysis\nstudying human-made stone tools / chipped rock artifacts\nPredictable fracture mechanics\n“Knapping” flakes\nPrinciples of archaeology, Chapter 10\nKelly J. Knudson and T. Douglas Price, 2018\nTheory and Methods\nhttps://youtube.com/shorts/O7dBWYVxUAA?si=ao9Kbmnuj9fRPzpQ",
+    "source": {
+      "docId": "d101",
+      "page": 45,
+      "title": "L1 lecture slides",
+      "label": "Slide 45"
+    }
+  },
+  {
+    "id": "q1-text-06",
+    "kind": "short-answer",
+    "question": "What two issues can refitting lithic fragments help investigate?",
+    "answer": "The sequence of breakage and post-deposition disturbance, by refitting fragments to their core.",
+    "evidence": "Lithics Analysis\nTheory and Methods\nRefitting to core\nsequence of breakage\nPost-deposition disturbance",
+    "source": {
+      "docId": "d101",
+      "page": 47,
+      "title": "L1 lecture slides",
+      "label": "Slide 47"
+    }
+  },
+  {
+    "id": "q1-text-07",
+    "kind": "short-answer",
+    "question": "How is urbanization defined in the archaeology lecture?",
+    "answer": "The creation of cities by a society that formerly lacked urban settlements.",
+    "evidence": "Urbanization \nin Archaeology\nThe\n \ncreation\n \nof\n \ncities\n \nby\n \na\n \nsociety\n \nthat\n \nformerly\n \nlacked\n \nurban\n \nsettlements\nWhat are urban settlements?\nCowgill,\n \n2004 Origins and Development of Urbanism: Archaeological Perspectives\n​",
+    "source": {
+      "docId": "d102",
+      "page": 30,
+      "title": "L2 lecture slides",
+      "label": "Slide 30"
+    }
+  },
+  {
+    "id": "q1-text-08",
+    "kind": "short-answer",
+    "question": "Give four kinds of evidence archaeologists can use to interpret a city.",
+    "answer": "Examples include settlement size or population density, fortification, common worship, monumental architecture, trade, specialized production and connections with the hinterland. Consider several attributes together.",
+    "evidence": "How do Archaeologists interpret a city?\nEurasia at the Dawn of History, Smith, 2016\nOrigins and Development of Urbanism: Archaeological Perspectives, Cowgill, 2004\nThe Ancient City: New Perspectives on Urbanism in the Old and New World\n,\n M\narcus\n \nand\n Sabloff, 2008\nTheory and Methods\nPhysical Attributes \nSize\nPopulation\nDensity\nFortification\nReligion\nCommon Worship\nPolitical \nMobalization\n \nSocial Stratification\nMonumental Architecture and Palace\nEconomic\nTrade and Import\nSpecialization and Production\nHinterland",
+    "source": {
+      "docId": "d102",
+      "page": 38,
+      "title": "L2 lecture slides",
+      "label": "Slide 38"
+    }
+  },
+  {
+    "id": "q1-text-09",
+    "kind": "short-answer",
+    "question": "Distinguish provenience, matrix and association in archaeological context.",
+    "answer": "Provenience is where something came from; matrix is the surrounding soil or dirt; association or assemblage concerns objects found together.",
+    "evidence": "Context\n47\nWikipedia\nProvenience\n: where from\nMatrix\n: soil/dirt\nAssociation/ Assemblage\n: objects together\nTheory and Methods\nhttps://ucl.academia.edu/SimonStevens\nCollapsed \nKiln in \nLayer 5",
+    "source": {
+      "docId": "d102",
+      "page": 47,
+      "title": "L2 lecture slides",
+      "label": "Slide 47"
+    }
+  },
+  {
+    "id": "q1-text-10",
+    "kind": "short-answer",
+    "question": "Which dimensions of inequality are relevant to social hierarchy?",
+    "answer": "The distribution of power, labour, wealth and status; class and political authority; and the degree of stratification in status, power and wealth.",
+    "evidence": "What structures are related to social hierarchy?\n Distribution of power, labour, wealth, and status\nClass and political authority\nBand\nState\nTribe\nChiefdom\nTheory and Methods\nDegree of stratification in status, power and wealth\nMinimum to none\nMaximum\nEgalitarian\nRanked\nStratified",
+    "source": {
+      "docId": "d103",
+      "page": 7,
+      "title": "L3 lecture slides",
+      "label": "Slide 7"
+    }
+  },
+  {
+    "id": "q1-text-11",
+    "kind": "short-answer",
+    "question": "Why should we be cautious about treating the Mohenjo-daro “Priest King” label as proof of its political system?",
+    "answer": "The lecture presents egalitarian society, complex state and neither as open questions. The sculpture’s label does not establish that the person was a king or resolve how society was organized.",
+    "evidence": "How was society organized?\nEgalitarian society?\nComplex state? \nNeither?\nPriest\nPriest\nPriest King Sculpture\nMohenjo-Daro\nCa 1950 BCE\nTheory and Methods",
+    "source": {
+      "docId": "d103",
+      "page": 25,
+      "title": "L3 lecture slides",
+      "label": "Slide 25"
+    }
+  },
+  {
+    "id": "q1-text-12",
+    "kind": "short-answer",
+    "question": "Which two burial characteristics does the lecture identify for investigating social hierarchy?",
+    "answer": "Burial goods and tomb scale. These provide evidence for discussing social differences.",
+    "evidence": "Burial Goods, Tomb Scale\nReading Social Structures from Material Remains \nBURIALS\nWhat Factors in Burials inform us about Social Hierarchy?",
+    "source": {
+      "docId": "d103",
+      "page": 89,
+      "title": "L3 lecture slides",
+      "label": "Slide 89"
+    }
+  },
+  {
+    "id": "q1-text-13",
+    "kind": "short-answer",
+    "question": "What complication affects interpretation of the Harappa burial sequence?",
+    "answer": "Continuous disturbance from later burials affects the relationship between lower and upper levels.",
+    "evidence": "Indus Valley: Harappa\nKenoyer, Jonathan Mark, and R. H. Meadow. \"Excavations at Harappa, 1986–2010: New insights on the Indus Civilization and Harappan burial traditions.\" \nA companion to South Asia in the past\n (2016): 145-168.\nLower levels\nUpper levels\nDales, George F., and Jonathan Mark Kenoyer. \"Excavation at Harappa-1988.\" \nPakistan Archaeology\n 24 (1989): 68-176.\nContinuous disturbance from later burials",
+    "source": {
+      "docId": "d103",
+      "page": 106,
+      "title": "L3 lecture slides",
+      "label": "Slide 106"
+    }
+  },
+  {
+    "id": "q1-text-14",
+    "kind": "short-answer",
+    "question": "Why does apparently simple burial evidence at Harappa not settle the question of social equality?",
+    "answer": "The lecture explicitly raises subtle or hidden social differentiation as a possibility. The absence of conspicuous differences does not by itself prove an egalitarian society.",
+    "evidence": "Kenoyer, Jonathan Mark. \"Wealth and socioeconomic hierarchies of the Indus Valley civilization.\" \nOrder, legitimacy and wealth in early states\n (2000): 90-112.\nSubtle / hidden social differentiation?\nIndus Valley: Harappa",
+    "source": {
+      "docId": "d103",
+      "page": 112,
+      "title": "L3 lecture slides",
+      "label": "Slide 112"
+    }
+  },
+  {
+    "id": "q1-text-15",
+    "kind": "comparison",
+    "question": "Compare lithic knapping and lithic refitting as ways of understanding stone tools.",
+    "answer": "Knapping concerns producing flakes through predictable fracture mechanics. Refitting puts fragments back together to investigate the sequence of breakage and possible post-deposition disturbance.",
+    "evidence": "Lithics Analysis\nstudying human-made stone tools / chipped rock artifacts\nPredictable fracture mechanics\n“Knapping” flakes\nPrinciples of archaeology, Chapter 10\nKelly J. Knudson and T. Douglas Price, 2018\nTheory and Methods\nhttps://youtube.com/shorts/O7dBWYVxUAA?si=ao9Kbmnuj9fRPzpQ",
+    "source": {
+      "docId": "d101",
+      "page": 45,
+      "title": "L1 lecture slides",
+      "label": "Slide 45"
+    },
+    "additionalSources": [
+      {
+        "docId": "d101",
+        "page": 47,
+        "title": "L1 lecture slides",
+        "label": "Slide 47",
+        "evidence": "Lithics Analysis\nTheory and Methods\nRefitting to core\nsequence of breakage\nPost-deposition disturbance"
+      }
+    ]
+  },
+  {
+    "id": "q1-text-16",
+    "kind": "comparison",
+    "question": "Compare the dwelling forms presented for Harappa and Erlitou.",
+    "answer": "Harappa is described with baked-clay-brick houses, courtyards with clay ovens and flat roofs. Erlitou includes semi-subterranean and above-ground houses. These are recorded architectural differences; they do not alone establish every resident’s social status.",
+    "evidence": "Harappa: How did they live?\nhouses of baked clay bricks.\ncourtyards w/ clay ovens & flat roofs​\nIndus Valley: Harappa",
+    "source": {
+      "docId": "d103",
+      "page": 79,
+      "title": "L3 lecture slides",
+      "label": "Slide 79"
+    },
+    "additionalSources": [
+      {
+        "docId": "d103",
+        "page": 84,
+        "title": "L3 lecture slides",
+        "label": "Slide 84",
+        "evidence": "Erlitou\n: How did they live?\nsemi-subterranean house\nCentral Plain: \nErlitou\nabove ground house\nLi, Xiang. \"Social Differentiation among Commoners at \nErlitou\n: A Household Archaeological Perspective.\" PhD diss., University of Pittsburgh, 2023."
+      }
+    ]
+  },
+  {
+    "id": "q1-text-17",
+    "kind": "comparison",
+    "question": "Compare the burial goods presented for Fu Hao’s tomb and Harappa. What caution should accompany this comparison?",
+    "answer": "Fu Hao’s tomb contains many bronzes, including ritual vessels and weapons. Harappa is presented with personal ornaments, simple burial forms and pottery offerings. The contrast is evidence to interpret, not proof that all Indus society lacked hierarchy.",
+    "evidence": "Fu Hao’s Tomb\nBurial\nCentral Plain: Yinxu\nowl\nBird Shape \nZun\nBronze ding with her posthumous title, “Si Mu Xin” \n司母辛\n \ninscribed\nding\n468\n \nbronze objects:\n- 210 ritual vessels\n- 134 weapons\nBronze \nyue\nBronze \nyue\n axe",
+    "source": {
+      "docId": "d103",
+      "page": 101,
+      "title": "L3 lecture slides",
+      "label": "Slide 101"
+    },
+    "additionalSources": [
+      {
+        "docId": "d103",
+        "page": 110,
+        "title": "L3 lecture slides",
+        "label": "Slide 110",
+        "evidence": "1. Personal ornament\nIndus Valley: Harappa\n2. Simple burial forms\n3. Pottery as offerings\n! CONTAINS HUMAN REMAIN!\n! CONTAINS HUMAN REMAIN!\nAny major differences?"
+      }
+    ]
+  },
+  {
+    "id": "q1-text-18",
+    "kind": "short-answer",
+    "question": "Give two ways colonial power could shape Egyptology and its collections.",
+    "answer": "Foreign excavators could receive recognition while Egyptian workers were overlooked. The partage system distributed finds between Egypt and foreign excavators, helping museums abroad build collections. These are examples of how institutional power shaped archaeology.",
+    "evidence": "Study summary: Rocheleau connects Egyptology with European colonial power. Foreign excavators often received recognition while Egyptian workers were overlooked. The partage system distributed finds between Egypt and foreign excavators, helping museums abroad build collections.",
+    "source": {
+      "docId": "d107",
+      "page": 1,
+      "title": "Golden Mummies: Reckoning with Colonialism and Racism in Egyptology",
+      "label": "Reading summary"
+    }
+  }
+]

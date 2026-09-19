@@ -21,7 +21,19 @@ test('source selection and page diversity are enforced',()=>{
 });
 test('practice intent retrieves substantive urbanization lecture slides',()=>{
  const results=retrieve('Ask me a practice question about urbanization.');
- assert.ok(results.some(s=>s.kind==='Lecture'&&s.week===2&&s.page>=37&&s.page<=55));
+ assert.ok(results.some(s=>s.kind==='Lecture'&&s.week===2&&/urban|cities/i.test(s.text)));
  assert.equal(results[0].week,2);
  assert.ok(!results.some(s=>/quiz.*cover/i.test(s.text)));
 });
+
+test('Quiz1 comparisons retrieve evidence from both named regions',()=>{
+ const results=retrieve('Compare Uruk and Mohenjo-daro city planning');
+ assert.ok(results.some(s=>s.week===2));assert.ok(results.some(s=>s.week===3));
+ assert.ok(results.every(s=>s.week>=1&&s.week<=3));
+ assert.ok(retrieve('What is archaeology?',1).length);
+ assert.equal(getSource('d001-p47-c0'),null);
+});
+
+ test("URL-only passages never rank as factual evidence",()=>{const sources=retrieve("Compare Uruk and Mohenjo-daro");assert.ok(sources.length);assert.ok(sources.every(source=>source.text.replace(/https?:\/\/\S+/gi, "").trim().length>0));});
+
+test("lecture retrieval retains evidence blocks alongside slide titles",()=>{const sources=retrieve("Uruk urban development villages",2);assert.ok(sources.some(s=>/Uruk/i.test(s.text)&&/villages|central districts/i.test(s.text)));});

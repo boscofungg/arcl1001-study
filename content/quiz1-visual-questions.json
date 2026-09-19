@@ -1,0 +1,469 @@
+[
+  {
+    "id": "visual-001",
+    "kind": "image",
+    "question": "Identify the hominin specimen and its find location. Approximately how old is it?",
+    "image": {
+      "src": "/quiz1/q-001.webp",
+      "width": 586,
+      "height": 438,
+      "alt": "Course image for identification practice"
+    },
+    "answer": "The toothless individual from Dmanisi, Georgia; Homo erectus georgicus, approximately 1.7 million years ago. The lecture uses this specimen to discuss care.",
+    "evidence": "The Toothless Old Man of Dmanisi, Georgia, 1.7MYA",
+    "source": {
+      "docId": "d101",
+      "page": 51,
+      "title": "L1-slides.pptx",
+      "label": "Slide 51"
+    },
+    "acceptedAnswers": [
+      "Dmanisi",
+      "Homo erectus georgicus"
+    ]
+  },
+  {
+    "id": "visual-002",
+    "kind": "image",
+    "question": "Identify this fossil and its country of discovery. Give its approximate age.",
+    "image": {
+      "src": "/quiz1/q-002.webp",
+      "width": 368,
+      "height": 525,
+      "alt": "Course image for identification practice"
+    },
+    "answer": "Engis 2, a Neanderthal fossil from Belgium, approximately 40,000 years ago. Its discovery in 1829 is a different date from its age.",
+    "evidence": "Engis 2; 1829, Belgium; Date: ~40 kya",
+    "source": {
+      "docId": "d101",
+      "page": 55,
+      "title": "L1-slides.pptx",
+      "label": "Slide 55"
+    },
+    "acceptedAnswers": [
+      "Engis 2",
+      "Neanderthal",
+      "Belgium"
+    ]
+  },
+  {
+    "id": "visual-003",
+    "kind": "image",
+    "question": "Identify this archaeological site, its country, and the approximate date range used in the lecture.",
+    "image": {
+      "src": "/quiz1/q-003.webp",
+      "width": 716,
+      "height": 485,
+      "alt": "Course image for identification practice"
+    },
+    "answer": "Göbekli Tepe, Türkiye; approximately 9500–8000 BCE. Its religious interpretation is presented as a question in the lecture.",
+    "evidence": "Göbekli Tepe - Türkiye; c. 9500-8000 BCE; Early Religious Site??",
+    "source": {
+      "docId": "d101",
+      "page": 77,
+      "title": "L1-slides.pptx",
+      "label": "Slide 77"
+    },
+    "acceptedAnswers": [
+      "Göbekli Tepe",
+      "Gobekli Tepe",
+      "Türkiye",
+      "Turkey"
+    ]
+  },
+  {
+    "id": "visual-004",
+    "kind": "image",
+    "question": "Identify the object, its archaeological site, and its approximate date.",
+    "image": {
+      "src": "/quiz1/q-004.webp",
+      "width": 244,
+      "height": 574,
+      "alt": "Course image for identification practice"
+    },
+    "answer": "The Warka Vase, from a ritual deposit in the Inanna Temple at Uruk (Warka), approximately 3000 BCE. Its imagery is discussed as evidence for hierarchy.",
+    "evidence": "Warka Vase: Hierarchy; ca 3000 BCE; found in ritual deposit of Inanna Temple",
+    "source": {
+      "docId": "d102",
+      "page": 45,
+      "title": "L2-Slides.pptx",
+      "label": "Slide 45"
+    },
+    "acceptedAnswers": [
+      "Warka Vase",
+      "Uruk",
+      "Warka"
+    ]
+  },
+  {
+    "id": "visual-005",
+    "kind": "image",
+    "question": "Identify this vessel type, its associated site, and approximate date range.",
+    "image": {
+      "src": "/quiz1/q-005.webp",
+      "width": 384,
+      "height": 288,
+      "alt": "Course image for identification practice"
+    },
+    "answer": "A bevel-rimmed bowl associated with Uruk, approximately 3300–3100 BCE. The lecture highlights mass production and uniform size; its precise purpose is posed as a question.",
+    "evidence": "Beveled Rim Bowl; Uruk; ca. 3300–3100 BCE; Mass produced; Uniform size",
+    "source": {
+      "docId": "d102",
+      "page": 48,
+      "title": "L2-Slides.pptx",
+      "label": "Slide 48"
+    },
+    "acceptedAnswers": [
+      "bevel-rimmed bowl",
+      "beveled rim bowl",
+      "Uruk"
+    ]
+  },
+  {
+    "id": "visual-006",
+    "kind": "image",
+    "question": "Identify this monument, its location, and approximate century.",
+    "image": {
+      "src": "/quiz1/q-006.webp",
+      "width": 396,
+      "height": 254,
+      "alt": "Course image for identification practice"
+    },
+    "answer": "The Step Pyramid of Djoser at the Saqqara Necropolis, Egypt; approximately the 27th century BCE.",
+    "evidence": "Located in Saqqara Necropolis; Step Pyramid of Djoser (c.27th century BCE)",
+    "source": {
+      "docId": "d102",
+      "page": 74,
+      "title": "L2-Slides.pptx",
+      "label": "Slide 74"
+    },
+    "acceptedAnswers": [
+      "Step Pyramid of Djoser",
+      "Djoser",
+      "Saqqara"
+    ]
+  },
+  {
+    "id": "visual-007",
+    "kind": "image",
+    "question": "Identify this pyramid, its associated ruler, and approximate century.",
+    "image": {
+      "src": "/quiz1/q-007.webp",
+      "width": 847,
+      "height": 445,
+      "alt": "Course image for identification practice"
+    },
+    "answer": "The Bent Pyramid of Snefru in Egypt; approximately the 26th century BCE. The change in slope gives the monument its distinctive profile.",
+    "evidence": "Bent Pyramid of Snefru (c.26th century BCE)",
+    "source": {
+      "docId": "d102",
+      "page": 76,
+      "title": "L2-Slides.pptx",
+      "label": "Slide 76"
+    },
+    "acceptedAnswers": [
+      "Bent Pyramid",
+      "Snefru",
+      "Sneferu"
+    ]
+  },
+  {
+    "id": "visual-008",
+    "kind": "image",
+    "question": "Identify this sculpture, its archaeological site, and approximate date. Is its conventional name a confirmed occupation?",
+    "image": {
+      "src": "/quiz1/q-008.webp",
+      "width": 369,
+      "height": 530,
+      "alt": "Course image for identification practice"
+    },
+    "answer": "The “Priest-King” sculpture from Mohenjo-daro, approximately 1950 BCE. This conventional name does not establish that the depicted person was a priest or king; the lecture questions how society was organized.",
+    "evidence": "Priest King Sculpture; Mohenjo-Daro; Ca 1950 BCE; Egalitarian society? Complex state? Neither?",
+    "source": {
+      "docId": "d103",
+      "page": 25,
+      "title": "L3-Slides.pptx",
+      "label": "Slide 25"
+    },
+    "acceptedAnswers": [
+      "Priest-King",
+      "Priest King",
+      "Mohenjo-daro"
+    ]
+  },
+  {
+    "id": "visual-009",
+    "kind": "image",
+    "question": "This is a reconstruction. Identify the structure and site. Which broad cultural period is associated with the site?",
+    "image": {
+      "src": "/quiz1/q-009.webp",
+      "width": 588,
+      "height": 298,
+      "alt": "Course image for identification practice"
+    },
+    "answer": "The Great Bath at Mohenjo-daro, associated with the Mature Harappan period (approximately 2600–1900 BCE). The lecture describes a large public water tank and treats ritual use as a possibility.",
+    "evidence": "Great Bath; Large public water tank; Maybe ritual purposes?; Indus Valley: Mohenjo-daro",
+    "source": {
+      "docId": "d103",
+      "page": 55,
+      "title": "L3-Slides.pptx",
+      "label": "Slide 55"
+    },
+    "acceptedAnswers": [
+      "Great Bath",
+      "Mohenjo-daro",
+      "Mature Harappan"
+    ],
+    "additionalSources": [
+      {
+        "docId": "d103",
+        "page": 24,
+        "title": "L3-Slides.pptx",
+        "label": "Slide 24"
+      }
+    ]
+  },
+  {
+    "id": "visual-010",
+    "kind": "image",
+    "question": "Identify the vessel form and the tomb/site it came from. Give its approximate period.",
+    "image": {
+      "src": "/quiz1/q-010.webp",
+      "width": 353,
+      "height": 530,
+      "alt": "Course image for identification practice"
+    },
+    "answer": "An owl-shaped zun from Fu Hao’s tomb at Yinxu, Anyang, Henan; late Shang, approximately 1200 BCE.",
+    "evidence": "Fu Hao’s Tomb; Central Plain: Yinxu; owl; Bird Shape Zun",
+    "source": {
+      "docId": "d103",
+      "page": 101,
+      "title": "L3-Slides.pptx",
+      "label": "Slide 101"
+    },
+    "acceptedAnswers": [
+      "owl zun",
+      "owl-shaped zun",
+      "Fu Hao",
+      "Yinxu",
+      "Anyang"
+    ],
+    "additionalSources": [
+      {
+        "docId": "d103",
+        "page": 96,
+        "title": "L3-Slides.pptx",
+        "label": "Slide 96"
+      },
+      {
+        "docId": "d103",
+        "page": 33,
+        "title": "L3-Slides.pptx",
+        "label": "Slide 33"
+      }
+    ]
+  },
+  {
+    "id": "visual-011",
+    "kind": "image",
+    "question": "Identify this object, its tomb/site, and approximate period.",
+    "image": {
+      "src": "/quiz1/q-011.webp",
+      "width": 435,
+      "height": 479,
+      "alt": "Course image for identification practice"
+    },
+    "answer": "A bronze yue axe from Fu Hao’s tomb at Yinxu, Anyang, Henan; late Shang, approximately 1200 BCE.",
+    "evidence": "Fu Hao’s Tomb; Central Plain: Yinxu; Bronze yue axe",
+    "source": {
+      "docId": "d103",
+      "page": 101,
+      "title": "L3-Slides.pptx",
+      "label": "Slide 101"
+    },
+    "acceptedAnswers": [
+      "bronze yue axe",
+      "yue",
+      "Fu Hao",
+      "Yinxu"
+    ],
+    "additionalSources": [
+      {
+        "docId": "d103",
+        "page": 96,
+        "title": "L3-Slides.pptx",
+        "label": "Slide 96"
+      },
+      {
+        "docId": "d103",
+        "page": 33,
+        "title": "L3-Slides.pptx",
+        "label": "Slide 33"
+      }
+    ]
+  },
+  {
+    "id": "visual-012",
+    "kind": "image",
+    "question": "Identify the vessel, the archaeological site, and its approximate date range.",
+    "image": {
+      "src": "/quiz1/q-012.webp",
+      "width": 290,
+      "height": 615,
+      "alt": "Course image for identification practice"
+    },
+    "answer": "A perforated terracotta jar from Harappa, approximately 2500–2000 BCE. The lecture uses ceramics to discuss preservation, relative dating, and cultural and economic choices.",
+    "evidence": "Perforated Jar; Harappa; Circa 2500-2000 BCE; Terracotta; National Museum, New Delhi",
+    "source": {
+      "docId": "d103",
+      "page": 127,
+      "title": "L3-Slides.pptx",
+      "label": "Slide 127"
+    },
+    "acceptedAnswers": [
+      "perforated jar",
+      "Harappa"
+    ]
+  },
+  {
+    "id": "visual-013",
+    "kind": "map",
+    "question": "Which course site is marked A? Name the site and its present-day country or region. The marker shows an approximate location.",
+    "image": {
+      "src": "/quiz1/q-013.svg",
+      "width": 1000,
+      "height": 720,
+      "alt": "Unlabelled regional map with one point marked A"
+    },
+    "answer": "Mohenjo-daro, in Sindh, Pakistan.",
+    "evidence": "Sindh, Pakistan; Indus Valley: Mohenjo-daro. Approximate coordinate source: https://www.wikidata.org/w/index.php?title=Q5725&oldid=2533349914 (Wikidata P625, retrieved 2026-09-14).",
+    "source": {
+      "docId": "d103",
+      "page": 45,
+      "title": "L3-Slides.pptx",
+      "label": "Slide 45"
+    },
+    "acceptedAnswers": [
+      "Mohenjo-daro",
+      "Mohenjo Daro",
+      "Mohanjo Daro",
+      "Mohenjodaro"
+    ]
+  },
+  {
+    "id": "visual-014",
+    "kind": "map",
+    "question": "Which course site is marked A? Name the site and its present-day country or region. The marker shows an approximate location.",
+    "image": {
+      "src": "/quiz1/q-014.svg",
+      "width": 1000,
+      "height": 720,
+      "alt": "Unlabelled regional map with one point marked A"
+    },
+    "answer": "Harappa, in Punjab, Pakistan.",
+    "evidence": "Punjab, Pakistan; Indus Valley: Harappa. Approximate coordinate source: https://www.wikidata.org/w/index.php?title=Q185562&oldid=2495824531 (Wikidata P625, retrieved 2026-09-14).",
+    "source": {
+      "docId": "d103",
+      "page": 76,
+      "title": "L3-Slides.pptx",
+      "label": "Slide 76"
+    },
+    "acceptedAnswers": [
+      "Harappa"
+    ]
+  },
+  {
+    "id": "visual-015",
+    "kind": "map",
+    "question": "Which course site is marked A? Name the site and its present-day country or region. The marker shows an approximate location.",
+    "image": {
+      "src": "/quiz1/q-015.svg",
+      "width": 1000,
+      "height": 720,
+      "alt": "Unlabelled regional map with one point marked A"
+    },
+    "answer": "Erlitou, in the Yiluo Basin near Luoyang, China.",
+    "evidence": "Yiluo Basin, Luoyang; Central Plain: Erlitou. Approximate coordinate source: https://www.wikidata.org/w/index.php?title=Q2692927&oldid=2516919649 (Wikidata P625, retrieved 2026-09-14).",
+    "source": {
+      "docId": "d103",
+      "page": 62,
+      "title": "L3-Slides.pptx",
+      "label": "Slide 62"
+    },
+    "acceptedAnswers": [
+      "Erlitou",
+      "二里头"
+    ]
+  },
+  {
+    "id": "visual-016",
+    "kind": "map",
+    "question": "Which course site is marked A? Name the site and its present-day country or region. The marker shows an approximate location.",
+    "image": {
+      "src": "/quiz1/q-016.svg",
+      "width": 1000,
+      "height": 720,
+      "alt": "Unlabelled regional map with one point marked A"
+    },
+    "answer": "Yinxu, at Anyang in Henan, China.",
+    "evidence": "Anyang, Henan; Central Plain: Yinxu. Approximate coordinate source: https://www.wikidata.org/w/index.php?title=Q464904&oldid=2543396728 (Wikidata P625, retrieved 2026-09-14).",
+    "source": {
+      "docId": "d103",
+      "page": 92,
+      "title": "L3-Slides.pptx",
+      "label": "Slide 92"
+    },
+    "acceptedAnswers": [
+      "Yinxu",
+      "Anyang",
+      "殷墟",
+      "Anyang, Henan",
+      "China: Yinxu"
+    ]
+  },
+  {
+    "id": "visual-017",
+    "kind": "map",
+    "question": "Which course site is marked A? Name the site and its present-day country or region. The marker shows an approximate location.",
+    "image": {
+      "src": "/quiz1/q-017.svg",
+      "width": 1000,
+      "height": 720,
+      "alt": "Unlabelled regional map with one point marked A"
+    },
+    "answer": "Uruk (Warka), in southern Mesopotamia, present-day Iraq.",
+    "evidence": "First City: Uruk (or Warka); Sumerian City-State. Approximate coordinate source: https://www.wikidata.org/w/index.php?title=Q168518&oldid=2521229076 (Wikidata P625, retrieved 2026-09-14).",
+    "source": {
+      "docId": "d102",
+      "page": 33,
+      "title": "L2-Slides.pptx",
+      "label": "Slide 33"
+    },
+    "acceptedAnswers": [
+      "Uruk"
+    ]
+  },
+  {
+    "id": "visual-018",
+    "kind": "map",
+    "question": "Which course site is marked A? Name the site and its present-day country or region. The marker shows an approximate location.",
+    "image": {
+      "src": "/quiz1/q-018.svg",
+      "width": 1000,
+      "height": 720,
+      "alt": "Unlabelled regional map with one point marked A"
+    },
+    "answer": "Giza Necropolis, in Egypt.",
+    "evidence": "Giza Necropolis; c. 26th century BCE. Approximate coordinate source: https://www.wikidata.org/w/index.php?title=Q12508&oldid=2532273260 (Wikidata P625, retrieved 2026-09-14).",
+    "source": {
+      "docId": "d102",
+      "page": 79,
+      "title": "L2-Slides.pptx",
+      "label": "Slide 79"
+    },
+    "acceptedAnswers": [
+      "Giza pyramid complex",
+      "Giza"
+    ]
+  }
+]

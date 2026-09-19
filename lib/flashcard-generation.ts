@@ -1,8 +1,10 @@
+import reviewedQuestions from '../content/quiz1-question-bank.json' with { type: 'json' };
+import type { Quiz1Question } from './quiz1-types.ts';
 import corpus from './corpus.json' with { type: 'json' };
 import documents from './documents.json' with { type: 'json' };
 import type { Flashcard } from './flashcard-types.ts';
 
-type Document = { id: string; week: number; title: string; kind: string; pages: number };
+type Document = { id: string; week: number; title: string; kind: string; pages: number; startPage?: number; isSummary?: boolean };
 type Passage = { docId: string; page: number; text: string };
 export type FlashcardScope = { week: number; docId?: string; count: 6 | 10 };
 export type FlashcardExcerpt = Flashcard['source'] & { citeId: string; text: string };
@@ -11,7 +13,7 @@ const normalize = (value: string) => value.normalize('NFKC').replace(/\s+/gu, ' 
 export function parseFlashcardScope(value: unknown, docs: Document[] = documents): FlashcardScope {
   if (!value || typeof value !== 'object' || Array.isArray(value)) throw new Error('Choose a valid week and card count.');
   const { week, docId, count } = value as Record<string, unknown>;
-  if (typeof week !== 'number' || !Number.isInteger(week) || week < 2 || week > 7 || (count !== 6 && count !== 10)) throw new Error('Choose a week from 2 to 7 and either 6 or 10 cards.');
+  if (typeof week !== 'number' || !Number.isInteger(week) || week < 1 || week > 3 || (count !== 6 && count !== 10)) throw new Error('Choose a lecture from 1 to 3 and either 6 or 10 cards.');
   if (docId !== undefined && (typeof docId !== 'string' || !docs.some(doc => doc.id === docId && doc.week === week))) throw new Error('Choose a document from the selected week.');
   return { week, count, ...(typeof docId === 'string' ? { docId } : {}) };
 }
@@ -21,14 +23,18 @@ export function selectFlashcardExcerpts(scope: FlashcardScope, passages: Passage
   parseFlashcardScope(scope, docs);
   const selectedDocs = docs.filter(doc => doc.week === scope.week && (!scope.docId || doc.id === scope.docId) && !/\bdraft\b|quiz instructions|logistics/i.test(doc.title)).sort((a, b) => Number(b.kind === 'Lecture') - Number(a.kind === 'Lecture'));
   const groups = selectedDocs.map(doc => {
-    const seen = new Set<number>();
-    return passages.filter(passage => {
-      if (passage.docId !== doc.id || !Number.isInteger(passage.page) || passage.page < 1 || passage.page > doc.pages || seen.has(passage.page)) return false;
-      const text = passage.text.slice(0, 1800);
-      if (text.length < 180 || (text.match(/[\p{L}\p{N}]+/gu) || []).length < 30 || /add locator map|quiz.*cover|quiz instructions|alternative table|to be added|table of contents|assessment deadline|submission deadline/i.test(text)) return false;
-      seen.add(passage.page);
-      return true;
-    }).sort((a, b) => a.page - b.page).map(passage => ({ citeId: `${doc.id}-p${passage.page}`, docId: doc.id, page: passage.page, title: doc.title, label: `${doc.kind === 'Lecture' ? 'Slide' : 'Page'} ${passage.page}`, text: passage.text.slice(0, 1800) }));
+    const pages = new Map<number, string[]>();
+    for (const passage of passages) {
+      if (passage.docId !== doc.id || !Number.isInteger(passage.page) || passage.page < (doc.startPage || 1) || passage.page > doc.pages) continue;
+      const blocks = pages.get(passage.page) || [];
+      if (passage.text.trim() && !blocks.includes(passage.text)) blocks.push(passage.text);
+      pages.set(passage.page, blocks);
+    }
+    return [...pages].sort(([a], [b]) => a - b).flatMap(([page, blocks]) => {
+      const text = blocks.join('\n\n').slice(0, 1800);
+      if (text.length < 80 || (text.match(/[\p{L}\p{N}]+/gu) || []).length < 10 || /add locator map|quiz.*cover|quiz instructions|alternative table|to be added|table of contents|assessment deadline|submission deadline/i.test(text)) return [];
+      return [{ citeId: `${doc.id}-p${page}`, docId: doc.id, page, title: doc.title, label: doc.isSummary ? 'Reading summary' : `${doc.kind === 'Lecture' ? 'Slide' : 'Page'} ${page}`, text }];
+    });
   });
   // Lecture pages receive most of the budget; readings share the remainder.
   const result: FlashcardExcerpt[] = [];
@@ -68,4 +74,23 @@ export function validateFlashcards(value: unknown, excerpts: FlashcardExcerpt[],
 
 export function flashcardSchema(excerpts: FlashcardExcerpt[], count: number) {
   return { type: 'object', properties: { cards: { type: 'array', minItems: count, maxItems: count, items: { type: 'object', properties: { question: { type: 'string' }, answer: { type: 'string' }, evidence: { type: 'string' }, citeId: { type: 'string', enum: excerpts.map(excerpt => excerpt.citeId) } }, required: ['question', 'answer', 'evidence', 'citeId'], additionalProperties: false } } }, required: ['cards'], additionalProperties: false };
+}
+
+/** Small summaries cannot support a full ten-card set without repetitive trivia. */
+export function flashcardTargetCount(excerpts: FlashcardExcerpt[], requested: 6 | 10): number {
+  const words = excerpts.reduce((sum, excerpt) => sum + (excerpt.text.match(/[\p{L}\p{N}]+/gu) || []).length, 0);
+  return Math.min(requested, words < 180 ? 3 : words < 350 ? 6 : 10);
+}
+
+/** Reviewed text questions remain useful when generation is unavailable. Never widen scope. */
+export function reviewedFlashcardFallback(scope: FlashcardScope, bank: Quiz1Question[] = reviewedQuestions as Quiz1Question[], docs: Document[] = documents): Flashcard[] {
+  parseFlashcardScope(scope, docs);
+  const seen = new Set<string>();
+  return bank.flatMap(question => {
+    const source = question.source;
+    const doc = docs.find(item => item.id === source?.docId);
+    if (question.kind !== 'short-answer' || question.additionalSources?.length || !doc || doc.week !== scope.week || (scope.docId && doc.id !== scope.docId) || !Number.isInteger(source.page) || source.page < (doc.startPage || 1) || source.page > doc.pages || !question.evidence?.trim() || !question.question?.trim() || !question.answer?.trim() || seen.has(question.id)) return [];
+    seen.add(question.id);
+    return [{ id: question.id, question: question.question, answer: question.answer, evidence: question.evidence, source: { docId: doc.id, page: source.page, title: doc.title, label: doc.isSummary ? 'Reading summary' : `${doc.kind === 'Lecture' ? 'Slide' : 'Page'} ${source.page}` } }];
+  }).slice(0, scope.count);
 }

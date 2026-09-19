@@ -11,21 +11,21 @@ test('every original page including hidden and image-only slides has a valid pre
  for(const doc of documents){
    const visual=visuals[doc.id];assert.ok(visual,doc.id);assert.equal(visual.pages.length,doc.pages);
    for(const [index,page] of visual.pages.entries()){
-     assert.equal(page.page,index+1);assert.ok(page.images.length);
+     assert.equal(page.page,index+1);if(doc.kind!=='Web')assert.ok(page.images.length);
      for(const image of page.images){assert.ok(existsSync('public'+image.src));assert.ok(image.width>0&&image.height>0);}
      pages++;
    }
  }
- assert.equal(pages,4018);
+ assert.equal(pages,321);
 });
 test('image-only pages produce resolvable source citations without inventing text',()=>{
- const source=getPageSource('d001',1);
+ const source=getPageSource('d101',1);
  assert.ok(source);assert.ok(source.images.length);
  assert.equal(getSource(source.id).page,1);
- assert.equal(getPageSource('d001',170),null);
- assert.equal(getPageSource('d001',0),null);
- assert.equal(getPageSource('d001',1.5),null);
- assert.equal(getSource('d001-p170-visual'),null);
+ assert.equal(getPageSource('d101',79),null);
+ assert.equal(getPageSource('d101',0),null);
+ assert.equal(getPageSource('d101',1.5),null);
+ assert.equal(getSource('d101-p79-visual'),null);
 });
 test('page text removes chunk overlap without losing material',()=>{
  const text='a'.repeat(1400)+'b'.repeat(200)+'c'.repeat(400);
@@ -33,7 +33,7 @@ test('page text removes chunk overlap without losing material',()=>{
  assert.equal(merged,text);
 });
 test('Gemini receives original WebP bytes and matching citation labels, bounded to four images',async()=>{
- const result=await buildVisualContext([1,2,3,4,5,6].map(page=>getPageSource('d001',page)));
+ const result=await buildVisualContext([1,2,3,4,5,6].map(page=>getPageSource('d101',page)));
  assert.equal(result.visualsUsed,4);assert.equal(result.failedVisuals,0);
  assert.deepEqual(result.reviewedSources,[1,2,3,4]);
  for(const part of result.parts.filter(p=>'inlineData' in p)){
@@ -42,7 +42,7 @@ test('Gemini receives original WebP bytes and matching citation labels, bounded 
  }
 });
 test('invalid image paths fail safely instead of reading arbitrary files',async()=>{
- const source={...getPageSource('d001',1),images:[{src:'/materials/d001/../../.env',width:1,height:1,alt:'bad'}]};
+ const source={...getPageSource('d101',1),images:[{src:'/materials/d101/../../.env',width:1,height:1,alt:'bad'}]};
  const result=await buildVisualContext([source]);
  assert.equal(result.visualsUsed,0);assert.equal(result.failedVisuals,1);assert.deepEqual(result.parts,[]);
 });
@@ -53,7 +53,7 @@ test('repeat questions reuse page-image bytes and cancelled requests stop before
  const bytes=Buffer.from('RIFF0000WEBPtest');
  const fetchMock=t.mock.method(globalThis,'fetch',async()=>{downloads++;return new Response(bytes,{headers:{'Content-Type':'image/webp'}});});
  try{
-   const source=getPageSource('d001',169);
+   const source=getPageSource('d101',78);
    await buildVisualContext([source]);await buildVisualContext([source]);
    assert.equal(downloads,1);
    const controller=new AbortController();controller.abort();

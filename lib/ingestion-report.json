@@ -1,6 +1,1 @@
-{
-  "documents": 88,
-  "chunks": 6769,
-  "skipped": [],
-  "limitations": "Extracted text only. Scanned pages, figures, charts and external .url links are not interpreted."
-}
+{"documents":9,"chunks":579,"skipped":[],"excludedFrontMatterPages":6,"limitations":"Curated Quiz 1 sources only. Web readings are original summaries with links, not full articles. Text rectangles reflect extracted PDF text; image-only content requires visual reading. Slide animations are flattened."}
