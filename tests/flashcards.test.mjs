@@ -70,8 +70,8 @@ test('short blocks are aggregated only within the same source page and reading f
  const excerpts=selectFlashcardExcerpts({week:1,count:6},passages,docs);
  assert.equal(excerpts.length,1);assert.equal(excerpts[0].page,4);assert.ok(excerpts[0].text.includes('relationships'));assert.ok(!excerpts[0].text.includes('Separate'));
 });
-test('all nine active sources can be selected without borrowing material',()=>{
- assert.equal(documents.length,9);
+test('all active sources can be selected without borrowing material',()=>{
+ assert.ok(documents.some(doc=>doc.id==='d110'&&doc.week===3));
  for(const doc of documents){const excerpts=selectFlashcardExcerpts({week:doc.week,docId:doc.id,count:6});assert.ok(excerpts.length>0,doc.id);assert.ok(excerpts.every(s=>s.docId===doc.id&&s.page>=(doc.startPage||1)));}
 });
 

@@ -16,7 +16,8 @@ test('every original page including hidden and image-only slides has a valid pre
      pages++;
    }
  }
- assert.equal(pages,321);
+ assert.equal(pages,documents.reduce((total,doc)=>total+doc.pages,0));
+ assert.equal(visuals.d110.pages.length,13);
 });
 test('image-only pages produce resolvable source citations without inventing text',()=>{
  const source=getPageSource('d101',1);

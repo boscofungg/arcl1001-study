@@ -376,6 +376,27 @@
         1,
         2,
         3
+      ],
+      "identicalAttachments": [
+        {
+          "filename": "L2-Reading-Principles of Archaeology.pdf (1).pdf",
+          "sha256": "1e33ec724446387f143b5451ba1257d5a889a255a7395b9cfbe5bc370c3580e6"
+        }
+      ]
+    },
+    {
+      "id": "d110",
+      "filename": "L3-Reading-Principles of Archaeology.pdf",
+      "week": 3,
+      "sha256": "badecbdf5950651a871521dba5c5c115b514e754b95ee03bf653949da902803f",
+      "sourceBytes": 2305582,
+      "renderedPages": 13,
+      "sourceSlideOrder": null,
+      "hiddenSlidesIncluded": false,
+      "excludedStudyPages": [
+        1,
+        2,
+        3
       ]
     },
     {

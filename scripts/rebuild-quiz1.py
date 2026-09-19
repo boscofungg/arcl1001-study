@@ -27,6 +27,7 @@ SOURCES = [
     ('d104', 'L1-Reading-Principles of Archaeology.pdf.pdf', 1, 'Reading', 'Lecture 1 — Principles of Archaeology', 6),
     ('d105', 'L1-Reading-Archaeology 101.pdf', 1, 'Reading', 'Lecture 1 — Archaeology 101', 5),
     ('d106', 'L2-Reading-Principles of Archaeology.pdf.pdf', 2, 'Reading', 'Lecture 2 — Principles of Archaeology', 7),
+    ('d110', 'L3-Reading-Principles of Archaeology.pdf', 3, 'Reading', 'Lecture 3 — Principles of Archaeology', 13),
 ]
 
 
@@ -102,13 +103,30 @@ def study_block(item):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--reuse-images', action='store_true', help='Reuse previews only when the source originals have not changed')
+    parser.add_argument('--only', nargs='+', help='Rebuild only these source IDs; retain verified unchanged sources and previews')
     args = parser.parse_args()
+    known_ids = {source[0] for source in SOURCES}
+    if args.only and not set(args.only) <= known_ids:
+        parser.error('--only contains an unknown source ID')
+    previous = {}
+    if args.only:
+        for key, filename in {'documents': 'lib/documents.json', 'corpus': 'lib/corpus.json', 'visuals': 'lib/visuals.json', 'manifest': 'content/quiz1-source-manifest.json'}.items():
+            previous[key] = json.loads((ROOT / filename).read_text())
     renderer = shutil.which('soffice') or shutil.which('libreoffice')
-    if not renderer:
+    if not renderer and any(s[1].endswith('.pptx') and (not args.only or s[0] in args.only) for s in SOURCES):
         raise RuntimeError('LibreOffice is required to preserve complete slide layouts')
     documents, corpus, visuals, provenance = [], [], {}, []
     for ident, filename, week, kind, title, expected_pages in SOURCES:
         original = DOWNLOADS / filename
+        if args.only and ident not in args.only:
+            prior = next(s for s in previous['manifest']['sources'] if s['id'] == ident)
+            if digest(original) != prior['sha256']:
+                raise ValueError(f'{ident}: unchanged source hash does not match; include it in --only')
+            documents.append(next(d for d in previous['documents'] if d['id'] == ident))
+            corpus.extend(c for c in previous['corpus'] if c['docId'] == ident)
+            visuals[ident] = previous['visuals'][ident]
+            provenance.append(prior)
+            continue
         dest = ROOT / 'public/materials' / ident
         dest.mkdir(parents=True, exist_ok=True)
         order = slide_order(original) if original.suffix.lower() == '.pptx' else None
@@ -132,7 +150,7 @@ def main():
                     if not args.reuse_images or not asset.exists():
                         image.save(asset, 'WEBP', quality=65, method=4)
                     blocks = text_blocks(page)
-                    front_matter = ident in ('d104', 'd106') and number <= 3
+                    front_matter = ident in ('d104', 'd106', 'd110') and number <= 3
                     pages.append({'page': number, 'images': [{'src': f'/materials/{ident}/page-{number}.webp', 'width': image.width, 'height': image.height, 'alt': f'{title} — original {"slide" if order else "page"} {number}'}], 'imageOnly': sum(len(b['text']) for b in blocks) < 35, 'textBlocks': blocks, 'frontMatter': front_matter})
                     if not front_matter:
                         for index, block in enumerate(blocks):
@@ -140,10 +158,15 @@ def main():
                                 corpus.append({'id': f'{ident}-p{number}-c{index}', 'docId': ident, 'page': number, 'text': block['text'], 'box': block['box']})
                                 indexed.add(number)
             source_type = 'pptx' if order else 'pdf'
-            documents.append({'id': ident, 'title': title, 'week': week, 'kind': kind, 'pages': len(pages), 'indexedPages': len(indexed), 'filename': filename, 'startPage': 4 if ident in ('d104', 'd106') else 1})
+            documents.append({'id': ident, 'title': title, 'week': week, 'kind': kind, 'pages': len(pages), 'indexedPages': len(indexed), 'filename': filename, 'startPage': 4 if ident in ('d104', 'd106', 'd110') else 1})
             visuals[ident] = {'representation': 'page', 'sourceType': source_type, 'filename': filename, 'week': week, 'pages': pages}
-            provenance.append({'id': ident, 'filename': filename, 'week': week, 'sha256': digest(original), 'sourceBytes': original.stat().st_size, 'renderedPages': len(pages), 'sourceSlideOrder': order, 'hiddenSlidesIncluded': bool(order), 'excludedStudyPages': [1, 2, 3] if ident in ('d104', 'd106') else []})
+            provenance.append({'id': ident, 'filename': filename, 'week': week, 'sha256': digest(original), 'sourceBytes': original.stat().st_size, 'renderedPages': len(pages), 'sourceSlideOrder': order, 'hiddenSlidesIncluded': bool(order), 'excludedStudyPages': [1, 2, 3] if ident in ('d104', 'd106', 'd110') else []})
             print(f'{ident}: {len(pages)} pages, {len(indexed)} indexed', flush=True)
+    duplicate_l2 = DOWNLOADS / 'L2-Reading-Principles of Archaeology.pdf (1).pdf'
+    if duplicate_l2.exists():
+        l2 = next(source for source in provenance if source['id'] == 'd106')
+        if digest(duplicate_l2) == l2['sha256']:
+            l2['identicalAttachments'] = [{'filename': duplicate_l2.name, 'sha256': l2['sha256']}]
     readings_path = ROOT / 'content/quiz1-web-readings.json'
     readings = json.loads(readings_path.read_text())
     if isinstance(readings, dict):
@@ -162,13 +185,16 @@ def main():
         visuals[ident] = {'representation': 'page', 'sourceType': 'web', 'filename': filename, 'week': week, 'pages': [{'page': 1, 'images': [], 'imageOnly': False, 'textBlocks': []}], 'url': url, 'isSummary': True}
         provenance.append({'id': ident, 'url': url, 'week': week, 'isSummary': True, 'summarySha256': hashlib.sha256(summary.encode()).hexdigest(), 'renderedPages': 0})
     assets = [p for ident, *_ in SOURCES for p in (ROOT / 'public/materials' / ident).glob('*.webp')]
-    report = {'documents': len(documents), 'chunks': len(corpus), 'skipped': [], 'excludedFrontMatterPages': 6, 'limitations': 'Curated Quiz 1 sources only. Web readings are original summaries with links, not full articles. Text rectangles reflect extracted PDF text; image-only content requires visual reading. Slide animations are flattened.'}
+    report = {'documents': len(documents), 'chunks': len(corpus), 'skipped': [], 'excludedFrontMatterPages': sum(len(s.get('excludedStudyPages', [])) for s in provenance), 'limitations': 'Curated Quiz 1 sources only. Web readings are original summaries with links, not full articles. Text rectangles reflect extracted PDF text; image-only content requires visual reading. Slide animations are flattened.'}
     visual_report = {'documents': len(documents), 'pages': sum(len(d['pages']) for d in visuals.values()), 'imageOnlyPages': sum(p['imageOnly'] for d in visuals.values() for p in d['pages']), 'images': len(assets), 'assetBytes': sum(p.stat().st_size for p in assets), 'maximumDimension': 1400, 'quality': 65, 'renderer': 'LibreOffice with hidden slides; PyMuPDF', 'fallbackDocuments': [], 'errors': [], 'limitations': ['Web readings are linked summaries with no page screenshots.', 'Slide animations are flattened; unusual fonts or external media may differ from PowerPoint.', 'Text boxes mark actual extracted text; no fabricated OCR or inferred graphic labels.']}
     outputs = {'lib/documents.json': documents, 'lib/corpus.json': corpus, 'lib/visuals.json': visuals, 'lib/ingestion-report.json': report, 'lib/visual-ingestion-report.json': visual_report, 'content/quiz1-source-manifest.json': {'scope': 'Quiz 1 — Lectures 1–3 and assigned readings', 'sources': provenance, 'webReadingsInputSha256': digest(readings_path)}}
     for filename, data in outputs.items():
         target = ROOT / filename
         target.parent.mkdir(parents=True, exist_ok=True)
-        target.write_text(json.dumps(data, ensure_ascii=False, separators=(',', ':')))
+        if filename == 'content/quiz1-source-manifest.json':
+            target.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n')
+        else:
+            target.write_text(json.dumps(data, ensure_ascii=False, separators=(',', ':')))
     print(json.dumps(visual_report, indent=2))
 
 

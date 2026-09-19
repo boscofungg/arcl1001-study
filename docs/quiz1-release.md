@@ -40,3 +40,20 @@ Source files supplied today remain unmodified in Downloads. The ingestion manife
 - Pilot with 5–10 simultaneous students before inviting the whole class; record slow first replies, failures and quota messages. Do not describe this as a completed load test until that pilot is run.
 
 See `student-feedback-quiz1.md` for the proposed feedback form and pilot tasks.
+
+## Individual-reading update — 19 September 2026
+
+Added Lecture 3 Principles of Archaeology (13 original pages; study content
+starts at PDF page 4). The newly attached L2 PDF is identical to the existing
+copy and is recorded as duplicate provenance, not a second document.
+
+Use **Chat about this reading** above the reader, or select a document in
+**Tutor source scope**. This searches the selected document across its pages.
+The page-focus button now stays within that document too. Changing source
+scope starts a fresh conversation, preventing other readings' chat history
+from carrying into it. Whole-lecture and all-materials comparison scopes remain.
+The three linked web readings remain labelled summaries, not full articles.
+
+Checkpoint before this update: `checkpoint/pre-reading-chat-2026-09-19`.
+Release tag: `release/reading-chat-2026-09-19`. To reverse this update alone,
+revert that release commit and push to `codex/study-workspace`.
