@@ -19,3 +19,12 @@ test('saved review restores progress and rejects corrupt queues/ratings/cards',(
 test('saved decks reject old course IDs and unsupported lecture weeks',()=>{
  for(const invalid of [{...deck,week:4},{...deck,docId:'d001'},{...deck,cards:deck.cards.map(card=>({...card,source:{...card.source,docId:'d001'}}))},{...deck,cards:deck.cards.map(card=>({...card,source:{...card.source,page:999}}))}])assert.equal(parseReview(JSON.stringify(startReview(invalid))),null);
 });
+
+test('saved reading and mixed decks cannot reappear in slides-only review',()=>{
+ const readingCard={...deck.cards[0],source:{...deck.cards[0].source,docId:'d106',page:4}};
+ for(const invalid of [
+  {...deck,docId:'d106'},
+  {...deck,cards:[readingCard]},
+  {...deck,cards:[readingCard,deck.cards[1]]},
+ ])assert.equal(parseReview(JSON.stringify(startReview(invalid))),null);
+});

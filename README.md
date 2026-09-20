@@ -4,31 +4,34 @@ Public study workspace for selected Lectures 1–3: a scrolling course reader,
 source-grounded streaming tutor, generated flashcards and unified Quiz 1 practice.
 The shared browser theme preference supports light and dark mode.
 
-## Quiz 1 practice
+## Quiz 1 practice and flashcards
 
-Choose **Quiz 1 practice** in the main navigation, or open `/?view=practice`.
-It contains all 45 automatically marked questions (23 MCQs and 22 short blanks).
-Filter by lecture, format and question type, then start a five- or ten-question
-set. Unseen questions are prioritized, followed by missed and previously correct
-questions. Sets are capped by the available matching questions.
+Choose a Lecture 1, 2 or 3 slide deck in the practice navigation. Practice has
+35 slide-supported image-identification, map-labelling and concise-answer
+questions; MCQs have been removed to follow the announced quiz formats.
+Each suggested answer links only to its original lecture slide(s). Multi-part
+answers use explicit self-assessment against the model answer rather than
+unreliable exact-word automatic grading.
 
-Answers receive explanations, source links and visual feedback. Blank marking
-accepts curated equivalent wording, spelling variants and conservative typo
-handling. These are unofficial study aids, not an exam marking scheme.
+Flashcards also use only lecture slides. The API rejects PDF/web-reading source
+requests; excerpt selection, validation, prepared fallback and saved-deck checks
+all enforce Lecture sources. The practice/flashcard sidebar shows only the three
+slide decks. PDF and web readings remain indexed and selectable in Read & ask,
+and the chatbot can still answer questions about them.
 
-The separate Expeditions interface has been removed. `/expeditions` temporarily
-redirects to Quiz 1 practice so previous links still work. Existing automatically
-marked answers and in-progress sets are reused from the existing browser key;
-older self-assessed Quiz 1 sets remain stored separately and are not turned into
-automatic grades. Source reading opens inside the study workspace. Progress can
-be exported or reset, but is not synchronized across devices or domains.
+Slide-only practice and flashcards use new browser-storage namespaces. Earlier
+reading-based, mixed-source and MCQ sets remain archived in their previous keys,
+but cannot reappear in the new review flow. Practice responses are not saved or
+sent to AI; self-check progress is saved per lecture. No cross-device sync exists.
+
+The former `/expeditions` URL redirects to `/?view=practice`.
 
 ## Development and hosting
 
 Run `npm ci`, set server-only `GEMINI_API_KEY` and optional `GEMINI_MODEL` in
 `.env.local`, then `npm run dev`. Verify with `npm run lint`, `npm test`,
 `npm run build`, and `npx tsc --noEmit`. Course page originals are bundled for
-visual model context. Graded practice is browser-local and makes no AI requests.
+visual model context. Practice self-checks are browser-local and make no AI requests.
 Existing origin checks and per-instance IP rate limits remain on model APIs.
 Whole-class AI capacity requires separate quota checks and load testing.
 
@@ -46,3 +49,9 @@ To reverse this release, revert its tagged commit and push to the production
 branch. Resolve conflicts if later edits depend on it; avoid force-pushing.
 The former private testing site's source remains backed up in its private
 repository, while its Vercel project has been retired.
+
+## Slides-only revision
+
+`checkpoint/pre-slides-only-quiz-2026-09-20` preserves the previous mixed-source
+practice. `release/slides-only-quiz-2026-09-20` records this revision. Readings
+remain available to the tutor; exclusion is specific to quiz and flashcard flows.

@@ -18,6 +18,7 @@ test('every week has bounded substantive excerpts preserving actual source pages
     for (const excerpt of excerpts) {
       const doc = documents.find(d => d.id === excerpt.docId);
       assert.equal(doc.week, week);
+      assert.equal(doc.kind, 'Lecture');
       assert.ok(excerpt.page >= 1 && excerpt.page <= doc.pages);
       assert.ok(excerpt.text.length <= 1800);
       assert.ok(corpus.filter(p => p.docId === excerpt.docId && p.page === excerpt.page).map(p => p.text).filter((text, index, all) => all.indexOf(text) === index).join('\n\n').startsWith(excerpt.text));
@@ -64,29 +65,43 @@ test('schema constrains generated citation ids to the supplied excerpts', () => 
   assert.equal(schema.properties.cards.maxItems, 6);
 });
 
-test('short blocks are aggregated only within the same source page and reading frontmatter is excluded',()=>{
- const docs=[{id:'test',week:1,title:'Principles',kind:'Reading',pages:5,startPage:4}];
+test('short blocks are aggregated only within the same slide and unrelated readings are excluded',()=>{
+ const docs=[{id:'test',week:1,title:'Principles',kind:'Lecture',pages:5,startPage:4}];
  const passages=[{docId:'test',page:1,text:'Frontmatter '.repeat(20)},{docId:'test',page:4,text:'Archaeologists record the precise location of objects.'},{docId:'test',page:4,text:'Their relationships help to establish archaeological context.'},{docId:'test',page:5,text:'Separate short fragment.'}];
  const excerpts=selectFlashcardExcerpts({week:1,count:6},passages,docs);
  assert.equal(excerpts.length,1);assert.equal(excerpts[0].page,4);assert.ok(excerpts[0].text.includes('relationships'));assert.ok(!excerpts[0].text.includes('Separate'));
 });
-test('all active sources can be selected without borrowing material',()=>{
- assert.ok(documents.some(doc=>doc.id==='d110'&&doc.week===3));
- for(const doc of documents){const excerpts=selectFlashcardExcerpts({week:doc.week,docId:doc.id,count:6});assert.ok(excerpts.length>0,doc.id);assert.ok(excerpts.every(s=>s.docId===doc.id&&s.page>=(doc.startPage||1)));}
+test('only lecture slides can be selected; every reading is rejected',()=>{
+ for(const doc of documents){
+  const scope={week:doc.week,docId:doc.id,count:6};
+  if(doc.kind==='Lecture'){
+   assert.deepEqual(parseFlashcardScope(scope),scope);
+   const excerpts=selectFlashcardExcerpts(scope);
+   assert.ok(excerpts.length>0,doc.id);assert.ok(excerpts.every(s=>s.docId===doc.id));
+  }else{
+   assert.throws(()=>parseFlashcardScope(scope));
+   assert.throws(()=>selectFlashcardExcerpts(scope));
+   assert.throws(()=>reviewedFlashcardFallback(scope));
+  }
+ }
+});
+test('response validation rejects reading evidence even if supplied among excerpts',()=>{
+ const reading={...excerpt,docId:'d107',citeId:'d107-p1'};
+ assert.deepEqual(validateFlashcards({cards:[{...valid,citeId:reading.citeId}]},[reading],6),[]);
 });
 
-test('short summaries request only three cards and larger excerpts respect requested count', () => {
+test('sparse excerpts request only three cards and larger excerpts respect requested count', () => {
  assert.equal(flashcardTargetCount([{...excerpt,text:'Evidence '.repeat(70)}],10),3);
  assert.equal(flashcardTargetCount([{...excerpt,text:'Evidence '.repeat(250)}],10),6);
  assert.equal(flashcardTargetCount([{...excerpt,text:'Evidence '.repeat(500)}],6),6);
 });
 test('reviewed fallback uses only in-scope short answers with known source pages', () => {
- for (const doc of documents) {
+ for (const doc of documents.filter(doc=>doc.kind==='Lecture')) {
   const cards=reviewedFlashcardFallback({week:doc.week,docId:doc.id,count:6});
   assert.ok(cards.every(card=>card.source.docId===doc.id&&card.source.page>=doc.startPage&&card.source.page<=doc.pages&&card.evidence.trim()));
  }
  const cards=reviewedFlashcardFallback({week:1,count:6});assert.ok(cards.length>0);assert.ok(cards.every(card=>documents.find(doc=>doc.id===card.source.docId).week===1));
  const base={id:'test',kind:'short-answer',question:'What is archaeology?',answer:'A scientific study.',evidence:'Verified course evidence',source:{docId:'d101',page:2,title:'Lecture',label:'Slide 2'}};
- assert.equal(reviewedFlashcardFallback({week:1,count:6},[base,{...base,id:'comparison',kind:'comparison'},{...base,id:'outside',source:{...base.source,docId:'d102'}},{...base,id:'invalid',source:{...base.source,page:999}},{...base,id:'empty',evidence:''},{...base,id:'unknown',source:{...base.source,docId:'d001'}}]).length,1);
- assert.deepEqual(reviewedFlashcardFallback({week:1,docId:'d104',count:6}),[]);
+ assert.equal(reviewedFlashcardFallback({week:1,count:6},[base,{...base,id:'comparison',kind:'comparison'},{...base,id:'outside',source:{...base.source,docId:'d102'}},{...base,id:'invalid',source:{...base.source,page:999}},{...base,id:'empty',evidence:''},{...base,id:'unknown',source:{...base.source,docId:'d001'}},{...base,id:'reading',source:{...base.source,docId:'d104',page:4}}]).length,1);
+ assert.throws(()=>reviewedFlashcardFallback({week:1,docId:'d104',count:6}));
 });

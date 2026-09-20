@@ -11,11 +11,11 @@ function read(key:string){if(temporarySets.has(key))return temporarySets.get(key
 function save(key:string,review:FlashcardReview){const value=JSON.stringify(review);try{localStorage.setItem(key,value);temporarySets.delete(key);}catch{temporarySets.set(key,value);}window.dispatchEvent(new Event('stratum-flashcards'));}
 const emptySnapshot=()=>'';
 export default function FlashcardStudy({week,topic,onOpen}:{week:number;topic:string;onOpen:(docId:string,page:number,quote?:string)=>void}){
-  const key=`stratum-flashcards-quiz1-v2-week${week}`;
+  const key=`stratum-flashcards-slides-v3-week${week}`;
   const raw=useSyncExternalStore(subscribe,()=>read(key),emptySnapshot);
   const parsed=parseReview(raw);
   const review=parsed?.deck.week===week?parsed:null;
-  const materials=documents.filter(doc=>doc.week===week);
+  const materials=documents.filter(doc=>doc.week===week&&doc.kind==='Lecture');
   const [selection,setSelection]=useState<string|null>(null);
   const selected=selection??(review?review.deck.docId||'':materials.find(doc=>doc.kind==='Lecture')?.id||'');
   const [count,setCount]=useState<6|10>(6),[busy,setBusy]=useState(false),[error,setError]=useState(''),[warning,setWarning]=useState('');
@@ -45,16 +45,16 @@ export default function FlashcardStudy({week,topic,onOpen}:{week:number;topic:st
   }
   function rate(rating:'again'|'known'){if(!review||!showingAnswer)return;save(key,rateCard(review,rating));setRevealed(null);}
   return <section className="flashcard-study" aria-labelledby="flashcard-title">
-    <div className="section-kicker">QUIZ 1 ACTIVE RECALL / LECTURE {String(week).padStart(2,'0')}</div><h1 id="flashcard-title">Flashcards</h1><p className="intro">Recall the answer before you reveal it. Revisit the cards that need another look.</p>
+    <div className="section-kicker">QUIZ 1 ACTIVE RECALL / LECTURE {String(week).padStart(2,'0')}</div><h1 id="flashcard-title">Flashcards</h1><p className="intro">Practise only the lecture slides. Recall the answer before you reveal it, then revisit cards that need another look.</p>
     <form className="flashcard-generator" onSubmit={event=>{event.preventDefault();void generate();}}>
-      <label>Source material<select aria-label="Flashcard source material" value={selected} disabled={busy} onChange={event=>setSelection(event.target.value)}><option value="">All Lecture {week} materials</option>{materials.map(doc=><option key={doc.id} value={doc.id}>{doc.kind} · {doc.title}</option>)}</select></label>
+      <label>Lecture slides<select aria-label="Flashcard source material" value={selected} disabled={busy} onChange={event=>setSelection(event.target.value)}><option value="">All Lecture {week} slides</option>{materials.map(doc=><option key={doc.id} value={doc.id}>{doc.kind} · {doc.title}</option>)}</select></label>
       <div className="flashcard-generate-row"><label>Set size<select aria-label="Number of flashcards" value={count} disabled={busy} onChange={event=>setCount(Number(event.target.value) as 6|10)}><option value={6}>6 cards</option><option value={10}>10 cards</option></select></label><button className="primary-button" disabled={busy} type="submit"><Sparkles size={15}/>{busy?'Generating…':review?'Generate a new set':'Generate flashcards'}</button></div>
-      <p>Concise short-answer practice from the selected Quiz 1 course text. These are study aids, not official quiz questions.</p>
+      <p>Concise short-answer practice from the selected lecture slides. These are study aids, not official quiz questions.</p>
     </form>
-    {busy&&<div className="flashcard-status" role="status">Reading the materials and checking the cards’ source references…</div>}
+    {busy&&<div className="flashcard-status" role="status">Reading the slides and checking the cards’ source references…</div>}
     {error&&<p className="flashcard-error" role="alert">{error}{review?' Your existing set is still available.':''}</p>}
     {warning&&<p className="flashcard-status" role="status">{warning}</p>}
-    {raw&&!review&&<p className="flashcard-error">The saved set could not be read. Generate a new set to continue.</p>}
+    {raw&&!review&&<p className="flashcard-error">This saved set is not compatible with slides-only practice. Generate a new set to continue.</p>}
     {!review&&!busy&&<div className="flashcard-empty"><BookOpen size={28}/><h2>Start with {topic.toLowerCase()}</h2><p>Generate a small set, answer from memory, then check the evidence. Each card focuses on one idea.</p><ol><li>Try to recall it</li><li>Reveal and check</li><li>Mark it for another pass</li></ol></div>}
     {review&&<div className="flashcard-current-set" ref={reviewAnchor}>
       <div className="flashcard-set-heading"><div><span className="eyebrow">YOUR CURRENT SET</span><h2>{review.deck.title}</h2></div><span>{review.deck.cards.length} cards</span></div>
@@ -67,6 +67,6 @@ export default function FlashcardStudy({week,topic,onOpen}:{week:number;topic:st
       </>:<div className="recall-complete" role="status"><Check size={28}/><h2>Round complete</h2><p>You marked <strong>{known}</strong> of {review.deck.cards.length} cards recalled and <strong>{missed}</strong> for more practice.</p><div>{missed>0&&<button className="primary-button" onClick={()=>{save(key,reviewMissed(review));setRevealed(null);}}><RotateCcw size={15}/> Review missed cards ({missed})</button>}<button className="flashcard-secondary" onClick={()=>{save(key,startReview(review.deck));setRevealed(null);}}>Review all again</button></div></div>}
       <p className="flashcard-save-note">{temporarySets.has(key)?'Device storage is unavailable. This set lasts until you reload.':'Your current set and review progress are saved on this device.'}</p>
     </div>}
-    <p className="coverage-note">Generated or reviewed study aids. Check the linked source if an answer seems unclear. Your ratings reflect your own recall, not an exam score.</p>
+    <p className="coverage-note">Slides-only study aids. Earlier saved sets are kept separately; generate a new slides-only set to continue. Check the linked source if an answer seems unclear. Your ratings reflect your own recall, not an exam score.</p>
   </section>;
 }
