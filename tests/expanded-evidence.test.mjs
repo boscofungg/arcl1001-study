@@ -18,7 +18,8 @@ test('every new question has a resolvable page and an exact source quotation',()
 });
 test('new topics do not collapse distinct archaeological terms into the same answer',()=>{
  const q=gradedQuestions.find(q=>q.id==='extra-l2-08');
- for(const wrong of ['provenance','place of manufacture','association','matrix'])assert.equal(gradeAnswer(q,wrong).correct,false);
+ assert.equal(gradeAnswer(q,'provenance').correct,true);
+ for(const wrong of ['place of manufacture','association','matrix'])assert.equal(gradeAnswer(q,wrong).correct,false);
 });
 
 test('typo tolerance does not accept known different concepts',()=>{

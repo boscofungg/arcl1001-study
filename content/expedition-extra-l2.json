@@ -239,7 +239,7 @@
     "prompt": "The term for the place where an artefact was found is _____.",
     "question": "The term for the place where an artefact was found is _____.",
     "answer": "Provenience",
-    "explanation": "Provenience records where an object was found. The reading also notes the term provenance in other archaeological and art-historical traditions.",
+    "explanation": "The reading uses provenience for where an artefact was found. Here, provenance is also accepted when used to mean its find location; the question is not asking where it was manufactured.",
     "evidence": "Te provenience of an artifact is the\nplace it was found",
     "source": {
       "docId": "d106",
@@ -249,6 +249,7 @@
     },
     "acceptedAnswers": [
       "provenience",
+      "provenance",
       "findspot",
       "find spot",
       "find location",
