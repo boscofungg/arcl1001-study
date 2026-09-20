@@ -1,3 +1,6 @@
+import extraL1 from '../content/expedition-extra-l1.json' with { type: 'json' };
+import extraL2 from '../content/expedition-extra-l2.json' with { type: 'json' };
+import extraL3 from '../content/expedition-extra-l3.json' with { type: 'json' };
 import textQuestions from '../content/quiz1-question-bank.json' with { type: 'json' };
 import visualQuestions from '../content/quiz1-visual-questions.json' with { type: 'json' };
 import type { Quiz1Question } from './quiz1-types.ts';
@@ -8,6 +11,7 @@ export type GradedQuestion = Quiz1Question & {
   options?: { id: string; text: string }[];
   correctOptionId?: string;
   explanation: string;
+  rejectedAnswers?: string[];
 };
 export type GradeResult = { correct: boolean; feedback: string; matchedVariant?: string };
 
@@ -66,12 +70,14 @@ const updates: QuestionUpdate[] = [
     explanation: 'Fu Hao’s tomb contains many bronze ritual vessels and weapons. Harappa is presented with ornaments, simple burial forms and pottery offerings. Avoid extending a limited comparison to every community.' },
 ];
 const sourceBank = [...textQuestions, ...visualQuestions] as Quiz1Question[];
-export const gradedQuestions: GradedQuestion[] = updates.map(update => {
+const originalQuestions: GradedQuestion[] = updates.map(update => {
   const source = sourceBank.find(question => question.id === update.id);
   if (!source) throw new Error(`Missing source question: ${update.id}`);
   // Do not inherit old multi-part answer aliases: each blank now tests one target.
   return { ...source, acceptedAnswers: undefined, ...update, question: update.prompt };
 });
+
+export const gradedQuestions: GradedQuestion[] = [...originalQuestions, ...extraL1, ...extraL2, ...extraL3] as GradedQuestion[];
 
 function normalize(value: string): string {
   return value.normalize('NFKD').replace(/\p{M}/gu, '').toLowerCase()
@@ -109,6 +115,7 @@ export function gradeAnswer(question: GradedQuestion, response: string): GradeRe
   // Strip only neutral framing; all remaining words must match a single accepted answer.
   const framedAnswer = normalized.replace(/^(?:it is|it s|its|they are|they re|the answer is|answer is) /, '')
     .replace(/^(?:the|a|an) /, '');
+  if(question.rejectedAnswers?.some(answer=>normalize(answer)===framedAnswer))return {correct:false,feedback:`The expected answer is ${question.answer}. ${question.explanation}`};
   const actualWords = framedAnswer.split(' ');
   const variant = question.acceptedAnswers?.find(answer => {
     const expected = normalize(answer);

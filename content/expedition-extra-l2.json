@@ -1,0 +1,308 @@
+[
+  {
+    "id": "extra-l2-01",
+    "kind": "image",
+    "format": "mcq",
+    "prompt": "Which production pattern does the lecture highlight for bowls of this type?",
+    "question": "Which production pattern does the lecture highlight for bowls of this type?",
+    "answer": "Mass production with uniform size",
+    "explanation": "The bevel-rimmed bowls are described as mass produced and uniform in size. These observations do not, by themselves, establish their precise use.",
+    "evidence": "Mass produced\nUniform size",
+    "source": {
+      "docId": "d102",
+      "page": 48,
+      "title": "L2 lecture slides",
+      "label": "Slide 48"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": "Individually carved vessels with widely varying sizes"
+      },
+      {
+        "id": "b",
+        "text": "Mass production with uniform size"
+      },
+      {
+        "id": "c",
+        "text": "Only miniature vessels made for burial"
+      },
+      {
+        "id": "d",
+        "text": "One unique vessel made for a royal commission"
+      }
+    ],
+    "correctOptionId": "b",
+    "image": {
+      "src": "/quiz1/q-005.webp",
+      "width": 384,
+      "height": 288,
+      "alt": "Course image for identification practice"
+    }
+  },
+  {
+    "id": "extra-l2-02",
+    "kind": "image",
+    "format": "mcq",
+    "prompt": "Which monument is shown?",
+    "question": "Which monument is shown?",
+    "answer": "The Step Pyramid of Djoser",
+    "explanation": "The slide identifies the Step Pyramid of Djoser, at Saqqara. Its stepped form differs from the Bent Pyramid and the later smooth-sided pyramids.",
+    "evidence": "Step Pyramid of Djoser (c.27th century BCE)",
+    "source": {
+      "docId": "d102",
+      "page": 74,
+      "title": "L2 lecture slides",
+      "label": "Slide 74"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": "The Bent Pyramid of Snefru"
+      },
+      {
+        "id": "b",
+        "text": "The Red Pyramid of Snefru"
+      },
+      {
+        "id": "c",
+        "text": "The Great Pyramid of Khufu"
+      },
+      {
+        "id": "d",
+        "text": "The Step Pyramid of Djoser"
+      }
+    ],
+    "correctOptionId": "d",
+    "image": {
+      "src": "/quiz1/q-006.webp",
+      "width": 396,
+      "height": 254,
+      "alt": "Course image for identification practice"
+    }
+  },
+  {
+    "id": "extra-l2-03",
+    "kind": "short-answer",
+    "format": "mcq",
+    "prompt": "According to the Golden Mummies study summary, how should idealized funerary portraits be interpreted?",
+    "question": "According to the Golden Mummies study summary, how should idealized funerary portraits be interpreted?",
+    "answer": "They should not be treated as straightforward records of biological appearance.",
+    "explanation": "The summary warns that idealization and prior beliefs complicate interpretation. A funerary portrait is not a direct biological record; consult the linked article for the fuller discussion.",
+    "evidence": "Idealized funerary portraits are not straightforward records of biological appearance.",
+    "source": {
+      "docId": "d107",
+      "page": 1,
+      "title": "Golden Mummies — study summary",
+      "label": "Reading summary 1"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": "They should not be treated as straightforward records of biological appearance."
+      },
+      {
+        "id": "b",
+        "text": "They precisely record the biological appearance of every person depicted."
+      },
+      {
+        "id": "c",
+        "text": "Their style alone determines the depicted person’s ancestry."
+      },
+      {
+        "id": "d",
+        "text": "Their idealization makes them irrelevant to any archaeological question."
+      }
+    ],
+    "correctOptionId": "a"
+  },
+  {
+    "id": "extra-l2-04",
+    "kind": "short-answer",
+    "format": "mcq",
+    "prompt": "An object has been moved from its original place of deposition. Which term describes its new context?",
+    "question": "An object has been moved from its original place of deposition. Which term describes its new context?",
+    "answer": "Secondary context",
+    "explanation": "Secondary context refers to an object that has moved from its original deposition. Its relationship to the original setting is less secure, so context must be documented carefully.",
+    "evidence": "Objects that have been moved from their original\nplace of deposition are said to be in secondary\ncontext",
+    "source": {
+      "docId": "d106",
+      "page": 5,
+      "title": "L2 Principles of Archaeology",
+      "label": "Page 5"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": "Primary context"
+      },
+      {
+        "id": "b",
+        "text": "In situ"
+      },
+      {
+        "id": "c",
+        "text": "Secondary context"
+      },
+      {
+        "id": "d",
+        "text": "Place of manufacture"
+      }
+    ],
+    "correctOptionId": "c"
+  },
+  {
+    "id": "extra-l2-05",
+    "kind": "short-answer",
+    "format": "mcq",
+    "prompt": "Unmodified natural items in an archaeological context that help reconstruct human activity are called what?",
+    "question": "Unmodified natural items in an archaeological context that help reconstruct human activity are called what?",
+    "answer": "Ecofacts",
+    "explanation": "Ecofacts are unmodified natural items useful for studying past human activity, including plant and animal remains, sediments and stone.",
+    "evidence": "Ecofacts are unmodified, natural items found\nin archaeological contexts that are usually\nbrought to a site by its occupants and are useful\nfor the study of past human activity.",
+    "source": {
+      "docId": "d106",
+      "page": 7,
+      "title": "L2 Principles of Archaeology",
+      "label": "Page 7"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": "Manufactured artefacts"
+      },
+      {
+        "id": "b",
+        "text": "Ecofacts"
+      },
+      {
+        "id": "c",
+        "text": "Built features"
+      },
+      {
+        "id": "d",
+        "text": "Written chronicles"
+      }
+    ],
+    "correctOptionId": "b"
+  },
+  {
+    "id": "extra-l2-06",
+    "kind": "short-answer",
+    "format": "blank",
+    "prompt": "The lecture calls a clay ball containing tokens a _____. Enter the term.",
+    "question": "The lecture calls a clay ball containing tokens a _____. Enter the term.",
+    "answer": "Bulla",
+    "explanation": "A bulla is described as a clay ball with tokens. The question asks for the object’s name rather than a writing system.",
+    "evidence": "Bulla: Clay balls with tokens",
+    "source": {
+      "docId": "d102",
+      "page": 53,
+      "title": "L2 lecture slides",
+      "label": "Slide 53"
+    },
+    "acceptedAnswers": [
+      "bulla",
+      "bullae",
+      "clay bulla",
+      "clay bullae"
+    ]
+  },
+  {
+    "id": "extra-l2-07",
+    "kind": "short-answer",
+    "format": "blank",
+    "prompt": "Which method does the lecture describe as looking under the ground? _____.",
+    "question": "Which method does the lecture describe as looking under the ground? _____.",
+    "answer": "Geophysics",
+    "explanation": "The lecture identifies geophysics as a way to examine what lies beneath the ground when studying a city.",
+    "evidence": "Geophysics looks under the ground",
+    "source": {
+      "docId": "d102",
+      "page": 41,
+      "title": "L2 lecture slides",
+      "label": "Slide 41"
+    },
+    "acceptedAnswers": [
+      "geophysics",
+      "geophysical survey",
+      "geophysical surveys",
+      "geophysical surveying",
+      "archaeological geophysics",
+      "geophysical prospection"
+    ]
+  },
+  {
+    "id": "extra-l2-08",
+    "kind": "short-answer",
+    "format": "blank",
+    "prompt": "The term for the place where an artefact was found is _____.",
+    "question": "The term for the place where an artefact was found is _____.",
+    "answer": "Provenience",
+    "explanation": "Provenience records where an object was found. The reading also notes the term provenance in other archaeological and art-historical traditions.",
+    "evidence": "Te provenience of an artifact is the\nplace it was found",
+    "source": {
+      "docId": "d106",
+      "page": 5,
+      "title": "L2 Principles of Archaeology",
+      "label": "Page 5"
+    },
+    "acceptedAnswers": [
+      "provenience",
+      "findspot",
+      "find spot",
+      "find location",
+      "discovery location"
+    ]
+  },
+  {
+    "id": "extra-l2-09",
+    "kind": "short-answer",
+    "format": "blank",
+    "prompt": "A substantial accumulation of garbage or waste at a place of human activity is a _____.",
+    "question": "A substantial accumulation of garbage or waste at a place of human activity is a _____.",
+    "answer": "Midden",
+    "explanation": "Middens contain accumulated waste and can provide evidence about food, raw materials and activities. They need not be intentionally constructed.",
+    "evidence": "A midden is any substantial accu-\nmulation of garbage or waste at a place of human\nactivity.",
+    "source": {
+      "docId": "d106",
+      "page": 7,
+      "title": "L2 Principles of Archaeology",
+      "label": "Page 7"
+    },
+    "acceptedAnswers": [
+      "midden",
+      "rubbish midden",
+      "refuse midden",
+      "waste midden",
+      "refuse heap",
+      "rubbish heap",
+      "garbage heap",
+      "waste heap",
+      "trash heap"
+    ]
+  },
+  {
+    "id": "extra-l2-10",
+    "kind": "short-answer",
+    "format": "blank",
+    "prompt": "In the Golden Mummies study summary, the system that distributed finds between Egypt and foreign excavators is called _____.",
+    "question": "In the Golden Mummies study summary, the system that distributed finds between Egypt and foreign excavators is called _____.",
+    "answer": "Partage",
+    "explanation": "The summary describes partage as distributing finds between Egypt and foreign excavators, helping museums abroad build collections. The linked article discusses its colonial context.",
+    "evidence": "The partage system distributed finds between Egypt and foreign excavators, helping museums abroad build collections.",
+    "source": {
+      "docId": "d107",
+      "page": 1,
+      "title": "Golden Mummies — study summary",
+      "label": "Reading summary 1"
+    },
+    "acceptedAnswers": [
+      "partage",
+      "partage system",
+      "division of finds",
+      "finds division",
+      "sharing of finds"
+    ]
+  }
+]

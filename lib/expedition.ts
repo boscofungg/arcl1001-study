@@ -1,3 +1,4 @@
+import documents from './documents.json' with { type: 'json' };
 import {gradedQuestions, gradeAnswer} from './graded-questions.ts';
 
 export type Rating = 'known' | 'again';
@@ -5,7 +6,8 @@ export type Attempt = { id: string; questionId: string; rating: Rating; evidence
 export type Progress = { version: 1; weeklyGoal: number; attempts: Attempt[] };
 export type Mission = { id: string; title: string; subtitle: string; lecture: 1 | 2 | 3; questionIds: string[] };
 
-export const missions: Mission[] = [
+export const MISSION_ROUND_SIZE = 5;
+const originalMissions: Mission[] = [
   { id: 'first-traces', title: 'First traces', subtitle: 'Read the clues left by people and their tools.', lecture: 1,
     questionIds: ['q1-text-01', 'visual-003', 'q1-text-04', 'q1-text-05', 'q1-text-15'] },
   { id: 'cities-rise', title: 'Cities rise', subtitle: 'Locate early cities and interpret their evidence.', lecture: 2,
@@ -14,6 +16,7 @@ export const missions: Mission[] = [
     questionIds: ['visual-013', 'visual-008', 'q1-text-11', 'q1-text-16', 'q1-text-17'] },
 ];
 export const questionBank = gradedQuestions;
+export const missions:Mission[]=originalMissions.map(mission=>({...mission,questionIds:questionBank.filter(question=>documents.find(doc=>doc.id===question.source.docId)?.week===mission.lecture).map(question=>question.id)}));
 const questionIds = new Set(questionBank.map(question => question.id));
 const missionQuestionIds = new Set(missions.flatMap(mission => mission.questionIds));
 const validDate = (value: unknown): value is string => typeof value === 'string' && /^\d{4}-\d{2}-\d{2}T/.test(value) && Number.isFinite(Date.parse(value));
@@ -75,7 +78,7 @@ export function missionProgress(state: Progress, missionId: string): { attempted
   if (!mission) return { attempted: 0, total: 0, complete: false };
   const attemptedIds = new Set(state.attempts.map(attempt => attempt.questionId));
   const attempted = mission.questionIds.filter(id => attemptedIds.has(id)).length;
-  return { attempted, total: mission.questionIds.length, complete: attempted === mission.questionIds.length };
+  return { attempted, total: mission.questionIds.length, complete: attempted >= Math.min(MISSION_ROUND_SIZE,mission.questionIds.length) };
 }
 
 export function getCompletedMissionIds(state: Progress): string[] {
@@ -131,4 +134,30 @@ export function markEvidenceChecked(state:Progress,attemptId:string,checked:bool
 }
 export function getCorrectQuestionCount(state:Progress):number {
   return questionBank.filter(question=>{const latest=getLatestAttempt(state,question.id);return latest?.grading==='automatic'&&latest.rating==='known';}).length;
+}
+
+/** Short rounds exhaust unseen questions before repeating material already attempted. */
+export function selectMissionQuestions(state:Progress,missionId:string,count=MISSION_ROUND_SIZE,random:()=>number=Math.random):string[]{
+ const mission=missions.find(item=>item.id===missionId);
+ if(!mission||!Number.isInteger(count)||count<1)return [];
+ const latest=new Map(state.attempts.map(attempt=>[attempt.questionId,attempt.rating]));
+ const groups=[mission.questionIds.filter(id=>!latest.has(id)),mission.questionIds.filter(id=>latest.get(id)==='again'),mission.questionIds.filter(id=>latest.get(id)==='known')];
+ const selected:string[]=[];
+ for(const group of groups){
+  const shuffled=[...group];
+  for(let i=shuffled.length-1;i>0;i--){const value=random();const j=Math.floor((Number.isFinite(value)?Math.max(0,Math.min(.999999,value)):0)*(i+1));[shuffled[i],shuffled[j]]=[shuffled[j],shuffled[i]];}
+  const remaining=Math.min(count-selected.length,shuffled.length);
+  if(remaining<=0)continue;
+  const balanced:string[]=[];
+  const take=(id:string|undefined)=>{if(id&&!balanced.includes(id)&&balanced.length<remaining)balanced.push(id);};
+  // Keep both formats and a visual when this priority group has room for them.
+  if(remaining>=3){
+   take(shuffled.find(id=>questionBank.find(q=>q.id===id)?.format==='mcq'));
+   take(shuffled.find(id=>questionBank.find(q=>q.id===id)?.format==='blank'));
+   take(shuffled.find(id=>questionBank.find(q=>q.id===id)?.image));
+  }
+  shuffled.forEach(take);selected.push(...balanced);
+  if(selected.length>=count)break;
+ }
+ return selected;
 }

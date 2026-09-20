@@ -1,0 +1,300 @@
+[
+  {
+    "id": "extra-l1-01",
+    "kind": "short-answer",
+    "format": "mcq",
+    "prompt": "Which statement about preservation agrees with Archaeology 101?",
+    "question": "Which statement about preservation agrees with Archaeology 101?",
+    "answer": "Dry conditions generally help preservation, but airless underwater conditions can also preserve objects.",
+    "explanation": "Preservation depends on both the material and its environment. The reading notes exceptions to the general advantage of dry conditions.",
+    "evidence": "Dry conditions generally preserve\nremains better than wet, although the airlessness\nof bogs and other underwater conditions can also\npreserve many objects.",
+    "source": {
+      "docId": "d105",
+      "page": 1,
+      "title": "Lecture 1 — Archaeology 101",
+      "label": "Page 1"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": "Wet conditions always destroy every kind of material."
+      },
+      {
+        "id": "b",
+        "text": "Organic and inorganic materials decay at the same rate."
+      },
+      {
+        "id": "c",
+        "text": "Dry conditions generally help preservation, but airless underwater conditions can also preserve objects."
+      },
+      {
+        "id": "d",
+        "text": "Objects exposed to weather are usually better preserved than buried objects."
+      }
+    ],
+    "correctOptionId": "c"
+  },
+  {
+    "id": "extra-l1-02",
+    "kind": "short-answer",
+    "format": "mcq",
+    "prompt": "An artifact has been uncovered but remains in place. What should happen before it is moved?",
+    "question": "An artifact has been uncovered but remains in place. What should happen before it is moved?",
+    "answer": "Record the artifact and its surroundings with photographs, drawings and notes.",
+    "explanation": "Recording an artifact in place preserves information about its relationships with surrounding deposits and finds.",
+    "evidence": "However, before\nthey are moved records— including\nphotographs, drawings, and detailed notes—\nare made of all artifacts and features and their\nsurroundings.",
+    "source": {
+      "docId": "d105",
+      "page": 3,
+      "title": "Lecture 1 — Archaeology 101",
+      "label": "Page 3"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": "Record the artifact and its surroundings with photographs, drawings and notes."
+      },
+      {
+        "id": "b",
+        "text": "Clean it in the laboratory before recording where it was found."
+      },
+      {
+        "id": "c",
+        "text": "Move it beside similar objects so that its original surroundings are no longer needed."
+      },
+      {
+        "id": "d",
+        "text": "Record only its appearance, because its position cannot aid interpretation."
+      }
+    ],
+    "correctOptionId": "a"
+  },
+  {
+    "id": "extra-l1-03",
+    "kind": "short-answer",
+    "format": "mcq",
+    "prompt": "Why does Archaeology 101 describe a site interpretation as one possible version of its history?",
+    "question": "Why does Archaeology 101 describe a site interpretation as one possible version of its history?",
+    "answer": "The surviving evidence is incomplete, and written records can also be partial.",
+    "explanation": "Interpretations must account for missing evidence. Surviving texts do not automatically provide a complete account either.",
+    "evidence": "The evidence archaeologists interpret is\nincomplete, since many remains have been\ndestroyed and many will never be found.\nEven when written records survive, they\ngenerally provide only a partial account of\nwhat really happened.",
+    "source": {
+      "docId": "d105",
+      "page": 4,
+      "title": "Lecture 1 — Archaeology 101",
+      "label": "Page 4"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": "Any interpretation is equally strong regardless of the evidence."
+      },
+      {
+        "id": "b",
+        "text": "Written records always settle every question about a site."
+      },
+      {
+        "id": "c",
+        "text": "A site has no history until archaeologists excavate it."
+      },
+      {
+        "id": "d",
+        "text": "The surviving evidence is incomplete, and written records can also be partial."
+      }
+    ],
+    "correctOptionId": "d"
+  },
+  {
+    "id": "extra-l1-04",
+    "kind": "short-answer",
+    "format": "mcq",
+    "prompt": "Which hominin species is Lucy identified as in Lecture 1?",
+    "question": "Which hominin species is Lucy identified as in Lecture 1?",
+    "answer": "Australopithecus afarensis",
+    "explanation": "Lecture 1 identifies Lucy as Australopithecus afarensis and gives an approximate age of 3.2 million years.",
+    "evidence": "Early Hominin: Australopithecus Afarensis 'Lucy'",
+    "source": {
+      "docId": "d101",
+      "page": 41,
+      "title": "Lecture 1 — Introduction to Archaeology",
+      "label": "Slide 41"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": "Homo erectus"
+      },
+      {
+        "id": "b",
+        "text": "Australopithecus afarensis"
+      },
+      {
+        "id": "c",
+        "text": "Homo neanderthalensis"
+      },
+      {
+        "id": "d",
+        "text": "Homo floresiensis"
+      }
+    ],
+    "correctOptionId": "b"
+  },
+  {
+    "id": "extra-l1-05",
+    "kind": "short-answer",
+    "format": "mcq",
+    "prompt": "Which finding helped expose Piltdown Man as a forgery?",
+    "question": "Which finding helped expose Piltdown Man as a forgery?",
+    "answer": "Chemical tests showed that the skull and jaw were neither the same age nor very old.",
+    "explanation": "The reading explains that the remains were chemically treated to appear ancient. Testing contradicted their supposed antiquity and association.",
+    "evidence": "But Piltdown Man was finally debunked many years later\nby chemical tests that showed that the skull and jaw were\nneither the same age nor very old.",
+    "source": {
+      "docId": "d104",
+      "page": 6,
+      "title": "Lecture 1 — Principles of Archaeology",
+      "label": "Page 6"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": "The skull and jaw were found in a carefully recorded excavation."
+      },
+      {
+        "id": "b",
+        "text": "Several scientists accepted the remains as an evolutionary missing link."
+      },
+      {
+        "id": "c",
+        "text": "Chemical tests showed that the skull and jaw were neither the same age nor very old."
+      },
+      {
+        "id": "d",
+        "text": "The remains were presented to a scientific society in London."
+      }
+    ],
+    "correctOptionId": "c"
+  },
+  {
+    "id": "extra-l1-06",
+    "kind": "short-answer",
+    "format": "blank",
+    "prompt": "Immovable archaeological remains, such as post holes or large buildings, are called _____.",
+    "question": "Immovable archaeological remains, such as post holes or large buildings, are called _____.",
+    "answer": "Features",
+    "explanation": "The reading distinguishes immovable features from smaller, portable artifacts.",
+    "evidence": "Features are remains that can-not be\nmoved (large buildings, post holes), while artifacts\nare smaller, portable objects.",
+    "source": {
+      "docId": "d105",
+      "page": 1,
+      "title": "Lecture 1 — Archaeology 101",
+      "label": "Page 1"
+    },
+    "acceptedAnswers": [
+      "features",
+      "feature",
+      "archaeological features",
+      "archaeological feature",
+      "immovable features",
+      "fixed features"
+    ],
+    "rejectedAnswers": [
+      "feathers",
+      "feather"
+    ]
+  },
+  {
+    "id": "extra-l1-07",
+    "kind": "short-answer",
+    "format": "blank",
+    "prompt": "The branch of archaeology concerned with periods before the invention of writing is _____ archaeology.",
+    "question": "The branch of archaeology concerned with periods before the invention of writing is _____ archaeology.",
+    "answer": "Prehistoric",
+    "explanation": "Prehistoric archaeology concerns periods before writing; historical archaeology can examine both physical remains and surviving texts.",
+    "evidence": "Prehistoric\narchaeologists deal with time periods before the\ninvention of writing.",
+    "source": {
+      "docId": "d105",
+      "page": 2,
+      "title": "Lecture 1 — Archaeology 101",
+      "label": "Page 2"
+    },
+    "acceptedAnswers": [
+      "prehistoric",
+      "prehistory",
+      "prehistoric archaeology",
+      "prehistoric archeology",
+      "pre historic",
+      "pre historic archaeology"
+    ]
+  },
+  {
+    "id": "extra-l1-08",
+    "kind": "short-answer",
+    "format": "blank",
+    "prompt": "Specialists trained to preserve and restore delicate or damaged objects are called _____.",
+    "question": "Specialists trained to preserve and restore delicate or damaged objects are called _____.",
+    "answer": "Conservators",
+    "explanation": "Conservators stabilize, preserve and restore objects. Fragile objects sometimes need treatment in the field before laboratory work.",
+    "evidence": "Conservators are\nspecialists trained to preserve and restore\ndelicate or damaged objects.",
+    "source": {
+      "docId": "d105",
+      "page": 4,
+      "title": "Lecture 1 — Archaeology 101",
+      "label": "Page 4"
+    },
+    "acceptedAnswers": [
+      "conservators",
+      "conservator",
+      "archaeological conservators",
+      "archaeological conservator",
+      "conservation specialists",
+      "conservation specialist",
+      "artifact conservators",
+      "artefact conservators"
+    ],
+    "rejectedAnswers": [
+      "conservatory",
+      "conservatories"
+    ]
+  },
+  {
+    "id": "extra-l1-09",
+    "kind": "short-answer",
+    "format": "blank",
+    "prompt": "Reconstructing past techniques and processes to make artifacts is an approach called _____ archaeology.",
+    "question": "Reconstructing past techniques and processes to make artifacts is an approach called _____ archaeology.",
+    "answer": "Experimental",
+    "explanation": "Experimental archaeology reconstructs how artifacts, art and architecture were made. This differs from simply describing modern object use.",
+    "evidence": "Experimental archaeologists reconstruct\ntechniques and processes used in the past to create\nartifacts, art, and architecture.",
+    "source": {
+      "docId": "d105",
+      "page": 2,
+      "title": "Lecture 1 — Archaeology 101",
+      "label": "Page 2"
+    },
+    "acceptedAnswers": [
+      "experimental",
+      "experimental archaeology",
+      "experimental archeology"
+    ]
+  },
+  {
+    "id": "extra-l1-10",
+    "kind": "short-answer",
+    "format": "blank",
+    "prompt": "The reading places archaeology within _____, the study of all human culture.",
+    "question": "The reading places archaeology within _____, the study of all human culture.",
+    "answer": "Anthropology",
+    "explanation": "Principles of Archaeology describes archaeology as a subfield of anthropology, alongside discussion of biological and cultural anthropology.",
+    "evidence": "Archaeology is a sub!eld of anthropology, the\nstudy of all human culture.",
+    "source": {
+      "docId": "d104",
+      "page": 4,
+      "title": "Lecture 1 — Principles of Archaeology",
+      "label": "Page 4"
+    },
+    "acceptedAnswers": [
+      "anthropology",
+      "anthropological studies"
+    ]
+  }
+]

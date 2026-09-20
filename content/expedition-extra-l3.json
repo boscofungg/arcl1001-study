@@ -1,0 +1,306 @@
+[
+  {
+    "id": "extra-l3-01",
+    "kind": "short-answer",
+    "format": "mcq",
+    "prompt": "A group of ceramic wasters is found beside a heavily burnt structure. What are wasters?",
+    "question": "A group of ceramic wasters is found beside a heavily burnt structure. What are wasters?",
+    "answer": "Pots that broke or collapsed during firing",
+    "explanation": "Wasters are failed products discarded during firing. Together with burning and ash, they can help identify a pottery kiln.",
+    "evidence": "Kilns are usually readily identified at archaeo-\nlogical sites because they are distinguished by\nan area of massive burning, along with reddish\ndiscoloration of the surrounding earth and quan-\ntities of ash. Sometimes the structural remains of\nthe kiln itself can be observed. Ceramic wasters\nare another good piece of evidence, wasters being\nthe pieces of pottery that broke or collapsed in the\nfiring process and were discarded around the kiln.",
+    "source": {
+      "docId": "d110",
+      "page": 4,
+      "title": "Lecture 3 — Principles of Archaeology",
+      "label": "Page 4"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": "Vessels discarded only after years of cooking"
+      },
+      {
+        "id": "b",
+        "text": "Pots that broke or collapsed during firing"
+      },
+      {
+        "id": "c",
+        "text": "Stone tools used to shape wet clay"
+      },
+      {
+        "id": "d",
+        "text": "Natural stones mixed into a clay deposit"
+      }
+    ],
+    "correctOptionId": "b"
+  },
+  {
+    "id": "extra-l3-02",
+    "kind": "short-answer",
+    "format": "mcq",
+    "prompt": "Why are rim sherds especially useful when reconstructing a pottery vessel?",
+    "question": "Why are rim sherds especially useful when reconstructing a pottery vessel?",
+    "answer": "They preserve part of the mouth and help estimate vessel size and finishing",
+    "explanation": "A rim sherd preserves part of the opening. It can reveal how the vessel was finished and how large it was; it does not automatically give an exact date.",
+    "evidence": "An important distinction is made between rim\nsherds and body sherds (fig. 11.9). Rim sherds\ninclude part of the rim or mouth and can reveal\nimportant information about the vessel, such as\nhow the pot was finished and how big the vessel\nwas. Body sherds are rimless pieces of the pot\nthat are useful, but less informative. In general,\nrim pieces often are more heavily decorated than\nbody sherds.",
+    "source": {
+      "docId": "d110",
+      "page": 5,
+      "title": "Lecture 3 — Principles of Archaeology",
+      "label": "Page 5"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": "They always preserve the entire vessel base"
+      },
+      {
+        "id": "b",
+        "text": "They identify the original owner by themselves"
+      },
+      {
+        "id": "c",
+        "text": "They give an exact calendar date without comparison"
+      },
+      {
+        "id": "d",
+        "text": "They preserve part of the mouth and help estimate vessel size and finishing"
+      }
+    ],
+    "correctOptionId": "d"
+  },
+  {
+    "id": "extra-l3-03",
+    "kind": "short-answer",
+    "format": "mcq",
+    "prompt": "Which description best preserves the lecture’s uncertainty about the Great Bath at Mohenjo-daro?",
+    "question": "Which description best preserves the lecture’s uncertainty about the Great Bath at Mohenjo-daro?",
+    "answer": "A large public water tank, possibly used for ritual purposes",
+    "explanation": "The lecture identifies a large public water tank and presents ritual use as a possibility. It does not establish an exclusive royal or military function.",
+    "evidence": "Large public water tank\nMaybe ritual purposes?",
+    "source": {
+      "docId": "d103",
+      "page": 55,
+      "title": "Lecture 3 — Social Hierarchy",
+      "label": "Slide 55"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": "A large public water tank, possibly used for ritual purposes"
+      },
+      {
+        "id": "b",
+        "text": "A royal tomb with a securely identified ruler"
+      },
+      {
+        "id": "c",
+        "text": "A private reservoir whose royal ownership is established"
+      },
+      {
+        "id": "d",
+        "text": "A bronze-casting installation with known furnaces"
+      }
+    ],
+    "correctOptionId": "a"
+  },
+  {
+    "id": "extra-l3-04",
+    "kind": "short-answer",
+    "format": "mcq",
+    "prompt": "Which two categories of bronze objects are explicitly listed for Fu Hao’s tomb at Yinxu?",
+    "question": "Which two categories of bronze objects are explicitly listed for Fu Hao’s tomb at Yinxu?",
+    "answer": "Ritual vessels and weapons",
+    "explanation": "The slide lists 468 bronze objects, including 210 ritual vessels and 134 weapons. These categories provide evidence about activities represented in the burial.",
+    "evidence": "468 bronze objects:\n- 210 ritual vessels\n- 134 weapons",
+    "source": {
+      "docId": "d103",
+      "page": 101,
+      "title": "Lecture 3 — Social Hierarchy",
+      "label": "Slide 101"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": "Coins and mirrors"
+      },
+      {
+        "id": "b",
+        "text": "Ploughs and roof tiles"
+      },
+      {
+        "id": "c",
+        "text": "Ritual vessels and weapons"
+      },
+      {
+        "id": "d",
+        "text": "Bricks and drainage pipes"
+      }
+    ],
+    "correctOptionId": "c"
+  },
+  {
+    "id": "extra-l3-05",
+    "kind": "short-answer",
+    "format": "mcq",
+    "prompt": "What does ceramic petrography examine directly?",
+    "question": "What does ceramic petrography examine directly?",
+    "answer": "The physical composition of pottery sherds under a microscope",
+    "explanation": "Petrography examines the physical composition of pottery, including inclusions. Comparing these components can help investigate where pottery was made.",
+    "evidence": "Ceramic petrography is a useful microscopic\ntechnique to identify the physical composition of\npottery sherds. Te analyst makes a slide for study",
+    "source": {
+      "docId": "d110",
+      "page": 11,
+      "title": "Lecture 3 — Principles of Archaeology",
+      "label": "Page 11"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": "The monetary value of a complete vessel"
+      },
+      {
+        "id": "b",
+        "text": "The physical composition of pottery sherds under a microscope"
+      },
+      {
+        "id": "c",
+        "text": "The spoken language of the potter"
+      },
+      {
+        "id": "d",
+        "text": "The exact political rank of the vessel’s owner"
+      }
+    ],
+    "correctOptionId": "b"
+  },
+  {
+    "id": "extra-l3-06",
+    "kind": "short-answer",
+    "format": "blank",
+    "prompt": "In ceramic analysis, broken pieces of pottery are called _____.",
+    "question": "In ceramic analysis, broken pieces of pottery are called _____.",
+    "answer": "Sherds",
+    "explanation": "Sherds, also called potsherds, are the broken pottery pieces archaeologists commonly study.",
+    "evidence": "Most of the pottery that archaeologists find is\nbroken in pieces, or sherds.",
+    "source": {
+      "docId": "d110",
+      "page": 4,
+      "title": "Lecture 3 — Principles of Archaeology",
+      "label": "Page 4"
+    },
+    "acceptedAnswers": [
+      "sherds",
+      "sherd",
+      "potsherds",
+      "potsherd",
+      "pot sherds",
+      "pot sherd",
+      "pottery sherds",
+      "pottery sherd",
+      "shards",
+      "shard",
+      "pottery shards",
+      "pot shards"
+    ]
+  },
+  {
+    "id": "extra-l3-07",
+    "kind": "short-answer",
+    "format": "blank",
+    "prompt": "A specialized oven or furnace used to fire pottery is a _____.",
+    "question": "A specialized oven or furnace used to fire pottery is a _____.",
+    "answer": "Kiln",
+    "explanation": "A kiln is a specialized oven or furnace for firing pottery. Its temperature can be more controlled than that of an open fire.",
+    "evidence": "Firing can be done in an\nopen fire or a kiln, a specialized oven or furnace\nfor firing pottery.",
+    "source": {
+      "docId": "d110",
+      "page": 4,
+      "title": "Lecture 3 — Principles of Archaeology",
+      "label": "Page 4"
+    },
+    "acceptedAnswers": [
+      "kiln",
+      "pottery kiln",
+      "ceramic kiln",
+      "firing kiln",
+      "ceramics kiln",
+      "pottery oven",
+      "ceramic oven",
+      "pottery furnace",
+      "ceramic furnace"
+    ]
+  },
+  {
+    "id": "extra-l3-08",
+    "kind": "short-answer",
+    "format": "blank",
+    "prompt": "The process that fuses the clays in pottery and makes it waterproof is called _____.",
+    "question": "The process that fuses the clays in pottery and makes it waterproof is called _____.",
+    "answer": "Vitrification",
+    "explanation": "The reading describes vitrification as the fusing of clays that makes pottery waterproof.",
+    "evidence": "Vitrification fuses\nthe clays in the pottery and makes it waterproof.",
+    "source": {
+      "docId": "d110",
+      "page": 4,
+      "title": "Lecture 3 — Principles of Archaeology",
+      "label": "Page 4"
+    },
+    "acceptedAnswers": [
+      "vitrification",
+      "vitrifying",
+      "vitrifying the clay",
+      "clay vitrification"
+    ],
+    "rejectedAnswers": [
+      "nitrification",
+      "nitrifying",
+      "nitrifying the clay"
+    ]
+  },
+  {
+    "id": "extra-l3-09",
+    "kind": "short-answer",
+    "format": "blank",
+    "prompt": "In the lecture’s classification, permanent political status, hereditary leadership and redistribution of resources characterize a _____.",
+    "question": "In the lecture’s classification, permanent political status, hereditary leadership and redistribution of resources characterize a _____.",
+    "answer": "Chiefdom",
+    "explanation": "The lecture associates these three features with chiefdoms. Its simplified classification is a comparison framework, not proof of the organization of every archaeological site.",
+    "evidence": "Chiefdom\nPermanent political status\nHereditary leadership\nRedistribution of resources",
+    "source": {
+      "docId": "d103",
+      "page": 9,
+      "title": "Lecture 3 — Social Hierarchy",
+      "label": "Slide 9"
+    },
+    "acceptedAnswers": [
+      "chiefdom",
+      "chiefdom society",
+      "chiefdoms",
+      "chiefly society"
+    ]
+  },
+  {
+    "id": "extra-l3-10",
+    "kind": "short-answer",
+    "format": "blank",
+    "prompt": "In the Indus reading summary, coordination among unranked groups is called _____.",
+    "question": "In the Indus reading summary, coordination among unranked groups is called _____.",
+    "answer": "Heterarchy",
+    "explanation": "Green considers heterarchy as an alternative to top-down rule. This is an interpretation; the absence of familiar royal monuments alone does not prove the absence of inequality.",
+    "evidence": "Study summary: Green discusses Indus cities with substantial public infrastructure but few identifiable royal palaces or tombs. He considers heterarchy—coordination among unranked groups—as an alternative to top-down rule.",
+    "source": {
+      "docId": "d109",
+      "page": 1,
+      "title": "Why Are Archaeologists Unable to Find Evidence for a Ruling Class of the Indus Civilization?",
+      "label": "Reading summary"
+    },
+    "acceptedAnswers": [
+      "heterarchy",
+      "heterarchical organization",
+      "heterarchical organisation",
+      "heterarchical coordination",
+      "a heterarchy"
+    ]
+  }
+]

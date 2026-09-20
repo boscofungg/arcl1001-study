@@ -1,18 +1,19 @@
+import documents from '../lib/documents.json' with {type:'json'};
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { missions, questionBank, newProgress, parseProgress, recordAttempt, setWeeklyGoal, getMissedQuestionIds, getCompletedMissionIds, getComebackCount, getWeeklySessionsCount, missionProgress, getEvidenceCheckedCount, getLatestAttempt } from '../lib/expedition.ts';
+import { missions, questionBank, newProgress, parseProgress, recordAttempt, setWeeklyGoal, getMissedQuestionIds, getCompletedMissionIds, getComebackCount, getWeeklySessionsCount, missionProgress, getEvidenceCheckedCount, getLatestAttempt, selectMissionQuestions } from '../lib/expedition.ts';
 const time = '2026-09-20T12:00:00.000Z';
 const id = missions[0].questionIds[0];
 const add = (state, questionId = id, rating = 'again', event = 'event-1', at = time, evidence = false) => recordAttempt(state, questionId, rating, evidence, event, at);
 
-test('three missions each contain five unique source-backed questions from their lecture', () => {
+test('three missions each contain fifteen unique source-backed questions from their lecture', () => {
   assert.equal(missions.length, 3);
   for (const mission of missions) {
-    assert.equal(new Set(mission.questionIds).size, 5);
+    assert.equal(new Set(mission.questionIds).size, 15);
     const questions = mission.questionIds.map(id => questionBank.find(q => q.id === id));
     for (const question of questions) {
       assert.ok(question);
-      assert.equal(question.source.docId, `d10${mission.lecture}`);
+      assert.equal(documents.find(d=>d.id===question.source.docId)?.week, mission.lecture);
       assert.ok(question.answer && question.evidence && question.source.page > 0);
     }
     assert.ok(questions.some(q => q.kind === 'image'));
@@ -21,10 +22,10 @@ test('three missions each contain five unique source-backed questions from their
   assert.ok(missions.slice(1).every(m => m.questionIds.some(id => questionBank.find(q => q.id === id).kind === 'map')));
 });
 
-test('completing a mission means attempting every question, independent of confidence', () => {
+test('five distinct attempts retain discovery completion as the bank expands', () => {
   let state = newProgress();
-  missions[0].questionIds.forEach((id, i) => { state = add(state, id, 'again', `event-${i}`); });
-  assert.deepEqual(missionProgress(state, missions[0].id), { attempted: 5, total: 5, complete: true });
+  missions[0].questionIds.slice(0,5).forEach((id, i) => { state = add(state, id, 'again', `event-${i}`); });
+  assert.deepEqual(missionProgress(state, missions[0].id), { attempted: 5, total: 15, complete: true });
   assert.deepEqual(getCompletedMissionIds(state), [missions[0].id]);
   assert.equal(getMissedQuestionIds(state).length, 5);
   assert.deepEqual(missionProgress(state, 'unknown'), { attempted: 0, total: 0, complete: false });
@@ -100,4 +101,26 @@ test('skips go to review and later correct grades earn one comeback',async()=>{
  assert.equal(getComebackCount(state),1);assert.equal(getCorrectQuestionCount(state),1);
  assert.equal(recordGradedAttempt(state,'q1-text-01','',false,'empty',time),state);
  const mcq=questionBank.find(q=>q.format==='mcq');assert.equal(recordGradedAttempt(state,mcq.id,'not-a-choice',false,'bad-choice',time),state);
+});
+
+
+test('successive five-question rounds cover all unseen material before repeating',()=>{
+ for(const mission of missions){
+  let state=newProgress();const seen=new Set();
+  for(let round=0;round<3;round++){
+   const queue=selectMissionQuestions(state,mission.id,5,()=>.37);
+   assert.equal(queue.length,5);assert.equal(new Set(queue).size,5);
+   for(const id of queue){assert.ok(!seen.has(id));seen.add(id);state=recordAttempt(state,id,'known',false,`${mission.id}-${round}-${id}`,time);}
+  }
+  assert.equal(seen.size,mission.questionIds.length);
+  assert.ok(selectMissionQuestions(state,mission.id).every(id=>seen.has(id)));
+ }
+});
+test('rounds stay in lecture, preserve both formats when available, and prioritize missed after unseen',()=>{
+ const mission=missions[0];const queue=selectMissionQuestions(newProgress(),mission.id,5,()=>.7);
+ assert.deepEqual(new Set(queue.map(id=>questionBank.find(q=>q.id===id).format)),new Set(['mcq','blank']));
+ let state=newProgress();mission.questionIds.forEach((id,i)=>{state=recordAttempt(state,id,i<5?'again':'known',false,`old-${i}`,time);});
+ assert.ok(selectMissionQuestions(state,mission.id).every(id=>mission.questionIds.slice(0,5).includes(id)));
+ assert.deepEqual(selectMissionQuestions(state,'unknown'),[]);assert.deepEqual(selectMissionQuestions(state,mission.id,0),[]);
+ assert.equal(new Set(selectMissionQuestions(state,mission.id,100,()=>NaN)).size,15);
 });

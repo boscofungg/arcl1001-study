@@ -3,10 +3,10 @@ import assert from 'node:assert/strict';
 import { gradedQuestions, gradeAnswer } from '../lib/graded-questions.ts';
 const get = id => gradedQuestions.find(question => question.id === id);
 
-test('15 source-backed questions use balanced MCQ and single-blank formats', () => {
-  assert.equal(gradedQuestions.length, 15);
-  assert.equal(new Set(gradedQuestions.map(q => q.id)).size, 15);
-  assert.equal(gradedQuestions.filter(q => q.format === 'blank').length, 7);
+test('45 source-backed questions use balanced MCQ and single-blank formats', () => {
+  assert.equal(gradedQuestions.length, 45);
+  assert.equal(new Set(gradedQuestions.map(q => q.id)).size, 45);
+  assert.equal(gradedQuestions.filter(q => q.format === 'blank').length, 22);
   for (const q of gradedQuestions) {
     assert.ok(q.source.docId && q.source.page && q.evidence && q.explanation);
     if (q.id.startsWith('visual')) assert.ok(q.image.src);

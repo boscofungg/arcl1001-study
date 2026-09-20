@@ -8,11 +8,14 @@ using one browser preference across the site.
 ## Use
 
 Open `/` for readings and the tutor; choose **Expeditions** for `/expeditions`.
-Three missions contain eight MCQs and seven short blanks, automatically marked
+Three lecture pools contain 45 questions (23 MCQs and 22 short blanks), automatically marked
 with course-specific equivalent phrases, spelling variants and limited typo
 tolerance. Feedback distinguishes attempted questions, correct answers and
 successful retries. Discovery completion is participation, not proof of mastery.
-Game evidence can open the relevant page directly in the tutor.
+Each mission draws five questions, prioritizing unseen material before missed and
+previously correct questions. Five distinct attempts collect a discovery entry;
+existing entries and saved sessions remain valid as the bank expands. Game
+evidence can open the relevant page directly in the tutor.
 
 Study and game progress is stored in the current browser. Nothing migrates
 automatically from another hostname or device. Submitted game answers are saved
@@ -53,3 +56,10 @@ Do not publish that historical private source without its authentication setup.
 Question content and AI answers remain study aids rather than an official exam
 paper or marking scheme. Web readings are labelled summaries with original links.
 See `docs/student-feedback-quiz1.md` for suggested student feedback.
+
+## Expanded question bank
+
+`checkpoint/pre-question-expansion-2026-09-20` preserves the 15-question release.
+`release/questions-45-2026-09-20` adds 30 questions and unseen-first five-question
+rounds. Reverting that release commit restores the previous bank and selection
+behavior. Existing question IDs, progress and discovery entries are retained.
