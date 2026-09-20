@@ -29,17 +29,8 @@ async function loadPreview(src:string, signal?:AbortSignal): Promise<Buffer> {
     previewCache.set(src,{buffer,expires:Date.now()+10*60*1000});cachedBytes+=buffer.length;
     return buffer;
   };
-  if(process.env.VERCEL){
-    const hostname=process.env.VERCEL_PROJECT_PRODUCTION_URL || 'arcl1001-study-boscofungg.vercel.app';
-    if(!/^[a-zA-Z0-9.-]+$/.test(hostname))throw new Error('Invalid asset host');
-    const response=await fetch(`https://${hostname}${src}`,{signal:signal?AbortSignal.any([signal,AbortSignal.timeout(8000)]):AbortSignal.timeout(8000),redirect:'error'});
-    if(!response.ok || !response.headers.get('content-type')?.startsWith('image/'))throw new Error('Image unavailable');
-    const length=Number(response.headers.get('content-length')||0);
-    if(length>maxImageBytes)throw new Error('Image too large');
-    const buffer=Buffer.from(await response.arrayBuffer());
-    if(buffer.length>maxImageBytes)throw new Error('Image too large');
-    return save(buffer);
-  }
+  // Originals are bundled with this function, including on Vercel. Protected beta
+  // assets cannot be fetched anonymously through either deployment's public URL.
   const buffer=await readFile(join(process.cwd(),'public',src.slice(1)),{signal});
   if(buffer.length>maxImageBytes)throw new Error('Image too large');
   return save(buffer);

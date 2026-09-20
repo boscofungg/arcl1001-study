@@ -1,0 +1,105 @@
+'use client';
+import Link from 'next/link';
+import Image from 'next/image';
+import ThemeToggle from '@/components/theme-toggle';
+import {useState,useSyncExternalStore,useEffect,useRef,type CSSProperties} from 'react';
+import {ArrowLeft,ArrowRight,BookOpen,Check,Compass,Flag,Layers,MapPin,RotateCcw,Sparkles} from 'lucide-react';
+import {missions,questionBank,newProgress,parseProgress,recordGradedAttempt,markEvidenceChecked,getCorrectQuestionCount,setWeeklyGoal,getMissedQuestionIds,getCompletedMissionIds,getComebackCount,getWeeklySessionsCount,missionProgress,getLatestAttempt} from '@/lib/expedition';
+import {gradeAnswer} from '@/lib/graded-questions';
+import type {Progress} from '@/lib/expedition';
+
+const KEY='stratum-private-field-journal-v2';
+type Session={queue:string[];index:number;missionId:string;attemptId:string};
+type Stored={progress:Progress;session:Session|null};
+let memory='';
+let storageUnavailable=false;
+const listeners=new Set<()=>void>();
+function subscribe(fn:()=>void){listeners.add(fn);window.addEventListener('storage',fn);return()=>{listeners.delete(fn);window.removeEventListener('storage',fn);};}
+function snapshot(){try{return memory||localStorage.getItem(KEY)||'';}catch{return memory;}}
+const serverSnapshot=()=>'';
+function decode(raw:string):Stored{
+ try{const data=JSON.parse(raw);const s=data.session;
+ const valid=s&&Array.isArray(s.queue)&&s.queue.length>0&&s.queue.length<=36&&s.queue.every((id:unknown)=>questionBank.some(q=>q.id===id))&&new Set(s.queue).size===s.queue.length&&Number.isInteger(s.index)&&s.index>=0&&s.index<=s.queue.length&&typeof s.attemptId==='string'&&typeof s.missionId==='string';
+ return {progress:parseProgress(JSON.stringify(data.progress)),session:valid?s:null};
+ }catch{return {progress:newProgress(),session:null};}
+}
+function persist(data:Stored){const raw=JSON.stringify(data);try{localStorage.setItem(KEY,raw);memory='';storageUnavailable=false;}catch{memory=raw;storageUnavailable=true;}listeners.forEach(fn=>fn());}
+const kindLabels={image:'Identify the find',map:'Locate the site','short-answer':'Recall the idea',comparison:'Connect the evidence'};
+const missionColors=['ochre','clay','sage'];
+export default function FieldJournal(){
+ const ready=useSyncExternalStore(subscribe,()=>true,()=>false);
+ const raw=useSyncExternalStore(subscribe,snapshot,serverSnapshot);
+ const store=decode(raw),progress=store.progress,session=store.session;
+ const [view,setView]=useState<'missions'|'journal'|'session'|'settings'>('missions');
+ const [draft,setDraft]=useState('');
+ const [evidenceOpen,setEvidenceOpen]=useState(false);const [resetConfirm,setResetConfirm]=useState(false);
+ const [imageError,setImageError]=useState('');
+ const feedbackHeading=useRef<HTMLDivElement>(null);
+ const [now,setNow]=useState('');
+ const completed=getCompletedMissionIds(progress),missed=getMissedQuestionIds(progress),comebacks=getComebackCount(progress);
+ const nextMission=missions.find(m=>!completed.includes(m.id))||missions[0];
+ const studyDays=now?getWeeklySessionsCount(progress,now):0;
+ const question=session?questionBank.find(q=>q.id===session.queue[session.index]):undefined;
+ const mission=missions.find(m=>m.id===session?.missionId);
+ const evidenceCount=new Set(progress.attempts.filter(a=>a.evidenceChecked).map(a=>a.questionId)).size;
+ const attempt=session?progress.attempts.find(a=>a.id===session.attemptId):undefined;
+ const result=question&&attempt?gradeAnswer(question,attempt.response||''):null;
+ const correct=Boolean(attempt&&!attempt.skipped&&result?.correct);
+ const comeback=Boolean(correct&&question&&progress.attempts.some(a=>a.id!==attempt?.id&&a.questionId===question.id&&a.rating==='again'));
+ const correctCount=getCorrectQuestionCount(progress);
+ const gradedAttemptId=attempt?.id;
+ useEffect(()=>{if(gradedAttemptId&&view==='session')feedbackHeading.current?.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'center'});},[gradedAttemptId,view]);
+ function resetFace(){setDraft('');setEvidenceOpen(false);setImageError('');}
+ function begin(queue:string[],missionId:string){if(!queue.length)return;resetFace();setNow(new Date().toISOString());persist({...store,session:{queue,index:0,missionId,attemptId:crypto.randomUUID()}});setView('session');window.scrollTo({top:0});}
+ function resume(){resetFace();setNow(new Date().toISOString());setView('session');window.scrollTo({top:0});}
+ function submitAnswer(skipped=false){
+  if(!session||!question||attempt||imageError===question.id)return;
+  const date=new Date().toISOString();setNow(date);
+  persist({...store,progress:recordGradedAttempt(progress,question.id,skipped?'':draft,skipped,session.attemptId,date)});
+ }
+ function nextQuestion(){
+  if(!session||!attempt)return;
+  persist({...store,session:{...session,index:session.index+1,attemptId:crypto.randomUUID()}});resetFace();window.scrollTo({top:0,behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
+ }
+ function exportJournal(){const file=new Blob([JSON.stringify({exportedAt:new Date().toISOString(),...store},null,2)],{type:'application/json'});const url=URL.createObjectURL(file);const a=document.createElement('a');a.href=url;a.download='field-journal-beta-progress.json';a.click();URL.revokeObjectURL(url);}
+ if(!ready)return <main className="journal-loading" role="status"><Layers size={30}/><h1>Preparing your field journal…</h1><p>Loading your saved progress and practice questions.</p></main>;
+ return <div className="app-shell">
+  <aside className="rail"><Link href="/" className="brand"><span><Layers size={23}/></span>stratum<span className="brand-dot">.</span></Link><div className="rail-subtitle">THE FIELD JOURNAL</div>
+   <nav aria-label="Expedition navigation"><Link className="study-home-link" href="/"><BookOpen size={18}/> Read &amp; ask</Link><button className={view==='missions'||view==='session'?'active':''} onClick={()=>setView('missions')}><Compass size={18}/>Basecamp</button><button className={view==='journal'?'active':''} onClick={()=>setView('journal')}><BookOpen size={18}/>Discovery journal<span>{completed.length}</span></button><button onClick={()=>begin(missed,'review')} disabled={!missed.length}><RotateCcw size={18}/>Revisit evidence<span>{missed.length}</span></button><button className={view==='settings'?'active':''} onClick={()=>setView('settings')}><Flag size={18}/>Your study goal</button></nav>
+   <div className="rail-bottom"><span className="public-beta-tag">BETA</span><p>Learning expeditions<br/>Feedback welcome.</p></div>
+  </aside>
+  <main className="main"><header className="topbar"><span>ARCL1001 <i>/</i> Lectures 1–3</span><div className="topbar-actions"><span className="beta-tag"><span>BETA</span></span><ThemeToggle/></div></header>
+   {storageUnavailable&&<p className="storage-warning" role="status">Browser storage is unavailable. Progress lasts only for this open session; export your journal before leaving.</p>}
+   {view==='missions'&&<>
+    <section className="hero"><div className="hero-copy"><div className="eyebrow">A LITTLE CURIOSITY. A LITTLE EVERY DAY.</div><h1>Turn revision into<br/><em>an expedition.</em></h1><p>Follow the evidence. Recall what you know.<br/>Leave each site with a clearer picture of the past.</p><div className="hero-actions"><button className="primary" onClick={()=>session&&session.index<session.queue.length?resume():begin(nextMission.questionIds,nextMission.id)}>{session&&session.index<session.queue.length?'Continue your expedition':completed.length===missions.length?'Revisit an expedition':completed.length?'Begin your next mission':'Begin your first mission'}<ArrowRight size={17}/></button><span>MCQs + short blanks · Instant feedback</span></div></div><div className="hero-illustration" aria-hidden="true"><div className="orbit orbit-one"/><div className="orbit orbit-two"/><Compass size={120} strokeWidth={.7}/><span className="map-point p1"/><span className="map-point p2"/><span className="map-point p3"/><span className="map-label">OBSERVE · RECALL · CONNECT</span><div className="strata s1"/><div className="strata s2"/><div className="strata s3"/></div></section>
+    <section className="stats graded-stats" aria-label="Your fieldwork"><div><b>{correctCount}<small>/ 15</small></b><span>Correct on latest try</span></div><div><b>{completed.length}<small>/ 3</small></b><span>Discoveries collected</span></div><div><b>{evidenceCount}</b><span>Sources you checked</span></div><div><b>{comebacks}</b><span>Comeback moments</span></div><button onClick={()=>{setNow(new Date().toISOString());setView('settings');}}><b><Flag size={23}/>{progress.weeklyGoal}<small>days</small></b><span>Your weekly study goal <ArrowRight size={13}/></span></button></section>
+    <div className="section-heading"><div><div className="eyebrow">CHOOSE YOUR NEXT DISCOVERY</div><h2>Three chapters. A wider world.</h2></div><span>Every mission is open from day one.<br/>MCQs and short blanks · instant feedback</span></div>
+    <section className="mission-grid" aria-label="Lecture missions">{missions.map((m,index)=>{const status=missionProgress(progress,m.id);return <article className={`mission-card ${missionColors[index]}`} key={m.id}><div className="mission-art"><span className="mission-number">0{index+1}</span>{index===0?<Layers size={68} strokeWidth={1}/>:index===1?<MapPin size={68} strokeWidth={1}/>:<Compass size={68} strokeWidth={1}/>}<span className="lecture-label">LECTURE {m.lecture}</span></div><div className="mission-body"><div className="card-status">{status.complete?<><Check size={13}/> Discovery collected</>:status.attempted?'Fieldwork in progress':'Ready to explore'}</div><h3>{m.title}</h3><p>{m.subtitle}</p><div className="mission-progress"><span>{status.attempted} / {status.total} explored</span><span>5–10 min</span></div><progress value={status.attempted} max={status.total}/><button onClick={()=>begin(m.questionIds,m.id)}>{status.complete?'Revisit this mission':'Explore mission'}<ArrowRight size={16}/></button></div></article>;})}</section>
+    {missed.length>0&&<section className="review-banner"><RotateCcw size={26}/><div><h3>A second look changes the picture.</h3><p>{missed.length} {missed.length===1?'question is':'questions are'} ready for another attempt. No lost points. Just another chance to recall.</p></div><button className="primary" onClick={()=>begin(missed,'review')}>Revisit evidence<ArrowRight size={16}/></button></section>}
+    <p className="footnote">Practice built from the selected course materials. Suggested answers are study aids, not an official Quiz 1 mark scheme.</p>
+   </>}
+   {view==='session'&&session&&<section className="session"><button className="back-link" onClick={()=>setView('missions')}><ArrowLeft size={15}/> Back to basecamp · progress saved</button>
+    {question?<><div className="session-heading"><div><div className="eyebrow">{mission?`LECTURE ${mission.lecture} EXPEDITION`:'A SECOND LOOK'}</div><h1>{mission?.title||'Revisit the evidence'}</h1></div><span>{session.index+1} / {session.queue.length}</span></div><progress aria-label="Mission progress" value={session.index+(attempt?1:0)} max={session.queue.length}/>
+    <article className={`question-card ${attempt?correct?'graded-correct':'graded-attempted':''}`} key={session.attemptId}><span className="question-kind">{kindLabels[question.kind]} · {question.format==='mcq'?'Multiple choice':'Fill in the blank'}</span><h2>{question.prompt}</h2>
+     {question.image&&<figure>{imageError===question.id?<p role="alert">Image unavailable. Pause this mission and reload before answering.</p>:<Image unoptimized src={question.image.src} alt={question.kind==='map'?'Map with a marked location to identify':'Course image to identify'} width={question.image.width} height={question.image.height} onError={()=>setImageError(question.id)}/>}</figure>}
+     <form onSubmit={event=>{event.preventDefault();submitAnswer();}}>
+      {question.format==='mcq'?<fieldset className="mcq-options" disabled={Boolean(attempt)}><legend>Choose one answer</legend>{question.options?.map((option,index)=>{const chosen=(attempt?.response??draft)===option.id;const isAnswer=Boolean(attempt&&option.id===question.correctOptionId);return <label className={`mcq-option ${chosen?'selected':''} ${isAnswer?'option-correct':attempt&&chosen?'option-incorrect':''}`} key={option.id}><input type="radio" name="answer" value={option.id} checked={chosen} onChange={()=>setDraft(option.id)}/><span className="option-letter">{String.fromCharCode(65+index)}</span><span>{option.text}{isAnswer&&<small>Correct answer</small>}{attempt&&chosen&&!isAnswer&&<small>Your choice · try the review again later</small>}</span>{isAnswer&&<Check size={18}/>}</label>;})}</fieldset>:<label className="answer-input blank-input">Your answer <span>A word or short phrase. Equivalent wording and common spelling variants are accepted.</span><input type="text" autoComplete="off" maxLength={160} value={attempt?.response??draft} disabled={Boolean(attempt)} onChange={e=>setDraft(e.target.value)} placeholder="Fill the blank…"/></label>}
+      {!attempt&&<div className="recall-actions"><button className="primary" type="submit" disabled={!draft.trim()||imageError===question.id}>Check my answer<ArrowRight size={16}/></button><button className="text-button" type="button" disabled={imageError===question.id} onClick={()=>submitAnswer(true)}>I don’t know yet</button></div>}
+     </form>
+     {attempt&&<div className={`answer-reveal grading-feedback ${correct?'feedback-correct':'feedback-retry'}`}>
+      <div className="feedback-celebration" aria-hidden="true">{correct?Array.from({length:10},(_,i)=><i key={i} style={{'--particle':i} as CSSProperties}/>):null}</div>
+      <div className="grade-heading" role="status" ref={feedbackHeading}><span className="grade-icon">{correct?<Check size={25}/>:<RotateCcw size={23}/>}</span><div><span className="attempt-stamp">ATTEMPT RECORDED</span><h3>{correct?comeback?'A comeback! Correct answer.':'Correct — nice work!':attempt.skipped?'A starting point for next time.':'Not quite yet — keep exploring.'}</h3><p>{attempt.skipped?'This question is saved for review. Read the explanation, then come back for a fresh attempt.':correct?'Your response matches the course answer.':'This question is saved for another try. Check the explanation below.'}</p>{correct&&question.format==='blank'&&result?.matchedVariant&&<span className="accepted-wording">Your wording was accepted.</span>}</div></div>
+      <div className="answer-explanation"><h4>{question.format==='mcq'?'Why this answer fits':'Expected answer'}</h4>{question.format==='blank'&&<p className="canonical-answer">{question.answer}</p>}<p>{question.explanation}</p></div>
+      {question.format==='blank'&&<details className="accepted-details"><summary>Examples of accepted wording</summary><p>{question.acceptedAnswers?.slice(0,8).join(' · ')}</p><small>Short answers are checked against course-specific alternatives, with limited typo tolerance. If an equivalent phrase is missed, note it for the beta feedback.</small></details>}
+      <button className="evidence-button" aria-expanded={evidenceOpen} onClick={()=>setEvidenceOpen(!evidenceOpen)}><BookOpen size={16}/>{evidenceOpen?'Hide source evidence':'Inspect the source evidence'}</button>
+      {evidenceOpen&&<div className="evidence-panel">{[question.source,...question.additionalSources||[]].map((source,index)=><section key={`${source.docId}-${source.page}`}><h4>{source.title} · {source.label}</h4><blockquote>{index===0?question.evidence:source.evidence}</blockquote><a href={`/materials/${source.docId}/page-${source.page}.webp`} target="_blank" rel="noreferrer">Open original page ↗</a><Link className="source-tutor-link" href={`/?doc=${source.docId}&page=${source.page}`}>Discuss this source in the tutor <ArrowRight size={12}/></Link></section>)}<label className="check-evidence"><input type="checkbox" checked={attempt.evidenceChecked} onChange={e=>persist({...store,progress:markEvidenceChecked(progress,attempt.id,e.target.checked)})}/>I checked my answer against the cited evidence.</label></div>}
+      <div className="next-answer"><span>{correct?<><Sparkles size={14}/> {comeback?'A missed idea, recovered.':'One more idea recalled.'}</>:'A fresh attempt is waiting in your review queue.'}</span><button className="primary" onClick={nextQuestion}>{session.index+1===session.queue.length?'Finish mission':'Next question'}<ArrowRight size={16}/></button></div>
+     </div>}
+
+    </article></>:<div className="completion"><span className="completion-seal"><Flag size={44}/></span><div className="eyebrow">FIELDWORK RECORDED</div><h1>{mission?'A new page in your journal.':'A second look, a clearer picture.'}</h1><p>You explored {session.queue.length} questions. {session.queue.filter(id=>getLatestAttempt(progress,id)?.rating==='again').length} still need another look. Correct answers are recorded separately from participation. These are practice results, not official quiz marks.</p><div className="completion-actions"><button className="primary" onClick={()=>setView('journal')}>Open discovery journal<BookOpen size={16}/></button>{missed.length>0&&<button className="secondary" onClick={()=>begin(missed,'review')}>Revisit {missed.length} questions</button>}</div></div>}
+   </section>}
+   {view==='journal'&&<section className="journal"><div className="eyebrow">COLLECT UNDERSTANDING, NOT POINTS</div><h1>Your discovery journal</h1><p className="page-intro">A record of the places you explored and the evidence you returned to. Every discovery stays open for revision.</p><div className="journal-grid">{missions.map((m,index)=>{const earned=completed.includes(m.id);return <article className={`journal-entry ${earned?'earned':''}`} key={m.id}><span className="journal-seal">{earned?<Flag size={30}/>:<Compass size={30}/>}</span><span className="eyebrow">FIELD ENTRY 0{index+1}</span><h2>{m.title}</h2><p>{earned?'All five questions explored. Keep revisiting uncertain ideas.':'Explore all five questions to collect this entry. Materials are always available.'}</p><span className="entry-status">{earned?'Discovery collected':'Waiting to be explored'}</span><button className="text-button" onClick={()=>begin(m.questionIds,m.id)}>{earned?'Revisit mission':'Explore mission'}<ArrowRight size={15}/></button></article>;})}</div><div className="journal-rewards"><article><RotateCcw size={26}/><h3>Comeback moments</h3><b>{comebacks}</b><p>Questions first marked “Needs another look,” then correctly answered on a later attempt. Each question counts once.</p></article><article><BookOpen size={26}/><h3>Evidence explorer</h3><b>{evidenceCount}</b><p>Different questions where you confirmed checking the course evidence. Opening a panel alone earns nothing.</p></article></div><p className="footnote">MCQs and short blanks receive automatic practice feedback. Discovery entries record participation, not proof of mastery.</p></section>}
+   {view==='settings'&&<section className="settings"><div className="eyebrow">MAKE ROOM FOR CURIOSITY</div><h1>A goal that fits your week.</h1><p className="page-intro">Choose study days, not hours. One recorded attempt counts as a study day. Missing a day never removes your discoveries.</p><div className="settings-card"><label>Study days per week<select value={progress.weeklyGoal} onChange={e=>persist({...store,progress:setWeeklyGoal(progress,Number(e.target.value))})}>{[1,2,3,4,5,6,7].map(n=><option key={n} value={n}>{n} {n===1?'day':'days'}</option>)}</select></label><button className="text-button" onClick={()=>setNow(new Date().toISOString())}>Update this week’s progress</button><p>{now?`${studyDays} of ${progress.weeklyGoal} study days recorded this week.`:'Update to see this week’s progress.'} Weeks begin Monday, Hong Kong time.</p><progress value={Math.min(studyDays,progress.weeklyGoal)} max={progress.weeklyGoal}/></div><div className="settings-card"><h2>Your expedition progress</h2><p>Progress stays in this browser and does not sync across devices or websites. Your answers and practice results are saved locally so you can export and review them. Expedition answers are checked on your device, without AI. Export progress before clearing browser data.</p><div className="data-actions"><button className="secondary" onClick={exportJournal}>Export journal</button><button className="text-button" onClick={()=>setResetConfirm(true)}>Reset expedition progress</button></div>{resetConfirm&&<div role="alert" className="reset-confirm"><p>Clear this browser’s expedition progress and current mission? This cannot be undone. Export first if you want a record of your progress.</p><button className="secondary" onClick={()=>{persist({progress:newProgress(),session:null});setResetConfirm(false);setView('missions');}}>Yes, clear expedition progress</button><button className="text-button" onClick={()=>setResetConfirm(false)}>Keep my progress</button></div>}</div></section>}
+  </main>
+ </div>;
+}

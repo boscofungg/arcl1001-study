@@ -47,7 +47,7 @@ test('invalid image paths fail safely instead of reading arbitrary files',async(
  const result=await buildVisualContext([source]);
  assert.equal(result.visualsUsed,0);assert.equal(result.failedVisuals,1);assert.deepEqual(result.parts,[]);
 });
-test('repeat questions reuse page-image bytes and cancelled requests stop before work',async(t)=>{
+test('repeat questions keep bundled image context consistent and cancelled requests stop before work',async(t)=>{
  const previous=process.env.VERCEL;
  process.env.VERCEL='1';
  let downloads=0;
@@ -55,10 +55,12 @@ test('repeat questions reuse page-image bytes and cancelled requests stop before
  const fetchMock=t.mock.method(globalThis,'fetch',async()=>{downloads++;return new Response(bytes,{headers:{'Content-Type':'image/webp'}});});
  try{
    const source=getPageSource('d101',78);
-   await buildVisualContext([source]);await buildVisualContext([source]);
-   assert.equal(downloads,1);
+   const first=await buildVisualContext([source]);
+   assert.deepEqual(await buildVisualContext([source]),first);
+   assert.equal(first.visualsUsed,1);
+   assert.equal(downloads,0);
    const controller=new AbortController();controller.abort();
    await assert.rejects(buildVisualContext([source],controller.signal),{name:'AbortError'});
-   assert.equal(downloads,1);
+   assert.equal(downloads,0);
  }finally{fetchMock.mock.restore();if(previous===undefined)delete process.env.VERCEL;else process.env.VERCEL=previous;}
 });

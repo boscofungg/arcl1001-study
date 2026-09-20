@@ -1,53 +1,55 @@
-# Stratum — ARCL1001 Quiz 1 revision
+# Stratum (beta) — ARCL1001
 
-A focused reading-and-tutor workspace for the selected **Lecture 1–3** materials.
+Public course study workspace for selected Lectures 1–3, with a scrolling
+reader, source-grounded streaming tutor, generated flashcards, Quiz 1 practice,
+and learning expeditions. Both the study pages and games support dark mode,
+using one browser preference across the site.
 
-## Student workflow
+## Use
 
-- **Read & ask:** scroll through original pages beside the tutor. Ask across lectures, regions and periods. Citations jump to the correct page and highlight the retrieved passage using real source geometry.
-- **Quiz 1 practice:** prepared image-identification, map-labelling, short-answer and comparison cards. Try your answer, reveal source evidence, and revisit missed cards. These are study aids, not the official paper.
-- **Make flashcards:** generate concise short-answer cards from a selected Quiz 1 source. Exact source references and evidence quotations are checked; unsupported cards are removed. When possible, prepared source-matched cards replace failed AI generation and are labelled accordingly.
+Open `/` for readings and the tutor; choose **Expeditions** for `/expeditions`.
+Three missions contain eight MCQs and seven short blanks, automatically marked
+with course-specific equivalent phrases, spelling variants and limited typo
+tolerance. Feedback distinguishes attempted questions, correct answers and
+successful retries. Discovery completion is participation, not proof of mastery.
+Game evidence can open the relevant page directly in the tutor.
 
-There are nine selected documents: three new lecture decks, three PDF readings and three linked web-reading summaries. Original slide numbering is preserved, including hidden slides. Reading front matter remains viewable but does not enter study retrieval. Web summaries link to the full publisher articles and are not represented as complete articles.
+Study and game progress is stored in the current browser. Nothing migrates
+automatically from another hostname or device. Submitted game answers are saved
+locally and can be exported/reset. Theme preference uses `stratum-theme`.
+The former private-beta progress key is retained for compatibility, but no
+administrator login or authentication code is present in this public build.
 
-## Run
+## Development
 
-Node.js 24 is required.
+Run `npm ci`; configure server-only `GEMINI_API_KEY` and optional `GEMINI_MODEL`
+in `.env.local`, then `npm run dev`. No API keys belong in client code or Git.
+Run `npm run lint`, `npm test`, `npm run build`, and `npx tsc --noEmit`.
+Course page originals are bundled into the chat function for visual reasoning.
+Source data is public course content; model requests retain origin checks and
+existing rate limits. These per-instance IP limits are not a measured capacity
+or a coordinated whole-class quota. A class-sized load test remains separate.
+
+## Hosting and rollback
+
+Official project: `arcl1001-study`; production branch: `codex/study-workspace`.
+Official domain: https://arcl1001-study-boscofungg.vercel.app/
+
+The prior official release is backed up at `checkpoint/pre-public-games-2026-09-20`.
+This single public-release commit is tagged `release/public-games-2026-09-20`.
+To reverse it without rewriting history:
 
 ```sh
-npm ci
-# Copy .env.example to .env and set the server-side key.
-npm run dev
+git fetch origin --tags
+git revert release/public-games-2026-09-20
+git push origin HEAD:codex/study-workspace
 ```
 
-`GEMINI_API_KEY` and `GEMINI_MODEL` are server-only environment variables. They must not use a `NEXT_PUBLIC_` prefix. Vercel stores the production secrets. The previously prepared HKU Claude migration is not part of this release.
+The former admin beta is archived in the private `arcl1001-field-journal-beta`
+repository at `checkpoint/private-beta-complete-2026-09-20`; its separate
+Vercel testing project is retired after this public release is verified.
+Do not publish that historical private source without its authentication setup.
 
-## Verify
-
-```sh
-npm run lint
-npx tsc --noEmit
-npm test
-npm run build
-```
-
-The tests cover current source scope, citation and image boundaries, cross-lecture retrieval, stream parsing, practice selection and review state, and exact citation highlighting.
-
-## Content generation
-
-`scripts/rebuild-quiz1.py` ingests the explicitly supplied source files using PyMuPDF/Pillow and LibreOffice, and records hashes in `content/quiz1-source-manifest.json`. It renders originals rather than generating substitute figures. `scripts/build-quiz1-questions.py` recreates the neutral-named practice image/map assets from source evidence. Keep original files outside the public directory.
-
-Prepared practice requires no AI request. Tutor replies stream when supported by the provider, cache recently used page images and preserve source citations. Flashcard and practice progress, along with the theme preference, are stored on the student's device; chats remain in memory. The app adds no feedback analytics or student account fields.
-
-## Limits
-
-AI answers and generated cards still require source checking. A valid citation does not prove every conclusion is correct. Static PowerPoint previews may differ in animation stages or fonts; scanned text can remain incomplete. Maps use approximate locations. The actual Quiz 1 question count, marking scheme and duration were not supplied, so the app does not invent them.
-
-## Deployment, rollback and student feedback
-
-GitHub pushes to `codex/study-workspace` trigger Vercel production deployment. See:
-
-- [Release scope, verification and rollback](docs/quiz1-release.md)
-- [Student-feedback questions and pilot tasks](docs/student-feedback-quiz1.md)
-
-The pre-revision source is preserved in the GitHub tag `checkpoint/pre-quiz1-2026-09-19` and in the original local checkout. Keep that checkpoint until the Quiz 1 trial has been reviewed.
+Question content and AI answers remain study aids rather than an official exam
+paper or marking scheme. Web readings are labelled summaries with original links.
+See `docs/student-feedback-quiz1.md` for suggested student feedback.
