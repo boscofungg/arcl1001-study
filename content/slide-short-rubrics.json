@@ -1,0 +1,441 @@
+[
+  {
+    "questionId": "q1-text-01",
+    "criteria": [
+      {
+        "id": "remains",
+        "label": "Use of material or physical remains",
+        "patterns": [
+          "\\b(?:material|physical|tangible) (?:remains|evidence|traces)\\b",
+          "\\b(?:artefacts|artifacts|objects|buildings|architecture|landscapes)\\b",
+          "\\barchaeological (?:remains|evidence|traces)\\b",
+          "\\b(?:relics|ruins)\\b"
+        ]
+      }
+    ]
+  },
+  {
+    "questionId": "q1-text-02",
+    "criteria": [
+      {
+        "id": "finding",
+        "label": "Finding / discovering",
+        "patterns": [
+          "\\b(?:find(?:ing)?|discover(?:ing|y)?|locat(?:e|ing)|survey(?:ing)?)\\b"
+        ]
+      },
+      {
+        "id": "excavating",
+        "label": "Excavating / digging",
+        "patterns": [
+          "\\b(?:excavat(?:e|ing|ion)|dig(?:ging)?)\\b"
+        ]
+      },
+      {
+        "id": "analysing",
+        "label": "Analysing / examining",
+        "patterns": [
+          "\\b(?:analy[sz](?:e|ing|is)|examin(?:e|ing|ation)|studying)\\b"
+        ]
+      },
+      {
+        "id": "preserving",
+        "label": "Preserving / conserving",
+        "patterns": [
+          "\\b(?:preserv(?:e|ing|ation)|conserv(?:e|ing|ation)|protect(?:ing|ion)?)\\b"
+        ]
+      },
+      {
+        "id": "sharing",
+        "label": "Sharing / communicating findings",
+        "patterns": [
+          "\\b(?:shar(?:e|ing)|communicat(?:e|ing|ion)|publish(?:ing)?|disseminat(?:e|ing|ion))\\b"
+        ]
+      }
+    ]
+  },
+  {
+    "questionId": "q1-text-03",
+    "criteria": [
+      {
+        "id": "expansion",
+        "label": "Light Detection and Ranging",
+        "patterns": [
+          "\\blight detect(?:ion|ing) (?:and )?rang(?:ing|e)\\b"
+        ]
+      }
+    ]
+  },
+  {
+    "questionId": "q1-text-04",
+    "criteria": [
+      {
+        "id": "sequence",
+        "label": "Deeper / lower layers are older",
+        "patterns": [
+          "\\b(?:deeper|lower|bottom|underlying)\\b(?:(?!\\b(?:upper|higher|top|younger|newer)\\b).){0,65}\\b(?:older|earlier|oldest)\\b",
+          "\\b(?:older|earlier|oldest)\\b(?:(?!\\b(?:upper|higher|top|younger|newer)\\b).){0,65}\\b(?:deeper|lower|bottom|beneath|underneath)\\b",
+          "\\b(?:upper|higher|top)\\b(?:(?!\\b(?:deeper|lower|bottom|older|earlier)\\b).){0,65}\\b(?:younger|newer|later|youngest)\\b"
+        ]
+      }
+    ]
+  },
+  {
+    "questionId": "q1-text-05",
+    "criteria": [
+      {
+        "id": "tools",
+        "label": "Stone tools / worked stone",
+        "patterns": [
+          "\\b(?:stone tools|chipped rock|worked stone|flaked stone|lithic artefacts|lithic artifacts)\\b",
+          "\\b(?:stone implements|worked flint|chipped stone|stone artefacts|stone artifacts)\\b"
+        ]
+      },
+      {
+        "id": "fracture",
+        "label": "Predictable fracture behaviour",
+        "patterns": [
+          "\\b(?:predictable|controlled|consistent|regular)\\b.{0,35}\\b(?:fractur\\w*|break\\w*)\\b",
+          "\\b(?:fractur\\w*|break\\w*)\\b.{0,35}\\b(?:predictable|controlled|consistent)\\b",
+          "\\b(?:stone|rock)\\b.{0,35}\\b(?:breaks|fractures)\\b.{0,30}\\b(?:predictably|consistently)\\b"
+        ]
+      }
+    ]
+  },
+  {
+    "questionId": "q1-text-06",
+    "criteria": [
+      {
+        "id": "sequence",
+        "label": "Sequence of breakage",
+        "patterns": [
+          "\\b(?:sequence|order|stages)\\b.{0,35}\\b(?:break\\w*|fractur\\w*|flak\\w*)\\b",
+          "\\b(?:how|when)\\b.{0,30}\\b(?:flakes|fragments|pieces)\\b.{0,30}\\b(?:removed|broken|detached)\\b"
+        ]
+      },
+      {
+        "id": "disturbance",
+        "label": "Disturbance after deposition",
+        "patterns": [
+          "\\bpost depositional? disturbance\\b",
+          "\\bpost deposition disturbance\\b",
+          "\\b(?:disturb\\w*|mov\\w*|displac\\w*)\\b.{0,45}\\b(?:after|following) (?:burial|deposition|being deposited)\\b",
+          "\\b(?:later|subsequent) (?:disturbance|movement|displacement)\\b"
+        ]
+      }
+    ]
+  },
+  {
+    "questionId": "q1-text-07",
+    "criteria": [
+      {
+        "id": "cities",
+        "label": "Creation of cities in a previously non-urban society",
+        "patterns": [
+          "\\b(?:creat\\w*|develop\\w*|emergen\\w*|form\\w*)\\b.{0,40}\\b(?:cities|urban settlements)\\b.{0,90}\\b(?:formerly lacked|previously (?:had no|lacked|without)|previously non urban|without prior|did not (?:previously )?have|had none before)\\b",
+          "\\b(?:first cities|first urban settlements|becom\\w* urban|transition from (?:non urban|rural) to urban)\\b",
+          "\\b(?:societ\\w*|communit\\w*)\\b.{0,35}\\b(?:without cities|without urban settlements|had no cities)\\b.{0,60}\\b(?:creat\\w*|develop\\w*|establish\\w*|build\\w*)\\b.{0,20}\\b(?:cities|urban settlements)\\b"
+        ],
+        "allowNegation": true
+      }
+    ]
+  },
+  {
+    "questionId": "q1-text-08",
+    "criteria": [
+      {
+        "id": "size",
+        "label": "Settlement size",
+        "patterns": [
+          "\\b(?:size|area|extent)\\b"
+        ]
+      },
+      {
+        "id": "population",
+        "label": "Population / density",
+        "patterns": [
+          "\\b(?:population|density|number of (?:people|inhabitants))\\b"
+        ]
+      },
+      {
+        "id": "fortification",
+        "label": "Fortifications / defensive walls",
+        "patterns": [
+          "\\b(?:fortifications?|defen[sc]es?|defensive walls?|city walls?)\\b"
+        ]
+      },
+      {
+        "id": "worship",
+        "label": "Religion / shared worship",
+        "patterns": [
+          "\\b(?:religio\\w*|worship|temples?)\\b"
+        ]
+      },
+      {
+        "id": "politics",
+        "label": "Political mobilization",
+        "patterns": [
+          "\\bpolitical (?:mobili[sz]ation|organization|organisation)\\b"
+        ]
+      },
+      {
+        "id": "stratification",
+        "label": "Social stratification",
+        "patterns": [
+          "\\b(?:social (?:stratification|hierarchy|classes|inequality)|class differences)\\b"
+        ]
+      },
+      {
+        "id": "monuments",
+        "label": "Monuments / palaces",
+        "patterns": [
+          "\\b(?:monument\\w*|palaces?)\\b"
+        ]
+      },
+      {
+        "id": "trade",
+        "label": "Trade / imports",
+        "patterns": [
+          "\\b(?:trade|trading|imports?|exchange)\\b"
+        ]
+      },
+      {
+        "id": "production",
+        "label": "Specialized production",
+        "patterns": [
+          "\\b(?:speciali[sz]\\w*|production|crafts?)\\b"
+        ]
+      },
+      {
+        "id": "hinterland",
+        "label": "Hinterland / surrounding countryside",
+        "patterns": [
+          "\\b(?:hinterland|surrounding (?:countryside|settlements|rural area))\\b"
+        ]
+      }
+    ],
+    "requiredCount": 4
+  },
+  {
+    "questionId": "q1-text-09",
+    "criteria": [
+      {
+        "id": "provenience",
+        "label": "Provenience: find location",
+        "patterns": [
+          "\\bproven(?:ience|ance)\\b(?:(?!\\b(?:matrix|association|assemblage)\\b).){0,55}\\b(?:where|location|origin|position|came from|found|findspot|find spot)\\b",
+          "\\b(?:findspot|find spot|find location)\\b.{0,20}\\bproven(?:ience|ance)\\b"
+        ]
+      },
+      {
+        "id": "matrix",
+        "label": "Matrix: surrounding soil",
+        "patterns": [
+          "\\bmatrix\\b(?:(?!\\b(?:provenience|provenance|association|assemblage)\\b).){0,55}\\b(?:soil|dirt|sediment|surrounding material)\\b"
+        ]
+      },
+      {
+        "id": "association",
+        "label": "Association: objects found together",
+        "patterns": [
+          "\\b(?:association|assemblage)\\b(?:(?!\\b(?:matrix|provenience|provenance)\\b).){0,65}\\b(?:together|same context|co occurring)\\b"
+        ]
+      }
+    ]
+  },
+  {
+    "questionId": "q1-text-10",
+    "criteria": [
+      {
+        "id": "power",
+        "label": "Power / political authority",
+        "patterns": [
+          "\\b(?:power|political authority)\\b",
+          "\\bpolitical influence\\b"
+        ]
+      },
+      {
+        "id": "labour",
+        "label": "Labour / work",
+        "patterns": [
+          "\\b(?:labou?r|work)\\b"
+        ]
+      },
+      {
+        "id": "wealth",
+        "label": "Wealth / resources",
+        "patterns": [
+          "\\b(?:wealth|resources|riches)\\b"
+        ]
+      },
+      {
+        "id": "status",
+        "label": "Status / class",
+        "patterns": [
+          "\\b(?:status|class|rank)\\b",
+          "\\bprestige\\b"
+        ]
+      }
+    ]
+  },
+  {
+    "questionId": "q1-text-11",
+    "criteria": [
+      {
+        "id": "uncertainty",
+        "label": "The label does not prove a ruler or political system",
+        "patterns": [
+          "\\b(?:label|name|sculpture|title)\\b.{0,80}\\b(?:does not|doesnt|cannot|cant|not|isnt)\\b.{0,40}\\b(?:establish|prove|proof|evidence|tell|resolve|confirm)\\b",
+          "\\b(?:not proven|unproven|uncertain|unknown|open questions|only a label|just a (?:name|label)|modern (?:name|label))\\b",
+          "\\b(?:no|insufficient) (?:clear )?(?:proof|evidence)\\b"
+        ],
+        "allowNegation": true,
+        "excludePatterns": [
+          "\\b(?:proves?|confirms?|establishes|definitely|certainly)\\b.{0,40}\\b(?:king|ruler|royal|political system)\\b"
+        ]
+      }
+    ]
+  },
+  {
+    "questionId": "q1-text-12",
+    "criteria": [
+      {
+        "id": "goods",
+        "label": "Burial / grave goods",
+        "patterns": [
+          "\\b(?:(?:burial|grave|funerary) (?:goods|objects|offerings)|objects buried|tomb contents)\\b"
+        ]
+      },
+      {
+        "id": "scale",
+        "label": "Tomb size / scale",
+        "patterns": [
+          "\\b(?:tomb|grave|burial) (?:size|scale|dimensions)\\b",
+          "\\b(?:size|scale|dimensions) of (?:the )?(?:tombs?|graves?|burials?)\\b",
+          "\\bhow (?:big|large)\\b.{0,20}\\b(?:tombs?|graves?|burials?)\\b"
+        ]
+      }
+    ]
+  },
+  {
+    "questionId": "q1-text-13",
+    "criteria": [
+      {
+        "id": "disturbance",
+        "label": "Later burials disturb earlier deposits",
+        "patterns": [
+          "\\b(?:disturb\\w*|disrupt\\w*|cut\\w*|damag\\w*)\\b.{0,50}\\b(?:later|subsequent|newer) burials?\\b",
+          "\\b(?:later|subsequent|newer) burials?\\b.{0,65}\\b(?:disturb\\w*|disrupt\\w*|cut\\w*|damag\\w*)\\b",
+          "\\b(?:later|new|newer|more recent) (?:graves?|burials?)\\b.{0,65}\\b(?:disturb\\w*|disrupt\\w*|cut\\w*|damag\\w*)\\b"
+        ]
+      }
+    ]
+  },
+  {
+    "questionId": "q1-text-14",
+    "criteria": [
+      {
+        "id": "hidden",
+        "label": "Social differences can be subtle / hidden",
+        "patterns": [
+          "\\b(?:subtle|hidden|concealed|invisible|less visible)\\b.{0,40}\\b(?:social|differen\\w*|inequal\\w*|hierarch\\w*)\\b",
+          "\\b(?:social differen\\w*|inequal\\w*|hierarch\\w*)\\b.{0,40}\\b(?:hidden|subtle|concealed|invisible|not visible)\\b",
+          "\\b(?:absence|lack)\\b.{0,65}\\b(?:does not|doesnt|cannot|cant)\\b.{0,25}\\b(?:prove|establish|mean)\\b.{0,35}\\b(?:egalitarian|equal\\w*)\\b"
+        ],
+        "allowNegation": true
+      }
+    ]
+  },
+  {
+    "questionId": "q1-text-15",
+    "criteria": [
+      {
+        "id": "knapping",
+        "label": "Knapping produces flakes through controlled fracture",
+        "patterns": [
+          "\\bknapping\\b(?:(?!\\b(?:refitting)\\b).){0,120}?\\b(?:(?:produc\\w*|mak\\w*|remov\\w*) .{0,25}flakes|predictable fracture)\\b",
+          "\\bknapping\\b(?:(?!\\brefitting\\b).){0,100}\\b(?:creates?|produces?|removes?|makes?|making|removing|creating) flakes\\b"
+        ]
+      },
+      {
+        "id": "refitting",
+        "label": "Refitting investigates breakage sequence",
+        "patterns": [
+          "\\brefitting\\b(?:(?!\\b(?:knapping)\\b).){0,120}?\\b(?:(?:sequence|order) of (?:breakage|fractur\\w*))\\b",
+          "\\brefitting\\b(?:(?!\\bknapping\\b).){0,100}\\b(?:breakage sequence|order (?:in which|that) .{0,20}(?:broke|broken|removed))\\b"
+        ]
+      },
+      {
+        "id": "disturbance",
+        "label": "Refitting investigates later disturbance",
+        "patterns": [
+          "\\brefitting\\b(?:(?!\\b(?:knapping)\\b).){0,120}?\\b(?:post deposition(?:al)? disturbance|later disturbance|disturbance after (?:deposition|burial))\\b"
+        ]
+      }
+    ]
+  },
+  {
+    "questionId": "q1-text-16",
+    "criteria": [
+      {
+        "id": "harappa",
+        "label": "Harappa: baked brick houses",
+        "patterns": [
+          "\\bharappa\\b(?:(?!\\b(?:erlitou)\\b).){0,120}?\\b(?:(?:baked|fired)(?: clay)? bricks?|brick houses)\\b",
+          "\\bharappa\\b(?:(?!\\berlitou\\b).){0,100}\\b(?:houses|homes|buildings) (?:made |built )?(?:of|from|with) (?:baked |fired |clay )*bricks?\\b"
+        ]
+      },
+      {
+        "id": "courtyard",
+        "label": "Harappa: courtyard, ovens or flat roofs",
+        "patterns": [
+          "\\bharappa\\b(?:(?!\\b(?:erlitou)\\b).){0,120}?\\b(?:courtyards?|clay ovens?|flat roofs?)\\b"
+        ]
+      },
+      {
+        "id": "erlitou",
+        "label": "Erlitou: semi-subterranean houses",
+        "patterns": [
+          "\\berlitou\\b(?:(?!\\b(?:harappa)\\b).){0,120}?\\b(?:semi subterranean|partly underground|partially underground)\\b"
+        ]
+      },
+      {
+        "id": "above",
+        "label": "Erlitou: above-ground houses",
+        "patterns": [
+          "\\berlitou\\b(?:(?!\\b(?:harappa)\\b).){0,120}?\\b(?:above ground|surface houses)\\b"
+        ]
+      }
+    ]
+  },
+  {
+    "questionId": "q1-text-17",
+    "criteria": [
+      {
+        "id": "fuhao",
+        "label": "Fu Hao: bronze vessels / weapons",
+        "patterns": [
+          "\\bfu hao(?:s)?\\b(?:(?!\\b(?:harappa)\\b).){0,120}?\\b(?:bronzes?|ritual vessels|weapons)\\b"
+        ]
+      },
+      {
+        "id": "harappa",
+        "label": "Harappa: ornaments / pottery offerings",
+        "patterns": [
+          "\\bharappa\\b(?:(?!\\b(?:fu hao)\\b).){0,120}?\\b(?:personal ornaments?|pottery|ceramic offerings)\\b"
+        ]
+      },
+      {
+        "id": "caution",
+        "label": "Contrast does not prove absence of Indus hierarchy",
+        "patterns": [
+          "\\b(?:not proof|does not prove|doesnt prove|cannot prove|cant prove|does not mean|doesnt mean)\\b.{0,100}\\b(?:lacked hierarchy|no hierarchy|egalitarian|equal\\w*|absence of hierarchy)\\b",
+          "\\b(?:hidden|subtle)\\b.{0,40}\\b(?:social differen\\w*|hierarch\\w*|inequal\\w*)\\b",
+          "\\b(?:hierarch\\w*|inequal\\w*)\\b.{0,45}\\b(?:hidden|not ruled out|still possible)\\b",
+          "\\b(?:cannot|cant|should not|shouldnt)\\b.{0,35}\\b(?:conclude|assume|infer)\\b.{0,60}\\b(?:egalitarian|equal\\w*|no hierarchy|lacked hierarchy)\\b"
+        ],
+        "allowNegation": true
+      }
+    ]
+  }
+]
