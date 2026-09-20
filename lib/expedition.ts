@@ -1,5 +1,6 @@
 import documents from './documents.json' with { type: 'json' };
 import {gradedQuestions, gradeAnswer} from './graded-questions.ts';
+import type {GradedQuestion} from './graded-questions.ts';
 
 export type Rating = 'known' | 'again';
 export type Attempt = { id: string; questionId: string; rating: Rating; evidenceChecked: boolean; at: string; response?:string; skipped?:boolean; grading?:'automatic' };
@@ -140,8 +141,32 @@ export function getCorrectQuestionCount(state:Progress):number {
 export function selectMissionQuestions(state:Progress,missionId:string,count=MISSION_ROUND_SIZE,random:()=>number=Math.random):string[]{
  const mission=missions.find(item=>item.id===missionId);
  if(!mission||!Number.isInteger(count)||count<1)return [];
+ return selectFromPool(state,mission.questionIds,count,random);
+}
+
+export type PracticeScope = {
+ lecture:0|1|2|3;
+ format:'mixed'|'mcq'|'blank';
+ kind:'mixed'|'image'|'map'|'short-answer'|'comparison';
+};
+
+export function getPracticePool(scope:PracticeScope):GradedQuestion[]{
+ if(!scope||![0,1,2,3].includes(scope.lecture)||!['mixed','mcq','blank'].includes(scope.format)
+  ||!['mixed','image','map','short-answer','comparison'].includes(scope.kind))return [];
+ return questionBank.filter(question=>(scope.lecture===0||documents.find(doc=>doc.id===question.source.docId)?.week===scope.lecture)
+  &&(scope.format==='mixed'||question.format===scope.format)
+  &&(scope.kind==='mixed'||question.kind===scope.kind));
+}
+
+/** Unified practice uses the same unseen, missed, then known ordering as saved mission rounds. */
+export function selectPracticeQuestions(state:Progress,scope:PracticeScope & {count:5|10},random:()=>number=Math.random):string[]{
+ if(!scope||![5,10].includes(scope.count))return [];
+ return selectFromPool(state,getPracticePool(scope).map(question=>question.id),scope.count,random);
+}
+
+function selectFromPool(state:Progress,pool:string[],count:number,random:()=>number):string[]{
  const latest=new Map(state.attempts.map(attempt=>[attempt.questionId,attempt.rating]));
- const groups=[mission.questionIds.filter(id=>!latest.has(id)),mission.questionIds.filter(id=>latest.get(id)==='again'),mission.questionIds.filter(id=>latest.get(id)==='known')];
+ const groups=[pool.filter(id=>!latest.has(id)),pool.filter(id=>latest.get(id)==='again'),pool.filter(id=>latest.get(id)==='known')];
  const selected:string[]=[];
  for(const group of groups){
   const shuffled=[...group];

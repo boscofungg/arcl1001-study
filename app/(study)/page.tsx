@@ -7,5 +7,5 @@ export default async function Home({searchParams}:{searchParams:Promise<Record<s
  const doc=documents.find(item=>item.id===params.doc);
  const requestedPage=Number(params.page);
  const page=doc&&Number.isInteger(requestedPage)&&requestedPage>=1&&requestedPage<=doc.pages?requestedPage:doc?.startPage;
- return <StudyWorkspace initialContext={doc&&page?{docId:doc.id,page}:undefined}/>;
+ return <StudyWorkspace initialView={params.view==='practice'?'practice':'tutor'} initialContext={doc&&page?{docId:doc.id,page}:undefined}/>;
 }

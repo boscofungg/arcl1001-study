@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState, useSyncExternalStore } from 'react';
-import { Compass, ArrowRight, BookOpen, Brain, ChevronRight, FileText, Layers, MessageSquare, Search, Send, Sparkles, Square, X } from 'lucide-react';
+import { ArrowRight, BookOpen, Brain, ChevronRight, FileText, Layers, MessageSquare, Search, Send, Sparkles, Square, X } from 'lucide-react';
 import Link from 'next/link';
 import documents from '@/lib/documents.json';
 import { weeks } from '@/lib/course';
@@ -22,9 +22,9 @@ const readySnapshot=()=>true;
 const serverNotReady=()=>false;
 type Doc = typeof documents[number];
 type Message = {id?:string;incomplete?:boolean;notice?:string;role:'user'|'assistant';text:string;sources?:Source[];error?:boolean;visualsUsed?:number;visualWarning?:string;reviewedSources?:number[]};
-export default function StudyWorkspace({initialContext}:{initialContext?:PageContext}) {
+export default function StudyWorkspace({initialContext,initialView='tutor'}:{initialContext?:PageContext;initialView?:'tutor'|'practice'}) {
  const ready=useSyncExternalStore(subscribeReady,readySnapshot,serverNotReady);
- const [week,setWeek]=useState(documents.find(doc=>doc.id===initialContext?.docId)?.week||1), [view,setView]=useState<'tutor'|'practice'|'flashcards'>('tutor');
+ const [week,setWeek]=useState(documents.find(doc=>doc.id===initialContext?.docId)?.week||1), [view,setView]=useState<'tutor'|'practice'|'flashcards'>(initialView);
  const [query,setQuery]=useState(''), [scope,setScope]=useState(initialContext?`doc:${initialContext.docId}`:'all'), [draft,setDraft]=useState(initialContext?'Explain the evidence on this page.':'');
  const [messages,setMessages]=useState<Message[]>([]), [busy,setBusy]=useState(false);
  const [replyStatus,setReplyStatus]=useState('Finding evidence in your materials…');
@@ -113,12 +113,12 @@ export default function StudyWorkspace({initialContext}:{initialContext?:PageCon
   <aside className="sidebar quiz1-sidebar">
     <Link className="brand" href="/" aria-label="Stratum home"><span className="brandmark"><Layers size={23}/></span><span>stratum<span className="branddot">.</span></span></Link>
     <div className="q1-course-heading"><strong>ARCL1001</strong><span>Quiz 1 · Lectures 1–3</span></div>
-    <nav aria-label="Study navigation"><button className={view==='tutor'?'nav-item active':'nav-item'} onClick={()=>setView('tutor')}><BookOpen size={18}/> Read & ask</button><button className={view==='practice'?'nav-item active':'nav-item'} onClick={()=>setView('practice')}><Brain size={18}/> Quiz 1 practice</button><button className={view==='flashcards'?'nav-item active':'nav-item'} onClick={()=>setView('flashcards')}><Sparkles size={18}/> Make flashcards</button><Link href="/expeditions" className="nav-item beta-expedition-link"><Compass size={18}/> Expeditions <small>BETA</small></Link></nav>
+    <nav aria-label="Study navigation"><button className={view==='tutor'?'nav-item active':'nav-item'} onClick={()=>setView('tutor')}><BookOpen size={18}/> Read & ask</button><button className={view==='practice'?'nav-item active':'nav-item'} onClick={()=>setView('practice')}><Brain size={18}/> Quiz 1 practice</button><button className={view==='flashcards'?'nav-item active':'nav-item'} onClick={()=>setView('flashcards')}><Sparkles size={18}/> Make flashcards</button></nav>
     <section className="q1-library" aria-label="Selected course materials"><div className="q1-library-heading">SELECTED MATERIALS <span>{documents.length}</span></div><div className="q1-lecture-filter" role="group" aria-label="Filter materials by lecture">{[0,1,2,3].map(n=><button aria-pressed={lectureFilter===n} key={n} onClick={()=>{setLectureFilter(n);if(n)setWeek(n);}}>{n?`L${n}`:'All'}</button>)}</div><label className="search-box"><Search size={14}/><input aria-label="Find a course material" value={query} onChange={e=>setQuery(e.target.value)} placeholder="Find a material…"/></label><div className="q1-source-list">{filtered.map(doc=><button key={doc.id} className={view==='tutor'&&activeDocument.id===doc.id?'q1-source selected':'q1-source'} onClick={()=>{setView('tutor');setWeek(doc.week);setActiveDocument({id:doc.id,page:doc.startPage});}}><FileText size={16}/><span>{doc.title.replace(/^Lecture \d — /,'')}<small>L{doc.week} · {doc.kind==='Web'?'Web reading summary':doc.kind} · {doc.pages} {doc.kind==='Lecture'?'slides':'pages'}</small></span></button>)}{!filtered.length&&<p className="empty">No matching materials.</p>}</div></section>
-    <p className="q1-sidebar-note"><strong>STRATUM (BETA)</strong><br/>Read, ask and practise with learning expeditions.<br/>Share feedback to help improve your revision.</p>
+    <p className="q1-sidebar-note"><strong>STRATUM (BETA)</strong><br/>Read, ask and review with Quiz 1 practice.<br/>Share feedback to help improve your revision.</p>
   </aside>
   <div className="workspace quiz1-workspace">
-    <header className="topbar"><div><span>STRATUM (BETA)</span><ChevronRight size={13}/><strong>{view==='tutor'?'Read & ask':view==='practice'?'Practice':'Flashcards'}</strong></div><div className="topbar-right"><Link href="/expeditions" className="beta-game-shortcut"><Compass size={15}/> Expeditions</Link><ThemeToggle/>{view==='tutor'&&<button className="mobile-tutor-button" onClick={()=>setMobileChat(true)}><MessageSquare size={16}/> Tutor</button>}</div></header>
+    <header className="topbar"><div><span>STRATUM (BETA)</span><ChevronRight size={13}/><strong>{view==='tutor'?'Read & ask':view==='practice'?'Practice':'Flashcards'}</strong></div><div className="topbar-right"><ThemeToggle/>{view==='tutor'&&<button className="mobile-tutor-button" onClick={()=>setMobileChat(true)}><MessageSquare size={16}/> Tutor</button>}</div></header>
     {view==='tutor'&&<label className="q1-mobile-source">Open material<select aria-label="Open course document" value={selectedDoc.id} onChange={e=>{const doc=documents.find(d=>d.id===e.target.value)!;setWeek(doc.week);setActiveDocument({id:doc.id,page:doc.startPage});}}>{documents.map(doc=><option value={doc.id} key={doc.id}>L{doc.week} · {doc.title}</option>)}</select></label>}
     <div className={view==='tutor'?'work-columns quiz1-tutor-grid':'quiz1-practice-workspace'}>
       <main className={view==='tutor'?'q1-document-pane':'study-pane q1-study-pane'}>{view==='tutor'?<><div className="q1-reading-chat"><button disabled={busy} onClick={()=>chatAboutDocument(selectedDoc)}><MessageSquare size={15}/> {selectedDoc.kind==='Lecture'?'Chat about this lecture document':'Chat about this reading'}</button><span>All pages in this document</span></div><MaterialReader key={selectedDoc.id} embedded document={selectedDoc} initialPage={activeDocument.page} highlight={activeDocument.highlight} onClose={()=>{}} onAsk={page=>askAboutPage(selectedDoc,page)}/></>:view==='practice'?<Quiz1Practice onOpen={(docId,page,quote)=>{const doc=documents.find(d=>d.id===docId);if(doc)openDoc(doc,page,quote);}}/>:<><div className="q1-flashcard-lectures" role="group" aria-label="Flashcard lecture">{weeks.map(w=><button key={w.n} aria-pressed={week===w.n} onClick={()=>setWeek(w.n)}>Lecture {w.n}</button>)}</div><FlashcardStudy key={week} week={week} topic={unit.topic} onOpen={(docId,page,quote)=>{const doc=documents.find(d=>d.id===docId);if(doc)openDoc(doc,page,quote);}}/></>}</main>
