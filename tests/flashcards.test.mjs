@@ -5,12 +5,12 @@ import documents from '../lib/documents.json' with { type: 'json' };
 import corpus from '../lib/corpus.json' with { type: 'json' };
 
 test('flashcard scope rejects invalid weeks, counts and cross-week documents', () => {
-  for (const value of [null, [], { week: 0, count: 6 }, { week: 2, count: 100 }, { week: 3, count: 6, docId: 'd102' }, { week: 4, count: 6 }, { week: 2, count: 6, docId: 'd001' }, { week: 2, count: 6, docId: '' }]) assert.throws(() => parseFlashcardScope(value));
+  for (const value of [null, [], { week: 0, count: 6 }, { week: 2, count: 100 }, { week: 3, count: 6, docId: 'd102' }, { week: 99, count: 6 }, { week: 2, count: 6, docId: 'd001' }, { week: 2, count: 6, docId: '' }]) assert.throws(() => parseFlashcardScope(value));
   assert.deepEqual(parseFlashcardScope({ week: 2, count: 6, docId: 'd102' }), { week: 2, count: 6, docId: 'd102' });
 });
 
 test('every week has bounded substantive excerpts preserving actual source pages', () => {
-  for (let week = 1; week <= 3; week++) {
+  for (let week = 1; week <= 4; week++) {
     const excerpts = selectFlashcardExcerpts({ week, count: 10 });
     assert.ok(excerpts.length >= 3 && excerpts.length <= 20);
     assert.ok(excerpts.filter(s => documents.find(d => d.id === s.docId).kind === 'Lecture').length >= 10);

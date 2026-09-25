@@ -1,3 +1,4 @@
+import l4Questions from '../content/l4-practice.json' with { type: 'json' };
 import textQuestions from '../content/quiz1-question-bank.json' with { type: 'json' };
 import visualQuestions from '../content/quiz1-visual-questions.json' with { type: 'json' };
 import documents from './documents.json' with { type: 'json' };
@@ -22,7 +23,7 @@ function slideEvidence(source: Quiz1Source, evidence = ''): string {
   return sourceExcerpts[`${source.docId}:${source.page}`] ?? evidence.split('Approximate coordinate source:')[0].trim();
 }
 
-export const slideQuestions: Quiz1Question[] = ([...textQuestions, ...visualQuestions] as Quiz1Question[])
+export const slideQuestions: Quiz1Question[] = ([...textQuestions, ...visualQuestions, ...l4Questions] as Quiz1Question[])
   .filter(question => [question.source, ...(question.additionalSources ?? [])].every(validSlide))
   .map(question => ({
     ...question,
@@ -31,7 +32,7 @@ export const slideQuestions: Quiz1Question[] = ([...textQuestions, ...visualQues
     additionalSources: question.additionalSources?.map(source => ({ ...source, evidence: slideEvidence(source, source.evidence) })),
   }));
 
-export function getSlidePracticePool(lecture: 0 | 1 | 2 | 3 = 0, kind: Quiz1Kind | 'mixed' = 'mixed'): Quiz1Question[] {
+export function getSlidePracticePool(lecture: number = 0, kind: Quiz1Kind | 'mixed' = 'mixed'): Quiz1Question[] {
   return slideQuestions.filter(question =>
     (kind === 'mixed' || question.kind === kind) &&
     (lecture === 0 || [question.source, ...(question.additionalSources ?? [])].every(source => lectures.get(source.docId)?.week === lecture)),

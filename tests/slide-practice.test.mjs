@@ -9,8 +9,8 @@ import { makeQuiz1Set, parseQuiz1Review } from '../lib/quiz1-practice.ts';
 const normalized = text => text.normalize('NFKD').toLowerCase().replace(/[^a-z0-9]/g, '');
 
 test('practice contains only open questions with lecture-slide evidence for every reference', () => {
-  assert.equal(slideQuestions.length, 35);
-  assert.equal(new Set(slideQuestions.map(q => q.id)).size, 35);
+  assert.equal(slideQuestions.length, 45);
+  assert.equal(new Set(slideQuestions.map(q => q.id)).size, 45);
   assert.ok(!slideQuestions.some(q => q.id === 'q1-text-18'));
   assert.deepEqual(new Set(slideQuestions.map(q => q.kind)), new Set(['short-answer', 'comparison', 'image', 'map']));
   for (const question of slideQuestions) {
@@ -34,7 +34,7 @@ test('practice contains only open questions with lecture-slide evidence for ever
 });
 
 test('lecture and format filters do not borrow readings or other lectures', () => {
-  for (const lecture of [1, 2, 3]) {
+  for (const lecture of [1, 2, 3, 4]) {
     const pool = getSlidePracticePool(lecture);
     assert.ok(pool.length);
     for (const question of pool) for (const source of [question.source, ...(question.additionalSources ?? [])]) {
@@ -44,7 +44,7 @@ test('lecture and format filters do not borrow readings or other lectures', () =
       assert.ok(getSlidePracticePool(lecture, kind).every(q => q.kind === kind && pool.includes(q)));
     }
   }
-  assert.equal(getSlidePracticePool().length, 35);
+  assert.equal(getSlidePracticePool().length, 45);
 });
 
 test('slide sets support self-assessment and reject saved reading-based questions', () => {

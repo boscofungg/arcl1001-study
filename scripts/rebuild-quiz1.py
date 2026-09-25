@@ -1,4 +1,4 @@
-"""Build Quiz 1 sources, page previews and grounded text rectangles.
+"""Build course sources, page previews and grounded text rectangles.
 
 Run with ../.venv/bin/python scripts/rebuild-quiz1.py. Requires PyMuPDF,
 Pillow and LibreOffice. Originals are read-only; article inputs are curated
@@ -28,7 +28,13 @@ SOURCES = [
     ('d105', 'L1-Reading-Archaeology 101.pdf', 1, 'Reading', 'Lecture 1 — Archaeology 101', 5),
     ('d106', 'L2-Reading-Principles of Archaeology.pdf.pdf', 2, 'Reading', 'Lecture 2 — Principles of Archaeology', 7),
     ('d110', 'L3-Reading-Principles of Archaeology.pdf', 3, 'Reading', 'Lecture 3 — Principles of Archaeology', 13),
+    ('d111', 'HKU/L4-Slides.pptx', 4, 'Lecture', 'Lecture 4 — Interacting with the Environment', 97),
+    ('d112', 'Frogley et al. (2025). Trees, terraces and llamas Resilient watershed management and sustainable agriculture the Inca way.pdf', 4, 'Reading', 'Lecture 4 — Trees, Terraces and Llamas', 15),
 ]
+
+SOURCE_PATHS = {
+    'd112': Path.home() / 'Desktop/HKU/APAI3799 Capstone copy/ARCL1001-CourseMaterial/Week 4/Reading/Frogley et al. (2025). Trees, terraces and llamas Resilient watershed management and sustainable agriculture the Inca way.pdf',
+}
 
 
 def normalize(text):
@@ -103,9 +109,9 @@ def study_block(item):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--reuse-images', action='store_true', help='Reuse previews only when the source originals have not changed')
-    parser.add_argument('--only', nargs='+', help='Rebuild only these source IDs; retain verified unchanged sources and previews')
+    parser.add_argument('--only', nargs='+', help='Rebuild only these source IDs; retain previous imports, checking originals when available')
     args = parser.parse_args()
-    known_ids = {source[0] for source in SOURCES}
+    known_ids = {source[0] for source in SOURCES} | {'d107', 'd108', 'd109', 'd113'}
     if args.only and not set(args.only) <= known_ids:
         parser.error('--only contains an unknown source ID')
     previous = {}
@@ -117,10 +123,12 @@ def main():
         raise RuntimeError('LibreOffice is required to preserve complete slide layouts')
     documents, corpus, visuals, provenance = [], [], {}, []
     for ident, filename, week, kind, title, expected_pages in SOURCES:
-        original = DOWNLOADS / filename
+        original = SOURCE_PATHS.get(ident, DOWNLOADS / filename)
         if args.only and ident not in args.only:
             prior = next(s for s in previous['manifest']['sources'] if s['id'] == ident)
-            if digest(original) != prior['sha256']:
+            # Existing imported data can be retained after originals are moved.
+            # If the original is available, verify it before reusing the import.
+            if original.exists() and digest(original) != prior['sha256']:
                 raise ValueError(f'{ident}: unchanged source hash does not match; include it in --only')
             documents.append(next(d for d in previous['documents'] if d['id'] == ident))
             corpus.extend(c for c in previous['corpus'] if c['docId'] == ident)
@@ -171,10 +179,16 @@ def main():
     readings = json.loads(readings_path.read_text())
     if isinstance(readings, dict):
         readings = readings.get('readings', readings.get('sources', []))
-    if {r['id'] for r in readings} != {'d107', 'd108', 'd109'}:
-        raise ValueError('Expected exactly three curated web readings d107–d109')
+    if {r['id'] for r in readings} != {'d107', 'd108', 'd109', 'd113'}:
+        raise ValueError('Expected curated web readings d107–d109 and d113')
     for reading in readings:
         ident, title, week, url = (reading[k] for k in ('id', 'title', 'week', 'url'))
+        if args.only and ident not in args.only:
+            documents.append(next(d for d in previous['documents'] if d['id'] == ident))
+            corpus.extend(c for c in previous['corpus'] if c['docId'] == ident)
+            visuals[ident] = previous['visuals'][ident]
+            provenance.append(next(s for s in previous['manifest']['sources'] if s['id'] == ident))
+            continue
         summary = reading.get('text') or reading.get('summary')
         if not isinstance(summary, str) or not summary.strip():
             raise ValueError(f'{ident}: missing authored summary')
@@ -185,9 +199,9 @@ def main():
         visuals[ident] = {'representation': 'page', 'sourceType': 'web', 'filename': filename, 'week': week, 'pages': [{'page': 1, 'images': [], 'imageOnly': False, 'textBlocks': []}], 'url': url, 'isSummary': True}
         provenance.append({'id': ident, 'url': url, 'week': week, 'isSummary': True, 'summarySha256': hashlib.sha256(summary.encode()).hexdigest(), 'renderedPages': 0})
     assets = [p for ident, *_ in SOURCES for p in (ROOT / 'public/materials' / ident).glob('*.webp')]
-    report = {'documents': len(documents), 'chunks': len(corpus), 'skipped': [], 'excludedFrontMatterPages': sum(len(s.get('excludedStudyPages', [])) for s in provenance), 'limitations': 'Curated Quiz 1 sources only. Web readings are original summaries with links, not full articles. Text rectangles reflect extracted PDF text; image-only content requires visual reading. Slide animations are flattened.'}
+    report = {'documents': len(documents), 'chunks': len(corpus), 'skipped': [], 'excludedFrontMatterPages': sum(len(s.get('excludedStudyPages', [])) for s in provenance), 'limitations': 'Curated Lectures 1–4 and assigned readings. Web readings are original summaries with links, not full articles. Text rectangles reflect extracted PDF text; image-only content requires visual reading. Slide animations are flattened.'}
     visual_report = {'documents': len(documents), 'pages': sum(len(d['pages']) for d in visuals.values()), 'imageOnlyPages': sum(p['imageOnly'] for d in visuals.values() for p in d['pages']), 'images': len(assets), 'assetBytes': sum(p.stat().st_size for p in assets), 'maximumDimension': 1400, 'quality': 65, 'renderer': 'LibreOffice with hidden slides; PyMuPDF', 'fallbackDocuments': [], 'errors': [], 'limitations': ['Web readings are linked summaries with no page screenshots.', 'Slide animations are flattened; unusual fonts or external media may differ from PowerPoint.', 'Text boxes mark actual extracted text; no fabricated OCR or inferred graphic labels.']}
-    outputs = {'lib/documents.json': documents, 'lib/corpus.json': corpus, 'lib/visuals.json': visuals, 'lib/ingestion-report.json': report, 'lib/visual-ingestion-report.json': visual_report, 'content/quiz1-source-manifest.json': {'scope': 'Quiz 1 — Lectures 1–3 and assigned readings', 'sources': provenance, 'webReadingsInputSha256': digest(readings_path)}}
+    outputs = {'lib/documents.json': documents, 'lib/corpus.json': corpus, 'lib/visuals.json': visuals, 'lib/ingestion-report.json': report, 'lib/visual-ingestion-report.json': visual_report, 'content/quiz1-source-manifest.json': {'scope': 'Lectures 1–4 and assigned readings', 'sources': provenance, 'webReadingsInputSha256': digest(readings_path)}}
     for filename, data in outputs.items():
         target = ROOT / filename
         target.parent.mkdir(parents=True, exist_ok=True)

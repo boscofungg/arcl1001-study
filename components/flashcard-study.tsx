@@ -45,7 +45,7 @@ export default function FlashcardStudy({week,topic,onOpen}:{week:number;topic:st
   }
   function rate(rating:'again'|'known'){if(!review||!showingAnswer)return;save(key,rateCard(review,rating));setRevealed(null);}
   return <section className="flashcard-study" aria-labelledby="flashcard-title">
-    <div className="section-kicker">QUIZ 1 ACTIVE RECALL / LECTURE {String(week).padStart(2,'0')}</div><h1 id="flashcard-title">Flashcards</h1><p className="intro">Practise only the lecture slides. Recall the answer before you reveal it, then revisit cards that need another look.</p>
+    <div className="section-kicker">SLIDE-BASED ACTIVE RECALL / LECTURE {String(week).padStart(2,'0')}</div><h1 id="flashcard-title">Flashcards</h1><p className="intro">Practise only the lecture slides. Recall the answer before you reveal it, then revisit cards that need another look.</p>
     <form className="flashcard-generator" onSubmit={event=>{event.preventDefault();void generate();}}>
       <label>Lecture slides<select aria-label="Flashcard source material" value={selected} disabled={busy} onChange={event=>setSelection(event.target.value)}><option value="">All Lecture {week} slides</option>{materials.map(doc=><option key={doc.id} value={doc.id}>{doc.kind} · {doc.title}</option>)}</select></label>
       <div className="flashcard-generate-row"><label>Set size<select aria-label="Number of flashcards" value={count} disabled={busy} onChange={event=>setCount(Number(event.target.value) as 6|10)}><option value={6}>6 cards</option><option value={10}>10 cards</option></select></label><button className="primary-button" disabled={busy} type="submit"><Sparkles size={15}/>{busy?'Generating…':review?'Generate a new set':'Generate flashcards'}</button></div>

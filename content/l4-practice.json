@@ -1,0 +1,132 @@
+[
+  {
+    "id": "l4-text-01",
+    "kind": "short-answer",
+    "question": "Name the three forms of human–environment interaction introduced in Lecture 4.",
+    "answer": "Adaptation, dependence and modification.",
+    "evidence": "Adaptation\nDependence\nModification",
+    "source": {
+      "docId": "d111",
+      "page": 38,
+      "title": "Lecture 4 — Interacting with the Environment",
+      "label": "Slide 38"
+    }
+  },
+  {
+    "id": "l4-text-02",
+    "kind": "short-answer",
+    "question": "Name two kinds of archaeological evidence for long-term investment in land to improve food production.",
+    "answer": "Terraces and water management systems.",
+    "evidence": "long-term investments in land to boost food production/quality\nTerraces\nWater management system",
+    "source": {
+      "docId": "d111",
+      "page": 39,
+      "title": "Lecture 4 — Interacting with the Environment",
+      "label": "Slide 39"
+    }
+  },
+  {
+    "id": "l4-text-03",
+    "kind": "short-answer",
+    "question": "Which three crops make up the Maya milpa “three sisters”?",
+    "answer": "Maize, beans and squash.",
+    "evidence": "maize, beans, squash\nMilpa\n: Intercropped Maya",
+    "source": {
+      "docId": "d111",
+      "page": 45,
+      "title": "Lecture 4 — Interacting with the Environment",
+      "label": "Slide 45"
+    }
+  },
+  {
+    "id": "l4-text-04",
+    "kind": "short-answer",
+    "question": "What different benefits do beans and squash provide in the farming system described in the slides?",
+    "answer": "Beans provide nitrogen; squash helps retain moisture.",
+    "evidence": "Bean: Nitrogen provision\nSquash: Moisture keeping",
+    "source": {
+      "docId": "d111",
+      "page": 50,
+      "title": "Lecture 4 — Interacting with the Environment",
+      "label": "Slide 50"
+    }
+  },
+  {
+    "id": "l4-text-05",
+    "kind": "short-answer",
+    "question": "What does archaeobotany study? Name one aspect of past life that it can reconstruct.",
+    "answer": "It studies how humans used or interacted with plants, helping reconstruct diets, farming, trade or environments.",
+    "evidence": "Science to study how human used/interacted with plants\nreconstruct diets, farming, trade, and environments",
+    "source": {
+      "docId": "d111",
+      "page": 48,
+      "title": "Lecture 4 — Interacting with the Environment",
+      "label": "Slide 48"
+    }
+  },
+  {
+    "id": "l4-text-06",
+    "kind": "short-answer",
+    "question": "Which method recovers small charred seeds and nuts from soil? Briefly describe it.",
+    "answer": "Flotation: soil is placed in water so floating material, including charred seeds and nuts, can be recovered.",
+    "evidence": "Flotation\nFloat soil, recover small artifacts; charred seeds and nuts",
+    "source": {
+      "docId": "d111",
+      "page": 49,
+      "title": "Lecture 4 — Interacting with the Environment",
+      "label": "Slide 49"
+    }
+  },
+  {
+    "id": "l4-text-07",
+    "kind": "short-answer",
+    "question": "Give two functions of the terraces (andenes) at Machu Picchu shown in the lecture.",
+    "answer": "Crop cultivation and draining water.",
+    "evidence": "Machu Picchu\nAndenes(Terraces)\nCrop cultivation\nDraining water",
+    "source": {
+      "docId": "d111",
+      "page": 59,
+      "title": "Lecture 4 — Interacting with the Environment",
+      "label": "Slide 59"
+    }
+  },
+  {
+    "id": "l4-text-08",
+    "kind": "short-answer",
+    "question": "What does geoarchaeology bring to archaeology, and what does it help us understand?",
+    "answer": "It applies earth-science concepts and methods to archaeology to understand site development and changing physical landscapes.",
+    "evidence": "concepts and methods of earth sciences for archaeology\nEg.\n geology, geomorphology, \nsedimetology\nsites’ development and changing physical landscape",
+    "source": {
+      "docId": "d111",
+      "page": 62,
+      "title": "Lecture 4 — Interacting with the Environment",
+      "label": "Slide 62"
+    }
+  },
+  {
+    "id": "l4-text-09",
+    "kind": "short-answer",
+    "question": "Which crop is identified as a starch source and which as a protein source in the Inca crop slide?",
+    "answer": "Potato is a starch source; quinoa is a protein source.",
+    "evidence": "Potato\n(Starch)\nQuinoa\n(Protein)",
+    "source": {
+      "docId": "d111",
+      "page": 66,
+      "title": "Lecture 4 — Interacting with the Environment",
+      "label": "Slide 66"
+    }
+  },
+  {
+    "id": "l4-text-10",
+    "kind": "short-answer",
+    "question": "Name the three archaeological indicators listed for the Classic Maya collapse.",
+    "answer": "Monumental construction stopped, royal date inscriptions were absent, and large cities were abandoned.",
+    "evidence": "Stopped monumental construction, \nAbsence of royal dates inscription\nAbandonment of large cities",
+    "source": {
+      "docId": "d111",
+      "page": 89,
+      "title": "Lecture 4 — Interacting with the Environment",
+      "label": "Slide 89"
+    }
+  }
+]

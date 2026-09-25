@@ -3,7 +3,7 @@ import {slideQuestions} from '../lib/slide-practice.ts';
 import {markSlideAnswer,slideRubrics} from '../lib/slide-marking.ts';
 import {startMarkedSet,recordSlideResponse,advanceMarkedSet,retryMarkedSet,parseMarkedSet,markedSetTotals} from '../lib/marked-slide-review.ts';
 test('all slide questions have rubrics and their exact model answers receive full credit',()=>{
- assert.equal(slideRubrics.length,35);assert.equal(new Set(slideRubrics.map(r=>r.questionId)).size,35);
+ assert.equal(slideRubrics.length,45);assert.equal(new Set(slideRubrics.map(r=>r.questionId)).size,45);
  for(const q of slideQuestions){const m=markSlideAnswer(q.id,q.answer);assert.equal(m.status,'correct',q.id);assert.equal(m.modelAnswer,q.answer);}
 });
 test('equivalent wording and multiple correct city attributes are accepted',()=>{

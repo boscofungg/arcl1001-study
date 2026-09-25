@@ -15,7 +15,7 @@ export function parseReview(raw:string):FlashcardReview|null{
   try{
     const value=JSON.parse(raw) as FlashcardReview;
     const deck=value?.deck;
-    if(value.version!==1||!deck||typeof deck.id!=='string'||typeof deck.title!=='string'||!Number.isInteger(deck.week)||deck.week<1||deck.week>3||!Array.isArray(deck.cards)||!deck.cards.length||deck.cards.length>12)return null;
+    if(value.version!==1||!deck||typeof deck.id!=='string'||typeof deck.title!=='string'||!Number.isInteger(deck.week)||!documents.some(doc=>doc.kind==='Lecture'&&doc.week===deck.week)||!Array.isArray(deck.cards)||!deck.cards.length||deck.cards.length>12)return null;
     if(deck.cards.some(card=>!card||typeof card.id!=='string'||typeof card.question!=='string'||!card.question||typeof card.answer!=='string'||!card.answer||typeof card.evidence!=='string'||!card.source||typeof card.source.docId!=='string'||!Number.isInteger(card.source.page)||card.source.page<1||typeof card.source.title!=='string'||typeof card.source.label!=='string'))return null;
     if(deck.docId!==undefined&&!documents.some(doc=>doc.kind==='Lecture'&&doc.id===deck.docId&&doc.week===deck.week))return null;
     if(deck.cards.some(card=>!documents.some(doc=>doc.kind==='Lecture'&&(!deck.docId||deck.docId===card.source.docId)&&doc.id===card.source.docId&&doc.week===deck.week&&card.source.page>=(doc.startPage||1)&&card.source.page<=doc.pages)))return null;

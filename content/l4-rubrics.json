@@ -1,0 +1,229 @@
+[
+  {
+    "questionId": "l4-text-01",
+    "criteria": [
+      {
+        "id": "adapt",
+        "label": "Adaptation to environmental conditions",
+        "patterns": [
+          "\\badapt(?:ation|ing|s)?\\b",
+          "\\badjust(?:ment|ing)?\\b"
+        ]
+      },
+      {
+        "id": "depend",
+        "label": "Dependence on natural resources",
+        "patterns": [
+          "\\bdepend(?:ence|ent|ing)?\\b",
+          "\\breli(?:ance|ant)\\b"
+        ]
+      },
+      {
+        "id": "modify",
+        "label": "Modification of the environment",
+        "patterns": [
+          "\\bmodif(?:ication|y|ying|ied)\\b",
+          "\\b(?:alter|altering|change|changing|transforming)\\b"
+        ]
+      }
+    ]
+  },
+  {
+    "questionId": "l4-text-02",
+    "criteria": [
+      {
+        "id": "terrace",
+        "label": "Terraces",
+        "patterns": [
+          "\\bterrac(?:e|es|ing)\\b",
+          "\\bandenes\\b"
+        ]
+      },
+      {
+        "id": "water",
+        "label": "Water management systems",
+        "patterns": [
+          "\\bwater (?:management|control|storage|supply|system)",
+          "\\b(?:irrigation|reservoirs?|canals?|drainage)\\b"
+        ]
+      }
+    ]
+  },
+  {
+    "questionId": "l4-text-03",
+    "criteria": [
+      {
+        "id": "maize",
+        "label": "Maize / corn",
+        "patterns": [
+          "\\b(?:maize|corn)\\b"
+        ]
+      },
+      {
+        "id": "beans",
+        "label": "Beans",
+        "patterns": [
+          "\\bbeans?\\b"
+        ]
+      },
+      {
+        "id": "squash",
+        "label": "Squash",
+        "patterns": [
+          "\\b(?:squash|squashes|pumpkins?)\\b"
+        ]
+      }
+    ]
+  },
+  {
+    "questionId": "l4-text-04",
+    "criteria": [
+      {
+        "id": "nitrogen",
+        "label": "Beans provide / fix nitrogen",
+        "patterns": [
+          "\\bbeans?\\b(?:(?!\\bsquash\\b).){0,45}\\bnitrogen\\b",
+          "\\bnitrogen\\b(?:(?!\\bsquash\\b).){0,30}\\bbeans?\\b"
+        ]
+      },
+      {
+        "id": "moisture",
+        "label": "Squash retains moisture",
+        "patterns": [
+          "\\bsquash\\b(?:(?!\\bbeans?\\b).){0,45}\\b(?:moisture|water|damp|drying|evaporation)\\b",
+          "\\b(?:moisture|water)\\b(?:(?!\\bbeans?\\b).){0,30}\\bsquash\\b"
+        ]
+      }
+    ]
+  },
+  {
+    "questionId": "l4-text-05",
+    "criteria": [
+      {
+        "id": "plants",
+        "label": "Past human use of / interaction with plants",
+        "patterns": [
+          "\\b(?:plants?|botanical|vegetation)\\b"
+        ]
+      },
+      {
+        "id": "reconstruct",
+        "label": "Diet, farming, trade or environments",
+        "patterns": [
+          "\\b(?:diets?|food|farming|agriculture|cultivation|trade|trading|exchange|environments?|ecology)\\b"
+        ]
+      }
+    ]
+  },
+  {
+    "questionId": "l4-text-06",
+    "criteria": [
+      {
+        "id": "method",
+        "label": "Flotation / floatation",
+        "patterns": [
+          "\\b(?:flotation|floatation)\\b"
+        ]
+      },
+      {
+        "id": "process",
+        "label": "Floating material from soil in water",
+        "patterns": [
+          "\\b(?:water|float(?:s|ing)?|buoyan(?:t|cy))\\b"
+        ]
+      }
+    ]
+  },
+  {
+    "questionId": "l4-text-07",
+    "criteria": [
+      {
+        "id": "crop",
+        "label": "Growing crops",
+        "patterns": [
+          "\\b(?:crops?|cultivation|farming|agriculture|agricultural|food production|growing food)\\b"
+        ]
+      },
+      {
+        "id": "drain",
+        "label": "Draining water",
+        "patterns": [
+          "\\bdrain(?:s|ing|age)?\\b",
+          "\\b(?:remove|removing|channel|channeling|channelling)\\b.{0,20}\\bwater\\b"
+        ]
+      }
+    ]
+  },
+  {
+    "questionId": "l4-text-08",
+    "criteria": [
+      {
+        "id": "earth",
+        "label": "Earth-science methods",
+        "patterns": [
+          "\\b(?:earth sciences?|geology|geological|geomorphology|sedimentology)\\b"
+        ]
+      },
+      {
+        "id": "landscape",
+        "label": "Site development or changing physical landscapes",
+        "patterns": [
+          "\\b(?:landscapes?|site development|sites development|site formation|physical environment)\\b"
+        ]
+      }
+    ]
+  },
+  {
+    "questionId": "l4-text-09",
+    "criteria": [
+      {
+        "id": "potato",
+        "label": "Potato supplies starch",
+        "patterns": [
+          "\\bpotato(?:es)?\\b(?:(?!\\bquinoa\\b).){0,35}\\b(?:starch|carbohydrates?)\\b",
+          "\\b(?:starch|carbohydrates?)\\b(?:(?!\\bquinoa\\b).){0,25}\\bpotato(?:es)?\\b"
+        ]
+      },
+      {
+        "id": "quinoa",
+        "label": "Quinoa supplies protein",
+        "patterns": [
+          "\\bquinoa\\b(?:(?!\\bpotato(?:es)?\\b).){0,35}\\bproteins?\\b",
+          "\\bproteins?\\b(?:(?!\\bpotato(?:es)?\\b).){0,25}\\bquinoa\\b"
+        ]
+      }
+    ]
+  },
+  {
+    "questionId": "l4-text-10",
+    "criteria": [
+      {
+        "id": "monuments",
+        "label": "Monumental construction stopped",
+        "patterns": [
+          "\\b(?:stop\\w*|ceas\\w*|halt\\w*|end\\w*|no|lack)\\b.{0,45}\\b(?:monument\\w*|construction|building)\\b",
+          "\\b(?:monument\\w*|construction)\\b.{0,40}\\b(?:stop\\w*|ceas\\w*|halt\\w*|end\\w*)\\b"
+        ],
+        "allowNegation": true
+      },
+      {
+        "id": "inscription",
+        "label": "Absence of royal date inscriptions",
+        "patterns": [
+          "\\b(?:absence|absent|missing|lack|no|stop\\w*|ceas\\w*)\\b.{0,45}\\b(?:inscriptions?|royal dates?)\\b",
+          "\\b(?:inscriptions?|royal dates?)\\b.{0,40}\\b(?:absent|missing|stop\\w*|ceas\\w*)\\b"
+        ],
+        "allowNegation": true
+      },
+      {
+        "id": "cities",
+        "label": "Abandonment of large cities",
+        "patterns": [
+          "\\babandon\\w*\\b.{0,30}\\b(?:cities|city|urban|settlements?)\\b",
+          "\\b(?:cities|city|urban|settlements?)\\b.{0,30}\\b(?:abandon\\w*|desert\\w*)\\b"
+        ],
+        "allowNegation": true
+      }
+    ]
+  }
+]

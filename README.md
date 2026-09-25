@@ -1,13 +1,13 @@
 # Stratum (beta) — ARCL1001
 
-Public study workspace for selected Lectures 1–3: a scrolling course reader,
-source-grounded streaming tutor, generated flashcards and unified Quiz 1 practice.
+Public study workspace for selected Lectures 1–4: a scrolling course reader,
+source-grounded streaming tutor, generated flashcards and unified General practice.
 The shared browser theme preference supports light and dark mode.
 
-## Quiz 1 practice and flashcards
+## General practice and flashcards
 
-Choose a Lecture 1, 2 or 3 slide deck in the practice navigation. Practice has
-35 slide-supported image-identification, map-labelling and concise-answer
+Choose a Lecture 1, 2, 3 or 4 slide deck in the practice navigation. Practice has
+45 slide-supported image-identification, map-labelling and concise-answer
 questions; MCQs have been removed to follow the announced quiz formats.
 Each suggested answer links only to its original lecture slide(s). Multi-part answers receive criterion-based automatic practice marking and
 partial credit. Common paraphrases and explicitly authored numerical tolerances
@@ -17,7 +17,7 @@ These are not official exam marks; unusual valid wording may still need review.
 
 Flashcards also use only lecture slides. The API rejects PDF/web-reading source
 requests; excerpt selection, validation, prepared fallback and saved-deck checks
-all enforce Lecture sources. The practice/flashcard sidebar shows only the three
+all enforce Lecture sources. The practice/flashcard sidebar shows only the four
 slide decks. PDF and web readings remain indexed and selectable in Read & ask,
 and the chatbot can still answer questions about them.
 
@@ -63,3 +63,15 @@ remain available to the tutor; exclusion is specific to quiz and flashcard flows
 Checkpoint: `checkpoint/pre-lenient-slide-marking-2026-09-20`. Marked slide sets
 use a new versioned browser key, preserving earlier self-check sets separately.
 Tolerances are teaching aids authored for this app, not professor-approved limits.
+
+## Lecture 4 release
+
+The current L4 deck is the supplied 97-slide “Interacting with the Environment”
+file, replacing the older 99-slide version. Restored selected readings are the
+15-page Frogley et al. paper and a labelled National Geographic study summary
+with its original article link. No substantive PowerPoint speaker notes or
+separate L4 lecture-notes file was supplied; the reader provides the original
+slides and their extracted text. The wider research-literature collection stays
+hidden. Ten L4 slide-based practice questions include model answers and marking.
+
+Checkpoint: `checkpoint/pre-lecture4-2026-09-25`.

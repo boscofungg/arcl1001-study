@@ -1,3 +1,4 @@
+import l4Questions from '../content/l4-practice.json' with {type:'json'};
 import reviewedQuestions from '../content/quiz1-question-bank.json' with { type: 'json' };
 import type { Quiz1Question } from './quiz1-types.ts';
 import corpus from './corpus.json' with { type: 'json' };
@@ -13,7 +14,7 @@ const normalize = (value: string) => value.normalize('NFKC').replace(/\s+/gu, ' 
 export function parseFlashcardScope(value: unknown, docs: Document[] = documents): FlashcardScope {
   if (!value || typeof value !== 'object' || Array.isArray(value)) throw new Error('Choose a valid week and card count.');
   const { week, docId, count } = value as Record<string, unknown>;
-  if (typeof week !== 'number' || !Number.isInteger(week) || week < 1 || week > 3 || (count !== 6 && count !== 10)) throw new Error('Choose a lecture from 1 to 3 and either 6 or 10 cards.');
+  if (typeof week !== 'number' || !Number.isInteger(week) || !docs.some(doc=>doc.kind==='Lecture'&&doc.week===week) || (count !== 6 && count !== 10)) throw new Error('Choose an available lecture and either 6 or 10 cards.');
   if (docId !== undefined && (typeof docId !== 'string' || !docs.some(doc => doc.id === docId && doc.week === week && doc.kind === 'Lecture'))) throw new Error('Choose lecture slides from the selected lecture.');
   return { week, count, ...(typeof docId === 'string' ? { docId } : {}) };
 }
@@ -77,7 +78,7 @@ export function flashcardTargetCount(excerpts: FlashcardExcerpt[], requested: 6 
 }
 
 /** Reviewed text questions remain useful when generation is unavailable. Never widen scope. */
-export function reviewedFlashcardFallback(scope: FlashcardScope, bank: Quiz1Question[] = reviewedQuestions as Quiz1Question[], docs: Document[] = documents): Flashcard[] {
+export function reviewedFlashcardFallback(scope: FlashcardScope, bank: Quiz1Question[] = [...reviewedQuestions,...l4Questions] as Quiz1Question[], docs: Document[] = documents): Flashcard[] {
   parseFlashcardScope(scope, docs);
   const seen = new Set<string>();
   return bank.flatMap(question => {
