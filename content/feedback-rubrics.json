@@ -1,0 +1,218 @@
+[
+  {
+    "questionId": "feedback-text-01",
+    "criteria": [
+      {
+        "id": "culture",
+        "label": "Maya / Mayan culture",
+        "patterns": [
+          "\\bmayans?\\b",
+          "\\bmaya\\b"
+        ]
+      },
+      {
+        "id": "country",
+        "label": "Guatemala",
+        "patterns": [
+          "\\bguatemala(?:n)?\\b"
+        ]
+      }
+    ]
+  },
+  {
+    "questionId": "feedback-text-02",
+    "requiredCount": 2,
+    "criteria": [
+      {
+        "id": "energy",
+        "label": "Energy conservation",
+        "patterns": [
+          "\\b(?:conserv(?:e|ing|ation)|sav(?:e|ing)|reduc(?:e|ing))\\b.{0,20}\\benergy\\b",
+          "\\benergy\\b.{0,20}\\b(?:conserv(?:e|ing|ation)|efficien(?:t|cy)|saving)\\b",
+          "\\bless energy\\b"
+        ]
+      },
+      {
+        "id": "hands",
+        "label": "Free hands",
+        "patterns": [
+          "\\b(?:free(?:ing|d)?|freed up)\\b.{0,20}\\bhands\\b",
+          "\\bhands\\b.{0,20}\\bfree\\b"
+        ]
+      },
+      {
+        "id": "temperature",
+        "label": "Thermoregulation / regulating body temperature",
+        "patterns": [
+          "\\bthermoregulation\\b",
+          "\\b(?:regulat(?:e|ing|ion)|control(?:ling)?)\\b.{0,25}\\b(?:temperature|heat)\\b",
+          "\\b(?:temperature|heat)\\b.{0,20}\\b(?:regulation|control)\\b",
+          "\\b(?:cool(?:ing)?|dissipat(?:e|ing))\\b.{0,20}\\b(?:body|heat)\\b"
+        ]
+      }
+    ]
+  },
+  {
+    "questionId": "feedback-text-03",
+    "criteria": [
+      {
+        "id": "human",
+        "label": "Human cranium / skull",
+        "patterns": [
+          "\\bhuman\\b.{0,15}\\b(?:cranium|skull)\\b",
+          "\\b(?:cranium|skull)\\b.{0,20}\\bhuman\\b"
+        ]
+      },
+      {
+        "id": "orangutan",
+        "label": "Orangutan mandible / lower jaw",
+        "patterns": [
+          "\\borang[ -]?utan(?:g)?\\b.{0,20}\\b(?:mandible|jaw)\\b",
+          "\\b(?:mandible|jaw)\\b.{0,20}\\borang[ -]?utan(?:g)?\\b"
+        ]
+      }
+    ]
+  },
+  {
+    "questionId": "feedback-text-04",
+    "criteria": [
+      {
+        "id": "village",
+        "label": "Tel-Abada / Ubaid: farming villages",
+        "patterns": [
+          "\\b(?:tel+ abada|ubaid)\\b.{0,85}\\b(?:farming|agricultural)\\b.{0,20}\\b(?:village|villages|settlement|settlements)\\b",
+          "\\b(?:farming|agricultural) (?:village|villages|settlement|settlements)\\b.{0,25}\\b(?:tel+ abada|ubaid)\\b"
+        ],
+        "excludePatterns": [
+          "\\b(?:tel+ abada|ubaid)\\b.{0,15}\\b(?:was|is|as) (?:an? )?(?:independent )?city state\\b"
+        ]
+      },
+      {
+        "id": "city",
+        "label": "Uruk: independent city-state",
+        "patterns": [
+          "\\buruk\\b.{0,60}\\b(?:independent|autonomous|sovereign)\\b.{0,20}\\b(?:city|state)\\b",
+          "\\buruk\\b.{0,35}\\bcity state\\b",
+          "\\bindependent city state\\b.{0,15}\\buruk\\b"
+        ],
+        "excludePatterns": [
+          "\\buruk\\b.{0,15}\\b(?:was|is|as) (?:an? )?(?:farming|agricultural) village\\b"
+        ]
+      }
+    ]
+  },
+  {
+    "questionId": "feedback-text-05",
+    "criteria": [
+      {
+        "id": "age",
+        "label": "Infants / very young children",
+        "patterns": [
+          "\\b(?:infants?|bab(?:y|ies)|toddlers?)\\b",
+          "\\b(?:very )?young children\\b"
+        ]
+      },
+      {
+        "id": "location",
+        "label": "Under houses",
+        "patterns": [
+          "\\b(?:under|beneath|below|underneath)\\b.{0,20}\\b(?:houses?|homes?|dwellings?|domestic buildings?|floors?)\\b"
+        ]
+      }
+    ]
+  },
+  {
+    "questionId": "feedback-text-06",
+    "criteria": [
+      {
+        "id": "clay",
+        "label": "Clay ball",
+        "patterns": [
+          "\\bclay\\b.{0,15}\\b(?:balls?|sphere|envelope|container)\\b",
+          "\\b(?:balls?|sphere|envelope|container)\\b.{0,15}\\bclay\\b"
+        ]
+      },
+      {
+        "id": "tokens",
+        "label": "Contains tokens",
+        "patterns": [
+          "\\btokens?\\b"
+        ]
+      }
+    ]
+  },
+  {
+    "questionId": "feedback-text-07",
+    "requiredCount": 2,
+    "criteria": [
+      {
+        "id": "abundance",
+        "label": "Abundance",
+        "patterns": [
+          "\\b(?:abundant|abundance|plentiful|common|numerous|widely available)\\b",
+          "\\blots of\\b"
+        ]
+      },
+      {
+        "id": "preservation",
+        "label": "Good preservation",
+        "patterns": [
+          "\\b(?:preserv(?:e|es|ed|ation)|surviv(?:e|es|al))\\b.{0,15}\\b(?:well|good|long)\\b",
+          "\\b(?:well preserved|good preservation|durable|durability|long lasting)\\b"
+        ]
+      },
+      {
+        "id": "dating",
+        "label": "Relative dating / typology",
+        "patterns": [
+          "\\b(?:relative dating|typology|typological|relative chronology)\\b"
+        ]
+      },
+      {
+        "id": "choices",
+        "label": "Cultural or economic choices",
+        "patterns": [
+          "\\b(?:cultural|economic)\\b.{0,20}\\b(?:choices|decisions|practices|behaviour|behavior)\\b"
+        ]
+      }
+    ]
+  },
+  {
+    "questionId": "feedback-text-08",
+    "requiredCount": 2,
+    "criteria": [
+      {
+        "id": "consort",
+        "label": "Consort of King Wu Ding",
+        "patterns": [
+          "\\b(?:consort|wife|spouse)\\b.{0,25}\\bwu ding\\b",
+          "\\bwu ding(?:s)?\\b.{0,20}\\b(?:consort|wife|spouse)\\b"
+        ]
+      },
+      {
+        "id": "land",
+        "label": "Landowner",
+        "patterns": [
+          "\\bland ?owner\\b",
+          "\\bown(?:ed|s|ing)?\\b.{0,15}\\bland\\b"
+        ]
+      },
+      {
+        "id": "ritual",
+        "label": "Led ancestral rituals",
+        "patterns": [
+          "\\b(?:led|leads?|leader|conduct(?:ed|s)?|perform(?:ed|s)?|officiat(?:ed|es))\\b.{0,30}\\b(?:ancestral )?rituals?\\b",
+          "\\britual leader\\b"
+        ]
+      },
+      {
+        "id": "military",
+        "label": "General / military leader",
+        "patterns": [
+          "\\b(?:general|military (?:leader|commander)|army commander)\\b",
+          "\\b(?:led|leads?|command(?:ed|s)?)\\b.{0,20}\\b(?:army|armies|military campaigns|troops)\\b"
+        ]
+      }
+    ]
+  }
+]

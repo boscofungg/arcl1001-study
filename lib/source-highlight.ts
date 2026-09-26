@@ -57,3 +57,14 @@ export function findSourceHighlights(text: string, quote?: string): { start: num
   }
   return merged;
 }
+
+/** Preview only verbatim matched evidence; never present an unmatched citation as a quotation. */
+export function sourcePassagePreview(text: string, quote?: string, limit = 600): string | null {
+  const matches = findSourceHighlights(text, quote);
+  if (!matches.length) return null;
+  const passage = matches.map(match => text.slice(match.start, match.end).trim()).join(' … ');
+  if (passage.length <= limit) return passage;
+  const prefix = passage.slice(0, limit);
+  const boundary = prefix.lastIndexOf(' ');
+  return `${prefix.slice(0, boundary > limit / 2 ? boundary : limit).trimEnd()}…`;
+}

@@ -37,3 +37,11 @@ test('Quiz1 comparisons retrieve evidence from both named regions',()=>{
  test("URL-only passages never rank as factual evidence",()=>{const sources=retrieve("Compare Uruk and Mohenjo-daro");assert.ok(sources.length);assert.ok(sources.every(source=>source.text.replace(/https?:\/\/\S+/gi, "").trim().length>0));});
 
 test("lecture retrieval retains evidence blocks alongside slide titles",()=>{const sources=retrieve("Uruk urban development villages",2);assert.ok(sources.some(s=>/Uruk/i.test(s.text)&&/villages|central districts/i.test(s.text)));});
+
+test('short site captions remain searchable and point to their original slides',()=>{
+ for(const [query,docId] of [['Joya de Ceren','d111'],['Machu Picchu','d111'],['Tel Abada','d102'],['Tikal','d101']]){
+  const sources=retrieve(query);assert.ok(sources.some(s=>s.docId===docId),query);
+  for(const source of sources.filter(s=>s.docId===docId))assert.equal(getSource(source.id).text,source.text);
+ }
+ assert.ok(retrieve('explain hierarchy',3).some(s=>s.docId==='d103'&&s.page===7));
+});

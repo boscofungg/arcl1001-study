@@ -7,16 +7,27 @@ import type { Flashcard } from './flashcard-types.ts';
 
 type Document = { id: string; week: number; title: string; kind: string; pages: number; startPage?: number; isSummary?: boolean };
 type Passage = { docId: string; page: number; text: string };
-export type FlashcardScope = { week: number; docId?: string; count: 6 | 10 };
+export type FlashcardDifficulty = 'recall' | 'explain' | 'apply';
+export type FlashcardScope = { week: number; docId?: string; count: 6 | 10; difficulty?: FlashcardDifficulty };
+export const flashcardDifficultyLabels: Record<FlashcardDifficulty, string> = { recall: 'Recall', explain: 'Explain', apply: 'Apply / discuss' };
+export function flashcardDifficultyPrompt(difficulty: FlashcardDifficulty = 'recall'): string {
+  const task = {
+    recall: 'Ask for a central fact or concept that can be recalled directly from the cited slide.',
+    explain: 'Ask students to explain a relationship or why an observation matters, only where the cited slide explicitly supports that explanation.',
+    apply: 'Ask students to interpret evidence, discuss a limitation, or compare observations within the same cited slide excerpt. Do not invent a scenario or require outside knowledge or facts from another excerpt. If the slide cannot support this level, choose another supplied slide.',
+  }[difficulty];
+  return `Difficulty: ${flashcardDifficultyLabels[difficulty]}. ${task} Use open written-answer questions, never multiple choice or fill-in-the-blanks. Every complete model answer must be supported by one cited slide excerpt. Difficulty is a revision choice, not an official quiz standard.`;
+}
 export type FlashcardExcerpt = Flashcard['source'] & { citeId: string; text: string };
 const normalize = (value: string) => value.normalize('NFKC').replace(/\s+/gu, ' ').trim().toLowerCase();
 
 export function parseFlashcardScope(value: unknown, docs: Document[] = documents): FlashcardScope {
   if (!value || typeof value !== 'object' || Array.isArray(value)) throw new Error('Choose a valid week and card count.');
-  const { week, docId, count } = value as Record<string, unknown>;
+  const { week, docId, count, difficulty = 'recall' } = value as Record<string, unknown>;
   if (typeof week !== 'number' || !Number.isInteger(week) || !docs.some(doc=>doc.kind==='Lecture'&&doc.week===week) || (count !== 6 && count !== 10)) throw new Error('Choose an available lecture and either 6 or 10 cards.');
   if (docId !== undefined && (typeof docId !== 'string' || !docs.some(doc => doc.id === docId && doc.week === week && doc.kind === 'Lecture'))) throw new Error('Choose lecture slides from the selected lecture.');
-  return { week, count, ...(typeof docId === 'string' ? { docId } : {}) };
+  if (difficulty !== 'recall' && difficulty !== 'explain' && difficulty !== 'apply') throw new Error('Choose Recall, Explain or Apply / discuss.');
+  return { week, count, difficulty, ...(typeof docId === 'string' ? { docId } : {}) };
 }
 
 /** Keep excerpts within their original page and sample across the selected documents. */

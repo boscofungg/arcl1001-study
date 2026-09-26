@@ -9,8 +9,8 @@ import { makeQuiz1Set, parseQuiz1Review } from '../lib/quiz1-practice.ts';
 const normalized = text => text.normalize('NFKD').toLowerCase().replace(/[^a-z0-9]/g, '');
 
 test('practice contains only open questions with lecture-slide evidence for every reference', () => {
-  assert.equal(slideQuestions.length, 45);
-  assert.equal(new Set(slideQuestions.map(q => q.id)).size, 45);
+  assert.equal(slideQuestions.length, 53);
+  assert.equal(new Set(slideQuestions.map(q => q.id)).size, 53);
   assert.ok(!slideQuestions.some(q => q.id === 'q1-text-18'));
   assert.deepEqual(new Set(slideQuestions.map(q => q.kind)), new Set(['short-answer', 'comparison', 'image', 'map']));
   for (const question of slideQuestions) {
@@ -44,7 +44,7 @@ test('lecture and format filters do not borrow readings or other lectures', () =
       assert.ok(getSlidePracticePool(lecture, kind).every(q => q.kind === kind && pool.includes(q)));
     }
   }
-  assert.equal(getSlidePracticePool().length, 45);
+  assert.equal(getSlidePracticePool().length, 53);
 });
 
 test('slide sets support self-assessment and reject saved reading-based questions', () => {
@@ -53,4 +53,9 @@ test('slide sets support self-assessment and reject saved reading-based question
   assert.equal(new Set(review.queue.map(id => slideQuestions.find(q => q.id === id).kind)).size, 4);
   assert.deepEqual(parseQuiz1Review(JSON.stringify(review), slideQuestions), review);
   assert.equal(parseQuiz1Review(JSON.stringify({ ...review, queue: ['q1-text-18'] }), slideQuestions), null);
+});
+
+test('reading-only topics such as vitrification stay out of active practice',()=>{
+ assert.ok(slideQuestions.every(q=>[q.source,...q.additionalSources||[]].every(s=>documents.find(d=>d.id===s.docId)?.kind==='Lecture')));
+ assert.ok(!slideQuestions.some(q=>/vitrification/i.test(q.question+' '+q.answer)));
 });

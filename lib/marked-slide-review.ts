@@ -2,12 +2,19 @@ import {makeQuiz1Set,parseQuiz1Review,rateQuiz1,retryQuiz1} from './quiz1-practi
 import {markSlideAnswer} from './slide-marking.ts';
 import type {Quiz1Kind,Quiz1Question,Quiz1Review} from './quiz1-types.ts';
 export type SlideResponse={text:string;mode:'marked'|'revealed'};
-export type MarkedSlideReview={version:2;review:Quiz1Review;answers:Record<string,SlideResponse>};
-export function startMarkedSet(bank:Quiz1Question[],kind:Quiz1Kind|'mixed',count:number):MarkedSlideReview{return {version:2,review:makeQuiz1Set(bank,kind,count),answers:{}};}
+export type MarkedSlideReview={version:2;review:Quiz1Review;answers:Record<string,SlideResponse>;seenIds?:string[]};
+export function startMarkedSet(bank:Quiz1Question[],kind:Quiz1Kind|'mixed',count:number,previous?:MarkedSlideReview|null,random:()=>number=Math.random):MarkedSlideReview{
+ const valid=new Set(bank.map(q=>q.id));
+ const seenIds=[...new Set([...(previous?.seenIds||[]),...Object.keys(previous?.answers||{})])].filter(id=>valid.has(id));
+ const pool=bank.filter(q=>kind==='mixed'||q.kind===kind),unseen=pool.filter(q=>!seenIds.includes(q.id));
+ const unseenReview=makeQuiz1Set(unseen,kind,count,random);
+ const extra=makeQuiz1Set(pool.filter(q=>!unseenReview.queue.includes(q.id)),kind,count,random);
+ return {version:2,review:{...unseenReview,queue:[...unseenReview.queue,...extra.queue].slice(0,count)},answers:{},seenIds};
+}
 export function recordSlideResponse(state:MarkedSlideReview,text:string,mode:SlideResponse['mode']):MarkedSlideReview{
  const id=state.review.queue[state.review.position];
  if(!id||state.answers[id]||typeof text!=='string'||text.length>2000||!['marked','revealed'].includes(mode)||(mode==='marked'&&!text.trim())||!markSlideAnswer(id,text))return state;
- return {...state,answers:{...state.answers,[id]:{text:text.trim(),mode}}};
+ return {...state,answers:{...state.answers,[id]:{text:text.trim(),mode}},seenIds:[...new Set([...(state.seenIds||[]),id])]};
 }
 export function advanceMarkedSet(state:MarkedSlideReview):MarkedSlideReview{
  const id=state.review.queue[state.review.position],answer=state.answers[id];
@@ -15,7 +22,7 @@ export function advanceMarkedSet(state:MarkedSlideReview):MarkedSlideReview{
  const mark=answer.mode==='marked'?markSlideAnswer(id,answer.text):null;
  return {...state,review:rateQuiz1(state.review,mark?.status==='correct'?'known':'again')};
 }
-export function retryMarkedSet(state:MarkedSlideReview):MarkedSlideReview{return {version:2,review:retryQuiz1(state.review),answers:{}};}
+export function retryMarkedSet(state:MarkedSlideReview):MarkedSlideReview{return {version:2,review:retryQuiz1(state.review),answers:{},seenIds:[...new Set([...(state.seenIds||[]),...Object.keys(state.answers)])]};}
 export function parseMarkedSet(raw:string,bank:Quiz1Question[]):MarkedSlideReview|null{
  try{
   if(!raw||raw.length>200000)return null;
@@ -32,7 +39,8 @@ export function parseMarkedSet(raw:string,bank:Quiz1Question[]):MarkedSlideRevie
   if(review.queue.slice(0,review.position).some(id=>!answers[id]))return null;
   // Derive completed ratings from the stored response, never from an editable score.
   for(const id of review.queue.slice(0,review.position))review.ratings[id]=answers[id].mode==='marked'&&markSlideAnswer(id,answers[id].text)?.status==='correct'?'known':'again';
-  return {version:2,review,answers};
+  const seenIds=Array.isArray(data.seenIds)?[...new Set(data.seenIds.filter((id:unknown)=>typeof id==='string'&&bank.some(q=>q.id===id)))] as string[]:undefined;
+  return {version:2,review,answers,...seenIds?{seenIds}:{}};
  }catch{return null;}
 }
 export function markedSetTotals(state:MarkedSlideReview){

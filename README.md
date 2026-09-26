@@ -7,7 +7,7 @@ The shared browser theme preference supports light and dark mode.
 ## General practice and flashcards
 
 Choose a Lecture 1, 2, 3 or 4 slide deck in the practice navigation. Practice has
-45 slide-supported image-identification, map-labelling and concise-answer
+53 slide-supported image-identification, map-labelling and concise-answer
 questions; MCQs have been removed to follow the announced quiz formats.
 Each suggested answer links only to its original lecture slide(s). Multi-part answers receive criterion-based automatic practice marking and
 partial credit. Common paraphrases and explicitly authored numerical tolerances
@@ -87,3 +87,15 @@ server-only and never sent to the browser or committed. Provider URLs and raw
 errors are not logged because HKU authentication uses a query parameter.
 
 Checkpoint before migration: `checkpoint/pre-hku-claude-2026-09-26`.
+
+## Student feedback update
+
+See `docs/student-feedback-changes-2026-09-26.md` for the concise change note.
+The active practice bank has 53 slide-based questions. New sets prioritize
+questions not yet attempted across sessions. Flashcards offer Recall, Explain
+and Apply/discuss levels plus an optional written answer before model reveal.
+Citations show matched source passages; regional China maps have geographic
+context, and short slide captions are now included in retrieval. The original
+feedback workbook and respondent data are not included in the repository.
+
+Checkpoint: `checkpoint/pre-student-feedback-2026-09-26`.

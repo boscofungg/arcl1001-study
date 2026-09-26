@@ -3,7 +3,7 @@ import {slideQuestions} from '../lib/slide-practice.ts';
 import {markSlideAnswer,slideRubrics} from '../lib/slide-marking.ts';
 import {startMarkedSet,recordSlideResponse,advanceMarkedSet,retryMarkedSet,parseMarkedSet,markedSetTotals} from '../lib/marked-slide-review.ts';
 test('all slide questions have rubrics and their exact model answers receive full credit',()=>{
- assert.equal(slideRubrics.length,45);assert.equal(new Set(slideRubrics.map(r=>r.questionId)).size,45);
+ assert.equal(slideRubrics.length,53);assert.equal(new Set(slideRubrics.map(r=>r.questionId)).size,53);
  for(const q of slideQuestions){const m=markSlideAnswer(q.id,q.answer);assert.equal(m.status,'correct',q.id);assert.equal(m.modelAnswer,q.answer);}
 });
 test('equivalent wording and multiple correct city attributes are accepted',()=>{
@@ -36,4 +36,10 @@ test('context definitions cannot be swapped and still earn full credit',()=>{
  const mark=markSlideAnswer('q1-text-09','Provenience is soil. Matrix is find location. Association means objects together.');
  assert.equal(mark.score,1);assert.equal(mark.maxScore,3);
  assert.equal(markSlideAnswer('q1-text-09','Provenance is the find location; matrix is soil; assemblage means objects together.').status,'correct');
+});
+
+test('new practice sets exhaust unseen questions before repeats and preserve old storage',()=>{
+ const bank=slideQuestions.filter(q=>q.source.docId==='d101');let previous=null;const seen=new Set();
+ while(seen.size<bank.length){let state=startMarkedSet(bank,'mixed',5,previous,()=>.41);for(const id of state.review.queue){if(seen.size<bank.length)assert.ok(!seen.has(id),id);seen.add(id);const q=bank.find(q=>q.id===id);state=recordSlideResponse(state,q.answer,'marked');state=advanceMarkedSet(state);}previous=parseMarkedSet(JSON.stringify(state),bank);assert.ok(previous);}
+ assert.equal(seen.size,bank.length);assert.equal(previous.seenIds.length,bank.length);
 });

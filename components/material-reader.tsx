@@ -5,7 +5,7 @@ import type { RefObject } from 'react';
 import { ExternalLink, FileText, ImageIcon, MessageSquare, PanelLeft, X, ZoomIn, ZoomOut } from 'lucide-react';
 import Image from 'next/image';
 import type { VisualPage } from '@/lib/media-types';
-import { findSourceHighlight, findSourceHighlights, validSourceBox } from '@/lib/source-highlight';
+import { findSourceHighlight, findSourceHighlights, sourcePassagePreview, validSourceBox } from '@/lib/source-highlight';
 import type { SourceHighlight } from '@/lib/source-highlight';
 import './material-reader.css';
 
@@ -71,8 +71,15 @@ function ReaderPage({ doc, page, mode, zoom, root, highlight, requestedPage, onR
   }) : [];
   const showVisual = mode !== 'text' && !doc.isSummary;
   const showText = mode !== 'visual' || doc.isSummary || (data && !images.length);
+  const citedPassage = selected ? sourcePassagePreview(data?.text || '', highlight.text)
+    || sourcePassagePreview(data?.visual?.text || '', highlight.text) : null;
   return <article ref={section} data-reader-page={page} className={`mr-page ${selected ? 'mr-page-selected' : ''}`} aria-label={`${label} ${page}`}>
     <header className="mr-page-heading"><h3>{doc.isSummary ? 'Source summary' : `${label} ${page}`}</h3>{selected && <span className="mr-source-label">Cited source</span>}<button disabled={!data} onClick={() => onAsk(page)}><MessageSquare size={14} /> Ask about this {label.toLowerCase()}</button></header>
+    {selected && data && <aside className="mr-cited-passage" aria-label="Cited passage">
+      <h4>{citedPassage ? 'Cited passage' : 'Cited page'}</h4>
+      {citedPassage ? <blockquote><mark className="mr-text-highlight">{citedPassage}</mark></blockquote> : <p>An exact passage could not be matched in the extracted text. Check the original page for context.</p>}
+      {citedPassage && <p>{doc.isSummary ? 'Matched in the linked-source summary.' : 'Matched in the extracted page text.'} Use Both or Text for the full extract; Visual shows the original page.</p>}
+    </aside>}
     {!result ? <div className="mr-placeholder" role={shouldLoad ? 'status' : undefined}>{shouldLoad ? `Loading ${label.toLowerCase()} ${page}…` : `${label} ${page}`}</div> : result.error ? <div className="mr-page-error" role="alert"><p>{result.error}</p><button onClick={() => setRetry(value => value + 1)}>Retry this page</button></div> : <div className={`mr-page-body ${showVisual && showText ? 'mr-split' : ''}`}>
       {showVisual && <section className="mr-visuals" aria-label={`Original ${label.toLowerCase()} ${page}`}>
         {images.length ? <div className="mr-image-scroll"><div style={{ width: `${zoom * 100}%` }} className="mr-image-stack">{images.map((image, index) => <figure key={image.src}>

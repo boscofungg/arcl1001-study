@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { findSourceHighlight, findSourceHighlights, validSourceBox } from '../lib/source-highlight.ts';
+import { findSourceHighlight, findSourceHighlights, sourcePassagePreview, validSourceBox } from '../lib/source-highlight.ts';
 
 test('matches a passage across PDF line breaks and preserves original offsets', () => {
   const text = 'Before. Ancient\n  cities\tdeveloped here. After.';
@@ -32,4 +32,15 @@ test('caption fallback ignores short fragments and never guesses nonmatching phr
   const text = '3500 BCE and river delta';
   const ranges = findSourceHighlights(text, '3500 BCE and river delta');
   assert.deepEqual(ranges, [{ start: 0, end: text.length }]);
+});
+test('citation preview quotes actual source spelling and separated matching passages only', () => {
+  assert.equal(sourcePassagePreview('A ﬁeld\n survey. Different text. River delta.', 'field survey; River delta.; Missing claim'), 'ﬁeld\n survey … River delta.');
+  assert.equal(sourcePassagePreview('Ancient cities', 'modern cities'), null);
+});
+test('long citation preview is bounded so whole-slide citations do not bury the original', () => {
+  const text = 'A long supporting passage with many words. '.repeat(50);
+  const preview = sourcePassagePreview(text, text);
+  assert.ok(preview.length <= 601);
+  assert.ok(preview.endsWith('…'));
+  assert.ok(text.startsWith(preview.slice(0, -1)));
 });

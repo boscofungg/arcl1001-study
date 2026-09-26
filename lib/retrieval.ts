@@ -8,9 +8,11 @@ export type Source = Passage & { title: string; kind: string; week: number; labe
 const docs = new Map(documents.map(d => [d.id, d]));
 // Slide text is split into positioned blocks; keep the title and its evidence together.
 const lecturePages = new Map<string, Passage[]>();
-for (const chunk of corpus) if (docs.get(chunk.docId)?.kind === 'Lecture') {
-  const key = `${chunk.docId}-${chunk.page}`;
-  lecturePages.set(key, [...(lecturePages.get(key) || []), chunk]);
+for(const doc of documents.filter(doc=>doc.kind==='Lecture'))for(let page=1;page<=doc.pages;page++){
+ const visual=getPageVisual(doc.id,page);
+ const blocks=visual?.textBlocks||[];
+ const text=blocks.map(block=>block.text).join('\n\n').trim();
+ if(text)lecturePages.set(`${doc.id}-${page}`,[{id:`${doc.id}-p${page}-visual`,docId:doc.id,page,text}]);
 }
 const searchable: Passage[] = [
   ...corpus.filter(chunk => docs.get(chunk.docId)?.kind !== 'Lecture'),
@@ -20,7 +22,7 @@ const stop = new Set('a an the and or of for to in on is are was were be been wi
 export function retrieve(query: string, week = 0, docId?: string, count = 7): Source[] {
   const terms = [...new Set(query.normalize('NFD').replace(/\p{M}/gu,'').toLowerCase().match(/[\p{L}\p{N}]{3,}/gu) || [])].filter(t => !stop.has(t)).slice(0,24);
   if (!terms.length) return [];
-  const aliases: Record<string,string[]> = {urbanization:['urbanization','urbanisation','urbanism','urban','city','cities','uruk'],city:['city','cities','urban'],cities:['city','cities','urban']};
+  const aliases: Record<string,string[]> = {hierarchy:['hierarchy','hierarchies','stratification','inequality'],urbanization:['urbanization','urbanisation','urbanism','urban','city','cities','uruk'],city:['city','cities','urban'],cities:['city','cities','urban']};
   const groups=terms.map(t=>aliases[t]||[t]);
   const candidates=searchable.flatMap(chunk=>{
     const doc=docs.get(chunk.docId)!;
@@ -39,6 +41,7 @@ export function retrieve(query: string, week = 0, docId?: string, count = 7): So
     score*=hits/Math.min(groups.length,3);
     if(c.doc.kind==='Lecture')score*=1.5;
     if(c.chunk.text.length<65)score*=.6;
+    if(/\b(?:what is|define|meaning|explain)\b/i.test(query)&&/\b(?:refers to|defined|definition|distribution|degree of|study of|relationship|creation)\b/i.test(c.chunk.text))score*=1.5;
     return {...c,score};
   }).sort((a,b)=>b.score-a.score);
   const seen = new Set<string>(), perDoc = new Map<string,number>();
@@ -73,7 +76,7 @@ export function getPageSource(docId: string, page: number): Source | null {
   const passages=corpus.filter(c=>c.docId===docId && c.page===page);
   const visual=getPageVisual(docId,page);
   return {id:passages[0]?.id || `${docId}-p${page}-visual`,docId,page,
-    text:mergePageText(passages),title:doc.title,kind:doc.kind,week:doc.week,
+    text:doc.kind==='Lecture'&&visual?.textBlocks?.length?visual.textBlocks.map(block=>block.text).join('\n\n'):mergePageText(passages),title:doc.title,kind:doc.kind,week:doc.week,
     label:`${doc.kind==='Lecture'?'Slide':'Page'} ${page}`,
     images:visual?.images || [],visualRepresentation:visual?.representation,supplementalText:visual?.text,...(doc as {url?:string}).url?{url:(doc as {url?:string}).url,isSummary:true}:{}};
 }

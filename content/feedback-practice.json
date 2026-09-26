@@ -1,0 +1,115 @@
+[
+  {
+    "id": "feedback-text-01",
+    "kind": "short-answer",
+    "question": "Which culture is Tikal associated with in Lecture 1, and in which present-day country is it located?",
+    "answer": "Tikal is a Maya (Mayan) site in Guatemala.",
+    "evidence": "Mayan Sites\nTikal in Guatemala, 732 CE\nCE\nE",
+    "source": {
+      "docId": "d101",
+      "page": 21,
+      "title": "L1 lecture slides",
+      "label": "Slide 21"
+    }
+  },
+  {
+    "id": "feedback-text-02",
+    "kind": "short-answer",
+    "question": "Give two selective pressures for bipedalism listed on the lecture slide.",
+    "answer": "Any two: conserving energy, freeing the hands, and thermoregulation (regulating body temperature).",
+    "evidence": "and Tool Use\nBipedalism\nSelective Pressures\n- Energy conservation\n- Free hands\nHarmand, S., Lewis, J. E., Feibel, C. S., Lepre, C. J., Prat, S.,\nLenoble, A., . . . Roche, H. (2015). 3.3-million-year-old stone\ntools from lomekwi 3, west turkana, kenya. Nature, 521(7552),\n310-315K. doi:https://doi.org/10.1038/nature14464\n- Thermoregulation\n3.3 MYA (oldest)\nStone tools (Kenya)\nby Australopithecus?\n- All?",
+    "source": {
+      "docId": "d101",
+      "page": 43,
+      "title": "L1 lecture slides",
+      "label": "Slide 43"
+    }
+  },
+  {
+    "id": "feedback-text-03",
+    "kind": "short-answer",
+    "question": "What two components made up the misleading “Piltdown Man” find shown in the lecture?",
+    "answer": "A human cranium (skull) and an orangutan mandible (lower jaw).",
+    "evidence": "Piltdown Man 1912\nWikipedia\nPseudo\nArchaeology!\nWikipedia\n1953: Cranium from human\nMandible from an orangutan\nCharles Dawson",
+    "source": {
+      "docId": "d101",
+      "page": 70,
+      "title": "L1 lecture slides",
+      "label": "Slide 70"
+    }
+  },
+  {
+    "id": "feedback-text-04",
+    "kind": "comparison",
+    "question": "Compare the settlement forms used to describe Tel-Abada’s Ubaid culture and Uruk in the lecture.",
+    "answer": "Tel-Abada’s Ubaid culture is described mainly in terms of farming villages. Uruk is described as an independent city-state, including its surrounding villages and agriculture.",
+    "evidence": "Site 1: Tel-\nAbada\nMound formed by layers of human activities​\nCulture: Ubaid\nLargest culture before Uruk\nMainly farming villages\n57\nTELL ABADA AN UBAID VILLAGE IN CENTRAL MESOPOTAMIA​, Sabah Abboud Jasim",
+    "source": {
+      "docId": "d102",
+      "page": 57,
+      "title": "L2 lecture slides",
+      "label": "Slide 57"
+    },
+    "additionalSources": [
+      {
+        "docId": "d102",
+        "page": 33,
+        "title": "L2 lecture slides",
+        "label": "Slide 33",
+        "evidence": "First City: Uruk (or Warka)\nName of the culture\nSumerian City-State\nindependent, sovereign entity\nautonomous city and surroundings (villages\n/agriculture)\nMercadal Trudy, PhD, 2019\nsmarthistory.org"
+      }
+    ]
+  },
+  {
+    "id": "feedback-text-05",
+    "kind": "short-answer",
+    "question": "For Tel-Abada Levels II–I, which age group was buried and where were the burials located?",
+    "answer": "Infants and very young children were buried under houses, especially Building A.",
+    "evidence": "Burial Culture\nLevels II-I\n4\n2\n•\nOnly infants (1-6month – 2 years) b\n•\nunder houses, especially Building A\n•\nfew contains grave good\n4\n1\n1\n34\n5\nClay rattle found on\nthis level\n1\n1\nOne type of urn used for juvenile burials\nNumber of Child Burial in each building\nTELL ABADA AN UBAID VILLAGE IN CENTRAL MESOPOTAMIA​, Sabah Abboud Jasim",
+    "source": {
+      "docId": "d102",
+      "page": 64,
+      "title": "L2 lecture slides",
+      "label": "Slide 64"
+    }
+  },
+  {
+    "id": "feedback-text-06",
+    "kind": "short-answer",
+    "question": "What is a bulla, as described on the writing slide?",
+    "answer": "A clay ball containing tokens.",
+    "evidence": "Writing\nBulla: Clay balls with tokens\nc.4000-3100 BCE\nProto-cuneiform​\nSumerian Priest/Scribe\n(c.2600 BCE)\nIdeograms\nc.3350 BCE\nWikipedia\nworldhistory.org",
+    "source": {
+      "docId": "d102",
+      "page": 53,
+      "title": "L2 lecture slides",
+      "label": "Slide 53"
+    }
+  },
+  {
+    "id": "feedback-text-07",
+    "kind": "short-answer",
+    "question": "Give two reasons the lecture identifies for studying ceramics.",
+    "answer": "Any two: they are abundant, preserve well, support relative dating through typology, and reveal cultural or economic choices.",
+    "evidence": "The ory and Methods\nWhy study ceramics?\nAbundant\nPreserves well\nRelative dating (eg, Typology)\ncultural and economic choices\nPerforated Jar\nHarappa\nCirca 2500-2000 BCE,\nTerracotta\nNational Museum, New Delhi\nhttp s://aims.vmis.in/visitor-experience/wp-content/uploads/2021/03/h.818.b-1025x1536.jpg",
+    "source": {
+      "docId": "d103",
+      "page": 127,
+      "title": "L3 lecture slides",
+      "label": "Slide 127"
+    }
+  },
+  {
+    "id": "feedback-text-08",
+    "kind": "short-answer",
+    "question": "Name two roles or activities of Fu Hao listed in the lecture.",
+    "answer": "Any two: consort of King Wu Ding, landowner, leader of ancestral rituals, and general leading military campaigns.",
+    "evidence": "Who is Fu Hao?\nFu Hao’s Tomb\nBurial\n•\nCa 1200 BCE\n•\nconsort of King\nWu Ding\n•\nOwned land\n•\nLeads ancestral\nrituals\n•\nGeneral of\nmilitary\ncampaigns\nFu Hao’s well being at birth",
+    "source": {
+      "docId": "d103",
+      "page": 96,
+      "title": "L3 lecture slides",
+      "label": "Slide 96"
+    }
+  }
+]

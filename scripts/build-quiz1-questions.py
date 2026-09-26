@@ -57,7 +57,9 @@ for index,(sid,lesson,page,bounds,answer,quote) in enumerate(MAPS,13):
    d='M'+' L'.join(f'{x:.1f},{y:.1f}' for x,y in pts)+' Z'
    svg.append(f'<path d="{d}" fill="#f4f0e4" stroke="#b4b3a8" stroke-width="1.8"/>')
  x,y=project(s['lon'],s['lat']);svg+=['</g>',f'<circle cx="{x:.1f}" cy="{y:.1f}" r="23" fill="#386c52" stroke="white" stroke-width="4"/>',f'<text x="{x:.1f}" y="{y+8:.1f}" text-anchor="middle" font-family="sans-serif" font-size="25" font-weight="700" fill="white">A</text>','<path d="M932 100 V54 L926 64 M932 54 L938 64" fill="none" stroke="#53615c" stroke-width="2"/><text x="932" y="42" text-anchor="middle" font-family="sans-serif" font-size="16" fill="#53615c">N</text>','<rect x="30" y="656" width="680" height="36" rx="8" fill="white" fill-opacity=".9"/><text x="44" y="679" font-family="sans-serif" font-size="15" fill="#53615c">Approximate location · Modern boundaries · Natural Earth basemap</text>','</svg>']
- name=f'q-{index:03}.svg';(OUT/name).write_text(''.join(svg))
+ name=f'q-{index:03}.svg'
+ # These reviewed regional maps include rivers/provinces; keep their richer geography.
+ if index not in (15,16) or not (OUT/name).exists():(OUT/name).write_text(''.join(svg))
  questions.append({'id':f'visual-{index:03}','kind':'map','question':'Which course site is marked A? Name the site and its present-day country or region. The marker shows an approximate location.','image':{'src':'/quiz1/'+name,'width':W,'height':H,'alt':'Unlabelled regional map with one point marked A'},'answer':answer,'evidence':quote+f". Approximate coordinate source: {ev['source_revision_url']} (Wikidata P625, retrieved {ev['retrieved_at'][:10]}).",'source':source(lesson,page),'acceptedAnswers':s['aliases']})
 (ROOT/'content/quiz1-visual-questions.json').write_text(json.dumps(questions,ensure_ascii=False,indent=2)+'\n')
 print(f'Built {len(ROWS)} image and {len(MAPS)} map cards.')

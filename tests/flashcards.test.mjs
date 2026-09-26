@@ -1,12 +1,12 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { parseFlashcardScope, selectFlashcardExcerpts, validateFlashcards, flashcardSchema, flashcardTargetCount, reviewedFlashcardFallback } from '../lib/flashcard-generation.ts';
+import { parseFlashcardScope, selectFlashcardExcerpts, validateFlashcards, flashcardSchema, flashcardTargetCount, reviewedFlashcardFallback, flashcardDifficultyPrompt } from '../lib/flashcard-generation.ts';
 import documents from '../lib/documents.json' with { type: 'json' };
 import corpus from '../lib/corpus.json' with { type: 'json' };
 
 test('flashcard scope rejects invalid weeks, counts and cross-week documents', () => {
   for (const value of [null, [], { week: 0, count: 6 }, { week: 2, count: 100 }, { week: 3, count: 6, docId: 'd102' }, { week: 99, count: 6 }, { week: 2, count: 6, docId: 'd001' }, { week: 2, count: 6, docId: '' }]) assert.throws(() => parseFlashcardScope(value));
-  assert.deepEqual(parseFlashcardScope({ week: 2, count: 6, docId: 'd102' }), { week: 2, count: 6, docId: 'd102' });
+  assert.deepEqual(parseFlashcardScope({ week: 2, count: 6, docId: 'd102' }), { week: 2, count: 6, docId: 'd102', difficulty: 'recall' });
 });
 
 test('every week has bounded substantive excerpts preserving actual source pages', () => {
@@ -75,7 +75,7 @@ test('only lecture slides can be selected; every reading is rejected',()=>{
  for(const doc of documents){
   const scope={week:doc.week,docId:doc.id,count:6};
   if(doc.kind==='Lecture'){
-   assert.deepEqual(parseFlashcardScope(scope),scope);
+   assert.deepEqual(parseFlashcardScope(scope),{...scope,difficulty:'recall'});
    const excerpts=selectFlashcardExcerpts(scope);
    assert.ok(excerpts.length>0,doc.id);assert.ok(excerpts.every(s=>s.docId===doc.id));
   }else{
@@ -105,3 +105,18 @@ test('reviewed fallback uses only in-scope short answers with known source pages
  assert.equal(reviewedFlashcardFallback({week:1,count:6},[base,{...base,id:'comparison',kind:'comparison'},{...base,id:'outside',source:{...base.source,docId:'d102'}},{...base,id:'invalid',source:{...base.source,page:999}},{...base,id:'empty',evidence:''},{...base,id:'unknown',source:{...base.source,docId:'d001'}},{...base,id:'reading',source:{...base.source,docId:'d104',page:4}}]).length,1);
  assert.throws(()=>reviewedFlashcardFallback({week:1,docId:'d104',count:6}));
 });
+
+ test('difficulty defaults to recall and rejects unsupported values',()=>{
+  assert.equal(parseFlashcardScope({week:1,count:6}).difficulty,'recall');
+  for(const difficulty of ['recall','explain','apply']) assert.equal(parseFlashcardScope({week:1,count:6,difficulty}).difficulty,difficulty);
+  for(const difficulty of [null,2,'hard','',{},[]]) assert.throws(()=>parseFlashcardScope({week:1,count:6,difficulty}));
+ });
+ test('difficulty instructions keep open answers grounded in one slide',()=>{
+  for(const difficulty of ['recall','explain','apply']){
+   const prompt=flashcardDifficultyPrompt(difficulty);
+   assert.match(prompt,/never multiple choice or fill-in-the-blanks/);
+   assert.match(prompt,/one cited slide excerpt/);
+  }
+  assert.match(flashcardDifficultyPrompt('apply'),/Do not invent a scenario/);
+  assert.match(flashcardDifficultyPrompt('explain'),/explicitly supports/);
+ });
