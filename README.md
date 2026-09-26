@@ -30,7 +30,7 @@ The former `/expeditions` URL redirects to `/?view=practice`.
 
 ## Development and hosting
 
-Run `npm ci`, set server-only `GEMINI_API_KEY` and optional `GEMINI_MODEL` in
+Run `npm ci`, set server-only `HKU_CLAUDE_KEY` and optional `HKU_CLAUDE_MODEL` in
 `.env.local`, then `npm run dev`. Verify with `npm run lint`, `npm test`,
 `npm run build`, and `npx tsc --noEmit`. Course page originals are bundled for
 visual model context. Practice marking is browser-local and make no AI requests.
@@ -75,3 +75,15 @@ slides and their extracted text. The wider research-literature collection stays
 hidden. Ten L4 slide-based practice questions include model answers and marking.
 
 Checkpoint: `checkpoint/pre-lecture4-2026-09-25`.
+
+## HKU AI provider
+
+The tutor and generated flashcards use HKU Claude Haiku 4.5 through the
+Bedrock-compatible Converse API. Tutor responses use ConverseStream, translated
+to the existing browser SSE format. Original slide images remain attached with
+source labels. Flashcard JSON is validated against supplied slide excerpts;
+prepared fallback cards remain clearly labelled. Subscription credentials are
+server-only and never sent to the browser or committed. Provider URLs and raw
+errors are not logged because HKU authentication uses a query parameter.
+
+Checkpoint before migration: `checkpoint/pre-hku-claude-2026-09-26`.
