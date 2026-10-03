@@ -7,7 +7,9 @@ export function makeQuiz1Set(bank: Quiz1Question[], kind: Quiz1Kind | 'mixed', c
   // Mixed sets include every available format before filling the remaining spaces.
   const selected = kind === 'mixed' ? Object.keys(quiz1KindLabels).flatMap(type => pool.find(q => q.kind === type) || []) : [];
   for (const q of pool) if (!selected.some(s => s.id === q.id)) selected.push(q);
-  return { version: 1, queue: selected.slice(0, Math.max(1, Math.min(30, Math.floor(count)))).map(q => q.id), position: 0, ratings: {}, startedAt: new Date().toISOString() };
+  const chosen=selected.slice(0, Math.max(1, Math.min(30, Math.floor(count))));
+  for(let i=chosen.length-1;i>0;i--){const j=Math.floor(Math.max(0,Math.min(.999999,random()))*(i+1));[chosen[i],chosen[j]]=[chosen[j],chosen[i]];}
+  return { version: 1, queue: chosen.map(q => q.id), position: 0, ratings: {}, startedAt: new Date().toISOString() };
 }
 export function rateQuiz1(review: Quiz1Review, rating: 'again' | 'known'): Quiz1Review {
   const id = review.queue[review.position];

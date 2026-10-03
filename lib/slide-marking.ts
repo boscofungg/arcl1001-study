@@ -1,8 +1,10 @@
+import varietyRubrics from '../content/practice-variety-rubrics.json' with {type:'json'};
 import feedbackRubrics from '../content/feedback-rubrics.json' with {type:'json'};
 import l4Rubrics from '../content/l4-rubrics.json' with {type:'json'};
 import shortRubrics from '../content/slide-short-rubrics.json' with {type:'json'};
 import {slideQuestions} from './slide-practice.ts';
 import {matchNumericAnswer} from './numeric-marking.ts';
+import {tolerateSlideSpelling} from './spelling-tolerance.ts';
 import type {NumericRule} from './numeric-marking.ts';
 export type MarkCriterion={id:string;label:string;patterns?:string[];allowNegation?:boolean;excludePatterns?:string[];numeric?:NumericRule;tolerance?:string};
 export type SlideRubric={questionId:string;requiredCount?:number;criteria:MarkCriterion[]};
@@ -35,7 +37,7 @@ const visualRubrics:SlideRubric[]=[
  {questionId:'visual-017',criteria:[name('\\buruk\\b','\\bwarka\\b'),location('\\bsumer(?:ia|ian)?\\b','\\bsouthern mesopotamia\\b')]},
  {questionId:'visual-018',criteria:[name('\\bgiza\\b','\\bgizeh\\b'),location('\\begypt(?:ian)?\\b','\\b(?:lower )?nile valley\\b')]},
 ];
-export const slideRubrics:SlideRubric[]=[...shortRubrics,...visualRubrics,...l4Rubrics,...feedbackRubrics];
+export const slideRubrics:SlideRubric[]=[...shortRubrics,...visualRubrics,...l4Rubrics,...varietyRubrics,...feedbackRubrics];
 const normalize=(value:string)=>value.normalize('NFKD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/['’]/g,'').replace(/[^a-z0-9\s]/g,' ').replace(/\s+/g,' ').trim();
 function isNegated(text:string,start:number,length:number,allowWithin=false){
  const before=text.slice(0,start).split(/\s+/).slice(-4).join(' ');
@@ -49,7 +51,9 @@ function patternMatches(text:string,pattern:string,allowNegation=false){
  return false;
 }
 function matchCriterion(answer:string,criterion:MarkCriterion){
- const normalized=normalize(answer);
+ const original=normalize(answer);
+ const spelling=tolerateSlideSpelling(original);
+ const normalized=spelling.text;
  if(criterion.excludePatterns?.some(pattern=>patternMatches(normalized,pattern)))return {matched:false,feedback:'This part conflicts with the slide evidence.'};
  const wordMatch=criterion.patterns?.some(pattern=>patternMatches(normalized,pattern,criterion.allowNegation))||false;
  if(criterion.numeric){
@@ -59,7 +63,8 @@ function matchCriterion(answer:string,criterion:MarkCriterion){
   if(wordMatch&&!hasDate)return {matched:true};
   return numeric;
  }
- return {matched:wordMatch};
+ const correctedMatch=wordMatch&&!criterion.patterns?.some(pattern=>patternMatches(original,pattern,criterion.allowNegation));
+ return {matched:wordMatch,...correctedMatch?{feedback:'A minor spelling error was accepted. See the model answer for the standard spelling.'}:{}};
 }
 export function markSlideAnswer(questionId:string,answer:string):SlideMark|null{
  const question=slideQuestions.find(q=>q.id===questionId),rubric=slideRubrics.find(r=>r.questionId===questionId);

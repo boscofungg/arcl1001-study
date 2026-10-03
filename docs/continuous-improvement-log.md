@@ -66,3 +66,27 @@ practice continues to use lecture slides only.
 ## Subsequent reviews
 
 No follow-up student responses have been recorded in this log yet.
+
+## Follow-up: practice variety and saved flashcards — 4 October 2026
+
+| ID | Feedback | Change | Verification / limits |
+| --- | --- | --- | --- |
+| F08 | Starting another practice set repeats questions. | Numbered saved sets per lecture; every assigned question counts as seen, even before submission. New sets draw unseen questions first and keep earlier progress. Mixed-format order is shuffled. | Library regression tests cover early restarts, reloads, migration and exhaustion. Questions may repeat after the selected pool is exhausted. Up to 100 sets per lecture. |
+| F09 | More questions, images and comparisons from slides. | 24 new questions (six per lecture): bank grows from 53 to 77. Four new image questions cover Lucy, Red Pyramid, jade ge dagger and quipu; four new comparison questions. | Every source is a lecture slide; evidence and model-answer rubric tests pass. Crops visually checked for answer labels. These are reviewed prepared questions, not unverified live AI-generated assessments. |
+| F10 | Vary wording and photos. | Alternate wording for 31 existing questions, selected and retained per saved set. Great Bath may use either the original reconstruction or a real-site photograph from L3 slide 54, with matching citation. | Different wording does not count as a new learning objective. Other objects retain verified original images; no unrelated or generated photographs substituted. |
+| F11 | Accept small spelling mistakes. | Conservative single-edit correction for selected longer proper names, plus transposed/repeated letters in selected technical terms. Exact model answers remain visible. | Numeric parsing, negation and meaning-changing wording stay strict. Not a general spellchecker or official marking scheme. |
+| F12 | Keep generated flashcard questions. | Multiple local decks per lecture, selection, saved review progress, JSON backup/import and deletion. Previous current deck migrates. | Slide-only validation; import preserves local progress for duplicate deck IDs. Up to 40 decks per lecture. No cookies or login needed. Written draft answers are still not saved or automatically marked. |
+
+### Release checks and rollback
+
+- 140 automated tests passed, covering library persistence, no-repeat selection, rubric accuracy,
+  image/source validity and conservative spelling tolerance.
+- Browser checks: two practice sets, switching/reload, model-answer reveal;
+  two real generated flashcard decks, switching and retained review progress.
+- Lint, TypeScript and production build checked before release.
+- Rollback tag: `checkpoint/pre-practice-variety-2026-10-04`.
+- Device-local data can be lost when browser storage is cleared. Flashcard backup
+  download/import is the portable recovery option; no cross-device cloud sync.
+- Follow-up: ask whether students encounter fewer repeated topics, whether the
+  comparison marking recognises their valid answers, and whether saving and
+  reopening decks is easy to understand. Professor review remains desirable.

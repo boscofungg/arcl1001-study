@@ -1,0 +1,519 @@
+[
+  {
+    "questionId": "variety-01",
+    "criteria": [
+      {
+        "id": "specimen",
+        "label": "Lucy / Australopithecus afarensis",
+        "patterns": [
+          "\\b(?:lucy|australopithecus\\s+afarensis)\\b"
+        ]
+      },
+      {
+        "id": "country",
+        "label": "Ethiopia",
+        "patterns": [
+          "\\bethiopia(?:n)?\\b"
+        ]
+      }
+    ]
+  },
+  {
+    "questionId": "variety-02",
+    "criteria": [
+      {
+        "id": "method",
+        "label": "Surface survey",
+        "patterns": [
+          "\\b(?:surface|field|pedestrian)\\s+survey\\b"
+        ]
+      }
+    ]
+  },
+  {
+    "questionId": "variety-03",
+    "criteria": [
+      {
+        "id": "long",
+        "label": "Long cranium",
+        "patterns": [
+          "\\blong\\b.{0,15}\\b(?:cranium|skull|head)\\b"
+        ]
+      },
+      {
+        "id": "forehead",
+        "label": "Flat forehead",
+        "patterns": [
+          "\\bflat\\s+forehead\\b"
+        ]
+      },
+      {
+        "id": "brow",
+        "label": "Distinct brow ridge",
+        "patterns": [
+          "\\b(?:brow|supraorbital)\\s+ridge\\b"
+        ]
+      }
+    ],
+    "requiredCount": 2
+  },
+  {
+    "questionId": "variety-04",
+    "criteria": [
+      {
+        "id": "food",
+        "label": "Limited food",
+        "patterns": [
+          "\\b(?:limit\\w*|scarce|less|little)\\b.{0,15}\\bfood\\b",
+          "\\bfood\\b.{0,15}\\b(?:limit\\w*|scarcity|shortage)\\b"
+        ]
+      },
+      {
+        "id": "heat",
+        "label": "Thermoregulation",
+        "patterns": [
+          "\\bthermoregulation\\b",
+          "\\b(?:temperature|heat)\\b.{0,15}\\b(?:regulation|control)\\b"
+        ]
+      },
+      {
+        "id": "predators",
+        "label": "Fewer predators",
+        "patterns": [
+          "\\b(?:fewer|less|few|lack of)\\s+predators\\b"
+        ]
+      }
+    ],
+    "requiredCount": 2
+  },
+  {
+    "questionId": "variety-05",
+    "criteria": [
+      {
+        "id": "africa",
+        "label": "Africa: iron working without a Bronze Age sequence",
+        "patterns": [
+          "\\b(?:africa\\w*)\\b(?:(?!\\b(?:america\\w*)\\b).){0,100}\\b(?:iron)\\b",
+          "\\b(?:iron)\\b\\s+(?:in|for|at|from|of)\\s+(?:the\\s+)?(?:africa\\w*)\\b"
+        ]
+      },
+      {
+        "id": "americas",
+        "label": "Americas: copper or gold metallurgy",
+        "patterns": [
+          "\\b(?:america\\w*)\\b(?:(?!\\b(?:africa\\w*)\\b).){0,100}\\b(?:copper|gold)\\b",
+          "\\b(?:copper|gold)\\b\\s+(?:in|for|at|from|of)\\s+(?:the\\s+)?(?:america\\w*)\\b"
+        ]
+      },
+      {
+        "id": "sequence",
+        "label": "Different regional sequences; no universal progression",
+        "patterns": [
+          "\\b(?:not|no)\\b.{0,20}\\b(?:universal|same|single)\\b",
+          "\\b(?:different|varied)\\b.{0,30}\\b(?:sequence|region|path|development)\\w*\\b"
+        ],
+        "allowNegation": true
+      }
+    ]
+  },
+  {
+    "questionId": "variety-06",
+    "criteria": [
+      {
+        "id": "bering",
+        "label": "Bering land route",
+        "patterns": [
+          "\\bbering\\b",
+          "\\bland\\s+bridge\\b"
+        ]
+      },
+      {
+        "id": "coast",
+        "label": "Coastal migration",
+        "patterns": [
+          "\\bcoast\\w*\\b"
+        ]
+      }
+    ]
+  },
+  {
+    "questionId": "variety-07",
+    "criteria": [
+      {
+        "id": "pyramid",
+        "label": "Red Pyramid",
+        "patterns": [
+          "\\bred\\s+pyramid\\b"
+        ]
+      },
+      {
+        "id": "ruler",
+        "label": "Snefru",
+        "patterns": [
+          "\\bsnef(?:e)?r(?:u|ou)\\b"
+        ]
+      }
+    ]
+  },
+  {
+    "questionId": "variety-08",
+    "criteria": [
+      {
+        "id": "eanna",
+        "label": "Eanna",
+        "patterns": [
+          "\\beanna\\b"
+        ]
+      },
+      {
+        "id": "kullaba",
+        "label": "Kullaba",
+        "patterns": [
+          "\\bkullab[ae]\\b"
+        ]
+      }
+    ]
+  },
+  {
+    "questionId": "variety-09",
+    "criteria": [
+      {
+        "id": "mass",
+        "label": "Mass production",
+        "patterns": [
+          "\\bmass[ -]?produc\\w*\\b",
+          "\\b(?:large|bulk)\\b.{0,15}\\b(?:scale|quantit\\w*)\\b"
+        ]
+      },
+      {
+        "id": "uniform",
+        "label": "Uniform size",
+        "patterns": [
+          "\\b(?:uniform|standard\\w*|same|consistent)\\b.{0,15}\\bsize\\b",
+          "\\bsize\\b.{0,15}\\b(?:uniform|standard\\w*|same|consistent)\\b"
+        ]
+      }
+    ]
+  },
+  {
+    "questionId": "variety-10",
+    "criteria": [
+      {
+        "id": "stone",
+        "label": "Local limestone",
+        "patterns": [
+          "\\blimestone\\b"
+        ]
+      },
+      {
+        "id": "fracture",
+        "label": "Natural grid-shaped fractures",
+        "patterns": [
+          "\\bgrid\\b.{0,25}\\bfractur\\w*\\b",
+          "\\bfractur\\w*\\b.{0,25}\\bgrid\\b"
+        ]
+      }
+    ]
+  },
+  {
+    "questionId": "variety-11",
+    "criteria": [
+      {
+        "id": "water",
+        "label": "Water drainage / pottery ducts",
+        "patterns": [
+          "\\b(?:drain\\w*|water\\s+ducts?)\\b"
+        ]
+      },
+      {
+        "id": "storage",
+        "label": "Granaries",
+        "patterns": [
+          "\\bgranar(?:y|ies)\\b",
+          "\\bgrain\\s+stor\\w*\\b"
+        ]
+      }
+    ]
+  },
+  {
+    "questionId": "variety-12",
+    "criteria": [
+      {
+        "id": "vase",
+        "label": "Warka Vase: alabaster",
+        "patterns": [
+          "\\b(?:warka|vase)\\b(?:(?!\\b(?:ox|horn|eanna)\\b).){0,100}\\b(?:alabaster)\\b",
+          "\\b(?:alabaster)\\b\\s+(?:in|for|at|from|of)\\s+(?:the\\s+)?(?:warka|vase)\\b"
+        ]
+      },
+      {
+        "id": "horn",
+        "label": "Ox horn: copper",
+        "patterns": [
+          "\\b(?:ox|horn|eanna)\\b(?:(?!\\b(?:warka|vase)\\b).){0,100}\\b(?:copper)\\b",
+          "\\b(?:copper)\\b\\s+(?:in|for|at|from|of)\\s+(?:the\\s+)?(?:ox|horn|eanna)\\b"
+        ]
+      }
+    ]
+  },
+  {
+    "questionId": "variety-13",
+    "criteria": [
+      {
+        "id": "material",
+        "label": "Jade",
+        "patterns": [
+          "\\bjade\\b"
+        ]
+      },
+      {
+        "id": "form",
+        "label": "Ge dagger",
+        "patterns": [
+          "\\b(?:ge|dagger|dagger axe)\\b"
+        ]
+      },
+      {
+        "id": "tomb",
+        "label": "Fu Hao’s tomb",
+        "patterns": [
+          "\\bfu\\s+hao\\w*\\b"
+        ]
+      }
+    ]
+  },
+  {
+    "questionId": "variety-14",
+    "criteria": [
+      {
+        "id": "status",
+        "label": "Permanent political status",
+        "patterns": [
+          "\\bpermanent\\b.{0,20}\\b(?:political|status|leadership)\\b"
+        ]
+      },
+      {
+        "id": "heredity",
+        "label": "Hereditary leadership",
+        "patterns": [
+          "\\b(?:hereditary|inherited)\\b.{0,20}\\b(?:leadership|rule|status|power)\\b"
+        ]
+      },
+      {
+        "id": "resources",
+        "label": "Redistribution of resources",
+        "patterns": [
+          "\\bredistribut\\w*\\b"
+        ]
+      }
+    ],
+    "requiredCount": 2
+  },
+  {
+    "questionId": "variety-15",
+    "criteria": [
+      {
+        "id": "system",
+        "label": "Drainage / sanitation",
+        "patterns": [
+          "\\b(?:drain\\w*|sanitati\\w*|sewage)\\b"
+        ]
+      },
+      {
+        "id": "access",
+        "label": "Connected to every household",
+        "patterns": [
+          "\\b(?:every|all)\\b.{0,20}\\b(?:house\\w*|home\\w*)\\b",
+          "\\b(?:public|widely available|universal)\\b"
+        ]
+      }
+    ]
+  },
+  {
+    "questionId": "variety-16",
+    "criteria": [
+      {
+        "id": "core",
+        "label": "Core fragments",
+        "patterns": [
+          "\\bcores?\\b"
+        ]
+      },
+      {
+        "id": "mould",
+        "label": "Mould fragments",
+        "patterns": [
+          "\\bmo[u]?lds?\\b"
+        ]
+      },
+      {
+        "id": "model",
+        "label": "Model fragments",
+        "patterns": [
+          "\\bmodels?\\b"
+        ]
+      },
+      {
+        "id": "furnace",
+        "label": "Furnace fragments",
+        "patterns": [
+          "\\bfurnaces?\\b"
+        ]
+      }
+    ],
+    "requiredCount": 2
+  },
+  {
+    "questionId": "variety-17",
+    "criteria": [
+      {
+        "id": "order",
+        "label": "Prepare / add temper → shape → fire",
+        "patterns": [
+          "\\b(?:collect\\w*|prepar\\w*|temper)\\b.{0,100}\\bshap\\w*\\b.{0,80}\\b(?:fir(?:e|ing)|bake|kiln)\\b"
+        ]
+      }
+    ]
+  },
+  {
+    "questionId": "variety-18",
+    "criteria": [
+      {
+        "id": "tribe",
+        "label": "Tribe: fluid / temporary leadership",
+        "patterns": [
+          "\\b(?:trib\\w*)\\b(?:(?!\\b(?:chief\\w*)\\b).){0,100}\\b(?:fluid|temporary|informal)\\b",
+          "\\b(?:fluid|temporary|informal)\\b\\s+(?:in|for|at|from|of)\\s+(?:the\\s+)?(?:trib\\w*)\\b"
+        ]
+      },
+      {
+        "id": "chiefdom",
+        "label": "Chiefdom: permanent / hereditary leadership",
+        "patterns": [
+          "\\b(?:chief\\w*)\\b(?:(?!\\b(?:trib\\w*)\\b).){0,100}\\b(?:permanent|hereditary|inherited)\\b",
+          "\\b(?:permanent|hereditary|inherited)\\b\\s+(?:in|for|at|from|of)\\s+(?:the\\s+)?(?:chief\\w*)\\b"
+        ]
+      }
+    ]
+  },
+  {
+    "questionId": "variety-19",
+    "criteria": [
+      {
+        "id": "object",
+        "label": "Quipu / khipu",
+        "patterns": [
+          "\\b(?:quipu|khipu)\\b"
+        ]
+      },
+      {
+        "id": "use",
+        "label": "Record-keeping",
+        "patterns": [
+          "\\brecord\\w*\\b",
+          "\\b(?:account\\w*|count\\w*|calculat\\w*)\\b"
+        ]
+      }
+    ]
+  },
+  {
+    "questionId": "variety-20",
+    "criteria": [
+      {
+        "id": "labour",
+        "label": "Rotational public labour",
+        "patterns": [
+          "\\b(?:rotation\\w*|rotating|rotated|taking turns)\\b.{0,25}\\b(?:labou?r|work|service)\\b",
+          "\\b(?:labou?r|work|service)\\b.{0,25}\\b(?:rotation\\w*|rotating|turns)\\b"
+        ]
+      },
+      {
+        "id": "construction",
+        "label": "Roads or farms",
+        "patterns": [
+          "\\b(?:roads?|farms?)\\b"
+        ]
+      }
+    ]
+  },
+  {
+    "questionId": "variety-21",
+    "criteria": [
+      {
+        "id": "event",
+        "label": "Volcanic eruption",
+        "patterns": [
+          "\\b(?:volcanic\\s+)?eruption\\b",
+          "\\bvolcano\\b.{0,15}\\berupt\\w*\\b"
+        ]
+      },
+      {
+        "id": "name",
+        "label": "Loma Caldera",
+        "patterns": [
+          "\\bloma\\s+caldera\\b"
+        ]
+      }
+    ]
+  },
+  {
+    "questionId": "variety-22",
+    "criteria": [
+      {
+        "id": "transport",
+        "label": "Pack animals / transport",
+        "patterns": [
+          "\\b(?:pack|transport|carry\\w*|carrying)\\b"
+        ]
+      },
+      {
+        "id": "ritual",
+        "label": "Ritual sacrifice",
+        "patterns": [
+          "\\b(?:sacrific\\w*|ritual)\\b"
+        ]
+      },
+      {
+        "id": "fertilizer",
+        "label": "Fertilizer",
+        "patterns": [
+          "\\b(?:fertili[sz]\\w*|manure|dung)\\b"
+        ]
+      }
+    ],
+    "requiredCount": 2
+  },
+  {
+    "questionId": "variety-23",
+    "criteria": [
+      {
+        "id": "water",
+        "label": "Artificial aguada / reservoir",
+        "patterns": [
+          "\\b(?:aguada|reservoir)\\b"
+        ]
+      }
+    ]
+  },
+  {
+    "questionId": "variety-24",
+    "criteria": [
+      {
+        "id": "north",
+        "label": "Northern lowlands: dry / flat / scrub / cenotes",
+        "patterns": [
+          "\\b(?:north\\w*)\\b(?:(?!\\b(?:south\\w*)\\b).){0,100}\\b(?:dry|flat|scrub|cenotes?)\\b",
+          "\\b(?:dry|flat|scrub|cenotes?)\\b\\s+(?:in|for|at|from|of)\\s+(?:the\\s+)?(?:north\\w*)\\b"
+        ]
+      },
+      {
+        "id": "south",
+        "label": "Southern lowlands: tropical forest / swamps / heavy rain",
+        "patterns": [
+          "\\b(?:south\\w*)\\b(?:(?!\\b(?:north\\w*)\\b).){0,100}\\b(?:tropical|swamps?|rain\\w*)\\b",
+          "\\b(?:tropical|swamps?|rain\\w*)\\b\\s+(?:in|for|at|from|of)\\s+(?:the\\s+)?(?:south\\w*)\\b"
+        ]
+      }
+    ]
+  }
+]

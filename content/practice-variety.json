@@ -1,0 +1,365 @@
+[
+  {
+    "id": "variety-01",
+    "kind": "image",
+    "question": "Identify this hominin specimen and its country of discovery.",
+    "answer": "Lucy (Australopithecus afarensis), discovered in Ethiopia.",
+    "evidence": "(two-legged walking)\nEvolution of Bipedalism\nChimpanzees?\nStrong legs +\nStrong upper limbs for trees\nSmaller brain\nRuff CB, Burgess ML, Ketcham RA, Kappelman J (2016) Limb Bone Structural Proportions and Locomotor\nBehavior in A.L. 288-1 (\"Lucy\"). PLoS ONE 11(11): e01 6609 5. doi:10.1371 /journal.pone.0166095\n3.2MYA (1974 Ethiopia) 1.1m tall\nEarly Hominin: Australopithecus Afarensis 'Lucy'\nhttp s://hub.jhu.edu/2016/11/30/lucy-fossil-tree-climber/",
+    "source": {
+      "docId": "d101",
+      "page": 41,
+      "title": "L1 lecture slides",
+      "label": "Slide 41"
+    },
+    "image": {
+      "src": "/materials/practice-variety/v01.webp",
+      "width": 362,
+      "height": 608,
+      "alt": "Unlabelled detail from a lecture slide"
+    }
+  },
+  {
+    "id": "variety-02",
+    "kind": "short-answer",
+    "question": "Which field method is named on the slide about finding archaeological evidence?",
+    "answer": "Surface survey.",
+    "evidence": "1. Finding\nSurface Survey\nResearch and Fieldwork",
+    "source": {
+      "docId": "d101",
+      "page": 8,
+      "title": "L1 lecture slides",
+      "label": "Slide 8"
+    }
+  },
+  {
+    "id": "variety-03",
+    "kind": "short-answer",
+    "question": "Name two cranial features of Homo erectus listed in the lecture.",
+    "answer": "Any two: a long cranium, a flat forehead, and a distinct brow ridge.",
+    "evidence": "http s://humanorigins.si.edu/evidence/human-fossils/fossils/zhoukoudian\nUpright in Latin\n~ 1.89 MYA - 110KYA\nOriginal lost during WWII\nHomo Erectus\n\"Peking Man” 0.8-0.2 MYA\nHomo Erectus Pekinensis\nDiscovered 1921 Beijing\nFeature of Erectus Cranium\n-\nLong\n-\nFlat forehead\n-\nDistinct brow ridge\n\"Java Man“ 1.5-0.7 MYA\nHomo Erectus Erectus\nDiscovered 1891 Indonesia",
+    "source": {
+      "docId": "d101",
+      "page": 50,
+      "title": "L1 lecture slides",
+      "label": "Slide 50"
+    }
+  },
+  {
+    "id": "variety-04",
+    "kind": "short-answer",
+    "question": "Give two possible factors in island dwarfism listed for Homo floresiensis.",
+    "answer": "Any two: limited food, thermoregulation, and fewer predators. The slide presents island dwarfism as a possible explanation.",
+    "evidence": "•\nLimits to food\n•\nThe rmoregulation\n•\nLess predators\nhttp s://www.ucl.ac.uk/human-evolution/news/2016/mar/homo-flo resiensis-became-extinct-50000-years-ago\nIsland Dwarfism?",
+    "source": {
+      "docId": "d101",
+      "page": 62,
+      "title": "L1 lecture slides",
+      "label": "Slide 62"
+    }
+  },
+  {
+    "id": "variety-05",
+    "kind": "comparison",
+    "question": "Compare the metalworking examples from sub-Saharan Africa and the pre-Columbian Americas. Why is the Three Age System not universal?",
+    "answer": "The slide describes sub-Saharan Africa as skipping bronze while using iron smithing and forging; the pre-Columbian Americas had advanced copper and gold metallurgy without an iron industry. Regions did not all follow the same metalworking sequence.",
+    "evidence": "The ory and Methods\nNot globally applicable\nSub-Saharan Africa\nskipped bronze, has iron\nsmithing and forging\nMET Museum\nMET Museum\nPre-Colombian Americas\nadvanced copper and gold\nmetallurgy, no iron industry\nMET Museum",
+    "source": {
+      "docId": "d101",
+      "page": 66,
+      "title": "L1 lecture slides",
+      "label": "Slide 66"
+    }
+  },
+  {
+    "id": "variety-06",
+    "kind": "short-answer",
+    "question": "Name the two migration theories for the peopling of the Americas listed in the lecture.",
+    "answer": "Bering Land Theory and Coastal Migration Theory.",
+    "evidence": "Migration to the Americas\nBering Land Theory\nCoastal Migration Theory\nhttp s://education.nationalgeographic.org/resource/bering-land-bridge/\nhttp s://www.sciencedirect.com/science/article/pii/S027737912030\n5679",
+    "source": {
+      "docId": "d101",
+      "page": 74,
+      "title": "L1 lecture slides",
+      "label": "Slide 74"
+    }
+  },
+  {
+    "id": "variety-07",
+    "kind": "image",
+    "question": "Identify this pyramid and the ruler associated with it.",
+    "answer": "The Red Pyramid of Snefru.",
+    "evidence": "The Red Pyramid of Snefru (c.26th century\nBCE)\nWikipedia",
+    "source": {
+      "docId": "d102",
+      "page": 78,
+      "title": "L2 lecture slides",
+      "label": "Slide 78"
+    },
+    "image": {
+      "src": "/materials/practice-variety/v07.webp",
+      "width": 640,
+      "height": 587,
+      "alt": "Unlabelled detail from a lecture slide"
+    }
+  },
+  {
+    "id": "variety-08",
+    "kind": "short-answer",
+    "question": "Which two settlements merged into Uruk’s central districts?",
+    "answer": "Eanna and Kullaba.",
+    "evidence": "Plan of Uruk\nUrban Development starts (c.3800-3700 BCE)\ntwo villages (Eanna and Kullaba) merged to central districts\nbut, goes to 500 BCE\nPittman, Holly.”The First Cities” from Journey to the City, A Companion to the Middle East Galleries at the Penn Museum, 50. University of\nPennsylvania Press, ​University of Pennsylvania Museum of Archaeology and Anthropology. (2019)",
+    "source": {
+      "docId": "d102",
+      "page": 37,
+      "title": "L2 lecture slides",
+      "label": "Slide 37"
+    }
+  },
+  {
+    "id": "variety-09",
+    "kind": "short-answer",
+    "question": "What two manufacturing characteristics of beveled-rim bowls are highlighted on the slide?",
+    "answer": "They were mass-produced and had a uniform size.",
+    "evidence": "Production and Specialization\nUruk\nCivic Production\nca. 3300–3100 BCE\nBeveled Rim Bowl​\nMET Museum​\nPurpose?\nMass produced\nUniform size\nhttps://earlyneareasterncities.wordpress.com/material-culture-studies/bevel-rimmed-bowls/",
+    "source": {
+      "docId": "d102",
+      "page": 48,
+      "title": "L2 lecture slides",
+      "label": "Slide 48"
+    }
+  },
+  {
+    "id": "variety-10",
+    "kind": "short-answer",
+    "question": "What local material and natural feature does the Giza quarry slide identify?",
+    "answer": "Local limestone with natural grid-shaped fractures.",
+    "evidence": "Quarry of Giza\n•\nLocal limestone\n•\nNatural grid shape fracture",
+    "source": {
+      "docId": "d102",
+      "page": 90,
+      "title": "L2 lecture slides",
+      "label": "Slide 90"
+    }
+  },
+  {
+    "id": "variety-11",
+    "kind": "short-answer",
+    "question": "Name the two infrastructure or storage developments listed for Tel-Abada Level I.",
+    "answer": "New water drainage (pottery water ducts) and granaries.",
+    "evidence": "Level I Latest layer\nWater Pottery Ducts at level I\nNew water Drainage, Granaries\nca 5th millennium BCE\nTELL ABADA AN UBAID VILLAGE IN CENTRAL MESOPOTAMIA​, Sabah Abboud Jasim",
+    "source": {
+      "docId": "d102",
+      "page": 65,
+      "title": "L2 lecture slides",
+      "label": "Slide 65"
+    }
+  },
+  {
+    "id": "variety-12",
+    "kind": "comparison",
+    "question": "Compare the materials of the Warka Vase and the copper ox horn from Eanna.",
+    "answer": "The Warka Vase is alabaster; the ox horn from Eanna is copper.",
+    "evidence": "Production and Specialization\nWarka Vase:\nHierarchy\nKing/attendants making\noffering to the goddess\nNaked workers\n(servants/slaves?) carrying\nagriculture producs\nAgriculture and livestock\nfound in ritual deposit of Inanna Temple,\nwith 2 sheep heads\nVERY IMPORTANT\nAlabaster, 1m, 270kg\nca 3000 BCE\nWikipedia",
+    "source": {
+      "docId": "d102",
+      "page": 45,
+      "title": "L2 lecture slides",
+      "label": "Slide 45"
+    },
+    "additionalSources": [
+      {
+        "docId": "d102",
+        "page": 50,
+        "title": "L2 lecture slides",
+        "label": "Slide 50",
+        "evidence": "Trade and Import\nTrade/Imports\nCopper Ox Horn from Eanna c. 3000 bce"
+      }
+    ]
+  },
+  {
+    "id": "variety-13",
+    "kind": "image",
+    "question": "Identify this object’s material and form, and name the tomb it came from.",
+    "answer": "A jade ge dagger from Fu Hao’s tomb at Yinxu.",
+    "evidence": "Wang, Rong, Chang-sui Wang, and Ji-gen Tang. “A Jade Parrot from the Tomb of Fu Hao at Yinxu and Liao Sacrific es of\nthe Shang Dynasty.” Antiquity (Cambridge) 92, no. 362 (April 2018): 368–82. https://doi.org/10.1518 4/aqy.2017 .220.\nCentral Plain: Yinxu\nJade Parrot\n- 755 jade objects\n- 564 bone implements, arrowheads and\nhairpins\n- 63 stone sculptures and other stone\nobjects\nJade ge dagger",
+    "source": {
+      "docId": "d103",
+      "page": 99,
+      "title": "L3 lecture slides",
+      "label": "Slide 99"
+    },
+    "image": {
+      "src": "/materials/practice-variety/v13.webp",
+      "width": 600,
+      "height": 255,
+      "alt": "Unlabelled detail from a lecture slide"
+    }
+  },
+  {
+    "id": "variety-14",
+    "kind": "short-answer",
+    "question": "Give two features of chiefdoms listed in the lecture.",
+    "answer": "Any two: permanent political status, hereditary leadership, and redistribution of resources.",
+    "evidence": "The ory and Methods\nAliʻi\nnui\nin\nHawaii\nRanked\nSocieties\nChiefdom\nPermanent political status\nHereditary leadership\nRedistribution of resources\nMinimum to none\nMaximum\nEgalitarian\nRanked\nStratified\nDegree of stratific ation in status, power and wealth",
+    "source": {
+      "docId": "d103",
+      "page": 9,
+      "title": "L3 lecture slides",
+      "label": "Slide 9"
+    }
+  },
+  {
+    "id": "variety-15",
+    "kind": "short-answer",
+    "question": "What does the lecture say about household access to sanitation at Mohenjo-daro?",
+    "answer": "The drainage and sanitation system was connected to every household, indicating public availability of sanitation infrastructure.",
+    "evidence": "City Planning: Infrastructure\nIndus Valley: Mohenjo-daro\nDrainage & Sanitization System\nConnected to every households\nPublic availability of sanitation infrastructure",
+    "source": {
+      "docId": "d103",
+      "page": 51,
+      "title": "L3 lecture slides",
+      "label": "Slide 51"
+    }
+  },
+  {
+    "id": "variety-16",
+    "kind": "short-answer",
+    "question": "Name two types of manufacturing remains found at the Xiaomintun bronze foundry.",
+    "answer": "Any two: core fragments, mould fragments, model fragments, and furnace fragments.",
+    "evidence": "300 00 core, mold, model,\nfurnace fragments; area for\nfin ishing bronzes\nCentral Plain: Yinxu\nBronze Foundry\nhttp s://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQz_7s1skNPH46ebgzsIgfcJ1MS_AY7OczpIGXhuh3DWx0n7TDCyTrG29Cx&s=10\nXiaomintun district 孝民屯\nLi, Yung-ti. The Anyang bronze foundries:\narchaeological remains, casting technology, and\nproduction organization. Harvard University, 2003.\nmap",
+    "source": {
+      "docId": "d103",
+      "page": 118,
+      "title": "L3 lecture slides",
+      "label": "Slide 118"
+    }
+  },
+  {
+    "id": "variety-17",
+    "kind": "short-answer",
+    "question": "Put the three pottery-making stages on the Harappa slide in order.",
+    "answer": "Collect and prepare the material (including adding temper), then shape the vessel, then fire it.",
+    "evidence": "Potte ry-making\nIndus Valley:\nHarappa\nShape\nCollect, prepare, add temper\nFire",
+    "source": {
+      "docId": "d103",
+      "page": 129,
+      "title": "L3 lecture slides",
+      "label": "Slide 129"
+    }
+  },
+  {
+    "id": "variety-18",
+    "kind": "comparison",
+    "question": "Compare leadership in the lecture’s tribe and chiefdom models.",
+    "answer": "The tribe model has fluid, temporary leadership; the chiefdom model has permanent political status and hereditary leadership.",
+    "evidence": "Haudenosaunee\nEgalitarian\nSocieties\n!Kung in Southern Africa\nTribe\nKinship based\nFluid temporary leadership\nEqual access to resources\nBand\nSmallest\nInformal leadership\nMinimum to none\nMaximum\nEgalitarian\nRanked\nStratified\nDegree of stratific ation in status, power and wealth",
+    "source": {
+      "docId": "d103",
+      "page": 8,
+      "title": "L3 lecture slides",
+      "label": "Slide 8"
+    },
+    "additionalSources": [
+      {
+        "docId": "d103",
+        "page": 9,
+        "title": "L3 lecture slides",
+        "label": "Slide 9",
+        "evidence": "The ory and Methods\nAliʻi\nnui\nin\nHawaii\nRanked\nSocieties\nChiefdom\nPermanent political status\nHereditary leadership\nRedistribution of resources\nMinimum to none\nMaximum\nEgalitarian\nRanked\nStratified\nDegree of stratific ation in status, power and wealth"
+      }
+    ]
+  },
+  {
+    "id": "variety-19",
+    "kind": "image",
+    "question": "Identify this object and the activity it was used for in the Inca lecture.",
+    "answer": "A quipu (khipu), used for record-keeping.",
+    "evidence": "Inca\nRecord-keeping\nQuipu",
+    "source": {
+      "docId": "d111",
+      "page": 34,
+      "title": "L4 lecture slides",
+      "label": "Slide 34"
+    },
+    "image": {
+      "src": "/materials/practice-variety/v19.webp",
+      "width": 338,
+      "height": 590,
+      "alt": "Unlabelled detail from a lecture slide"
+    }
+  },
+  {
+    "id": "variety-20",
+    "kind": "short-answer",
+    "question": "What was mita, and name one kind of construction it supported in the lecture?",
+    "answer": "Mita was a rotational public labour system used to build roads and farms.",
+    "evidence": "Inca\nRoad System\nMita: a rotational public labor system used to build roads and farms",
+    "source": {
+      "docId": "d111",
+      "page": 33,
+      "title": "L4 lecture slides",
+      "label": "Slide 33"
+    }
+  },
+  {
+    "id": "variety-21",
+    "kind": "short-answer",
+    "question": "What event preserved Joya de Cerén, and which volcano is named in the slide?",
+    "answer": "A volcanic eruption of Loma Caldera.",
+    "evidence": "Maya: Joya de Cerén\n“Pompeii of the Americas”\nVolcanic eruption of Loma\nCaldera ca 600 CE",
+    "source": {
+      "docId": "d111",
+      "page": 41,
+      "title": "L4 lecture slides",
+      "label": "Slide 41"
+    }
+  },
+  {
+    "id": "variety-22",
+    "kind": "short-answer",
+    "question": "Name two uses of llamas listed in the Inca lecture.",
+    "answer": "Any two: pack animals (transport), ritual sacrifice, and fertilizer.",
+    "evidence": "Inca\nLlamas Husbandry\nPack Animal\nSacrific e (Ritual)\nFertilizer\n!",
+    "source": {
+      "docId": "d111",
+      "page": 67,
+      "title": "L4 lecture slides",
+      "label": "Slide 67"
+    }
+  },
+  {
+    "id": "variety-23",
+    "kind": "short-answer",
+    "question": "What water-management feature was constructed close to the Acropolis at Nakum?",
+    "answer": "An artificial aguada (reservoir).",
+    "evidence": "Maya: Nakum\nAn artific ial aguada (reservoir)\nconstructed close to the Acropolis",
+    "source": {
+      "docId": "d111",
+      "page": 78,
+      "title": "L4 lecture slides",
+      "label": "Slide 78"
+    }
+  },
+  {
+    "id": "variety-24",
+    "kind": "comparison",
+    "question": "Compare the northern and southern Maya lowlands using one environmental characteristic of each from the slides.",
+    "answer": "Northern lowlands: dry, flat land with scrub forest and cenotes. Southern lowlands: dense tropical forests, swamps, and heavy seasonal rainfall. One supported characteristic from each is sufficient.",
+    "evidence": "Maya\nEg. Yucatán Peninsula\nFlat land\nScrub forests\nHidden underground\nwater sinkholes (cenote)\nDry\nNorthern Lowlands",
+    "source": {
+      "docId": "d111",
+      "page": 8,
+      "title": "L4 lecture slides",
+      "label": "Slide 8"
+    },
+    "additionalSources": [
+      {
+        "docId": "d111",
+        "page": 9,
+        "title": "L4 lecture slides",
+        "label": "Slide 9",
+        "evidence": "Maya\nEg. Belize/Guatemala\nDense tropical forests\nSwamps\nHeavy seasonal rainfall\nSouthern Lowlands"
+      }
+    ]
+  }
+]

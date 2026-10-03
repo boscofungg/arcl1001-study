@@ -1,0 +1,7 @@
+.flashcard-library{border:1px solid var(--line);border-radius:12px;padding:20px;margin:24px 0;background:var(--paper)}
+.flashcard-library h2{margin:0 0 10px;font-size:1.2rem}
+.flashcard-library p{line-height:1.6;font-size:.9rem}
+.flashcard-library label{display:block;font-size:.85rem;font-weight:600}
+.flashcard-library select{display:block;width:100%;max-width:100%;margin-top:8px;padding:10px;border:1px solid var(--line);border-radius:6px;background:var(--paper);color:inherit;font:inherit;text-overflow:ellipsis}
+.flashcard-library-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.flashcard-library-actions button:disabled{opacity:.5;cursor:not-allowed}
