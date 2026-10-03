@@ -34,7 +34,7 @@ export default function Quiz1Practice({lecture,onLectureChange,onOpen}:{lecture:
  const active=useRef<HTMLDivElement>(null),feedback=useRef<HTMLDivElement>(null);
  const baseQuestion=review?bank.find(q=>q.id===review.queue[review.position]):undefined;
  const variant=baseQuestion?(imageVariants as Record<string,{image:NonNullable<Quiz1Question['image']>;source:Quiz1Question['source'];evidence:string}[]>)[baseQuestion.id]?.[(selected?.images?.[baseQuestion.id]||0)-1]:undefined;
- const question=baseQuestion&&variant?{...baseQuestion,...variant}:baseQuestion;
+ const question=baseQuestion&&variant?{...baseQuestion,...variant,additionalSources:[{...baseQuestion.source,evidence:baseQuestion.evidence},...(baseQuestion.additionalSources||[])]}:baseQuestion;
  const face=question&&review?`${review.startedAt}:${review.position}:${question.id}`:'';
  const response=question&&state?state.answers[question.id]:undefined;
  const mark=question&&response?.mode==='marked'?markSlideAnswer(question.id,response.text):null;
