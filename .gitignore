@@ -12,7 +12,7 @@ next-env.d.ts
 npm-debug.log*
 .env*
 !.env.example
-# Keep regenerated agent guidance out of the repository, too.
+# Local workspace configuration
 AGENTS.md
 CLAUDE.md
 agent.md

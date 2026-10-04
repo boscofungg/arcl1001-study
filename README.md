@@ -7,7 +7,7 @@ The shared browser theme preference supports light and dark mode.
 ## General practice and flashcards
 
 Choose a Lecture 1, 2, 3 or 4 slide deck in the practice navigation. Practice has
-53 slide-supported image-identification, map-labelling and concise-answer
+77 slide-supported image-identification, map-labelling and concise-answer
 questions; MCQs have been removed to follow the announced quiz formats.
 Each suggested answer links only to its original lecture slide(s). Multi-part answers receive criterion-based automatic practice marking and
 partial credit. Common paraphrases and explicitly authored numerical tolerances
@@ -24,7 +24,7 @@ and the chatbot can still answer questions about them.
 Slide-only practice and flashcards use new browser-storage namespaces. Earlier
 reading-based, mixed-source and MCQ sets remain archived in their previous keys,
 but cannot reappear in the new review flow. Marked responses and results are saved per lecture in the current browser,
-and are not sent to AI. Reveal-only questions earn no marks and go to review. No cross-device sync exists.
+and are marked locally. Reveal-only questions earn no marks and go to review. No cross-device sync exists.
 
 The former `/expeditions` URL redirects to `/?view=practice`.
 
@@ -33,11 +33,11 @@ The former `/expeditions` URL redirects to `/?view=practice`.
 Run `npm ci`, set server-only `HKU_CLAUDE_KEY` and optional `HKU_CLAUDE_MODEL` in
 `.env.local`, then `npm run dev`. Verify with `npm run lint`, `npm test`,
 `npm run build`, and `npx tsc --noEmit`. Course page originals are bundled for
-visual model context. Practice marking is browser-local and make no AI requests.
+visual model context. Practice marking is browser-local and makes no external requests.
 Existing origin checks and per-instance IP rate limits remain on model APIs.
-Whole-class AI capacity requires separate quota checks and load testing.
+Whole-class tutor capacity requires separate quota checks and load testing.
 
-Official project: `arcl1001-study`; production branch: `codex/study-workspace`.
+Official project: `arcl1001-study`; production branch: see the linked Vercel project’s Git settings.
 Official site: https://arcl1001-study-boscofungg.vercel.app/
 
 ## Backups
@@ -76,7 +76,7 @@ hidden. Ten L4 slide-based practice questions include model answers and marking.
 
 Checkpoint: `checkpoint/pre-lecture4-2026-09-25`.
 
-## HKU AI provider
+## University tutor service
 
 The tutor and generated flashcards use HKU Claude Haiku 4.5 through the
 Bedrock-compatible Converse API. Tutor responses use ConverseStream, translated
@@ -91,11 +91,14 @@ Checkpoint before migration: `checkpoint/pre-hku-claude-2026-09-26`.
 ## Student feedback update
 
 See `docs/student-feedback-changes-2026-09-26.md` for the concise change note.
-The active practice bank has 53 slide-based questions. New sets prioritize
-questions not yet attempted across sessions. Flashcards offer Recall, Explain
+The active practice bank has 77 slide-based questions. New sets prioritize
+questions not yet assigned across sessions. Flashcards offer Recall, Explain
 and Apply/discuss levels plus an optional written answer before model reveal.
 Citations show matched source passages; regional China maps have geographic
 context, and short slide captions are now included in retrieval. The original
 feedback workbook and respondent data are not included in the repository.
 
 Checkpoint: `checkpoint/pre-student-feedback-2026-09-26`.
+
+Numbered practice sets preserve earlier progress. Flashcards support multiple saved
+decks per lecture and downloadable/importable backups. Storage is device-local.

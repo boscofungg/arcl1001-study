@@ -8,8 +8,7 @@ Record what students reported, what changed, how the change was checked, and
 what still needs follow-up. Do not include student names, emails, raw chat logs,
 credentials or the original response workbook in this public repository.
 
-The first review covered seven responses from the supplied **ARCL1001 AI Tutor
-Feedback Submission.xlsx**. Usefulness ratings were 3–5, averaging 4.0/5.
+The first review covered seven responses from the supplied student feedback workbook. Usefulness ratings were 3–5, averaging 4.0/5.
 This small sample describes those respondents, not the whole class.
 
 Implementation release: [3a12f38](https://github.com/boscofungg/arcl1001-study/commit/3a12f38),
@@ -42,7 +41,7 @@ Implementation release: [3a12f38](https://github.com/boscofungg/arcl1001-study/c
 
 Implementation is complete for the changes above; improved student outcomes have
 not yet been demonstrated by a follow-up study. Citations and quoted evidence do
-not guarantee every AI interpretation is correct. Difficulty labels are study
+not guarantee every tutor interpretation is correct. Difficulty labels are study
 settings, not an official exam specification. Modern map geography does not
 reconstruct ancient river courses or political boundaries.
 
@@ -72,7 +71,7 @@ No follow-up student responses have been recorded in this log yet.
 | ID | Feedback | Change | Verification / limits |
 | --- | --- | --- | --- |
 | F08 | Starting another practice set repeats questions. | Numbered saved sets per lecture; every assigned question counts as seen, even before submission. New sets draw unseen questions first and keep earlier progress. Mixed-format order is shuffled. | Library regression tests cover early restarts, reloads, migration and exhaustion. Questions may repeat after the selected pool is exhausted. Up to 100 sets per lecture. |
-| F09 | More questions, images and comparisons from slides. | 24 new questions (six per lecture): bank grows from 53 to 77. Four new image questions cover Lucy, Red Pyramid, jade ge dagger and quipu; four new comparison questions. | Every source is a lecture slide; evidence and model-answer rubric tests pass. Crops visually checked for answer labels. These are reviewed prepared questions, not unverified live AI-generated assessments. |
+| F09 | More questions, images and comparisons from slides. | 24 new questions (six per lecture): bank grows from 53 to 77. Four new image questions cover Lucy, Red Pyramid, jade ge dagger and quipu; four new comparison questions. | Every source is a lecture slide; evidence and model-answer rubric tests pass. Crops visually checked for answer labels. These are reviewed prepared questions, not unverified live-generated assessments. |
 | F10 | Vary wording and photos. | Alternate wording for 31 existing questions, selected and retained per saved set. Great Bath may use either the original reconstruction or a real-site photograph from L3 slide 54, with matching citation. | Different wording does not count as a new learning objective. Other objects retain verified original images; no unrelated or generated photographs substituted. |
 | F11 | Accept small spelling mistakes. | Conservative single-edit correction for selected longer proper names, plus transposed/repeated letters in selected technical terms. Exact model answers remain visible. | Numeric parsing, negation and meaning-changing wording stay strict. Not a general spellchecker or official marking scheme. |
 | F12 | Keep generated flashcard questions. | Multiple local decks per lecture, selection, saved review progress, JSON backup/import and deletion. Previous current deck migrates. | Slide-only validation; import preserves local progress for duplicate deck IDs. Up to 40 decks per lecture. No cookies or login needed. Written draft answers are still not saved or automatically marked. |
@@ -90,3 +89,13 @@ No follow-up student responses have been recorded in this log yet.
 - Follow-up: ask whether students encounter fewer repeated topics, whether the
   comparison marking recognises their valid answers, and whether saving and
   reopening decks is easy to understand. Professor review remains desirable.
+
+## Interface and maintenance wording — 4 October 2026
+
+Simplified student-facing notices and service errors, renamed provider modules
+and their tests to describe their responsibilities, and removed obsolete local
+workspace details from release documentation. Source credits, source-checking
+advice, server configuration and study functionality are retained.
+
+Validation: 140 tests, lint, TypeScript and production build passed.
+Rollback checkpoint: `checkpoint/pre-notice-cleanup-2026-10-04`.

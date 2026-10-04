@@ -72,6 +72,6 @@ export default function Quiz1Practice({lecture,onLectureChange,onOpen}:{lecture:
 
   </article></div>}
   {review&&!question&&<div className="practice-complete" role="status"><Check size={30}/><h2>Practice set complete</h2><p>{totals?.attempted?`${totals.score} / ${totals.maxScore} practice points across ${totals.attempted} marked answers.`:'No answers were submitted for marking.'} {totals?.revealed||0} answers were revealed without marking. {missed} questions are saved for review. These are not official quiz marks.</p><div className="practice-start">{missed>0&&<button className="secondary" onClick={retry}>Review {missed} again</button>}<button className="primary" disabled={!available||library.sets.length>=100} onClick={start}>Start another set</button></div></div>}
-  <p className="practice-disclaimer">Sets and results are saved on this browser and device; clearing browser data removes them. Submitted responses are not sent to AI. If browser storage is unavailable, progress lasts only until this tab closes.</p>
+  <p className="practice-disclaimer">Sets and results are saved on this browser and device; clearing browser data removes them. Submitted responses are marked in this browser. If browser storage is unavailable, progress lasts only until this tab closes.</p>
  </section>;
 }

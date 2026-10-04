@@ -18,7 +18,7 @@ Reviewed seven responses in the supplied feedback workbook. Ratings ranged from
 The original feedback workbook is unchanged and no respondent data is published.
 Every new question has slide evidence and a marking rubric. Source matching,
 question selection and grading remain distinct: a valid citation does not by
-itself prove every AI interpretation is correct. Student difficulty preferences
+itself prove every tutor interpretation is correct. Student difficulty preferences
 are not an official quiz specification. The word “Apply” does not mean confirmed
 exam difficulty.
 
