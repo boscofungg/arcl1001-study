@@ -28,3 +28,17 @@ test('saved reading and mixed decks cannot reappear in slides-only review',()=>{
   {...deck,cards:[readingCard,deck.cards[1]]},
  ])assert.equal(parseReview(JSON.stringify(startReview(invalid))),null);
 });
+
+test('retry and missed rounds preserve exact saved model answers through reload',async()=>{
+ const {retryReview}=await import('../lib/flashcard-review.ts');
+ let review=rateCard(rateCard(startReview(deck),'again'),'known');
+ review=parseReview(JSON.stringify(review));
+ const before=JSON.stringify(review.deck);
+ for(const next of [retryReview(review),reviewMissed(review)]){
+  assert.equal(JSON.stringify(next.deck),before);
+  assert.equal(next.deck.id,deck.id);
+  assert.equal(next.position,0);
+  assert.deepEqual(parseReview(JSON.stringify(next)).deck,deck);
+ }
+ assert.deepEqual(retryReview(review).ratings,{});
+});

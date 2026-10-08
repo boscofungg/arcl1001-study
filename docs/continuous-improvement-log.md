@@ -99,3 +99,44 @@ advice, server configuration and study functionality are retained.
 
 Validation: 140 tests, lint, TypeScript and production build passed.
 Rollback checkpoint: `checkpoint/pre-notice-cleanup-2026-10-04`.
+
+## Quiz 2 and testing feedback — 8 October 2026
+
+Quiz 2 date supplied by the project team: **27 October 2026**. Scope: Lecture 4
+Humans and Environment; Lecture 5 Visual Power; Lecture 6 Food Culture / Hong Kong
+Archaeology; Lecture 7 Violence. The official question specification has not been
+supplied, so the existing short-answer, image-identification and map formats are
+revision aids, not a claimed replica of the paper.
+
+| ID | Feedback / need | Implemented response | Limits and next check |
+| --- | --- | --- | --- |
+| F13 | Prepare for Quiz 2. | Default Quiz 2 navigation and tutor source boundary for L4–7; All lectures preserves access to earlier content. Imported all six attachments: 104 L5 slides and five PDFs (60 pages). Two linked web-reading summaries added. | L6–7 slide decks were not supplied or located; their readings are available, while practice and flashcards require lecture slides. Classical archaeology supplementary reading is grouped under L5 provisionally, explicitly labelled in its summary. |
+| F14 | Page arrows feel reversed and pages do not jump correctly. | Explicit large Previous/up and Next/down controls; page input auto-jumps; visible-page number tracks scrolling; pending jumps stay aligned as lazy images load. | Browser checked 55 → 56 → 55, typed jump and scroll updates. Extracted text/Both controls removed. Original pages, citation highlights and linked-reading summaries remain. |
+| F15 | Modes look too similar; too much text and too many controls. | Green reading, amber practice and purple flashcard accents; larger labels and headings; optional saved-deck management collapses. | Colours supplement text labels and icons; both themes and narrow layout reviewed. |
+| F16 | Flashcard retry appears to change the answer. | Explicit Retry same set / Create a different set separation. Retry reuses the saved deck and clears only draft/reveal state. Regression tests check unchanged questions, answers and images. | No answer-regeneration bug was reproduced in the existing retry helpers. Avoid claiming this was a confirmed backend defect. |
+| F17 | Flashcards should match quiz formats and include visuals. | Short-answer prompts tightened; reviewed image/map identification mode added. Cropped question images hide labels; the original cited slide appears after answer reveal. | Only vetted single-source image questions enter identification mode. L5 currently has short-answer cards; original L5 source visuals still appear on reveal. |
+| F18 | Resize and reopen chatbot more easily. | Desktop tutor-width slider remembers its size locally; close/reopen through a floating square widget; mobile overlay retains close/reopen. | No third-party widget or new dependency. |
+| F19 | No follow-up questions. | Three optional follow-up buttons after successful responses: more evidence, interpretation limits, or one recall question. Requests focus the actual retrieved source page. | Suggestions are contextual actions, not newly invented factual claims. |
+| F20 | More slide-based practice and clearer product advantage. | Added 12 L5 questions with model answers and rubrics, bringing the bank to 89. | The product emphasis is course-specific scope, original visuals, checkable citations and repeatable recall. Superior learning outcomes versus other tools have not been demonstrated. |
+
+### Content and verification
+
+- Original files unchanged; source hashes, page counts and extraction metadata
+  are recorded in the source manifest. Scanned L6 seafood reading uses visually
+  checked OCR with real text boxes. Book front matter stays out of study retrieval.
+- Web links are short authored summaries with links to publisher originals;
+  neither is presented as a complete article.
+- Automated coverage includes new content counts/assets, Quiz 2 retrieval
+  boundaries, slide-only practice, stable retries and canonical image-card imports.
+- Existing local flashcard and practice libraries remain compatible.
+- Screenshot references inspired a visual-first reader; arbitrary image-region
+  selection, annotation colours and an image-cropping editor are not implemented.
+- Rollback checkpoint: `checkpoint/pre-quiz2-2026-10-08`.
+
+Release validation: **148 automated tests passed**, ESLint, TypeScript and
+production build passed. Desktop/narrow-screen browser checks covered reader
+jump/scroll direction, tutor resizing and floating controls, live L5 response
+with source-focused follow-ups, flashcard visual reveal and same-answer retry,
+and L5 practice. APIs rejected out-of-scope Quiz 2 and reading-only flashcard
+requests (HTTP 400). Visual review passed after reducing optional controls and
+strengthening dark-theme mode accents.

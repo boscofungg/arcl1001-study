@@ -1,3 +1,4 @@
+import l5Questions from '../content/l5-practice.json' with {type:'json'};
 import varietyQuestions from '../content/practice-variety.json' with {type:'json'};
 import feedbackQuestions from '../content/feedback-practice.json' with {type:'json'};
 import l4Questions from '../content/l4-practice.json' with { type: 'json' };
@@ -25,7 +26,7 @@ function slideEvidence(source: Quiz1Source, evidence = ''): string {
   return sourceExcerpts[`${source.docId}:${source.page}`] ?? evidence.split('Approximate coordinate source:')[0].trim();
 }
 
-export const slideQuestions: Quiz1Question[] = ([...textQuestions, ...visualQuestions, ...l4Questions, ...feedbackQuestions, ...varietyQuestions] as Quiz1Question[])
+export const slideQuestions: Quiz1Question[] = ([...textQuestions, ...visualQuestions, ...l4Questions, ...feedbackQuestions, ...varietyQuestions, ...l5Questions] as Quiz1Question[])
   .filter(question => [question.source, ...(question.additionalSources ?? [])].every(validSlide))
   .map(question => ({
     ...question,

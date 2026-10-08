@@ -1,0 +1,229 @@
+[
+  {
+    "questionId": "l5-text-01",
+    "criteria": [
+      {
+        "id": "point-1",
+        "label": "Hypostyle",
+        "patterns": [
+          "\\bhypostyle\\b"
+        ]
+      }
+    ]
+  },
+  {
+    "questionId": "l5-text-02",
+    "criteria": [
+      {
+        "id": "point-1",
+        "label": "Kuh-i-Rahmat / Mountain of Mercy",
+        "patterns": [
+          "\\bkuh i rahmat\\b",
+          "\\bmountain of mercy\\b"
+        ]
+      }
+    ]
+  },
+  {
+    "questionId": "l5-text-03",
+    "criteria": [
+      {
+        "id": "point-1",
+        "label": "Darius established Persepolis",
+        "patterns": [
+          "\\bdarius\\b.{0,35}\\b(?:establish|found|built|build|creat)",
+          "\\b(?:establish|found|built|build|creat)\\w*.{0,35}\\bdarius\\b"
+        ]
+      },
+      {
+        "id": "point-2",
+        "label": "Alexander destroyed Persepolis",
+        "patterns": [
+          "\\balexander\\b.{0,35}\\b(?:destroy|burn|sack)",
+          "\\b(?:destroy|burn|sack)\\w*.{0,35}\\balexander\\b"
+        ]
+      }
+    ]
+  },
+  {
+    "questionId": "l5-text-04",
+    "criteria": [
+      {
+        "id": "point-1",
+        "label": "Ionian Greeks",
+        "patterns": [
+          "\\b(?:ionian|greeks?)\\b"
+        ]
+      },
+      {
+        "id": "point-2",
+        "label": "Hindush / India",
+        "patterns": [
+          "\\b(?:hindush|india|indians?)\\b"
+        ]
+      },
+      {
+        "id": "point-3",
+        "label": "Babylonians",
+        "patterns": [
+          "\\bbabylon(?:ian)?s?\\b"
+        ]
+      }
+    ],
+    "requiredCount": 2
+  },
+  {
+    "questionId": "l5-text-05",
+    "criteria": [
+      {
+        "id": "point-1",
+        "label": "Entasis",
+        "patterns": [
+          "\\bentasis\\b"
+        ]
+      }
+    ]
+  },
+  {
+    "questionId": "l5-text-06",
+    "criteria": [
+      {
+        "id": "point-1",
+        "label": "Gold",
+        "patterns": [
+          "\\bgold\\b"
+        ]
+      },
+      {
+        "id": "point-2",
+        "label": "Ivory",
+        "patterns": [
+          "\\bivory\\b"
+        ]
+      }
+    ]
+  },
+  {
+    "questionId": "l5-text-07",
+    "criteria": [
+      {
+        "id": "point-1",
+        "label": "Pythia",
+        "patterns": [
+          "\\bpythia\\b"
+        ]
+      }
+    ]
+  },
+  {
+    "questionId": "l5-text-08",
+    "criteria": [
+      {
+        "id": "point-1",
+        "label": "Sacred Way / sacred path",
+        "patterns": [
+          "\\bsacred (?:way|path|road|route)\\b"
+        ]
+      }
+    ]
+  },
+  {
+    "questionId": "l5-text-09",
+    "criteria": [
+      {
+        "id": "point-1",
+        "label": "Carved into the hillside",
+        "patterns": [
+          "\\b(?:carv|cut|built|build)\\w*.{0,45}\\b(?:hill|slope)",
+          "\\b(?:hill|slope)\\w*.{0,45}\\b(?:carv|cut|built|build)"
+        ]
+      },
+      {
+        "id": "point-2",
+        "label": "Local Parnassus limestone",
+        "patterns": [
+          "\\b(?:local|parnassus)\\b.{0,25}\\blimestone\\b"
+        ]
+      }
+    ],
+    "requiredCount": 1
+  },
+  {
+    "questionId": "l5-text-10",
+    "criteria": [
+      {
+        "id": "point-1",
+        "label": "Persian / Iranian control over Egypt",
+        "patterns": [
+          "\\b(?:iran|persia)\\w*.{0,45}\\b(?:own|control|rule|domin|conquer)\\w*.{0,35}\\begypt\\b",
+          "\\begypt\\b.{0,40}\\b(?:own|control|rule|domin|conquer)\\w*.{0,40}\\b(?:iran|persia)",
+          "\\begypt\\b.{0,30}\\bunder\\b.{0,20}\\b(?:iran|persia)"
+        ]
+      }
+    ]
+  },
+  {
+    "questionId": "l5-text-11",
+    "criteria": [
+      {
+        "id": "point-1",
+        "label": "Apādana: regional gift-bearing delegations",
+        "patterns": [
+          "\\b(?:apadana|persepolis)\\b.{0,60}\\b(?:delegat|gift|tribut)",
+          "\\b(?:delegat|gift|tribut)\\w*.{0,60}\\b(?:apadana|persepolis)\\b"
+        ]
+      },
+      {
+        "id": "point-2",
+        "label": "Parthenon: Panathenaic procession",
+        "patterns": [
+          "\\bparthenon\\b.{0,60}\\bpanathenaic\\b",
+          "\\bpanathenaic\\b.{0,60}\\bparthenon\\b"
+        ]
+      }
+    ]
+  },
+  {
+    "questionId": "l5-text-12",
+    "criteria": [
+      {
+        "id": "point-1",
+        "label": "Monumental landscape",
+        "patterns": [
+          "\\bmonumental\\b.{0,20}\\blandscape\\b"
+        ]
+      },
+      {
+        "id": "point-2",
+        "label": "Construction scale",
+        "patterns": [
+          "\\b(?:construction|building|monument)\\w*.{0,25}\\b(?:scale|size|large|huge)\\b",
+          "\\b(?:large|huge|grand)\\b.{0,25}\\b(?:construction|building|monument)"
+        ]
+      },
+      {
+        "id": "point-3",
+        "label": "Wealth",
+        "patterns": [
+          "\\bwealth\\b",
+          "\\brich(?:es|ness)?\\b"
+        ]
+      },
+      {
+        "id": "point-4",
+        "label": "Diplomatic power",
+        "patterns": [
+          "\\bdiploma(?:tic|cy)\\b"
+        ]
+      },
+      {
+        "id": "point-5",
+        "label": "Relation with divinity",
+        "patterns": [
+          "\\b(?:divinity|divine|gods?|goddess|deities|religio\\w*)\\b"
+        ]
+      }
+    ],
+    "requiredCount": 2
+  }
+]

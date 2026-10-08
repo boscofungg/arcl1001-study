@@ -1,3 +1,4 @@
+import l5Questions from '../content/l5-practice.json' with {type:'json'};
 import l4Questions from '../content/l4-practice.json' with {type:'json'};
 import reviewedQuestions from '../content/quiz1-question-bank.json' with { type: 'json' };
 import type { Quiz1Question } from './quiz1-types.ts';
@@ -8,7 +9,7 @@ import type { Flashcard } from './flashcard-types.ts';
 type Document = { id: string; week: number; title: string; kind: string; pages: number; startPage?: number; isSummary?: boolean };
 type Passage = { docId: string; page: number; text: string };
 export type FlashcardDifficulty = 'recall' | 'explain' | 'apply';
-export type FlashcardScope = { week: number; docId?: string; count: 6 | 10; difficulty?: FlashcardDifficulty };
+export type FlashcardScope = { week: number; docId?: string; count: 6 | 10; difficulty?: FlashcardDifficulty; format?: 'short-answer' | 'image-map' };
 export const flashcardDifficultyLabels: Record<FlashcardDifficulty, string> = { recall: 'Recall', explain: 'Explain', apply: 'Apply / discuss' };
 export function flashcardDifficultyPrompt(difficulty: FlashcardDifficulty = 'recall'): string {
   const task = {
@@ -16,18 +17,19 @@ export function flashcardDifficultyPrompt(difficulty: FlashcardDifficulty = 'rec
     explain: 'Ask students to explain a relationship or why an observation matters, only where the cited slide explicitly supports that explanation.',
     apply: 'Ask students to interpret evidence, discuss a limitation, or compare observations within the same cited slide excerpt. Do not invent a scenario or require outside knowledge or facts from another excerpt. If the slide cannot support this level, choose another supplied slide.',
   }[difficulty];
-  return `Difficulty: ${flashcardDifficultyLabels[difficulty]}. ${task} Use open written-answer questions, never multiple choice or fill-in-the-blanks. Every complete model answer must be supported by one cited slide excerpt. Difficulty is a revision choice, not an official quiz standard.`;
+  return `Difficulty: ${flashcardDifficultyLabels[difficulty]}. ${task} Use open written-answer questions, never multiple choice or fill-in-the-blanks. Prefer a direct identification, date, location, named concept, or brief evidence-based comparison; avoid broad essay prompts. Ask one question with at most two closely related parts. Every complete model answer must be supported by one cited slide excerpt. Difficulty is a revision choice, not an official quiz standard.`;
 }
 export type FlashcardExcerpt = Flashcard['source'] & { citeId: string; text: string };
 const normalize = (value: string) => value.normalize('NFKC').replace(/\s+/gu, ' ').trim().toLowerCase();
 
 export function parseFlashcardScope(value: unknown, docs: Document[] = documents): FlashcardScope {
   if (!value || typeof value !== 'object' || Array.isArray(value)) throw new Error('Choose a valid week and card count.');
-  const { week, docId, count, difficulty = 'recall' } = value as Record<string, unknown>;
+  const { week, docId, count, difficulty = 'recall', format } = value as Record<string, unknown>;
   if (typeof week !== 'number' || !Number.isInteger(week) || !docs.some(doc=>doc.kind==='Lecture'&&doc.week===week) || (count !== 6 && count !== 10)) throw new Error('Choose an available lecture and either 6 or 10 cards.');
   if (docId !== undefined && (typeof docId !== 'string' || !docs.some(doc => doc.id === docId && doc.week === week && doc.kind === 'Lecture'))) throw new Error('Choose lecture slides from the selected lecture.');
   if (difficulty !== 'recall' && difficulty !== 'explain' && difficulty !== 'apply') throw new Error('Choose Recall, Explain or Apply / discuss.');
-  return { week, count, difficulty, ...(typeof docId === 'string' ? { docId } : {}) };
+  if (format !== undefined && format !== 'short-answer' && format !== 'image-map') throw new Error('Choose short answers or image / map identification.');
+  return { week, count, difficulty, ...(format ? {format} : {}), ...(typeof docId === 'string' ? { docId } : {}) };
 }
 
 /** Keep excerpts within their original page and sample across the selected documents. */
@@ -89,7 +91,7 @@ export function flashcardTargetCount(excerpts: FlashcardExcerpt[], requested: 6 
 }
 
 /** Reviewed text questions remain useful when generation is unavailable. Never widen scope. */
-export function reviewedFlashcardFallback(scope: FlashcardScope, bank: Quiz1Question[] = [...reviewedQuestions,...l4Questions] as Quiz1Question[], docs: Document[] = documents): Flashcard[] {
+export function reviewedFlashcardFallback(scope: FlashcardScope, bank: Quiz1Question[] = [...reviewedQuestions,...l4Questions,...l5Questions] as Quiz1Question[], docs: Document[] = documents): Flashcard[] {
   parseFlashcardScope(scope, docs);
   const seen = new Set<string>();
   return bank.flatMap(question => {

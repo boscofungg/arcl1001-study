@@ -6,6 +6,8 @@ summaries supplied in content/quiz1-web-readings.json, never scraped copies.
 """
 from pathlib import Path
 import argparse
+import csv
+import io
 import hashlib
 import json
 import re
@@ -29,6 +31,12 @@ SOURCES = [
     ('d106', 'L2-Reading-Principles of Archaeology.pdf.pdf', 2, 'Reading', 'Lecture 2 — Principles of Archaeology', 7),
     ('d110', 'L3-Reading-Principles of Archaeology.pdf', 3, 'Reading', 'Lecture 3 — Principles of Archaeology', 13),
     ('d111', 'HKU/L4-Slides.pptx', 4, 'Lecture', 'Lecture 4 — Interacting with the Environment', 97),
+    ('d114', 'L5-Slides.pptx', 5, 'Lecture', 'Lecture 5 — Visual Power', 104),
+    ('d115', 'L5-Reading-Art and Representation (Renfew  Bahn 2012).pdf', 5, 'Reading', 'Lecture 5 — Art and Representation', 10),
+    ('d116', 'L6-Reading-Ancient Hong Kong Inhabitants Loved Their Seafood (McSpadden 2022).pdf', 6, 'Reading', 'Lecture 6 — Ancient Hong Kong Inhabitants Loved Their Seafood', 2),
+    ('d117', 'L6-Reading-Principles of Archaeology.pdf', 6, 'Reading', 'Lecture 6 — Principles of Archaeology', 13),
+    ('d118', 'L7-Reading-Principles of Archaeology.pdf', 7, 'Reading', 'Lecture 7 — Principles of Archaeology', 19),
+    ('d119', 'L7-Reading-Mediating the Viking (Tosca Etal 2026).pdf', 7, 'Reading', 'Lecture 7 — Mediating the Vikings', 16),
     ('d112', 'Frogley et al. (2025). Trees, terraces and llamas Resilient watershed management and sustainable agriculture the Inca way.pdf', 4, 'Reading', 'Lecture 4 — Trees, Terraces and Llamas', 15),
 ]
 
@@ -97,6 +105,37 @@ def text_blocks(page):
     return result
 
 
+def ocr_text_blocks(page):
+    """Positioned OCR for the supplied image-only seafood reading, reviewed visually."""
+    renderer = shutil.which('tesseract')
+    if not renderer:
+        raise RuntimeError('Tesseract is required for the scanned seafood reading')
+    with tempfile.TemporaryDirectory(prefix='course-ocr-') as tmp:
+        image = (Path(tmp) / 'page.png').resolve()
+        pix = page.get_pixmap(matrix=pymupdf.Matrix(2, 2), colorspace=pymupdf.csRGB, alpha=False)
+        pix.save(image)
+        output = subprocess.run([renderer, str(image), 'stdout', '--psm', '3', 'tsv'], capture_output=True, text=True, check=True).stdout
+    groups = {}
+    for word in csv.DictReader(io.StringIO(output), delimiter='\t'):
+        if word['level'] != '5' or not word['text'].strip() or float(word['conf']) < 0:
+            continue
+        key = (word['block_num'], word['par_num'])
+        groups.setdefault(key, []).append(word)
+    blocks = []
+    for words in groups.values():
+        text = normalize(' '.join(w['text'] for w in words))
+        # These character corrections were checked against both original pages.
+        for old, new in [('Anew study', 'A new study'), ('Astudy published', 'A study published'), ('amore terrestrial', 'a more terrestrial'), ('“] was', '“I was'), ('“Tam used', '“I am used'), ('for modem,', 'for modern,')]:
+            text = text.replace(old, new)
+        x0 = min(int(w['left']) for w in words)
+        y0 = min(int(w['top']) for w in words)
+        x1 = max(int(w['left']) + int(w['width']) for w in words)
+        y1 = max(int(w['top']) + int(w['height']) for w in words)
+        if len(text) >= 25 and not text.startswith(('Source:', 'Copyright ©')):
+            blocks.append({'text': text, 'box': [round(x0 / pix.width, 6), round(y0 / pix.height, 6), round(x1 / pix.width, 6), round(y1 / pix.height, 6)]})
+    return blocks
+
+
 def study_block(item):
     text = item['text']
     if len(text) < 25 or len(re.findall(r'\w+', text)) < 4:
@@ -111,7 +150,7 @@ def main():
     parser.add_argument('--reuse-images', action='store_true', help='Reuse previews only when the source originals have not changed')
     parser.add_argument('--only', nargs='+', help='Rebuild only these source IDs; retain previous imports, checking originals when available')
     args = parser.parse_args()
-    known_ids = {source[0] for source in SOURCES} | {'d107', 'd108', 'd109', 'd113'}
+    known_ids = {source[0] for source in SOURCES} | {'d107', 'd108', 'd109', 'd113', 'd120', 'd121'}
     if args.only and not set(args.only) <= known_ids:
         parser.error('--only contains an unknown source ID')
     previous = {}
@@ -157,8 +196,8 @@ def main():
                     asset = dest / f'page-{number}.webp'
                     if not args.reuse_images or not asset.exists():
                         image.save(asset, 'WEBP', quality=65, method=4)
-                    blocks = text_blocks(page)
-                    front_matter = ident in ('d104', 'd106', 'd110') and number <= 3
+                    blocks = ocr_text_blocks(page) if ident == 'd116' else text_blocks(page)
+                    front_matter = ident in ('d104', 'd106', 'd110', 'd115', 'd117', 'd118') and number <= 3
                     pages.append({'page': number, 'images': [{'src': f'/materials/{ident}/page-{number}.webp', 'width': image.width, 'height': image.height, 'alt': f'{title} — original {"slide" if order else "page"} {number}'}], 'imageOnly': sum(len(b['text']) for b in blocks) < 35, 'textBlocks': blocks, 'frontMatter': front_matter})
                     if not front_matter:
                         for index, block in enumerate(blocks):
@@ -166,9 +205,9 @@ def main():
                                 corpus.append({'id': f'{ident}-p{number}-c{index}', 'docId': ident, 'page': number, 'text': block['text'], 'box': block['box']})
                                 indexed.add(number)
             source_type = 'pptx' if order else 'pdf'
-            documents.append({'id': ident, 'title': title, 'week': week, 'kind': kind, 'pages': len(pages), 'indexedPages': len(indexed), 'filename': filename, 'startPage': 4 if ident in ('d104', 'd106', 'd110') else 1})
+            documents.append({'id': ident, 'title': title, 'week': week, 'kind': kind, 'pages': len(pages), 'indexedPages': len(indexed), 'filename': filename, 'startPage': 4 if ident in ('d104', 'd106', 'd110', 'd115', 'd117', 'd118') else 1})
             visuals[ident] = {'representation': 'page', 'sourceType': source_type, 'filename': filename, 'week': week, 'pages': pages}
-            provenance.append({'id': ident, 'filename': filename, 'week': week, 'sha256': digest(original), 'sourceBytes': original.stat().st_size, 'renderedPages': len(pages), 'sourceSlideOrder': order, 'hiddenSlidesIncluded': bool(order), 'excludedStudyPages': [1, 2, 3] if ident in ('d104', 'd106', 'd110') else []})
+            provenance.append({'id': ident, 'filename': filename, 'week': week, 'sha256': digest(original), 'sourceBytes': original.stat().st_size, 'renderedPages': len(pages), 'sourceSlideOrder': order, 'hiddenSlidesIncluded': bool(order), 'textExtraction': 'Tesseract OCR, visually reviewed' if ident == 'd116' else 'PDF text', 'excludedStudyPages': [1, 2, 3] if ident in ('d104', 'd106', 'd110', 'd115', 'd117', 'd118') else []})
             print(f'{ident}: {len(pages)} pages, {len(indexed)} indexed', flush=True)
     duplicate_l2 = DOWNLOADS / 'L2-Reading-Principles of Archaeology.pdf (1).pdf'
     if duplicate_l2.exists():
@@ -179,8 +218,8 @@ def main():
     readings = json.loads(readings_path.read_text())
     if isinstance(readings, dict):
         readings = readings.get('readings', readings.get('sources', []))
-    if {r['id'] for r in readings} != {'d107', 'd108', 'd109', 'd113'}:
-        raise ValueError('Expected curated web readings d107–d109 and d113')
+    if {r['id'] for r in readings} != {'d107', 'd108', 'd109', 'd113', 'd120', 'd121'}:
+        raise ValueError('Expected the six configured web readings')
     for reading in readings:
         ident, title, week, url = (reading[k] for k in ('id', 'title', 'week', 'url'))
         if args.only and ident not in args.only:
@@ -199,9 +238,9 @@ def main():
         visuals[ident] = {'representation': 'page', 'sourceType': 'web', 'filename': filename, 'week': week, 'pages': [{'page': 1, 'images': [], 'imageOnly': False, 'textBlocks': []}], 'url': url, 'isSummary': True}
         provenance.append({'id': ident, 'url': url, 'week': week, 'isSummary': True, 'summarySha256': hashlib.sha256(summary.encode()).hexdigest(), 'renderedPages': 0})
     assets = [p for ident, *_ in SOURCES for p in (ROOT / 'public/materials' / ident).glob('*.webp')]
-    report = {'documents': len(documents), 'chunks': len(corpus), 'skipped': [], 'excludedFrontMatterPages': sum(len(s.get('excludedStudyPages', [])) for s in provenance), 'limitations': 'Curated Lectures 1–4 and assigned readings. Web readings are original summaries with links, not full articles. Text rectangles reflect extracted PDF text; image-only content requires visual reading. Slide animations are flattened.'}
-    visual_report = {'documents': len(documents), 'pages': sum(len(d['pages']) for d in visuals.values()), 'imageOnlyPages': sum(p['imageOnly'] for d in visuals.values() for p in d['pages']), 'images': len(assets), 'assetBytes': sum(p.stat().st_size for p in assets), 'maximumDimension': 1400, 'quality': 65, 'renderer': 'LibreOffice with hidden slides; PyMuPDF', 'fallbackDocuments': [], 'errors': [], 'limitations': ['Web readings are linked summaries with no page screenshots.', 'Slide animations are flattened; unusual fonts or external media may differ from PowerPoint.', 'Text boxes mark actual extracted text; no fabricated OCR or inferred graphic labels.']}
-    outputs = {'lib/documents.json': documents, 'lib/corpus.json': corpus, 'lib/visuals.json': visuals, 'lib/ingestion-report.json': report, 'lib/visual-ingestion-report.json': visual_report, 'content/quiz1-source-manifest.json': {'scope': 'Lectures 1–4 and assigned readings', 'sources': provenance, 'webReadingsInputSha256': digest(readings_path)}}
+    report = {'documents': len(documents), 'chunks': len(corpus), 'skipped': [], 'excludedFrontMatterPages': sum(len(s.get('excludedStudyPages', [])) for s in provenance), 'limitations': 'Lecture slides 1–5 and assigned readings through Lecture 7; Lecture 6–7 slides have not been supplied. Web readings are original summaries with links, not full articles. Text rectangles reflect extracted PDF text; image-only content requires visual reading. Slide animations are flattened.'}
+    visual_report = {'documents': len(documents), 'pages': sum(len(d['pages']) for d in visuals.values()), 'imageOnlyPages': sum(p['imageOnly'] for d in visuals.values() for p in d['pages']), 'images': len(assets), 'assetBytes': sum(p.stat().st_size for p in assets), 'maximumDimension': 1400, 'quality': 65, 'renderer': 'LibreOffice with hidden slides; PyMuPDF', 'fallbackDocuments': [], 'errors': [], 'limitations': ['Web readings are linked summaries with no page screenshots.', 'Slide animations are flattened; unusual fonts or external media may differ from PowerPoint.', 'Text boxes mark extracted text. The scanned seafood reading uses visually reviewed Tesseract OCR; small chart labels are read from the original image.']}
+    outputs = {'lib/documents.json': documents, 'lib/corpus.json': corpus, 'lib/visuals.json': visuals, 'lib/ingestion-report.json': report, 'lib/visual-ingestion-report.json': visual_report, 'content/quiz1-source-manifest.json': {'scope': 'Lecture slides 1–5 and assigned readings through Lecture 7', 'sources': provenance, 'webReadingsInputSha256': digest(readings_path)}}
     for filename, data in outputs.items():
         target = ROOT / filename
         target.parent.mkdir(parents=True, exist_ok=True)

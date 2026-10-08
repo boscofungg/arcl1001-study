@@ -20,7 +20,7 @@ const subscribe=(listener:()=>void)=>{window.addEventListener('storage',listener
 function snapshot(key:string){try{return temporary.get(key)||localStorage.getItem(key)||'';}catch{return temporary.get(key)||'';}}
 function save(key:string,value:PracticeLibrary){const raw=JSON.stringify(value);try{localStorage.setItem(key,raw);temporary.delete(key);}catch{temporary.set(key,raw);}window.dispatchEvent(new Event('slide-practice'));}
 const empty=()=>'';
-export default function Quiz1Practice({lecture,onLectureChange,onOpen}:{lecture:number;onLectureChange:(lecture:number)=>void;onOpen:(docId:string,page:number,quote?:string)=>void}){
+export default function Quiz1Practice({lecture,allowedLectures,onLectureChange,onOpen}:{lecture:number;allowedLectures?:number[];onLectureChange:(lecture:number)=>void;onOpen:(docId:string,page:number,quote?:string)=>void}){
  const key=`slide-practice-library-v1-L${lecture}`;
  const legacyKey=`quiz1-slide-marked-v2-L${lecture}`;
  const legacy=useSyncExternalStore(subscribe,()=>snapshot(legacyKey),empty);
@@ -29,7 +29,7 @@ export default function Quiz1Practice({lecture,onLectureChange,onOpen}:{lecture:
  const selected=library.sets.find(s=>s.id===library.selected),state=selected?.state,review=state?.review;
  function saveState(value:MarkedSlideReview){save(key,updatePracticeSet(library,value));}
  function retry(){if(!state)return;save(key,addPracticeReview(library,retryMarkedSet(state)));resetFace();setNotice('');}
- const slide=documents.find(doc=>doc.kind==='Lecture'&&doc.week===lecture)!;
+ const slide=documents.find(doc=>doc.kind==='Lecture'&&doc.week===lecture);
  const [kind,setKind]=useState<Quiz1Kind|'mixed'>('mixed'),[count,setCount]=useState<5|10>(5),[draft,setDraft]=useState(''),[notice,setNotice]=useState(''),[imageError,setImageError]=useState('');
  const active=useRef<HTMLDivElement>(null),feedback=useRef<HTMLDivElement>(null);
  const baseQuestion=review?bank.find(q=>q.id===review.queue[review.position]):undefined;
@@ -49,10 +49,11 @@ export default function Quiz1Practice({lecture,onLectureChange,onOpen}:{lecture:
  function submit(mode:'marked'|'revealed'){if(!state||!question||response||imageError===face)return;saveState(recordSlideResponse(state,draft,mode));setNotice('');}
  function next(){if(!state||!response)return;saveState(advanceMarkedSet(state));resetFace();setNotice(mark?.status==='correct'?'Correct answer recorded.':mark?.status==='partial'?'Partial credit recorded; saved for review.':'Saved for review.');}
 
+ if(!slide)return <section className="quiz1-practice"><h1>Lecture {lecture} practice</h1><p>The readings are available in Read &amp; ask. Practice will be added when the lecture slides are supplied.</p><button className="primary" onClick={()=>onLectureChange(4)}>Practise Lecture 4</button></section>;
  return <section className="quiz1-practice" aria-labelledby="quiz1-practice-title">
   <div className="section-kicker">GENERAL PRACTICE · LECTURE SLIDES ONLY</div><h1 id="quiz1-practice-title">General practice</h1>
   <p className="practice-intro">Start with a lecture deck. Practise image identification, map labels and concise answers using only the slides.</p>
-  <div className="slide-practice-tabs" role="group" aria-label="Practice lecture">{documents.filter(doc=>doc.kind==='Lecture').map(doc=><button key={doc.id} aria-pressed={lecture===doc.week} onClick={()=>onLectureChange(doc.week)}><strong>Lecture {doc.week}</strong><span>{doc.pages} slides</span></button>)}</div>
+  <div className="slide-practice-tabs" role="group" aria-label="Practice lecture">{documents.filter(doc=>doc.kind==='Lecture'&&(!allowedLectures||allowedLectures.includes(doc.week))).map(doc=><button key={doc.id} aria-pressed={lecture===doc.week} onClick={()=>onLectureChange(doc.week)}><strong>Lecture {doc.week}</strong><span>{doc.pages} slides</span></button>)}</div>
   <div className="slide-practice-heading"><div><h2>{slide.title}</h2><p>{bank.length} questions from this deck · {slideQuestions.length} slide-based questions in total</p></div><button className="secondary" onClick={()=>onOpen(slide.id,slide.startPage)}><BookOpen size={15}/>View lecture slides</button></div>
   <p className="practice-disclaimer">Practise image, map and short-answer formats; these are study aids, not an official assessment. Readings remain available in the chatbot, but are excluded here and from flashcards. Automatic practice marks recognise key ideas and approximate dates. They are not official exam marks; check the model answer if valid wording was not recognised.</p>
   <form className="practice-controls" onSubmit={event=>{event.preventDefault();start();}}><label>Question type<select aria-label="Question type" value={kind} onChange={e=>setKind(e.target.value as Quiz1Kind|'mixed')}><option value="mixed">Mixed quiz formats</option>{Object.entries(quiz1KindLabels).map(([value,label])=><option key={value} value={value}>{label}</option>)}</select></label><label>Set size<select aria-label="Set size" value={count} onChange={e=>setCount(Number(e.target.value) as 5|10)}><option value={5}>5 questions</option><option value={10}>10 questions</option></select></label><div className="practice-start"><button className="primary" disabled={!available||library.sets.length>=100}>Start {Math.min(count,available)}-question set<ArrowRight size={15}/></button>{missed>0&&state&&<button type="button" className="secondary" onClick={retry}><RotateCcw size={15}/>Review {missed} again</button>}</div><p>{available?`${available} matching questions. New questions first. Earlier sets stay saved; questions repeat once this pool is exhausted.`:'No questions of this type in this deck. Choose another type or lecture.'}</p></form>

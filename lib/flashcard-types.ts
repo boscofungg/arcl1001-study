@@ -3,6 +3,7 @@ export type Flashcard = {
   question: string;
   answer: string;
   evidence: string;
+  practiceQuestionId?: string;
   source: { docId: string; page: number; title: string; label: string };
 };
 

@@ -1,3 +1,4 @@
+import { preparedVisualFlashcards } from '@/lib/flashcard-visuals';
 import {tutorConfigured,requestTutor,readTutorText} from '@/lib/tutor-provider';
 import { randomUUID } from 'node:crypto';
 import { parseFlashcardScope, selectFlashcardExcerpts, validateFlashcards, flashcardSchema, flashcardTargetCount, reviewedFlashcardFallback, flashcardDifficultyPrompt, flashcardDifficultyLabels } from '@/lib/flashcard-generation';
@@ -55,6 +56,11 @@ export async function POST(request: Request) {
     const cards = reviewedFlashcardFallback(scope);
     if (cards.length) return success(cards, `Using ${cards.length} prepared practice cards from your selected lecture slides. These are prepared practice cards.${scope.difficulty !== 'recall' ? ' These are general recall cards; the selected difficulty could not be generated.' : ''}`, true);
     return Response.json({ error: 'A reliable generated set is not available for this selection. Choose all slides for this lecture, or use the ready-made General practice sets.' }, { status });
+  }
+  if (scope.format === 'image-map') {
+    const cards = preparedVisualFlashcards(scope.week, scope.docId, scope.count);
+    if (!cards.length) return Response.json({error:'No reviewed image or map cards are available for these slides yet. Choose short answers.'}, {status:422});
+    return success(cards, `Image / map identification: ${cards.length} reviewed cards from the selected lecture slides.`, true);
   }
   const excerpts = selectFlashcardExcerpts(scope).map(excerpt=>({...excerpt,text:excerpt.text.slice(0,900)}));
   if (!excerpts.length || excerpts.reduce((total, excerpt) => total + excerpt.text.length, 0) < 300) return fallback();

@@ -5,3 +5,20 @@
 .flashcard-library select{display:block;width:100%;max-width:100%;margin-top:8px;padding:10px;border:1px solid var(--line);border-radius:6px;background:var(--paper);color:inherit;font:inherit;text-overflow:ellipsis}
 .flashcard-library-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
 .flashcard-library-actions button:disabled{opacity:.5;cursor:not-allowed}
+
+.flashcard-study{--green:#63508e;--fc-surface:#f7f3ff;--fc-accent:#63508e}
+[data-theme="dark"] .flashcard-study{--green:#c4aff2;--fc-surface:#292437;--fc-accent:#c4aff2}
+.flashcard-study .section-kicker{color:var(--fc-accent);font-weight:700}
+.flashcard-study .recall-card{border-top:5px solid var(--fc-accent)}
+.flashcard-study .recall-card>h2{font-size:clamp(1.35rem,2.2vw,1.8rem);font-weight:600}
+.flashcard-study .flashcard-generator label,.flashcard-study .flashcard-generator select{font-size:.9rem}
+.flashcard-study .flashcard-generator>p,.flashcard-study .flashcard-save-note,.flashcard-study .recall-rating>p{font-size:.85rem}
+.flashcard-study .flashcard-generator>label{margin-bottom:14px}
+.flashcard-study .primary-button,.flashcard-study .recall-known{background:#63508e;color:white}
+.flashcard-question-image{display:block;max-width:100%;height:auto;max-height:420px;object-fit:contain;margin:20px auto;border-radius:8px;background:white}
+.flashcard-original-slide{margin:20px 0;padding:12px;background:var(--paper);border:1px solid var(--line);border-radius:10px}
+.flashcard-original-slide figcaption{font-size:.85rem;font-weight:600;margin-bottom:12px;color:var(--ink)}
+.flashcard-original-slide img{display:block;width:100%;height:auto;border-radius:4px}
+.flashcard-original-slide p{font-size:.85rem;line-height:1.6}
+
+.flashcard-library>summary{font-size:16px;font-weight:650;cursor:pointer;padding:4px 0}.flashcard-library:not([open]){padding:16px 20px}.flashcard-library[open]>summary{margin-bottom:16px}

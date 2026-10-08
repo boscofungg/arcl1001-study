@@ -19,14 +19,14 @@ const searchable: Passage[] = [
   ...[...lecturePages.values()].map(chunks => ({id: `${chunks[0].docId}-p${chunks[0].page}-visual`, docId: chunks[0].docId, page: chunks[0].page, text: mergePageText(chunks), box: null})),
 ];
 const stop = new Set('a an the and or of for to in on is are was were be been with from by this that it as at what how why when where which who explain describe compare about can could would should me you i my we our course content please give tell some more does do did than between their they them into also using use ask practice question questions knowledge test quiz help understand summarize summary remember revision review study'.split(' '));
-export function retrieve(query: string, week = 0, docId?: string, count = 7): Source[] {
+export function retrieve(query: string, week = 0, docId?: string, count = 7, allowedWeeks?: readonly number[]): Source[] {
   const terms = [...new Set(query.normalize('NFD').replace(/\p{M}/gu,'').toLowerCase().match(/[\p{L}\p{N}]{3,}/gu) || [])].filter(t => !stop.has(t)).slice(0,24);
   if (!terms.length) return [];
   const aliases: Record<string,string[]> = {hierarchy:['hierarchy','hierarchies','stratification','inequality'],urbanization:['urbanization','urbanisation','urbanism','urban','city','cities','uruk'],city:['city','cities','urban'],cities:['city','cities','urban']};
   const groups=terms.map(t=>aliases[t]||[t]);
   const candidates=searchable.flatMap(chunk=>{
     const doc=docs.get(chunk.docId)!;
-    if((week&&doc.week!==week)||(docId&&doc.id!==docId))return [];
+    if((allowedWeeks&&!allowedWeeks.includes(doc.week))||(week&&doc.week!==week)||(docId&&doc.id!==docId))return [];
     if(/add locator map|quiz.*cover|quiz instructions|alternative table|to be added/i.test(chunk.text))return [];
     const words=chunk.text.replace(/https?:\/\/\S+/gi,'').normalize('NFD').replace(/\p{M}/gu,'').toLowerCase().match(/[\p{L}\p{N}]+/gu)||[];
     const counts=groups.map(group=>words.filter(w=>group.includes(w)).length);

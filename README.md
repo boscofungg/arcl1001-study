@@ -1,13 +1,13 @@
 # Stratum (beta) — ARCL1001
 
-Public study workspace for selected Lectures 1–4: a scrolling course reader,
+Public study workspace for Lecture slides 1–5 and assigned readings through Lecture 7: a scrolling course reader,
 source-grounded streaming tutor, generated flashcards and unified General practice.
 The shared browser theme preference supports light and dark mode.
 
 ## General practice and flashcards
 
 Choose a Lecture 1, 2, 3 or 4 slide deck in the practice navigation. Practice has
-77 slide-supported image-identification, map-labelling and concise-answer
+89 slide-supported image-identification, map-labelling and concise-answer
 questions; MCQs have been removed to follow the announced quiz formats.
 Each suggested answer links only to its original lecture slide(s). Multi-part answers receive criterion-based automatic practice marking and
 partial credit. Common paraphrases and explicitly authored numerical tolerances
@@ -91,7 +91,7 @@ Checkpoint before migration: `checkpoint/pre-hku-claude-2026-09-26`.
 ## Student feedback update
 
 See `docs/student-feedback-changes-2026-09-26.md` for the concise change note.
-The active practice bank has 77 slide-based questions. New sets prioritize
+The active practice bank has 89 slide-based questions. New sets prioritize
 questions not yet assigned across sessions. Flashcards offer Recall, Explain
 and Apply/discuss levels plus an optional written answer before model reveal.
 Citations show matched source passages; regional China maps have geographic
@@ -102,3 +102,11 @@ Checkpoint: `checkpoint/pre-student-feedback-2026-09-26`.
 
 Numbered practice sets preserve earlier progress. Flashcards support multiple saved
 decks per lecture and downloadable/importable backups. Storage is device-local.
+
+## Quiz 2 update (8 October 2026)
+
+Quiz 2 (27 October) opens with Lecture 4–7 scope. Lecture 5 slides and the
+new L5–7 readings are available; L6–7 slides are still required for their
+practice and flashcards. See the continuous improvement log for the complete
+feedback mapping and remaining limitations. The reader shows original pages,
+flashcard retry retains saved answers, and a desktop slider adjusts tutor width.

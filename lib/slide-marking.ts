@@ -1,3 +1,4 @@
+import l5Rubrics from '../content/l5-rubrics.json' with {type:'json'};
 import varietyRubrics from '../content/practice-variety-rubrics.json' with {type:'json'};
 import feedbackRubrics from '../content/feedback-rubrics.json' with {type:'json'};
 import l4Rubrics from '../content/l4-rubrics.json' with {type:'json'};
@@ -37,7 +38,7 @@ const visualRubrics:SlideRubric[]=[
  {questionId:'visual-017',criteria:[name('\\buruk\\b','\\bwarka\\b'),location('\\bsumer(?:ia|ian)?\\b','\\bsouthern mesopotamia\\b')]},
  {questionId:'visual-018',criteria:[name('\\bgiza\\b','\\bgizeh\\b'),location('\\begypt(?:ian)?\\b','\\b(?:lower )?nile valley\\b')]},
 ];
-export const slideRubrics:SlideRubric[]=[...shortRubrics,...visualRubrics,...l4Rubrics,...varietyRubrics,...feedbackRubrics];
+export const slideRubrics:SlideRubric[]=[...shortRubrics,...visualRubrics,...l4Rubrics,...l5Rubrics,...varietyRubrics,...feedbackRubrics];
 const normalize=(value:string)=>value.normalize('NFKD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/['’]/g,'').replace(/[^a-z0-9\s]/g,' ').replace(/\s+/g,' ').trim();
 function isNegated(text:string,start:number,length:number,allowWithin=false){
  const before=text.slice(0,start).split(/\s+/).slice(-4).join(' ');
