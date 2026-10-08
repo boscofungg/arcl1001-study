@@ -4,6 +4,7 @@ import Image from 'next/image';
 import type { VisualPage } from '@/lib/media-types';
 import { visualFlashcardPool, visualFlashcardQuestion } from '@/lib/flashcard-visuals';
 import { ArrowRight, BookOpen, Check, RotateCcw, Sparkles } from 'lucide-react';
+import StudyDownload from './study-download';
 import documents from '@/lib/documents.json';
 import type { FlashcardDifficulty } from '@/lib/flashcard-generation';
 import type { FlashcardDeck } from '@/lib/flashcard-types';
@@ -112,6 +113,7 @@ export default function FlashcardStudy({week,topic,onOpen}:{week:number;topic:st
     {warning&&<p className="flashcard-status" role="status">{warning}</p>}
     {raw&&!parseLibrary(raw,week)&&<p className="flashcard-error">The stored library could not be read. Import a valid backup or generate a new set.</p>}
     {!review&&!busy&&materials.length>0&&<div className="flashcard-empty"><BookOpen size={28}/><h2>Start with {topic.toLowerCase()}</h2><p>Generate a small set, answer from memory, then check the evidence. Each card focuses on one idea.</p><ol><li>Try to recall it</li><li>Reveal and check</li><li>Mark it for another pass</li></ol></div>}
+    {review&&<StudyDownload title={review.deck.title} filename={`lecture-${week}-flashcards-${review.deck.id.replace(/[^a-zA-Z0-9-]/g,'').slice(0,40)}`} items={review.deck.cards.map(card=>({question:card.question,answer:card.answer,sources:[card.source],image:visualFlashcardQuestion(card)?.image}))}/>}
     {review&&<div className="flashcard-current-set" ref={reviewAnchor}>
       <div className="flashcard-set-heading"><div><span className="eyebrow">YOUR CURRENT SET</span><h2>{review.deck.title}</h2></div><span>{review.deck.cards.length} cards</span></div>
       <div className="flashcard-progress" role="progressbar" aria-label="Cards reviewed this round" aria-valuemin={0} aria-valuemax={review.queue.length} aria-valuenow={review.position}><span style={{width:`${review.position/review.queue.length*100}%`}}/></div>

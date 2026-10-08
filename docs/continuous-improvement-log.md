@@ -140,3 +140,26 @@ with source-focused follow-ups, flashcard visual reveal and same-answer retry,
 and L5 practice. APIs rejected out-of-scope Quiz 2 and reading-only flashcard
 requests (HTTP 400). Visual review passed after reducing optional controls and
 strengthening dark-theme mode accents.
+
+## Offline question and flashcard downloads — 8 October 2026
+
+Students can download the selected practice set or saved flashcard deck as a
+self-contained HTML study sheet, with embedded question images and a separate
+model-answer/source section. An option exports questions only. The browser’s
+Print command can print the sheet or save it as PDF. CSV is also available for
+spreadsheet use; image links in CSV require a connection. The original flashcard
+JSON backup/import remains for restoring review progress.
+
+Practice exports preserve the selected wording and image variants. Downloads
+exclude students’ written responses and scores. Full course-slide originals
+are linked from the answer key rather than copied into every export. Export
+text is HTML-escaped and CSV formulas are neutralized. Image download failures
+are shown rather than silently producing an incomplete visual question sheet.
+
+Rollback checkpoint: `checkpoint/pre-study-downloads-2026-10-08`.
+
+Validation: 151 automated tests, lint, TypeScript and production build passed.
+Browser checks confirmed practice HTML/CSV and questions-only flashcard files
+reach the prepared state, including images. A persistent Save file link handles
+blocked automatic downloads. The in-app browser automation did not report a
+completed download event, so that browser's final disk-save step was not verified.
