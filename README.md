@@ -110,3 +110,13 @@ new L5–7 readings are available; L6–7 slides are still required for their
 practice and flashcards. See the continuous improvement log for the complete
 feedback mapping and remaining limitations. The reader shows original pages,
 flashcard retry retains saved answers, and a desktop slider adjusts tutor width.
+
+## Full mock papers (17 October 2026)
+
+General practice now includes **Mock paper · Quiz 1 format**, covering L1–3
+using the supplied six-task structure. It combines 2-of-3 image selection,
+three-sentence answers, map placement, BCE/CE calculations and a seven-sentence
+discussion. Submit to reveal model answers and checklists. Written responses
+and maps are self-reviewed; only chronology has automatic correctness checks.
+Numbered papers and drafts stay local. Print the current view or save as PDF
+through the browser. Quick practice, flashcards and their downloads remain.

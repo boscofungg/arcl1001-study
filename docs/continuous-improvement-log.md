@@ -163,3 +163,59 @@ Browser checks confirmed practice HTML/CSV and questions-only flashcard files
 reach the prepared state, including images. A persistent Save file link handles
 blocked automatic downloads. The in-app browser automation did not report a
 completed download event, so that browser's final disk-save step was not verified.
+
+## Actual Quiz 1 format and full-paper revision — 17 October 2026
+
+### Evidence and interpretation
+
+The supplied two-page Quiz 1 paper contains six tasks: choose two of three images
+(period, site, modern location, ancient culture); a three-sentence concept/method
+answer; mark and label three geographic features; two BCE/CE chronology pairs;
+a three-sentence significance answer; and a seven-sentence discussion with
+specific class examples. The PDF contains the outline map but not the three
+identification images. It supplies no duration, mark allocation or answer key.
+
+The updated feedback workbook contains **11 responses total**, including earlier
+submissions, with ten usefulness ratings averaging **3.9/5**. This is not quiz
+performance data. Peter's report of disappointing results motivates the update,
+but neither attachment establishes the cause of those results or proves that
+these changes will improve grades. No respondent information or raw workbook
+was committed.
+
+### Changes linked to feedback
+
+| ID | Feedback / gap | Response | Boundary |
+| --- | --- | --- | --- |
+| F21 | Single images did not resemble quiz image choice. | A simultaneous three-image panel; students choose exactly two and answer period, site, modern location and culture separately. Six verified slide-image candidates rotate. | Uses supplied lecture images, not a claim to reproduce the quiz's missing projected images. |
+| F22 | Practice format too narrow; written answers and discussion needed. | New Mock paper tab inside General practice, with six sections in the actual order, full written answers, three-/seven-sentence guides and four variants each for concept, significance and discussion. | L1–3 revision based on Quiz 1; not a prediction of Quiz 2. Quick practice and flashcards remain available. |
+| F23 | Need broader questions and more variations rather than repetition. | New numbered papers select different images and prompts before reuse; dates vary; map target sets alternate. Papers persist locally and retry preserves exact questions. | Finite curated content, not unlimited novel questions. Up to 30 saved papers; browser data clearing removes them. |
+| F24 | Map task did not match marking locations. | Use the original blank outline map with labelled click/tap markers and keyboard position controls; reveal approximate model locations and explanations after submission. | Regions/rivers are not single points. No invented distance-based grade; low-resolution/cropped original map documented. |
+| F25 | Chronology absent from current practice. | Two pairs per paper: same-era BCE and across BCE/CE, recent-year selection and interval calculation with automatic checks. | Historical elapsed years exclude year zero. Across-era simple addition is also accepted for practice because the official course convention was not supplied; difference explicitly explained. |
+| F26 | Need to practise complete attempts, not immediate answer reveal. | Whole-paper submission unlocks model answers, evidence checklists and source links. Drafts and submitted attempts stay in the browser; print current view or save via browser PDF. | Written answers and map work are self-reviewed, not automatically or officially graded. Sentence count is an approximate guide. |
+
+Earlier fixes continue to address citations, regional map details, differing
+flashcard difficulty preferences, mode colours and tutor resizing. These were
+not counted as new fixes. This release prioritizes the newly evidenced mismatch
+between actual assessment tasks and isolated practice cards.
+
+### Validation and follow-up
+
+Automated tests cover paper structure, immediate image/prompt variation,
+persistence/corruption handling, exact BCE/CE calculations, source slide evidence,
+model answer sentence limits and map bounds. Browser checks cover the three-image
+selection limit, hidden answers, draft reload, submission, chronology feedback
+and creation of another saved paper. Print styles preserve written text without
+textarea clipping; native PDF export remains browser-dependent.
+
+Ask Peter to verify the model checklists and BCE/CE convention, and supply the
+original projected image choices if exact-paper review is wanted. For the next
+pilot, record whether students can give all four identification fields, write
+concise evidence-based explanations, locate regions and handle BCE/CE dates.
+These task-specific observations will be more useful than satisfaction alone.
+
+Rollback checkpoint: `checkpoint/pre-mock-paper-2026-10-17`.
+
+Release checks: **157 automated tests passed**, lint, TypeScript and production
+build passed. Desktop and narrow-screen review checked readable image panels,
+map controls and no answer leakage before submission. The native print/PDF
+save dialog was not exercised in the automated browser checks.

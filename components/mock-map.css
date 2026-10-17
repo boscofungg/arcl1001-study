@@ -1,0 +1,23 @@
+.mock-map { margin-block: 1rem; }
+.mock-map-targets { display: flex; gap: .5rem; flex-wrap: wrap; margin-block: .8rem; }
+.mock-map button { font: inherit; }
+.mock-map-targets button, .mock-map-position button { padding: .6rem .8rem; border: 1px solid currentColor; border-radius: .6rem; background: transparent; color: inherit; min-height: 44px; cursor: pointer; }
+.mock-map-targets button[aria-pressed="true"] { background: #285b69; color: white; border-color: #285b69; }
+.mock-map button:focus-visible, .mock-map input:focus-visible { outline: 3px solid #ca781c; outline-offset: 3px; }
+.mock-map-canvas { position: relative; margin: 1.2rem .75rem; }
+.mock-map-surface { display: block; padding: 0; width: 100%; border: 0; background: white; outline: 1px solid #687b80; cursor: crosshair; }
+.mock-map-surface:disabled { opacity: 1; cursor: default; }
+.mock-map-surface img { display: block; width: 100%; height: auto; user-select: none; }
+.mock-map-pin { position: absolute; transform: translate(-50%, -50%); width: 1.6rem; height: 1.6rem; display: grid; place-items: center; font: bold .8rem/1 system-ui; pointer-events: none; box-sizing: border-box; }
+.mock-map-answer { background: #174f70; color: white; border: 2px solid white; border-radius: 50%; z-index: 2; }
+.mock-map-model { background: #fff6da; color: #563600; border: 3px solid #b26c00; width: 2.1rem; height: 2.1rem; z-index: 1; }
+.mock-map-position { display: flex; flex-wrap: wrap; gap: 1rem; padding: .8rem; border: 1px solid #849398; border-radius: .6rem; }
+.mock-map-position label { display: grid; gap: .4rem; flex: 1 1 180px; }
+.mock-map-position input { width: 100%; min-height: 32px; accent-color: #285b69; }
+.mock-map-status { font-size: .9rem; }
+.mock-map-feedback { border-left: 3px solid #b26c00; padding-left: 1rem; }
+.mock-map-feedback li { margin-bottom: .8rem; }
+.mock-map-feedback small { display: block; margin-top: .3rem; opacity: .8; }
+@media print { .mock-map-targets, .mock-map-position, .mock-map-status { display: none; } }
+
+.mock-map-print-labels{display:none}@media print{.mock-map-print-labels{display:block}}

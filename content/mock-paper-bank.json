@@ -1,0 +1,616 @@
+{
+  "images": [
+    {
+      "id": "mock-image-004",
+      "question": "Identify the pictured evidence by giving its period or approximate date, archaeological site, present-day location, and culture.",
+      "answer": "Period: approximately 3000 BCE. Site: Uruk (Warka), Inanna Temple. Modern location: Iraq. Culture: Sumerian (Uruk).",
+      "checklist": [
+        "Approximate date: 3000 BCE",
+        "Uruk/Warka, Inanna Temple",
+        "Present-day Iraq",
+        "Sumerian/Uruk culture"
+      ],
+      "sources": [
+        {
+          "docId": "d102",
+          "page": 45,
+          "title": "L2-Slides.pptx",
+          "label": "Slide 45",
+          "evidence": "Production and Specialization | Warka Vase:\nHierarchy | King/attendants making\noffering to the goddess | Naked workers\n(servants/slaves?) carrying\nagriculture producs | Agriculture and livestock | found in ritual deposit of Inanna Temple,\nwith 2 sheep heads | VERY IMPORTANT | Alabaster, 1m, 270kg\nca 3000 BCE | Wikipedia"
+        },
+        {
+          "docId": "d102",
+          "page": 33,
+          "title": "L2-Slides.pptx",
+          "label": "Slide 33",
+          "evidence": "First City: Uruk (or Warka) | Name of the culture | Sumerian City-State | independent, sovereign entity | autonomous city and surroundings (villages\n/agriculture) | Mercadal Trudy, PhD, 2019 | smarthistory.org"
+        },
+        {
+          "docId": "d102",
+          "page": 13,
+          "title": "L2-Slides.pptx",
+          "label": "Slide 13",
+          "evidence": "land between rivers​ | Region 1:\nMesopotamia | Modern day Euphrates (Iraq) | Wikipedia"
+        }
+      ],
+      "image": {
+        "src": "/quiz1/q-004.webp",
+        "width": 244,
+        "height": 574,
+        "alt": "Course image for identification practice"
+      }
+    },
+    {
+      "id": "mock-image-005",
+      "question": "Identify the pictured evidence by giving its period or approximate date, archaeological site, present-day location, and culture.",
+      "answer": "Period: approximately 3300–3100 BCE. Site: Uruk. Modern location: Iraq. Culture: Sumerian (Uruk).",
+      "checklist": [
+        "Approximate date: 3300–3100 BCE",
+        "Uruk",
+        "Present-day Iraq",
+        "Sumerian/Uruk culture"
+      ],
+      "sources": [
+        {
+          "docId": "d102",
+          "page": 48,
+          "title": "L2-Slides.pptx",
+          "label": "Slide 48",
+          "evidence": "Production and Specialization | Uruk | Civic Production | ca. 3300–3100 BCE | Beveled Rim Bowl​ | MET Museum​ | Purpose? | Mass produced\nUniform size | https://earlyneareasterncities.wordpress.com/material-culture-studies/bevel-rimmed-bowls/"
+        },
+        {
+          "docId": "d102",
+          "page": 33,
+          "title": "L2-Slides.pptx",
+          "label": "Slide 33",
+          "evidence": "First City: Uruk (or Warka) | Name of the culture | Sumerian City-State | independent, sovereign entity | autonomous city and surroundings (villages\n/agriculture) | Mercadal Trudy, PhD, 2019 | smarthistory.org"
+        },
+        {
+          "docId": "d102",
+          "page": 13,
+          "title": "L2-Slides.pptx",
+          "label": "Slide 13",
+          "evidence": "land between rivers​ | Region 1:\nMesopotamia | Modern day Euphrates (Iraq) | Wikipedia"
+        }
+      ],
+      "image": {
+        "src": "/quiz1/q-005.webp",
+        "width": 384,
+        "height": 288,
+        "alt": "Course image for identification practice"
+      }
+    },
+    {
+      "id": "mock-image-008",
+      "question": "Identify the pictured evidence by giving its period or approximate date, archaeological site, present-day location, and culture.",
+      "answer": "Period: approximately 1950 BCE, within the Mature Harappan period. Site: Mohenjo-daro. Modern location: Sindh, Pakistan. Culture: Indus/Harappan.",
+      "checklist": [
+        "Approximate object date: 1950 BCE",
+        "Mohenjo-daro",
+        "Sindh, Pakistan",
+        "Indus/Harappan culture"
+      ],
+      "sources": [
+        {
+          "docId": "d103",
+          "page": 25,
+          "title": "L3-Slides.pptx",
+          "label": "Slide 25",
+          "evidence": "The ory and Methods | How was society organized? | • Egalitarian society?\n• Complex state?\n• Neither? | Priest King Sculpture\nMohenjo-Daro | Ca 1950 BCE | Priest | Priest"
+        },
+        {
+          "docId": "d103",
+          "page": 45,
+          "title": "L3-Slides.pptx",
+          "label": "Slide 45",
+          "evidence": "Indus Valley: Mohenjo-daro | Sindh, Pakistan"
+        },
+        {
+          "docId": "d103",
+          "page": 20,
+          "title": "L3-Slides.pptx",
+          "label": "Slide 20",
+          "evidence": "Indus Valley | Mature Harappan Period | (c.2600 -1900 BCE)"
+        }
+      ],
+      "image": {
+        "src": "/quiz1/q-008.webp",
+        "width": 369,
+        "height": 530,
+        "alt": "Course image for identification practice"
+      }
+    },
+    {
+      "id": "mock-image-009",
+      "question": "Identify the pictured evidence by giving its period or approximate date, archaeological site, present-day location, and culture.",
+      "answer": "Period: Mature Harappan, approximately 2600–1900 BCE. Site: Mohenjo-daro (Great Bath; reconstruction shown). Modern location: Sindh, Pakistan. Culture: Indus/Harappan.",
+      "checklist": [
+        "Mature Harappan date range: 2600–1900 BCE",
+        "Mohenjo-daro / Great Bath",
+        "Sindh, Pakistan",
+        "Indus/Harappan culture"
+      ],
+      "sources": [
+        {
+          "docId": "d103",
+          "page": 55,
+          "title": "L3-Slides.pptx",
+          "label": "Slide 55",
+          "evidence": "Indus Valley: Mohenjo-daro\nCity Planning: Monuments | Great Bath | Large public water tank\nMaybe ritual purposes? | Function? Accessibility?"
+        },
+        {
+          "docId": "d103",
+          "page": 45,
+          "title": "L3-Slides.pptx",
+          "label": "Slide 45",
+          "evidence": "Indus Valley: Mohenjo-daro | Sindh, Pakistan"
+        },
+        {
+          "docId": "d103",
+          "page": 20,
+          "title": "L3-Slides.pptx",
+          "label": "Slide 20",
+          "evidence": "Indus Valley | Mature Harappan Period | (c.2600 -1900 BCE)"
+        }
+      ],
+      "image": {
+        "src": "/quiz1/q-009.webp",
+        "width": 588,
+        "height": 298,
+        "alt": "Course image for identification practice"
+      }
+    },
+    {
+      "id": "mock-image-010",
+      "question": "Identify the pictured evidence by giving its period or approximate date, archaeological site, present-day location, and culture.",
+      "answer": "Period: late Shang, approximately 1200 BCE. Site: Fu Hao’s tomb, Yinxu. Modern location: Anyang, Henan, China. Culture: Shang.",
+      "checklist": [
+        "Approximate date: 1200 BCE / late Shang",
+        "Fu Hao’s tomb at Yinxu",
+        "Anyang, Henan, China",
+        "Shang culture"
+      ],
+      "sources": [
+        {
+          "docId": "d103",
+          "page": 101,
+          "title": "L3-Slides.pptx",
+          "label": "Slide 101",
+          "evidence": "Bronze yue axe | Fu Hao’s Tomb\nBurial\nCentral Plain: Yinxu | Bronze yue | ding | owl | 468 bronze objects:\n- 210 ritual vessels\n- 134 weapons | Bird Shape Zun | Bronze ding with her posthumous title, “Si\nMu Xin” 司母辛 inscribed"
+        },
+        {
+          "docId": "d103",
+          "page": 96,
+          "title": "L3-Slides.pptx",
+          "label": "Slide 96",
+          "evidence": "Who is Fu Hao? | Fu Hao’s Tomb\nBurial | •\nCa 1200 BCE\n•\nconsort of King\nWu Ding\n•\nOwned land\n•\nLeads ancestral\nrituals\n•\nGeneral of\nmilitary\ncampaigns | Fu Hao’s well being at birth"
+        },
+        {
+          "docId": "d103",
+          "page": 92,
+          "title": "L3-Slides.pptx",
+          "label": "Slide 92",
+          "evidence": "Central Plain: Yinxu | Anyang, Henan"
+        },
+        {
+          "docId": "d103",
+          "page": 33,
+          "title": "L3-Slides.pptx",
+          "label": "Slide 33",
+          "evidence": "Childs-Johnson, Elizabeth. \"Late Shang Ritual and Residential Architecture at\nGreat City Shang, Yinxu in Anyang, Henan.\" (2020). Fig 13 | Kuilong Dragon motif\nDing vessel | Ritual architecture\nand human sacrific e | ! CONTAINS HUMAN | Oracle bone script | REMAIN! | Human sa\ncrific e | Anyang Period\n(c.1250 -1046 BCE)"
+        },
+        {
+          "docId": "d103",
+          "page": 123,
+          "title": "L3-Slides.pptx",
+          "label": "Slide 123",
+          "evidence": "Central Plain: Yinxu\nRaw Material | metal quality: elites and non- | elites\nAccess to raw material\nrecycling | Liu, R., Pollard, A.M., Cao, Q. et al. Social hierarchy and the choice of metal recycling at Anyang, the last\ncapital of Bronze Age Shang China. Sci Rep 10, 187 94 (2020). http s://doi.org/10.1038 /s415 98-020-75920-x ,\np.5"
+        }
+      ],
+      "image": {
+        "src": "/quiz1/q-010.webp",
+        "width": 353,
+        "height": 530,
+        "alt": "Course image for identification practice"
+      }
+    },
+    {
+      "id": "mock-image-012",
+      "question": "Identify the pictured evidence by giving its period or approximate date, archaeological site, present-day location, and culture.",
+      "answer": "Period: approximately 2500–2000 BCE. Site: Harappa. Modern location: Punjab, Pakistan. Culture: Indus/Harappan.",
+      "checklist": [
+        "Approximate date: 2500–2000 BCE",
+        "Harappa",
+        "Punjab, Pakistan",
+        "Indus/Harappan culture"
+      ],
+      "sources": [
+        {
+          "docId": "d103",
+          "page": 127,
+          "title": "L3-Slides.pptx",
+          "label": "Slide 127",
+          "evidence": "The ory and Methods | Why study ceramics? | Abundant | Preserves well | Relative dating (eg, Typology) | cultural and economic choices | Perforated Jar\nHarappa\nCirca 2500-2000 BCE,\nTerracotta\nNational Museum, New Delhi | http s://aims.vmis.in/visitor-experience/wp-content/uploads/2021/03/h.818.b-1025x1536.jpg"
+        },
+        {
+          "docId": "d103",
+          "page": 76,
+          "title": "L3-Slides.pptx",
+          "label": "Slide 76",
+          "evidence": "Indus Valley: Harappa | Site 1: Harappa | Punjab, Pakistan"
+        },
+        {
+          "docId": "d103",
+          "page": 20,
+          "title": "L3-Slides.pptx",
+          "label": "Slide 20",
+          "evidence": "Indus Valley | Mature Harappan Period | (c.2600 -1900 BCE)"
+        }
+      ],
+      "image": {
+        "src": "/quiz1/q-012.webp",
+        "width": 290,
+        "height": 615,
+        "alt": "Course image for identification practice"
+      }
+    }
+  ],
+  "concepts": [
+    {
+      "id": "mock-concept-archaeology",
+      "question": "Define archaeology, then describe its main methods and explain why archaeologists use them. Use no more than three sentences.",
+      "answer": "Archaeology is the scientific study of the human past through material remains. Archaeologists find and excavate evidence and analyse objects, architecture and landscapes to investigate past human activity. They preserve and share that evidence so it remains available for study and interpretation.",
+      "checklist": [
+        "A concise definition centred on the human past and material remains",
+        "Finding, excavation and analysis linked to investigating past activity",
+        "Preservation and sharing linked to continued study; no more than three sentences"
+      ],
+      "sources": [
+        {
+          "docId": "d101",
+          "page": 2,
+          "title": "L1-slides.pptx",
+          "label": "Slide 2",
+          "evidence": "Archaeology is the scientific study of | the human past through material | remains. | Landscapes | Objects | Architecture"
+        },
+        {
+          "docId": "d101",
+          "page": 7,
+          "title": "L1-slides.pptx",
+          "label": "Slide 7",
+          "evidence": "Evidence about the past:\n1.Finding\n2.Excavating\n3.Analyzing\n4.Preserving\n5.Sharing"
+        }
+      ]
+    },
+    {
+      "id": "mock-concept-context",
+      "question": "Explain archaeological context using provenience, matrix and association. Use no more than three sentences.",
+      "answer": "Provenience records where an object came from. Matrix refers to the surrounding soil or sediment. Association concerns objects found together, so an object should be interpreted in relation to its setting and companions.",
+      "checklist": [
+        "Provenience: where from",
+        "Matrix: surrounding soil",
+        "Association: objects together"
+      ],
+      "sources": [
+        {
+          "docId": "d102",
+          "page": 47,
+          "title": "L2-Slides.pptx",
+          "label": "Slide 47",
+          "evidence": "Theory and Methods | https://ucl.academia.edu/SimonStevens | Context | Provenience: | where from | Matrix: soil/dirt | Association/ | Assemblage: objects | 47 | Wikipedia | together"
+        }
+      ]
+    },
+    {
+      "id": "mock-concept-stratigraphy",
+      "question": "Explain how stratigraphy provides a relative sequence and give a reason that burial layers require careful interpretation. Use no more than three sentences.",
+      "answer": "The lecture summarizes stratigraphy as “deeper is older,” giving a relative order rather than a calendar date. At Harappa, later burials continuously disturbed earlier deposits. Disturbance must therefore be considered before interpreting the relationship between lower and upper levels.",
+      "checklist": [
+        "Relative order rather than exact date",
+        "Deeper-is-older principle",
+        "Later burial disturbance at Harappa"
+      ],
+      "sources": [
+        {
+          "docId": "d101",
+          "page": 31,
+          "title": "L1-slides.pptx",
+          "label": "Slide 31",
+          "evidence": "Stratigraphy:\nDeeper is Older"
+        },
+        {
+          "docId": "d103",
+          "page": 106,
+          "title": "L3-Slides.pptx",
+          "label": "Slide 106",
+          "evidence": "Indus Valley: | Continuous disturbance from later burials | Harappa | Lower levels | Upper levels | Kenoyer, Jonathan Mark, and R. H. Meadow. \"Excavations at Harappa, 1986–\n2010: New insights on the Indus Civilization and Harappan burial\ntraditions.\" A companion to South Asia in the past (2016): 145-168. | Dales, George F., and Jonathan Mark\nKenoyer. \"Excavation at\nHarappa-1988.\" Pakistan\nArchaeology 24 (1989): 68-176."
+        }
+      ]
+    },
+    {
+      "id": "mock-concept-refitting",
+      "question": "Explain lithic refitting and distinguish it from knapping. Use no more than three sentences.",
+      "answer": "Knapping removes flakes using predictable stone fracture mechanics. Refitting joins fragments back to a core to reconstruct the sequence of breakage. It can also help investigate disturbance after deposition.",
+      "checklist": [
+        "Knapping produces flakes",
+        "Refitting reconstructs breakage",
+        "Post-deposition disturbance"
+      ],
+      "sources": [
+        {
+          "docId": "d101",
+          "page": 45,
+          "title": "L1-slides.pptx",
+          "label": "Slide 45",
+          "evidence": "The ory and Methods | Lithics Analysis | studying human-made stone\ntools / chipped rock artifacts | Predictable fracture mechanics | “Knapping” flakes | https://youtube.com/shorts/O7dBWYVxUAA?si=ao9Kbmnuj9fRPzpQ | Principles of archaeology, Chapter 10\nKelly J. Knudson and T. Douglas Price, 2018"
+        },
+        {
+          "docId": "d101",
+          "page": 47,
+          "title": "L1-slides.pptx",
+          "label": "Slide 47",
+          "evidence": "The ory and Methods | Lithics Analysis | Refitting to core | -\nsequence of breakage | -\nPost-deposition disturbance"
+        }
+      ]
+    }
+  ],
+  "significance": [
+    {
+      "id": "mock-significance-lucy",
+      "question": "Explain the significance of Lucy for understanding early hominin movement. Use no more than three sentences.",
+      "answer": "Lucy is an Australopithecus afarensis specimen from Ethiopia dated to about 3.2 million years ago. The lecture connects her strong legs with bipedalism and her strong upper limbs with movement in trees. These anatomical features show why early hominin locomotion should not be reduced to a simple choice between walking and climbing.",
+      "checklist": [
+        "Australopithecus afarensis, Ethiopia, about 3.2 MYA",
+        "Legs and two-legged walking",
+        "Upper limbs and climbing interpreted together"
+      ],
+      "sources": [
+        {
+          "docId": "d101",
+          "page": 41,
+          "title": "L1-slides.pptx",
+          "label": "Slide 41",
+          "evidence": "(two-legged walking) | Evolution of Bipedalism | Chimpanzees? | Strong legs +\nStrong upper limbs for trees\nSmaller brain | Ruff CB, Burgess ML, Ketcham RA, Kappelman J (2016) Limb Bone Structural Proportions and Locomotor\nBehavior in A.L. 288-1 (\"Lucy\"). PLoS ONE 11(11): e01 6609 5. doi:10.1371 /journal.pone.0166095 | 3.2MYA (1974 Ethiopia) 1.1m tall | Early Hominin: Australopithecus Afarensis 'Lucy' | http s://hub.jhu.edu/2016/11/30/lucy-fossil-tree-climber/"
+        }
+      ]
+    },
+    {
+      "id": "mock-significance-warka",
+      "question": "Explain why the Warka Vase matters for studying social hierarchy at Uruk. Use no more than three sentences.",
+      "answer": "The Warka Vase, dated to about 3000 BCE, was found in a ritual deposit in the Inanna Temple. Its imagery distinguishes agricultural production and workers carrying produce from a king or attendants making an offering to a goddess. Together, imagery and find context support discussion of hierarchy and religion, while the workers’ exact status is presented as uncertain.",
+      "checklist": [
+        "Temple ritual context and approximate date",
+        "Different roles represented in imagery",
+        "Evidence for hierarchy; servants/slaves interpretation remains uncertain"
+      ],
+      "sources": [
+        {
+          "docId": "d102",
+          "page": 45,
+          "title": "L2-Slides.pptx",
+          "label": "Slide 45",
+          "evidence": "Production and Specialization | Warka Vase:\nHierarchy | King/attendants making\noffering to the goddess | Naked workers\n(servants/slaves?) carrying\nagriculture producs | Agriculture and livestock | found in ritual deposit of Inanna Temple,\nwith 2 sheep heads | VERY IMPORTANT | Alabaster, 1m, 270kg\nca 3000 BCE | Wikipedia"
+        }
+      ]
+    },
+    {
+      "id": "mock-significance-bath",
+      "question": "Explain what the Great Bath contributes to interpreting Mohenjo-daro, and identify a limit to the interpretation. Use no more than three sentences.",
+      "answer": "The Great Bath is a large public water tank at Mohenjo-daro. It provides material evidence for examining monuments and collective facilities in the city. Ritual use is a possibility in the lecture, but its function and accessibility remain questions rather than established facts.",
+      "checklist": [
+        "Large public water tank at Mohenjo-daro",
+        "Significance for studying city monuments",
+        "Ritual use/accessibility treated cautiously"
+      ],
+      "sources": [
+        {
+          "docId": "d103",
+          "page": 55,
+          "title": "L3-Slides.pptx",
+          "label": "Slide 55",
+          "evidence": "Indus Valley: Mohenjo-daro\nCity Planning: Monuments | Great Bath | Large public water tank\nMaybe ritual purposes? | Function? Accessibility?"
+        }
+      ]
+    },
+    {
+      "id": "mock-significance-fuhao",
+      "question": "Explain why Fu Hao’s tomb is useful evidence for social hierarchy. Use no more than three sentences.",
+      "answer": "Fu Hao’s tomb at Yinxu dates to about 1200 BCE and belongs to a consort of King Wu Ding who owned land and led rituals and military campaigns. Its 468 bronze objects include 210 ritual vessels and 134 weapons. The rich assemblage can be considered alongside her recorded roles when interpreting status and power.",
+      "checklist": [
+        "Yinxu, about 1200 BCE",
+        "Specific bronze assemblage evidence",
+        "Connection between material wealth and social/political roles"
+      ],
+      "sources": [
+        {
+          "docId": "d103",
+          "page": 96,
+          "title": "L3-Slides.pptx",
+          "label": "Slide 96",
+          "evidence": "Who is Fu Hao? | Fu Hao’s Tomb\nBurial | •\nCa 1200 BCE\n•\nconsort of King\nWu Ding\n•\nOwned land\n•\nLeads ancestral\nrituals\n•\nGeneral of\nmilitary\ncampaigns | Fu Hao’s well being at birth"
+        },
+        {
+          "docId": "d103",
+          "page": 101,
+          "title": "L3-Slides.pptx",
+          "label": "Slide 101",
+          "evidence": "Bronze yue axe | Fu Hao’s Tomb\nBurial\nCentral Plain: Yinxu | Bronze yue | ding | owl | 468 bronze objects:\n- 210 ritual vessels\n- 134 weapons | Bird Shape Zun | Bronze ding with her posthumous title, “Si\nMu Xin” 司母辛 inscribed"
+        }
+      ]
+    }
+  ],
+  "discussions": [
+    {
+      "id": "mock-discussion-urbanism",
+      "question": "How can material remains help archaeologists identify and compare urban settlements? Discuss Uruk and Mohenjo-daro in no more than seven sentences.",
+      "answer": "Urbanization is the creation of cities by a society that formerly lacked urban settlements. Archaeologists consider settlement size, population density, religion, monumental buildings, production, trade and the hinterland together. At Uruk, Eanna and Kullaba merged into central districts, providing evidence of settlement development. Its mass-produced, uniform bevel-rimmed bowls provide evidence for investigating production. At Mohenjo-daro, drainage connected to households indicates widely available sanitation infrastructure. The Great Bath offers evidence for a public monument, although ritual use and access remain uncertain. Comparing these different kinds of evidence is stronger than identifying a city from size or one impressive building alone.",
+      "checklist": [
+        "Define urbanization",
+        "Use several urban attributes",
+        "Named Uruk evidence and interpretation",
+        "Named Mohenjo-daro evidence and interpretation",
+        "Distinguish evidence from uncertain function"
+      ],
+      "sources": [
+        {
+          "docId": "d102",
+          "page": 30,
+          "title": "L2-Slides.pptx",
+          "label": "Slide 30",
+          "evidence": "Urbanization in Archaeology | The creation of cities by a society that\nformerly lacked urban settlements | Cowgill, 2004 Origins and Development of Urbanism: Archaeological Perspectives​ | What are urban settlements?"
+        },
+        {
+          "docId": "d102",
+          "page": 38,
+          "title": "L2-Slides.pptx",
+          "label": "Slide 38",
+          "evidence": "Theory and Methods | How do Archaeologists interpret a city? | Size\nPopulation\nDensity | Physical Attributes | Fortification | Religion\nCommon Worship | Social Stratification | Political Mobalization | Monumental Architecture and Palace | Economic\nTrade and Import | Specialization and Production | Hinterland | Eurasia at the Dawn of History, Smith, 2016\nOrigins and Development of Urbanism: Archaeological Perspectives, Cowgill, 2004\nThe Ancient City: New Perspectives on Urbanism in the Old and New World, Marcus and Sabloff, 2008"
+        },
+        {
+          "docId": "d102",
+          "page": 37,
+          "title": "L2-Slides.pptx",
+          "label": "Slide 37",
+          "evidence": "Plan of Uruk | Urban Development starts (c.3800-3700 BCE) | two villages (Eanna and Kullaba) merged to central districts | but, goes to 500 BCE | Pittman, Holly.”The First Cities” from Journey to the City, A Companion to the Middle East Galleries at the Penn Museum, 50. University of\nPennsylvania Press, ​University of Pennsylvania Museum of Archaeology and Anthropology. (2019)"
+        },
+        {
+          "docId": "d102",
+          "page": 48,
+          "title": "L2-Slides.pptx",
+          "label": "Slide 48",
+          "evidence": "Production and Specialization | Uruk | Civic Production | ca. 3300–3100 BCE | Beveled Rim Bowl​ | MET Museum​ | Purpose? | Mass produced\nUniform size | https://earlyneareasterncities.wordpress.com/material-culture-studies/bevel-rimmed-bowls/"
+        },
+        {
+          "docId": "d103",
+          "page": 51,
+          "title": "L3-Slides.pptx",
+          "label": "Slide 51",
+          "evidence": "City Planning: Infrastructure\nIndus Valley: Mohenjo-daro | Drainage & Sanitization System | Connected to every households | Public availability of sanitation infrastructure"
+        },
+        {
+          "docId": "d103",
+          "page": 55,
+          "title": "L3-Slides.pptx",
+          "label": "Slide 55",
+          "evidence": "Indus Valley: Mohenjo-daro\nCity Planning: Monuments | Great Bath | Large public water tank\nMaybe ritual purposes? | Function? Accessibility?"
+        }
+      ]
+    },
+    {
+      "id": "mock-discussion-burials",
+      "question": "Compare what Fu Hao’s tomb and the Harappa burials can reveal about social differences. Use material examples and no more than seven sentences.",
+      "answer": "Burial goods and tomb scale are evidence for studying social hierarchy. Fu Hao’s tomb at Yinxu contained 468 bronzes, including ritual vessels and weapons. These finds can be compared with her documented roles in ritual and military leadership when considering status. At Harappa, the lecture warns of continuous disturbance caused by later burials. It also raises the possibility of subtle or hidden social differentiation. Therefore, conspicuous wealth at one site and less obvious differences at another do not by themselves describe every member of either society. Archaeologists must compare material evidence while considering preservation and interpretation.",
+      "checklist": [
+        "Burial goods and scale",
+        "Specific Fu Hao evidence",
+        "Harappa disturbance",
+        "Hidden differentiation and limits of comparison"
+      ],
+      "sources": [
+        {
+          "docId": "d103",
+          "page": 89,
+          "title": "L3-Slides.pptx",
+          "label": "Slide 89",
+          "evidence": "Reading Social Structures from Material Remains | BURIALS | What Factors in Burials inform us about Social\nHierarchy? | Burial Goods, Tomb Scale"
+        },
+        {
+          "docId": "d103",
+          "page": 96,
+          "title": "L3-Slides.pptx",
+          "label": "Slide 96",
+          "evidence": "Who is Fu Hao? | Fu Hao’s Tomb\nBurial | •\nCa 1200 BCE\n•\nconsort of King\nWu Ding\n•\nOwned land\n•\nLeads ancestral\nrituals\n•\nGeneral of\nmilitary\ncampaigns | Fu Hao’s well being at birth"
+        },
+        {
+          "docId": "d103",
+          "page": 101,
+          "title": "L3-Slides.pptx",
+          "label": "Slide 101",
+          "evidence": "Bronze yue axe | Fu Hao’s Tomb\nBurial\nCentral Plain: Yinxu | Bronze yue | ding | owl | 468 bronze objects:\n- 210 ritual vessels\n- 134 weapons | Bird Shape Zun | Bronze ding with her posthumous title, “Si\nMu Xin” 司母辛 inscribed"
+        },
+        {
+          "docId": "d103",
+          "page": 106,
+          "title": "L3-Slides.pptx",
+          "label": "Slide 106",
+          "evidence": "Indus Valley: | Continuous disturbance from later burials | Harappa | Lower levels | Upper levels | Kenoyer, Jonathan Mark, and R. H. Meadow. \"Excavations at Harappa, 1986–\n2010: New insights on the Indus Civilization and Harappan burial\ntraditions.\" A companion to South Asia in the past (2016): 145-168. | Dales, George F., and Jonathan Mark\nKenoyer. \"Excavation at\nHarappa-1988.\" Pakistan\nArchaeology 24 (1989): 68-176."
+        },
+        {
+          "docId": "d103",
+          "page": 112,
+          "title": "L3-Slides.pptx",
+          "label": "Slide 112",
+          "evidence": "Indus Valley: | Harappa | Kenoyer, Jonathan Mark. \"Wealth and socioeconomic hierarchies of the Indus\nValley civilization.\" Order, legitimacy and wealth in early states (2000): 90-112.\nSubtle / hidden social diffe rentiation?"
+        }
+      ]
+    },
+    {
+      "id": "mock-discussion-interpretation",
+      "question": "Why should archaeologists distinguish an object’s conventional name from evidence about its original role? Discuss the “Priest-King” and one other lecture example in no more than seven sentences.",
+      "answer": "The name “Priest-King” does not establish the occupation of the person represented by the Mohenjo-daro sculpture. The lecture explicitly asks whether that society was egalitarian, a complex state, or neither. Similarly, the Great Bath is clearly a large public water tank, but ritual use is presented as a possibility. Its function and accessibility remain open questions. These examples distinguish observable material features from interpretations of political or religious roles. Names and plausible explanations should therefore be tested against evidence rather than treated as proof.",
+      "checklist": [
+        "Priest-King is a conventional interpretation",
+        "Social organization remains open",
+        "Great Bath material description versus possible use",
+        "Explain evidence/interpretation distinction"
+      ],
+      "sources": [
+        {
+          "docId": "d103",
+          "page": 25,
+          "title": "L3-Slides.pptx",
+          "label": "Slide 25",
+          "evidence": "The ory and Methods | How was society organized? | • Egalitarian society?\n• Complex state?\n• Neither? | Priest King Sculpture\nMohenjo-Daro | Ca 1950 BCE | Priest | Priest"
+        },
+        {
+          "docId": "d103",
+          "page": 55,
+          "title": "L3-Slides.pptx",
+          "label": "Slide 55",
+          "evidence": "Indus Valley: Mohenjo-daro\nCity Planning: Monuments | Great Bath | Large public water tank\nMaybe ritual purposes? | Function? Accessibility?"
+        }
+      ]
+    },
+    {
+      "id": "mock-discussion-methods",
+      "question": "Explain how archaeological methods reconstruct past activities while recognizing uncertainty. Use lithic refitting and Harappa as examples, in no more than seven sentences.",
+      "answer": "Archaeology studies the human past through material remains. Lithic refitting joins stone fragments back to a core to investigate the sequence of breakage. It can also reveal disturbance after deposition, so an arrangement of finds is not automatically an untouched record of activity. At Harappa, later burials repeatedly disturbed earlier deposits. This complicates the relative relationship of lower and upper levels suggested by the general stratigraphic principle “deeper is older.” Considering both examples shows why reconstructing activities requires attention to how evidence was produced and subsequently altered.",
+      "checklist": [
+        "Define evidence-based archaeological study",
+        "Refitting reconstructs breakage and disturbance",
+        "Harappa as named disturbed context",
+        "Explain limits of simple stratigraphic inference"
+      ],
+      "sources": [
+        {
+          "docId": "d101",
+          "page": 2,
+          "title": "L1-slides.pptx",
+          "label": "Slide 2",
+          "evidence": "Archaeology is the scientific study of | the human past through material | remains. | Landscapes | Objects | Architecture"
+        },
+        {
+          "docId": "d101",
+          "page": 47,
+          "title": "L1-slides.pptx",
+          "label": "Slide 47",
+          "evidence": "The ory and Methods | Lithics Analysis | Refitting to core | -\nsequence of breakage | -\nPost-deposition disturbance"
+        },
+        {
+          "docId": "d101",
+          "page": 31,
+          "title": "L1-slides.pptx",
+          "label": "Slide 31",
+          "evidence": "Stratigraphy:\nDeeper is Older"
+        },
+        {
+          "docId": "d103",
+          "page": 106,
+          "title": "L3-Slides.pptx",
+          "label": "Slide 106",
+          "evidence": "Indus Valley: | Continuous disturbance from later burials | Harappa | Lower levels | Upper levels | Kenoyer, Jonathan Mark, and R. H. Meadow. \"Excavations at Harappa, 1986–\n2010: New insights on the Indus Civilization and Harappan burial\ntraditions.\" A companion to South Asia in the past (2016): 145-168. | Dales, George F., and Jonathan Mark\nKenoyer. \"Excavation at\nHarappa-1988.\" Pakistan\nArchaeology 24 (1989): 68-176."
+        }
+      ]
+    }
+  ]
+}
