@@ -219,3 +219,27 @@ Release checks: **157 automated tests passed**, lint, TypeScript and production
 build passed. Desktop and narrow-screen review checked readable image panels,
 map controls and no answer leakage before submission. The native print/PDF
 save dialog was not exercised in the automated browser checks.
+
+## Lecture 6 and 7 slide upload — 22 October 2026
+
+Imported the newly supplied **Lecture 6 — Food and Foodways (119 slides)** and
+**Lecture 7 — Violence (123 slides)**. Both decks are available in the course
+reader, Quiz 2 source scope, document-specific chatbot questions and short-answer
+flashcard generation. Original layouts are rendered as page images with text
+coordinates for citations; original attachments are unchanged and hashes are
+recorded in the ingestion manifest. Existing readings remain available.
+
+Prepared General practice questions and reviewed image-identification cards for
+these two lectures are not part of this upload. The practice screen now states
+that clearly rather than suggesting that the slides themselves are unavailable.
+Quiz 1 mock-paper content is unchanged.
+
+Rollback checkpoint: `checkpoint/pre-lecture6-7-2026-10-22`.
+
+Validation: 158 automated tests, lint, TypeScript and production build passed.
+Every new slide has an original-page preview; all 119/123 page counts match the
+PowerPoint presentation order. Searchable corpus blocks cover 87 L6 pages and
+101 L7 pages; other slides remain viewable as images, and short visual labels
+are available to slide retrieval. Representative title and content previews
+were visually checked. Document-scoped retrieval and flashcard excerpt selection
+passed for both lectures.

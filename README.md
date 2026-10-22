@@ -1,6 +1,6 @@
 # Stratum (beta) — ARCL1001
 
-Public study workspace for Lecture slides 1–5 and assigned readings through Lecture 7: a scrolling course reader,
+Public study workspace for Lecture slides 1–7 and assigned readings: a scrolling course reader,
 source-grounded streaming tutor, generated flashcards and unified General practice.
 The shared browser theme preference supports light and dark mode.
 
@@ -120,3 +120,10 @@ discussion. Submit to reveal model answers and checklists. Written responses
 and maps are self-reviewed; only chronology has automatic correctness checks.
 Numbered papers and drafts stay local. Print the current view or save as PDF
 through the browser. Quick practice, flashcards and their downloads remain.
+
+## Lecture 6 and 7 slides (22 October 2026)
+
+Both slide decks are now available in Read & ask, Quiz 2 scope and generated
+short-answer flashcards. L6 has 119 slides; L7 has 123. Prepared questions for
+these decks are still pending. See the continuous improvement log for validation
+and the rollback checkpoint.

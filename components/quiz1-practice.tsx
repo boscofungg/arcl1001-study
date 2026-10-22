@@ -51,6 +51,7 @@ export default function Quiz1Practice({lecture,allowedLectures,onLectureChange,o
  function next(){if(!state||!response)return;saveState(advanceMarkedSet(state));resetFace();setNotice(mark?.status==='correct'?'Correct answer recorded.':mark?.status==='partial'?'Partial credit recorded; saved for review.':'Saved for review.');}
 
  if(!slide)return <section className="quiz1-practice"><h1>Lecture {lecture} practice</h1><p>The readings are available in Read &amp; ask. Practice will be added when the lecture slides are supplied.</p><button className="primary" onClick={()=>onLectureChange(4)}>Practise Lecture 4</button></section>;
+ if(!bank.length)return <section className="quiz1-practice"><h1>Lecture {lecture} practice</h1><p>The lecture slides are available in Read &amp; ask and flashcard generation. Prepared practice questions for this lecture have not been added yet.</p><button className="primary" onClick={()=>onOpen(slide.id,slide.startPage)}>Read lecture slides</button></section>;
  return <section className="quiz1-practice" aria-labelledby="quiz1-practice-title">
   <div className="section-kicker">GENERAL PRACTICE · LECTURE SLIDES ONLY</div><h1 id="quiz1-practice-title">General practice</h1>
   <p className="practice-intro">Start with a lecture deck. Practise image identification, map labels and concise answers using only the slides.</p>

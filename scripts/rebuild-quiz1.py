@@ -38,6 +38,8 @@ SOURCES = [
     ('d118', 'L7-Reading-Principles of Archaeology.pdf', 7, 'Reading', 'Lecture 7 — Principles of Archaeology', 19),
     ('d119', 'L7-Reading-Mediating the Viking (Tosca Etal 2026).pdf', 7, 'Reading', 'Lecture 7 — Mediating the Vikings', 16),
     ('d112', 'Frogley et al. (2025). Trees, terraces and llamas Resilient watershed management and sustainable agriculture the Inca way.pdf', 4, 'Reading', 'Lecture 4 — Trees, Terraces and Llamas', 15),
+    ('d122', 'L6-Slides.pptx', 6, 'Lecture', 'Lecture 6 — Food and Foodways', 119),
+    ('d123', 'L7-Slides.pptx', 7, 'Lecture', 'Lecture 7 — Violence', 123),
 ]
 
 SOURCE_PATHS = {
@@ -238,9 +240,9 @@ def main():
         visuals[ident] = {'representation': 'page', 'sourceType': 'web', 'filename': filename, 'week': week, 'pages': [{'page': 1, 'images': [], 'imageOnly': False, 'textBlocks': []}], 'url': url, 'isSummary': True}
         provenance.append({'id': ident, 'url': url, 'week': week, 'isSummary': True, 'summarySha256': hashlib.sha256(summary.encode()).hexdigest(), 'renderedPages': 0})
     assets = [p for ident, *_ in SOURCES for p in (ROOT / 'public/materials' / ident).glob('*.webp')]
-    report = {'documents': len(documents), 'chunks': len(corpus), 'skipped': [], 'excludedFrontMatterPages': sum(len(s.get('excludedStudyPages', [])) for s in provenance), 'limitations': 'Lecture slides 1–5 and assigned readings through Lecture 7; Lecture 6–7 slides have not been supplied. Web readings are original summaries with links, not full articles. Text rectangles reflect extracted PDF text; image-only content requires visual reading. Slide animations are flattened.'}
+    report = {'documents': len(documents), 'chunks': len(corpus), 'skipped': [], 'excludedFrontMatterPages': sum(len(s.get('excludedStudyPages', [])) for s in provenance), 'limitations': 'Lecture slides 1–7 and assigned readings. Web readings are original summaries with links, not full articles. Text rectangles reflect extracted PDF text; image-only content requires visual reading. Slide animations are flattened.'}
     visual_report = {'documents': len(documents), 'pages': sum(len(d['pages']) for d in visuals.values()), 'imageOnlyPages': sum(p['imageOnly'] for d in visuals.values() for p in d['pages']), 'images': len(assets), 'assetBytes': sum(p.stat().st_size for p in assets), 'maximumDimension': 1400, 'quality': 65, 'renderer': 'LibreOffice with hidden slides; PyMuPDF', 'fallbackDocuments': [], 'errors': [], 'limitations': ['Web readings are linked summaries with no page screenshots.', 'Slide animations are flattened; unusual fonts or external media may differ from PowerPoint.', 'Text boxes mark extracted text. The scanned seafood reading uses visually reviewed Tesseract OCR; small chart labels are read from the original image.']}
-    outputs = {'lib/documents.json': documents, 'lib/corpus.json': corpus, 'lib/visuals.json': visuals, 'lib/ingestion-report.json': report, 'lib/visual-ingestion-report.json': visual_report, 'content/quiz1-source-manifest.json': {'scope': 'Lecture slides 1–5 and assigned readings through Lecture 7', 'sources': provenance, 'webReadingsInputSha256': digest(readings_path)}}
+    outputs = {'lib/documents.json': documents, 'lib/corpus.json': corpus, 'lib/visuals.json': visuals, 'lib/ingestion-report.json': report, 'lib/visual-ingestion-report.json': visual_report, 'content/quiz1-source-manifest.json': {'scope': 'Lecture slides 1–7 and assigned readings', 'sources': provenance, 'webReadingsInputSha256': digest(readings_path)}}
     for filename, data in outputs.items():
         target = ROOT / filename
         target.parent.mkdir(parents=True, exist_ok=True)
