@@ -243,3 +243,41 @@ PowerPoint presentation order. Searchable corpus blocks cover 87 L6 pages and
 are available to slide retrieval. Representative title and content previews
 were visually checked. Document-scoped retrieval and flashcard excerpt selection
 passed for both lectures.
+
+## Quiz 2 mock papers; Quiz 1 temporarily suspended — 24 October 2026
+
+Replaced the active mock-paper interface with **Quiz 2 mock papers covering
+Lectures 4–7 only**. The earlier six-part layout is a revision template from
+Quiz 1; the actual Quiz 2 paper, timing and marking scheme have not been supplied.
+The interface states that distinction.
+
+- Added eight reviewed image candidates, two per lecture, with period/site/modern
+  location/culture answers and cited slide evidence. Captions that disclose the
+  answer are excluded from the question images. Broad site periods are identified
+  as such rather than asserted as exact object construction dates.
+- Added four concept, four significance and four discussion prompts. Written
+  models retain the three-/seven-sentence limits and named material examples.
+- Rotated written topics and included an image from the remaining lecture so
+  every paper covers all four lectures. Three sets of map targets now use Quiz 2
+  regions (Andes, Maya region, Iran, Greece, Hong Kong and Denmark).
+- Retained saved papers, draft answers, whole-paper submission, source checklists,
+  exact-question retries and print/PDF controls. Chronology includes BCE, CE and
+  across-era pairs, with the existing explicit calendar-convention explanation.
+- Temporarily hid the Quiz 1 mock-paper option. Its question bank, engine and old
+  `stratum-mock-paper-v1` browser data remain intact. Quiz 2 uses a separate
+  `stratum-quiz2-mock-paper-v1` key; no old papers are migrated or overwritten.
+  Earlier lecture materials, quick practice and flashcards remain available.
+
+Visual source evidence is explicitly identified where location labels occur in
+map imagery rather than extracted text. Map placements remain approximate guides
+for self-review, not automatic distance grades. Quiz 1 can be restored without
+reconstructing its content or deleting Quiz 2 attempts.
+
+Rollback checkpoint: `checkpoint/pre-quiz2-mocks-2026-10-24`.
+
+Validation: **165 automated tests passed**, lint, TypeScript and production build
+passed. Tests cover L4–7 evidence, all-lecture paper coverage, variation, separate
+storage, rejection of cross-quiz saved data and continued parsing of old Quiz 1
+papers. Browser checks verified hidden Quiz 1 controls, creation of two Quiz 2
+papers, draft reload, submission/model-answer reveal and narrow-screen map layout.
+Native print/PDF export was not re-tested in this release.

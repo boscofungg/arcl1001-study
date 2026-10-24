@@ -127,3 +127,11 @@ Both slide decks are now available in Read & ask, Quiz 2 scope and generated
 short-answer flashcards. L6 has 119 slides; L7 has 123. Prepared questions for
 these decks are still pending. See the continuous improvement log for validation
 and the rollback checkpoint.
+
+## Current mock-paper availability (24 October 2026)
+
+**General practice → Mock paper · Quiz 2** now covers Lectures 4–7. Quiz 1 mocks
+are temporarily hidden; their content and browser saves are preserved separately.
+The mock layout adapts the earlier paper and is not an official Quiz 2 specimen.
+Each new paper covers all four lectures. Written answers/maps use source-based
+self-checking, while chronology retains automatic practice feedback.

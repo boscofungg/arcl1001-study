@@ -1,0 +1,321 @@
+[
+  {
+    "id": "quiz2-mock-image-001",
+    "question": "Identify the pictured evidence by giving its period or approximate date, archaeological site, present-day location, and culture. Use the lecture’s site/period context when an individual object is not dated separately.",
+    "image": {
+      "src": "/mock-paper/quiz2/figure-01.webp",
+      "width": 1400,
+      "height": 703,
+      "alt": "Unlabelled lecture image for identification 1"
+    },
+    "answer": "Period: Inca Imperial Period (1438–1525 CE, the lecture’s period framework, not a precise construction date). Site: Machu Picchu. Modern location: Peru, in the Andes. Culture: Inca.",
+    "checklist": [
+      "Inca Imperial Period; the lecture gives 1438–1525 CE",
+      "Machu Picchu",
+      "Peru / Peruvian Andes",
+      "Inca"
+    ],
+    "sources": [
+      {
+        "docId": "d111",
+        "page": 52,
+        "title": "HKU/L4-Slides.pptx",
+        "label": "Slide 52",
+        "evidence": "Inca: Machu Picchu"
+      },
+      {
+        "docId": "d111",
+        "page": 53,
+        "title": "HKU/L4-Slides.pptx",
+        "label": "Slide 53",
+        "evidence": "The slide map labels Machu Picchu within Peru and locates it in the Andes.",
+        "evidenceKind": "visual"
+      },
+      {
+        "docId": "d111",
+        "page": 55,
+        "title": "HKU/L4-Slides.pptx",
+        "label": "Slide 55",
+        "evidence": "Pre-classic Period( Formative Maya) | (c. 2000 BCE – 250 CE) | 1000 BCE | 0 CE\n2000 BCE | 1000 CE | 0 CE\n2000 CE | Classic Period (The Golden Age) | Postclassic Period\n(c. 900 – 1500 CE) | (c. 250 – 900 CE) | Civil War\n& Spanish | Kingdom Period | Conquest\n(1525 -1535 | (Local Era)\n(c. 1200 – 1438 CE) | Imperial Period\n(Expansion Era)\n(1438 – 1525 CE) | CE)"
+      }
+    ]
+  },
+  {
+    "id": "quiz2-mock-image-002",
+    "question": "Identify the pictured evidence by giving its period or approximate date, archaeological site, present-day location, and culture. Use the lecture’s site/period context when an individual object is not dated separately.",
+    "image": {
+      "src": "/mock-paper/quiz2/figure-02.webp",
+      "width": 669,
+      "height": 407,
+      "alt": "Unlabelled lecture image for identification 2"
+    },
+    "answer": "Period: approximately 800–950 CE for the architectural phase illustrated on the slide. Site: Nakum (Acropolis). Modern location: Petén, Guatemala. Culture: Maya.",
+    "checklist": [
+      "Approximately 800–950 CE for the illustrated architectural phase",
+      "Nakum / Nakum Acropolis",
+      "Petén, Guatemala",
+      "Maya"
+    ],
+    "sources": [
+      {
+        "docId": "d111",
+        "page": 74,
+        "title": "HKU/L4-Slides.pptx",
+        "label": "Slide 74",
+        "evidence": "Maya: Nakum | Ca 800 to 950 CE"
+      },
+      {
+        "docId": "d111",
+        "page": 70,
+        "title": "HKU/L4-Slides.pptx",
+        "label": "Slide 70",
+        "evidence": "The regional map marks Nakum in Petén in the Maya Southern Lowlands, within Guatemala.",
+        "evidenceKind": "visual"
+      }
+    ]
+  },
+  {
+    "id": "quiz2-mock-image-003",
+    "question": "Identify the pictured evidence by giving its period or approximate date, archaeological site, present-day location, and culture. Use the lecture’s site/period context when an individual object is not dated separately.",
+    "image": {
+      "src": "/mock-paper/quiz2/figure-03.webp",
+      "width": 624,
+      "height": 469,
+      "alt": "Unlabelled lecture image for identification 3"
+    },
+    "answer": "Period: approximately sixth century BCE. Site: the tomb of Cyrus the Great at Pasargadae. Modern location: Iran. Culture: Achaemenid Persian.",
+    "checklist": [
+      "Approximately sixth century BCE",
+      "Tomb of Cyrus / Pasargadae",
+      "Iran",
+      "Achaemenid Persian"
+    ],
+    "sources": [
+      {
+        "docId": "d114",
+        "page": 31,
+        "title": "L5-Slides.pptx",
+        "label": "Slide 31",
+        "evidence": "Tomb of Cyrus the Great; Pasargadae, first capital of Achaemenid Empire; c. 6th century BCE. The inset map labels Iran.",
+        "evidenceKind": "visual"
+      }
+    ]
+  },
+  {
+    "id": "quiz2-mock-image-004",
+    "question": "Identify the pictured evidence by giving its period or approximate date, archaeological site, present-day location, and culture. Use the lecture’s site/period context when an individual object is not dated separately.",
+    "image": {
+      "src": "/mock-paper/quiz2/figure-04.webp",
+      "width": 768,
+      "height": 748,
+      "alt": "Unlabelled lecture image for identification 4"
+    },
+    "answer": "Period: fifth century BCE. Site: the entrance of Persepolis. Modern location: Iran. Culture: Achaemenid Persian. The winged guardian figures are described as lamassu, a motif originating in Mesopotamia; that origin is not the location of this pictured gate.",
+    "checklist": [
+      "Fifth century BCE",
+      "Entrance of Persepolis",
+      "Iran",
+      "Achaemenid Persian; do not substitute Mesopotamia for the location of the gate"
+    ],
+    "sources": [
+      {
+        "docId": "d114",
+        "page": 54,
+        "title": "L5-Slides.pptx",
+        "label": "Slide 54",
+        "evidence": "5th century BCE | Entrance of\nPersepolis | Passed through by foreign delegates | Winged figure: Lamassu\nOriginated from Mesopotamia | https://onartandaesthetics.com/wp-content/uploads/2016/07/gateofallnations1-e1468042240299.jpg"
+      },
+      {
+        "docId": "d114",
+        "page": 53,
+        "title": "L5-Slides.pptx",
+        "label": "Slide 53",
+        "evidence": "Ceremonial Capital of the Achaemenid Empire | Established by Darius the Great (ca 500 BCE) | Destroyed by Alexander the Great in 330 BCE | smarthistory.org | reddit"
+      },
+      {
+        "docId": "d114",
+        "page": 48,
+        "title": "L5-Slides.pptx",
+        "label": "Slide 48",
+        "evidence": "The map locates Persepolis and Pasargadae in the Persian heartland north of the Persian Gulf.",
+        "evidenceKind": "visual"
+      },
+      {
+        "docId": "d114",
+        "page": 31,
+        "title": "L5-Slides.pptx",
+        "label": "Slide 31",
+        "evidence": "The inset modern map labels Iran for the Persian heartland; the slide identifies Pasargadae as the first Achaemenid capital.",
+        "evidenceKind": "visual"
+      }
+    ]
+  },
+  {
+    "id": "quiz2-mock-image-005",
+    "question": "Identify the pictured evidence by giving its period or approximate date, archaeological site, present-day location, and culture. Use the lecture’s site/period context when an individual object is not dated separately.",
+    "image": {
+      "src": "/mock-paper/quiz2/figure-05.webp",
+      "width": 755,
+      "height": 610,
+      "alt": "Unlabelled lecture image for identification 5"
+    },
+    "answer": "Period: Early Yayoi; the lecture dates the main period at the site to approximately 400–100 BCE. Site: Itazuke. Modern location: Fukuoka, Japan. Culture: Yayoi. The pictured objects are ishibocho, stone harvesting knives.",
+    "checklist": [
+      "Early Yayoi / approximately 400–100 BCE as the site’s main period",
+      "Itazuke",
+      "Fukuoka, Japan",
+      "Yayoi; ishibocho are stone harvesting knives"
+    ],
+    "sources": [
+      {
+        "docId": "d122",
+        "page": 30,
+        "title": "L6-Slides.pptx",
+        "label": "Slide 30",
+        "evidence": "Itazuke | Ishibocho (stone harvesting knives) | excavated at Itazuke"
+      },
+      {
+        "docId": "d122",
+        "page": 26,
+        "title": "L6-Slides.pptx",
+        "label": "Slide 26",
+        "evidence": "Itazuke | Main period: Early Yayoi (ca 400–100 BCE).\nFukuoka, Japan"
+      }
+    ]
+  },
+  {
+    "id": "quiz2-mock-image-006",
+    "question": "Identify the pictured evidence by giving its period or approximate date, archaeological site, present-day location, and culture. Use the lecture’s site/period context when an individual object is not dated separately.",
+    "image": {
+      "src": "/mock-paper/quiz2/figure-06.webp",
+      "width": 978,
+      "height": 577,
+      "alt": "Unlabelled lecture image for identification 6"
+    },
+    "answer": "Period: fifth century CE (Kofun period). Site: Daisen Kofun. Modern location: Sakai, Osaka, Japan. Culture: Kofun-period Japan. Its keyhole-shaped mound is an elite burial monument.",
+    "checklist": [
+      "Fifth century CE / Kofun period",
+      "Daisen Kofun",
+      "Sakai, Osaka, Japan",
+      "Kofun-period Japan"
+    ],
+    "sources": [
+      {
+        "docId": "d122",
+        "page": 12,
+        "title": "L6-Slides.pptx",
+        "label": "Slide 12",
+        "evidence": "Haniwa Warrior\nDaisen Kofun, Sakai, Osaka, 5th century CE | Sueki stoneware"
+      },
+      {
+        "docId": "d122",
+        "page": 7,
+        "title": "L6-Slides.pptx",
+        "label": "Slide 7",
+        "evidence": "Japan | Final Jomon\n(c. 1300 – 300 BCE) | Yayoi Period\n(c. 800 BCE – 250 CE) | Mumun Period\n(c. 1500 – 200 BCE) | 1000 BCE | 0 CE\n2000 BCE | 1000 CE | 0 CE\n2000 CE | Thr ee Kingdoms\n(c. 300 – 668 CE) | Proto Three\nKingdoms Period\n(200 BCE to 300 CE) | Kofun Period | Yayoi Period\n(c. 800 BCE – | (c. 250 - 538 | Koidai Period\n(c. 538 – 1185 CE) | 250 CE) | CE)"
+      },
+      {
+        "docId": "d122",
+        "page": 103,
+        "title": "L6-Slides.pptx",
+        "label": "Slide 103",
+        "evidence": "What is Kofun ( 古墳)? | Mounded tombs of the ruling class\nMiddle of 3rd to early 7th century CE"
+      },
+      {
+        "docId": "d122",
+        "page": 104,
+        "title": "L6-Slides.pptx",
+        "label": "Slide 104",
+        "evidence": "Kofun | Some has distinct keyhole shape (zempō-koenfun)\nInterior: stone burial chamber housing a coffin and | grave goods"
+      }
+    ]
+  },
+  {
+    "id": "quiz2-mock-image-007",
+    "question": "Identify the pictured evidence by giving its period or approximate date, archaeological site, present-day location, and culture. Use the lecture’s site/period context when an individual object is not dated separately.",
+    "image": {
+      "src": "/mock-paper/quiz2/figure-07.webp",
+      "width": 538,
+      "height": 279,
+      "alt": "Unlabelled lecture image for identification 7"
+    },
+    "answer": "Period: ninth century CE, the Viking-period Repton context. Site: Grave 511 at Repton. Modern location: England. Culture: Viking / Norse. The photograph shows two views of a silver Thor’s hammer pendant, not two different finds.",
+    "checklist": [
+      "Ninth century CE / Viking period in the Repton context",
+      "Grave 511, Repton",
+      "England",
+      "Viking / Norse; silver Thor’s hammer pendant"
+    ],
+    "sources": [
+      {
+        "docId": "d123",
+        "page": 46,
+        "title": "L7-Slides.pptx",
+        "label": "Slide 46",
+        "evidence": "http s://emidsvikings.ac.uk/items/thors-hammer-pendant-1989-59-7224/ | Grave 511: male, 35-45 years old at death , ~1.82 m | Artifacts in the | burial suggest | connection with | the Vikings | Silver Thor's Hammar Pendent | http s://emidsvikings.ac.uk/items/sword-1989-59-7113/\nIron Sword"
+      },
+      {
+        "docId": "d123",
+        "page": 33,
+        "title": "L7-Slides.pptx",
+        "label": "Slide 33",
+        "evidence": "Viking Winter Quarter in Repton, England | 9th century CE | Original course of River Trent | St.Wystan\nChurch"
+      },
+      {
+        "docId": "d123",
+        "page": 34,
+        "title": "L7-Slides.pptx",
+        "label": "Slide 34",
+        "evidence": "Wikipedia | Repton Winter Camp | \"A.D. 874. This year went the army from\nLindsey to Repton, and there took up their\nwinter-quarters\" | The Avalon Project | Mentioned in the Anglo-Saxon Chronicles"
+      }
+    ]
+  },
+  {
+    "id": "quiz2-mock-image-008",
+    "question": "Identify the pictured evidence by giving its period or approximate date, archaeological site, present-day location, and culture. Use the lecture’s site/period context when an individual object is not dated separately.",
+    "image": {
+      "src": "/mock-paper/quiz2/figure-08.webp",
+      "width": 1040,
+      "height": 664,
+      "alt": "Unlabelled lecture image for identification 8"
+    },
+    "answer": "Period: Viking period; the lecture highlights Norse presence in North America in 1021 CE. Site: L’Anse aux Meadows. Modern location: Newfoundland, Canada. Culture: Norse / Viking. The photograph shows turf-house archaeological remains; 1021 CE is the lecture’s dated presence, not a precise construction date for each visible wall.",
+    "checklist": [
+      "Viking period / Norse presence dated to 1021 CE in the lecture",
+      "L’Anse aux Meadows",
+      "Newfoundland, Canada",
+      "Norse / Viking"
+    ],
+    "sources": [
+      {
+        "docId": "d123",
+        "page": 61,
+        "title": "L7-Slides.pptx",
+        "label": "Slide 61",
+        "evidence": "Site 2: L'anse Aux Meadows | http s://www.tripsavvy.com/l-anse-aux-meadows-national-historic-site-4051762"
+      },
+      {
+        "docId": "d123",
+        "page": 62,
+        "title": "L7-Slides.pptx",
+        "label": "Slide 62",
+        "evidence": "L'anse aux Meadows | ~4thcentury:\nStart of migration\nperiod | Germanic Period\n(~500 BCE – 568 CE) | Period of Kings\n(625 – 510 BCE) | Republican Rome\n(~625 BCE – 31 BCE)\nImperial Rome | 0 CE\n900 BCE | 500 BCE | 1100 CE | 500 CE | 100 CE | Imperial Rome\n(~31 BCE – 476 CE) | Viking Period\n(~793 CE – 1066 CE) | Migration Period\n(~300 CE – 700 CE)\n! | Germanic Period\n(~500 BCE – 568 CE) | 1021CE:\nVikings landed in\nNorth America\n410CE:\nVisigoths sacked\nRome"
+      },
+      {
+        "docId": "d123",
+        "page": 63,
+        "title": "L7-Slides.pptx",
+        "label": "Slide 63",
+        "evidence": "L’Anse aux Meadows, on the Island of Newfoundland; the inset map locates the site in Canada.",
+        "evidenceKind": "visual"
+      },
+      {
+        "docId": "d123",
+        "page": 68,
+        "title": "L7-Slides.pptx",
+        "label": "Slide 68",
+        "evidence": "Turf house | Grass covered features\nwith minimal timber\nrecourses"
+      }
+    ]
+  }
+]

@@ -1,7 +1,7 @@
 'use client';
 
 import { useId, useState } from 'react';
-import { clampMapPoint, mapTargets, type MapPoint } from '../lib/mock-map-data';
+import { clampMapPoint, mapTargets, type MapPoint, type MockMapTarget } from '../lib/mock-map-data';
 import './mock-map.css';
 
 type Props = {
@@ -9,12 +9,13 @@ type Props = {
   answers: Record<string, MapPoint>;
   onChange: (id: string, point: MapPoint) => void;
   revealed: boolean;
+  targetDefinitions?: MockMapTarget[];
 };
 
-export function MockMap({ targets, answers, onChange, revealed }: Props) {
+export function MockMap({ targets, answers, onChange, revealed, targetDefinitions=mapTargets }: Props) {
   const id = useId();
   const options = targets.flatMap((target) => {
-    const found = mapTargets.find((item) => item.id === target);
+    const found = targetDefinitions.find((item) => item.id === target);
     return found ? [found] : [];
   });
   const [selected, setSelected] = useState(targets[0] ?? '');

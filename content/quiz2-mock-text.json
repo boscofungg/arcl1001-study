@@ -1,0 +1,398 @@
+{
+  "concepts": [
+    {
+      "id": "q2-concept-archaeobotany",
+      "question": "Explain archaeobotany and show how flotation can contribute to it. Use no more than three sentences.",
+      "answer": "Archaeobotany studies how humans used and interacted with plants to reconstruct diets, farming, trade and environments. Flotation recovers small material such as charred seeds and nuts from soil. These plant remains provide evidence for investigating past human–plant relationships.",
+      "checklist": [
+        "Define the study of human use of or interaction with plants.",
+        "Explain that flotation recovers small material, including charred seeds or nuts.",
+        "Connect the recovered plants to reconstructing past diets, farming or environments."
+      ],
+      "sources": [
+        {
+          "docId": "d111",
+          "page": 48,
+          "title": "Lecture 4 — Interacting with the Environment",
+          "label": "Slide 48",
+          "evidence": "Theory and Methods | Archaeobotany | Science to study how human used/interacted with | plants | reconstruct diets, farming, trade, and environments"
+        },
+        {
+          "docId": "d111",
+          "page": 49,
+          "title": "Lecture 4 — Interacting with the Environment",
+          "label": "Slide 49",
+          "evidence": "Theory and Methods | Flotation | Float soil, recover small artifacts; charred seeds | and nuts"
+        }
+      ]
+    },
+    {
+      "id": "q2-concept-art-context",
+      "question": "Why can treating an archaeological object only as an image or artwork limit its interpretation? Answer in no more than three sentences.",
+      "answer": "Treating an object only as art can remove it from its material, architectural or landscape setting. It can also obscure production, use, biography, size and scale. Archaeological interpretation should therefore consider how the object was made and how people actually interacted with it.",
+      "checklist": [
+        "Identify the loss of material or spatial context.",
+        "Include production, use, biography, size or scale.",
+        "Explain why making and interaction matter to interpretation."
+      ],
+      "sources": [
+        {
+          "docId": "d114",
+          "page": 25,
+          "title": "Lecture 5 — Visual Power",
+          "label": "Slide 25",
+          "evidence": "Theory and Methods | Artifact as Art in Archaoelogy? | Am I just art or am I a\npiece of fired clay with\nritualistic significance? | Lose sense of:\n•\nMaterial of the object\n•\nArchitectural or landscape setting,\n•\nProduction, usage, and biography\n•\nSize and scale | de-materializing art, reduce to cognitive representation | how it was made and how people actually interacted with it. | 'Art’ in Archaeology and Anthropology: An Overview of the Concept (2017), John Robb"
+        }
+      ]
+    },
+    {
+      "id": "q2-concept-foodways",
+      "question": "Explain why foodways includes more than identifying what people ate. Answer in no more than three sentences.",
+      "answer": "Foodways concerns the cultural, social and economic practices surrounding food. It includes producing, preparing, cooking, storing, serving and consuming food. Identifying diet alone does not cover this full sequence of activities.",
+      "checklist": [
+        "Define foodways as cultural, social and economic practices.",
+        "Give at least three activities beyond identifying foods.",
+        "Distinguish this wider approach from diet alone."
+      ],
+      "sources": [
+        {
+          "docId": "d122",
+          "page": 21,
+          "title": "Lecture 6 — Food and Foodways",
+          "label": "Slide 21",
+          "evidence": "Food | Diet? | Prepare?\nProduce?\nCook? | Serve?\nConsume?\nStore? | Cultural, social, & economic practices | Foodways"
+        }
+      ]
+    },
+    {
+      "id": "q2-concept-bioarchaeology",
+      "question": "Define bioarchaeology and explain one way tooth enamel can inform an archaeological interpretation. Use no more than three sentences.",
+      "answer": "Bioarchaeology is the scientific study of human skeletal remains in archaeological context. Strontium and oxygen isotopes in tooth enamel can inform childhood origin. The lecture links this evidence to enamel forming during childhood and its isotope-bearing tissues not changing.",
+      "checklist": [
+        "Human skeletal remains studied in archaeological context",
+        "Strontium and oxygen isotopes linked to childhood origin",
+        "Enamel forms in childhood; answer stays within three sentences"
+      ],
+      "sources": [
+        {
+          "docId": "d123",
+          "page": 24,
+          "title": "Lecture 7 — Violence",
+          "label": "Slide 24",
+          "evidence": "The ory and Methods | Bioarchaeology (n.) | Scientific study of human skeletal remains in | archaeological context | Interdisciplinary Methods | Geochemistry | Forensic Science | Dentistry | Cultural studies | Biological\nAnthropology | Pathology | Genetics Study"
+        },
+        {
+          "docId": "d123",
+          "page": 29,
+          "title": "Lecture 7 — Violence",
+          "label": "Slide 29",
+          "evidence": "The ory and Methods | Methods in Bioarchaeology | http s://en.wikipedia.org/wiki/Tooth_enamel | Stable isotope from Enamel\n: childhood origin based on Strontium and Oxygen\nDiet from Carbon and Nitrogen | Enamel is formed during childhood, the tissues that\ncontain stable isotope does not change | Paleopathology | Examining diseases on bones: | osteophyte, oseteoporosis, syphillis, scurvy, rickets ..."
+        }
+      ]
+    }
+  ],
+  "significance": [
+    {
+      "id": "q2-significance-joya-milpa",
+      "question": "Explain the significance of the intercropped maize, beans and squash at Joya de Cerén for studying adaptation. Use no more than three sentences.",
+      "answer": "At Joya de Cerén, maize, beans and squash were grown together as the Maya milpa or three sisters. The lecture links beans to nitrogen provision and squash to moisture retention. Their combination therefore provides evidence of agricultural practices suited to environmental challenges, rather than merely a list of foods.",
+      "checklist": [
+        "Name Joya de Cerén and the maize–beans–squash combination.",
+        "Explain nitrogen provision by beans and moisture retention by squash.",
+        "Connect these functions to environmental adaptation."
+      ],
+      "sources": [
+        {
+          "docId": "d111",
+          "page": 45,
+          "title": "Lecture 4 — Interacting with the Environment",
+          "label": "Slide 45",
+          "evidence": "Maya: Joya de Cerén | Grow maize, beans, squash\nMilpa: Intercropped Maya 'three sisters' | Cultivated food | Also | manufacture of\ncordage, cloth,\nand serving\nvessels | Fruit trees: avocado, cacao, guava, jocote"
+        },
+        {
+          "docId": "d111",
+          "page": 50,
+          "title": "Lecture 4 — Interacting with the Environment",
+          "label": "Slide 50",
+          "evidence": "Why these agricultural practice? | Surplus? | Growing staple crops with | beans & squash\nFruit tree\nManioc\n(Starch) | Adapting tropical forest | Survive harsh climate | Bean: Nitrogen provision\nSquash: Moisture keeping | (soil & drought) | Canopy cover\nNutrient cycling"
+        }
+      ]
+    },
+    {
+      "id": "q2-significance-darius",
+      "question": "What makes the statue of Darius in Susa evidence of imperial power rather than only a portrait? Answer in no more than three sentences.",
+      "answer": "The statue of Darius in Susa was made in Egypt from Egyptian greywacke. Its inscription says Darius ordered it made in Egypt so future viewers would know that Iranians owned Egypt. The material, place of production and explicit message together make it evidence of a claim to imperial control.",
+      "checklist": [
+        "Identify the statue of Darius in Susa.",
+        "Refer to Egyptian material/production and the inscription claiming control of Egypt.",
+        "Explain the connection between the object and imperial authority."
+      ],
+      "sources": [
+        {
+          "docId": "d114",
+          "page": 29,
+          "title": "Lecture 5 — Visual Power",
+          "label": "Slide 29",
+          "evidence": "Visual Culture in Persia: Depiction of Power | Wikipedia | Made by Egyptian Gerywacke in Egypt | Inscription\n\"This is the statue, made of stone, which Darius ordered to be made in Egypt. This is how\neveryone who will see this in the future, will know that Iranians own Egypt.\" | Critical Approahes to Ancient Near Eastern Art, Art of the Achaemenid Empire, and Art in\nthe Achaemenid Empire (2014), Henry P. Colburn | Motif as unifier of upper and lower egpt | istock | livius.org | Statue of Darius in Susa\n(c.6-5th century BCE)"
+        }
+      ]
+    },
+    {
+      "id": "q2-significance-siru",
+      "question": "Explain how a siru from the Gungokri case study helps reconstruct cooking practices. Use no more than three sentences.",
+      "answer": "The siru is an earthenware steaming vessel that allows steam to reach its contents when placed above a fire. The Gungokri slides also associate steaming with preserved starch and rice. Together, the vessel and food traces help reconstruct a cooking technique as well as food consumed.",
+      "checklist": [
+        "Identify the siru as an earthenware steaming vessel.",
+        "Explain how steam reaches the contents.",
+        "Connect the vessel with the starch/rice evidence and cooking practice."
+      ],
+      "sources": [
+        {
+          "docId": "d122",
+          "page": 46,
+          "title": "Lecture 6 — Food and Foodways",
+          "label": "Slide 46",
+          "evidence": "Gungokri | Siru : earthen ware steaming vessel\nWhen placed above a fir e, steam can easily reach the contents inside"
+        },
+        {
+          "docId": "d122",
+          "page": 48,
+          "title": "Lecture 6 — Food and Foodways",
+          "label": "Slide 48",
+          "evidence": "Gungokri\nSteaming: starch preserved | rice"
+        }
+      ]
+    },
+    {
+      "id": "q2-significance-repton-511",
+      "question": "Explain the significance of the objects in Repton Grave 511, and one limit to what they establish. Use no more than three sentences.",
+      "answer": "Repton Grave 511 contained a silver Thor’s hammer pendant and an iron sword. The lecture says these objects suggest a connection with the Vikings. Its questions about a warrior burial or respected individual show that the objects should not be treated as a definitive account of the person’s role.",
+      "checklist": [
+        "Name Repton Grave 511 and both the pendant and sword.",
+        "Describe a suggested Viking connection.",
+        "Keep the warrior/status interpretation provisional."
+      ],
+      "sources": [
+        {
+          "docId": "d123",
+          "page": 45,
+          "title": "Lecture 7 — Violence",
+          "label": "Slide 45",
+          "evidence": "Mortuary Analysis: Social Class and | Culture | http ://viking.archeurope.com/@images/Raids/Repton%203.jpg | http s://www.livescience.com/61646-viking-warriors-grave.html​ | Grave 511"
+        },
+        {
+          "docId": "d123",
+          "page": 46,
+          "title": "Lecture 7 — Violence",
+          "label": "Slide 46",
+          "evidence": "http s://emidsvikings.ac.uk/items/thors-hammer-pendant-1989-59-7224/ | Grave 511: male, 35-45 years old at death , ~1.82 m | Artifacts in the | burial suggest | connection with | the Vikings | Silver Thor's Hammar Pendent | http s://emidsvikings.ac.uk/items/sword-1989-59-7113/\nIron Sword"
+        },
+        {
+          "docId": "d123",
+          "page": 49,
+          "title": "Lecture 7 — Violence",
+          "label": "Slide 49",
+          "evidence": "Burial 2 | Warrior Burial?\nA respected\nindividual? | http s://www.researchgate.net/fig ure/Reconstruction-of-graves-511-left- and-295-right-from-Repton-United-Kingdom_fig 2_337200386"
+        }
+      ]
+    }
+  ],
+  "discussions": [
+    {
+      "id": "q2-discussion-agricultural-adaptation",
+      "question": "Compare evidence for environmental adaptation at Joya de Cerén and Machu Picchu. Use named material examples and no more than seven sentences.",
+      "answer": "Both case studies connect food practices with environmental conditions. At Joya de Cerén, the milpa combined maize, beans and squash. The lecture links beans to nitrogen provision and squash to moisture retention, explaining the practical value of intercropping. At Machu Picchu, everyday tools preserve residues of maize, quinoa and possible potato starch. Storehouse evidence includes commonly preserved maize, potatoes and quinoa, alongside pollen analysis. The Inca slides connect crop choices with harsh conditions and ease of transport and storage. These examples show adaptation through both cultivation choices and the handling of food, rather than a single response shared by all environments.",
+      "checklist": [
+        "Discuss both Joya de Cerén and Machu Picchu.",
+        "Use milpa crops and their stated environmental functions.",
+        "Use tool residues and/or storehouse crop evidence from Machu Picchu.",
+        "Connect the Inca evidence to conditions, transport or storage.",
+        "Make an explicit comparison supported by material evidence, in at most seven sentences."
+      ],
+      "sources": [
+        {
+          "docId": "d111",
+          "page": 45,
+          "title": "Lecture 4 — Interacting with the Environment",
+          "label": "Slide 45",
+          "evidence": "Maya: Joya de Cerén | Grow maize, beans, squash\nMilpa: Intercropped Maya 'three sisters' | Cultivated food | Also | manufacture of\ncordage, cloth,\nand serving\nvessels | Fruit trees: avocado, cacao, guava, jocote"
+        },
+        {
+          "docId": "d111",
+          "page": 50,
+          "title": "Lecture 4 — Interacting with the Environment",
+          "label": "Slide 50",
+          "evidence": "Why these agricultural practice? | Surplus? | Growing staple crops with | beans & squash\nFruit tree\nManioc\n(Starch) | Adapting tropical forest | Survive harsh climate | Bean: Nitrogen provision\nSquash: Moisture keeping | (soil & drought) | Canopy cover\nNutrient cycling"
+        },
+        {
+          "docId": "d111",
+          "page": 64,
+          "title": "Lecture 4 — Interacting with the Environment",
+          "label": "Slide 64",
+          "evidence": "Inca: Machu Picchu | Kancha (Living Unit) | Residue of starch (potatoes?), maize | and quinoa on everyday tools"
+        },
+        {
+          "docId": "d111",
+          "page": 65,
+          "title": "Lecture 4 — Interacting with the Environment",
+          "label": "Slide 65",
+          "evidence": "Inca: Machu Picchu | Qollqa (Storehouse) | Maize, potatoes, and | quinoa - most commonly\npreserved\npollen analysis | Maize"
+        },
+        {
+          "docId": "d111",
+          "page": 66,
+          "title": "Lecture 4 — Interacting with the Environment",
+          "label": "Slide 66",
+          "evidence": "Inca | Why these crops? | Surplus? | Maize\nPotato\n(Starch) | Qui noa\n(Protein) | Survive in harsh climate | Easy transport & storage | Survive in harsh climate\n(forest, soil, high altitude) | Freeze-dry"
+        }
+      ]
+    },
+    {
+      "id": "q2-discussion-visual-authority",
+      "question": "Compare how Persepolis and the Parthenon communicated power through visual culture. Use named examples and no more than seven sentences.",
+      "answer": "Persepolis and the Parthenon communicated power through monumental settings and visual programmes. On the Apādana staircase at Persepolis, 23 regional delegations are shown bringing gifts. This offers a way to discuss diplomatic power through the representation of different regions. At the Parthenon, the gold-and-ivory-plated statue of Athena Parthenos displayed costly materials and a monumental scale, originally standing 12 metres tall. The pediments represented Athena’s birth and her contest with Poseidon, connecting the building with civic religious identity. Thus the comparison can distinguish representations of delegations from displays of wealth and relationships with divinity, while recognising that both use material and visual culture to communicate authority.",
+      "checklist": [
+        "Name both Persepolis and the Parthenon.",
+        "Use the Apādana delegations bringing gifts as evidence.",
+        "Use Athena Parthenos and/or the named pediment scenes.",
+        "Explain diplomatic power, wealth or civic religious identity through the examples.",
+        "Compare the mechanisms of communication in at most seven sentences."
+      ],
+      "sources": [
+        {
+          "docId": "d114",
+          "page": 58,
+          "title": "Lecture 5 — Visual Power",
+          "label": "Slide 58",
+          "evidence": "Visual Program on the Apādana staircase | livius.org | Ionian Greeks | Getty Images | Hindush (India) | Babylonians | 23 regional Delegations bringing gifts to Persepolis | https://www.meisterdrucke.uk/kunstwerke/1260px/Persian_School_-_Guards_of_Susa_and_Persia_Reliefs_of_the_eastern_staircase_of_the_Apadana_6th_ce_-\n_%28MeisterDrucke-970116%29.jpg | https://i.pinimg.com/736x/ef/c9/98/efc998f4eebdc587546a79991a145b4a.jpg"
+        },
+        {
+          "docId": "d114",
+          "page": 70,
+          "title": "Lecture 5 — Visual Power",
+          "label": "Slide 70",
+          "evidence": "Power and Wealth through Visual and Material Culture | Wikipedia | Mármaros : \"Shiny Stone\" in Ancient Greek | Gold and Ivory Plated statue | of Athena Parthenos\nOriginally 12 meter tall | Source of the Acropolis Marble | Reconstruction in Nashville, Tennessee | https://www.mountain-forecast.com/locationmaps/Penteliko-Mountain.10.gif"
+        },
+        {
+          "docId": "d114",
+          "page": 76,
+          "title": "Lecture 5 — Visual Power",
+          "label": "Slide 76",
+          "evidence": "https://www.worldhistory.org/img/c/p/2400x1254/3303.jpg | Civic Religious Identity through Visual Culture | Pediments | West Pediment: Contest between Athena and Poseidon | https://www.britishmuseum.org/blog/introduction-parthenon-and-its-sculptures | East Pediment: Birth of Athena | https://www alamy com/stock-photo-reconstruction-of-the-east-pediment-of-the-parthenon-according-to-57437252 html"
+        },
+        {
+          "docId": "d114",
+          "page": 80,
+          "title": "Lecture 5 — Visual Power",
+          "label": "Slide 80",
+          "evidence": "smarthistory.org | Persepolis | Communicating Power | Monumental Landscape | Construction Scale | Wealth | Diplomatic Power | Relation with divinity | Parthenon | 80 | https://www.greekartworks.com/wp-content/uploads/2020/08/products-\nbas relief pediment parthenon acropolis athens cast stone greek sculpture wall decor-scaled jpg"
+        }
+      ]
+    },
+    {
+      "id": "q2-discussion-foodways-evidence",
+      "question": "Compare what the Itazuke and Gungokri evidence reveals about different stages of foodways. Use named material examples and no more than seven sentences.",
+      "answer": "Itazuke and Gungokri illustrate why foodways extends beyond a list of foods. At Itazuke, rice recovered by flotation and stone harvesting knives provide evidence connected with rice cultivation and harvesting. Dams and outlets controlled water flow to the paddies, showing the management of cultivation conditions. At Gungokri, shell middens preserve discarded shells from consumption, and the slides identify mollusks and fish bones. The siru steaming vessel and preserved starch associated with rice add evidence for cooking. Itazuke therefore highlights production and water management, whereas the selected Gungokri evidence highlights cooking, consumption and disposal. Together the examples allow different stages of food practice to be reconstructed from different kinds of remains.",
+      "checklist": [
+        "Discuss both Itazuke and Gungokri.",
+        "Use rice, harvesting knives or controlled paddies at Itazuke.",
+        "Use shells/fish remains and a siru or starch evidence at Gungokri.",
+        "Distinguish production from cooking, consumption or disposal.",
+        "Make a supported comparison in at most seven sentences."
+      ],
+      "sources": [
+        {
+          "docId": "d122",
+          "page": 29,
+          "title": "Lecture 6 — Food and Foodways",
+          "label": "Slide 29",
+          "evidence": "Itazuke | Rice sample flo ated from Itazuke"
+        },
+        {
+          "docId": "d122",
+          "page": 30,
+          "title": "Lecture 6 — Food and Foodways",
+          "label": "Slide 30",
+          "evidence": "Itazuke | Ishibocho (stone harvesting knives) | excavated at Itazuke"
+        },
+        {
+          "docId": "d122",
+          "page": 34,
+          "title": "Lecture 6 — Food and Foodways",
+          "label": "Slide 34",
+          "evidence": "Itazuke | A series of dams and outlets controlling water flo w to the paddies | Waterway/ Weirs | Field\nridge | Field\nridge | Paddy | fie lds | Paddy | fie lds"
+        },
+        {
+          "docId": "d122",
+          "page": 42,
+          "title": "Lecture 6 — Food and Foodways",
+          "label": "Slide 42",
+          "evidence": "Gungokri | Settl ements, burials | Shell midden, kilns | Settl ements, burials | Shell midden: discarding of unwanted shells after consumption | Slowed down decay of organic material  Better preservation"
+        },
+        {
+          "docId": "d122",
+          "page": 43,
+          "title": "Lecture 6 — Food and Foodways",
+          "label": "Slide 43",
+          "evidence": "Gungokri | Shells | Large number of mollusks, | eg, pacific oysters and | cockles\nFish consumption | Fish bone"
+        },
+        {
+          "docId": "d122",
+          "page": 46,
+          "title": "Lecture 6 — Food and Foodways",
+          "label": "Slide 46",
+          "evidence": "Gungokri | Siru : earthen ware steaming vessel\nWhen placed above a fir e, steam can easily reach the contents inside"
+        },
+        {
+          "docId": "d122",
+          "page": 48,
+          "title": "Lecture 6 — Food and Foodways",
+          "label": "Slide 48",
+          "evidence": "Gungokri\nSteaming: starch preserved | rice"
+        }
+      ]
+    },
+    {
+      "id": "q2-discussion-repton-interpretation",
+      "question": "Using the Repton burials, explain why interpretations of violence and identity should combine several kinds of evidence. Answer in no more than seven sentences.",
+      "answer": "The Repton slides combine human remains, burial objects, dating and genetic evidence. Burial 1 contained about 300 commingled individuals, including injured males, and Viking weapons. Radiocarbon evidence dated this burial to the ninth century CE, while the slides present sacrifice, burial ritual and commemoration as questions. Grave 511 contained a silver Thor’s hammer pendant and an iron sword, suggesting a Viking connection. Ancient DNA linked the two individuals in the paired burial on the paternal side, with father and son or half-brothers offered as alternatives. These strands address different questions about time, connections, relationships and mortuary treatment. Combining them supports a fuller interpretation while preserving uncertainty instead of assuming that every burial proves a particular violent event.",
+      "checklist": [
+        "Use named Repton examples, including Burial 1 and Grave 511/the paired burial.",
+        "Combine at least three kinds of evidence: remains, objects, radiocarbon or ancient DNA.",
+        "Keep the proposed paternal relationships as alternatives.",
+        "Distinguish evidence from the slides’ questions about ritual or identity.",
+        "Explain the value and limits of combining evidence in at most seven sentences."
+      ],
+      "sources": [
+        {
+          "docId": "d123",
+          "page": 43,
+          "title": "Lecture 7 — Violence",
+          "label": "Slide 43",
+          "evidence": "Genome wide A-DNA result\nRelated on the paternal side (either father-son/ half brothers) | Age at death 35-45\nyears old | Age at death 17-20\nyears old | http s://www.researchgate.net/fig ure/Reconstruction-of-graves-511-left- and-295-right-from-Repton-United-Kingdom_fig 2_337200386"
+        },
+        {
+          "docId": "d123",
+          "page": 46,
+          "title": "Lecture 7 — Violence",
+          "label": "Slide 46",
+          "evidence": "http s://emidsvikings.ac.uk/items/thors-hammer-pendant-1989-59-7224/ | Grave 511: male, 35-45 years old at death , ~1.82 m | Artifacts in the | burial suggest | connection with | the Vikings | Silver Thor's Hammar Pendent | http s://emidsvikings.ac.uk/items/sword-1989-59-7113/\nIron Sword"
+        },
+        {
+          "docId": "d123",
+          "page": 48,
+          "title": "Lecture 7 — Violence",
+          "label": "Slide 48",
+          "evidence": "Burial 1 | Mass Burial | Co-mingled with ~300 deceased individuals\n20% female, 80% male (with injury) age-range\n15-45\nViking Weapons | C-14 dated to 9th century ​CE | Sacrifice? Burial ritual?\nCommemoration | http ://viking.archeurope.com/@images/Raids/Repton%205.jpg"
+        },
+        {
+          "docId": "d123",
+          "page": 49,
+          "title": "Lecture 7 — Violence",
+          "label": "Slide 49",
+          "evidence": "Burial 2 | Warrior Burial?\nA respected\nindividual? | http s://www.researchgate.net/fig ure/Reconstruction-of-graves-511-left- and-295-right-from-Repton-United-Kingdom_fig 2_337200386"
+        }
+      ]
+    }
+  ]
+}
