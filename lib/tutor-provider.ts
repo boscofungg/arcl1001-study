@@ -1,3 +1,4 @@
+import {TutorServiceError,tutorResponseError} from './tutor-service-error.ts';
 import {parseBedrockStream} from './bedrock-stream.ts';
 export type TutorPart={text:string}|{image:{format:'webp'|'png'|'jpeg';source:{bytes:string}}};
 export type TutorMessage={role:'user'|'assistant';content:TutorPart[]};
@@ -11,8 +12,8 @@ export async function requestTutor({system,messages,maxTokens,stream=false,signa
  const url=new URL(`https://api.hku.hk/claude/student/model/${model}/${stream?'converse-stream':'converse'}`);
  url.searchParams.set('subscription-key',key);
  let response:Response;
- try{response=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},redirect:'error',signal,body:JSON.stringify({system:[{text:system}],messages,inferenceConfig:{maxTokens,temperature:0.2}})});}catch{throw new Error(signal.aborted?'The tutor request was interrupted or timed out. Please try again.':'Could not connect to the university tutor service. Please try again.');}
- if(!response.ok){await response.body?.cancel();throw new Error(response.status===401||response.status===403?'The university tutor service denied access. The site administrator needs to check its subscription key.':response.status===429?'The university tutor service has reached its quota. Please try again later.':response.status===404?'The university tutor model is unavailable. Please contact the site administrator.':response.status===400?'The university tutor service could not accept this request. Please contact the site administrator.':'The university tutor service is temporarily unavailable. Please try again.');}
+ try{response=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},redirect:'error',signal,body:JSON.stringify({system:[{text:system}],messages,inferenceConfig:{maxTokens,temperature:0.2}})});}catch{throw new TutorServiceError(signal.aborted?'timeout':'unavailable',signal.aborted?'The tutor request was interrupted or timed out. Please try again.':'Could not connect to the university tutor service. Please try again.');}
+ if(!response.ok)throw await tutorResponseError(response);
  return response;
 }
 type ConverseData={output?:{message?:{content?:{text?:string}[]}};stopReason?:string};

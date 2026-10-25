@@ -1,0 +1,223 @@
+[
+  {
+    "id": "l7-fallback-01",
+    "kind": "short-answer",
+    "question": "What is bioarchaeology?",
+    "answer": "The scientific study of human skeletal remains in archaeological context.",
+    "evidence": "The ory and Methods\nBioarchaeology (n.)\nScientific study of human skeletal remains in\narchaeological context\nInterdisciplinary Methods\nGeochemistry\nForensic Science\nDentistry\nCultural studies\nBiological\nAnthropology\nPathology\nGenetics Study",
+    "source": {
+      "docId": "d123",
+      "page": 24,
+      "title": "Lecture 7 — Violence",
+      "label": "Slide 24"
+    }
+  },
+  {
+    "id": "l7-fallback-02",
+    "kind": "short-answer",
+    "question": "Name the four components of a biological profile listed in the lecture.",
+    "answer": "Sex, age, stature (height) and ancestry.",
+    "evidence": "The ory and Methods\nBioarchaeology (n.)\nBiological profil e: Sex, Age, Stature (height), Ancestry\nFirst rib\n(in adults)\nDentition\nOsteological markers on biological sex is only applicable for adults",
+    "source": {
+      "docId": "d123",
+      "page": 25,
+      "title": "Lecture 7 — Violence",
+      "label": "Slide 25"
+    }
+  },
+  {
+    "id": "l7-fallback-03",
+    "kind": "short-answer",
+    "question": "Which enamel isotopes are used to investigate childhood origin, and why can enamel preserve this evidence?",
+    "answer": "Strontium and oxygen isotopes are used to investigate childhood origin. Enamel forms during childhood, and its isotope-containing tissues do not change.",
+    "evidence": "The ory and Methods\nMethods in Bioarchaeology\nhttp s://en.wikipedia.org/wiki/Tooth_enamel\nStable isotope from Enamel\n: childhood origin based on Strontium and Oxygen\nDiet from Carbon and Nitrogen\nEnamel is formed during childhood, the tissues that\ncontain stable isotope does not change\nPaleopathology\nExamining diseases on bones:\nosteophyte, oseteoporosis, syphillis, scurvy, rickets ...",
+    "source": {
+      "docId": "d123",
+      "page": 29,
+      "title": "Lecture 7 — Violence",
+      "label": "Slide 29"
+    }
+  },
+  {
+    "id": "l7-fallback-04",
+    "kind": "short-answer",
+    "question": "Name three areas examined in mortuary analysis.",
+    "answer": "Taphonomy, placement and decomposition, and burial ritual practices.",
+    "evidence": "The ory and Methods\nMortuary Analysis\nStudy of:\n- Taphonomy\n- Placement and decomposition\n- Practices of Burial Ritual\nPrinciples of Archaeology,  Kelly J. Knudson and T. Douglas Price\nWatson, 2011",
+    "source": {
+      "docId": "d123",
+      "page": 32,
+      "title": "Lecture 7 — Violence",
+      "label": "Slide 32"
+    }
+  },
+  {
+    "id": "l7-fallback-05",
+    "kind": "short-answer",
+    "question": "What did genome-wide ancient DNA suggest about the relationship between the two individuals in the Repton burial?",
+    "answer": "They were related on the paternal side, possibly father and son or half-brothers.",
+    "evidence": "Genome wide A-DNA result\nRelated on the paternal side (either father-son/ half brothers)\nAge at death 35-45\nyears old\nAge at death 17-20\nyears old\nhttp s://www.researchgate.net/fig ure/Reconstruction-of-graves-511-left- and-295-right-from-Repton-United-Kingdom_fig 2_337200386",
+    "source": {
+      "docId": "d123",
+      "page": 43,
+      "title": "Lecture 7 — Violence",
+      "label": "Slide 43"
+    }
+  },
+  {
+    "id": "l7-fallback-06",
+    "kind": "short-answer",
+    "question": "Which two artefacts in Repton Grave 511 suggest a Viking connection?",
+    "answer": "A silver Thor’s hammer pendant and an iron sword.",
+    "evidence": "http s://emidsvikings.ac.uk/items/thors-hammer-pendant-1989-59-7224/\nGrave 511: male, 35-45 years old at death , ~1.82 m\nArtifacts in the\nburial suggest\nconnection with\nthe Vikings\nSilver Thor's Hammar Pendent\nhttp s://emidsvikings.ac.uk/items/sword-1989-59-7113/\nIron Sword",
+    "source": {
+      "docId": "d123",
+      "page": 46,
+      "title": "Lecture 7 — Violence",
+      "label": "Slide 46"
+    }
+  },
+  {
+    "id": "l7-fallback-07",
+    "kind": "short-answer",
+    "question": "Approximately how many people were represented in Repton Burial 1, and what proportions were identified as female and male?",
+    "answer": "Approximately 300 individuals were represented: about 20% female and 80% male.",
+    "evidence": "Burial 1\nMass Burial\nCo-mingled with ~300 deceased individuals\n20% female, 80% male (with injury) age-range\n15-45\nViking Weapons\nC-14 dated to 9th century ​CE\nSacrifice? Burial ritual?\nCommemoration\nhttp ://viking.archeurope.com/@images/Raids/Repton%205.jpg",
+    "source": {
+      "docId": "d123",
+      "page": 48,
+      "title": "Lecture 7 — Violence",
+      "label": "Slide 48"
+    }
+  },
+  {
+    "id": "l7-fallback-08",
+    "kind": "short-answer",
+    "question": "What is a Wurt settlement, and what environmental hazards did its construction address?",
+    "answer": "A Wurt settlement stands on artificial mounds raised in coastal marshlands. The mounds protected villages from storm surges and rising sea levels.",
+    "evidence": "http s://nihk.de/fileadmin/Dateien/images/Projekte/abgeschlossene%20Projekte/Feddersen_Wierde_Dorfwurt/Entwicklung_Feddersenwierde.jpg\nWurt Settlement\nArtificial mounds raised in coastal marshlands to protect ancient\nvillages from storm surges and rising sea levels.\nStages of development\nhttp s://nihk.de/en/research/completed-projects/feddersen-wierde\nOnline reconstruction",
+    "source": {
+      "docId": "d123",
+      "page": 54,
+      "title": "Lecture 7 — Violence",
+      "label": "Slide 54"
+    }
+  },
+  {
+    "id": "l7-fallback-09",
+    "kind": "short-answer",
+    "question": "Why were wooden structures preserved at Feddersen Wierde?",
+    "answer": "Damp, oxygen-poor conditions allowed the wooden structures to survive.",
+    "evidence": "Ariel View of Feddersen Wierde\nDamp, Oxygen poor\ncondition allow\npreservation of\nwood structure\nhttp s://en.wikipedia.org/wiki/Feddersen_Wierde\nhttp s://nihk.de/en/research/current-projects/feddersen-wierde-textiles-research",
+    "source": {
+      "docId": "d123",
+      "page": 55,
+      "title": "Lecture 7 — Violence",
+      "label": "Slide 55"
+    }
+  },
+  {
+    "id": "l7-fallback-10",
+    "kind": "short-answer",
+    "question": "On which island is L’Anse aux Meadows located?",
+    "answer": "Newfoundland.",
+    "evidence": "L'anse Aux Meadows, on the Island of Newfoundland\nBritannica\nworldhistory.org",
+    "source": {
+      "docId": "d123",
+      "page": 63,
+      "title": "Lecture 7 — Violence",
+      "label": "Slide 63"
+    }
+  },
+  {
+    "id": "l7-fallback-11",
+    "kind": "short-answer",
+    "question": "What is slag, and what activity does it derive from?",
+    "answer": "Slag is a by-product of metal-ore smelting, consisting of waste materials and impurities.",
+    "evidence": "Slag found in House\nJ\nBy-product produced from metal\n-ore smelting\nWaste materials and impurities\nalamy.com/stock-photo/slag-stone.html",
+    "source": {
+      "docId": "d123",
+      "page": 72,
+      "title": "Lecture 7 — Violence",
+      "label": "Slide 72"
+    }
+  },
+  {
+    "id": "l7-fallback-12",
+    "kind": "short-answer",
+    "question": "Why are the butternuts found at L’Anse aux Meadows relevant to questions about travel or trade?",
+    "answer": "Butternuts were not native to northern Newfoundland. Their presence raises the possibilities of travel beyond Newfoundland or trade, rather than proving one explanation.",
+    "evidence": "Beyond Newfoundland? Or\nTrade?\nButternut that are\nnon-native to North\nNewfoundland\ndiscovered in L'anse\naux Meadows\nhttp s://www.researchgate.net/fig ure/LAnse-aux-Meadows-butternut-and-butternu\nt-tree-burl-Photograph-C-Peter-Harholdt_fig 3_250260771",
+    "source": {
+      "docId": "d123",
+      "page": 75,
+      "title": "Lecture 7 — Violence",
+      "label": "Slide 75"
+    }
+  },
+  {
+    "id": "l7-fallback-13",
+    "kind": "short-answer",
+    "question": "How did the length of the Borg longhouse change between its earlier and later phases?",
+    "answer": "The earlier fifth–sixth-century CE house was 69 metres long; the later seventh-century CE house was 83 metres long.",
+    "evidence": "Two houses excavated\nDiffe rent layer, one above the other\nStorage\nBarn\nFeast Hall\nResidential quarter\nCf. Munch, G.S., et\nal. 2003.\nOlder layer (5-6th century CE)\n69m\nLater layer (7th century CE)\n83m",
+    "source": {
+      "docId": "d123",
+      "page": 84,
+      "title": "Lecture 7 — Violence",
+      "label": "Slide 84"
+    }
+  },
+  {
+    "id": "l7-fallback-14",
+    "kind": "short-answer",
+    "question": "Name two symbolic meanings associated with great halls in the lecture.",
+    "answer": "Any two: symbolic capital, territorial claims and social memory.",
+    "evidence": "Great halls\n• Usage of the great hall\n• Symbolic meaning:\nsymbolic capital,\nterritorial claims, and\nsocial memory\n• Gold plaques:\ncontinuity, social\nidentity",
+    "source": {
+      "docId": "d123",
+      "page": 87,
+      "title": "Lecture 7 — Violence",
+      "label": "Slide 87"
+    }
+  },
+  {
+    "id": "l7-fallback-15",
+    "kind": "short-answer",
+    "question": "What material evidence does archaeometallurgy study?",
+    "answer": "Metalworking structures, tools, waste products and finished metal artefacts. These provide evidence for the nature and scale of mining, smelting, refining and metalworking.",
+    "evidence": "The ory and Methods\nArchaeometallurgy(n.)\n• The study of metalworking structures, tools, waste\nproducts and finished metal artefacts​\n• Provide evidence for both the nature and scale of mining,\nsmelting, refining and metalworking trades\n(English heritage 2001, 2)​",
+    "source": {
+      "docId": "d123",
+      "page": 109,
+      "title": "Lecture 7 — Violence",
+      "label": "Slide 109"
+    }
+  },
+  {
+    "id": "l7-fallback-16",
+    "kind": "short-answer",
+    "question": "What is a crucible used for in metal production?",
+    "answer": "A crucible is a vessel used for melting metallic elements.",
+    "evidence": "Technical ceramics :\nCrucible fragments\nVessel used for melting metallic\nelements\nhttp s://link.springer.com/10.1007 /s125 20-021-013 08-1",
+    "source": {
+      "docId": "d123",
+      "page": 119,
+      "title": "Lecture 7 — Violence",
+      "label": "Slide 119"
+    }
+  },
+  {
+    "id": "l7-fallback-17",
+    "kind": "short-answer",
+    "question": "What is alloying, and why is it used?",
+    "answer": "Alloying combines more than one metal, or a metal with another non-metal material. It changes the metal’s structure to improve workability and strength.",
+    "evidence": "The ory and Methods\nProduction techniques\nAlloying\n•\nthe combination of more than one metal or one\nmetal with another non-metal material\n•\nchanges the structure of the metal to improve\nworkability and strength of metal\nhttp s://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvYM63Bz0C6sKFYvkFjqtU2ZHw33OOV4xDIg&s\nelectrum coin\nsteel\nBrass helmet\nElectrum (gold + silver)\nSteel (iron + carbon)\nBrass (copper + zinc)\nBronze (Copper + Arsenic/ Tin)",
+    "source": {
+      "docId": "d123",
+      "page": 122,
+      "title": "Lecture 7 — Violence",
+      "label": "Slide 122"
+    }
+  }
+]

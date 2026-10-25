@@ -1,3 +1,5 @@
+import l6Cards from '../content/l6-flashcard-fallback.json' with {type:'json'};
+import l7Cards from '../content/l7-flashcard-fallback.json' with {type:'json'};
 import l5Questions from '../content/l5-practice.json' with {type:'json'};
 import l4Questions from '../content/l4-practice.json' with {type:'json'};
 import reviewedQuestions from '../content/quiz1-question-bank.json' with { type: 'json' };
@@ -9,7 +11,7 @@ import type { Flashcard } from './flashcard-types.ts';
 type Document = { id: string; week: number; title: string; kind: string; pages: number; startPage?: number; isSummary?: boolean };
 type Passage = { docId: string; page: number; text: string };
 export type FlashcardDifficulty = 'recall' | 'explain' | 'apply';
-export type FlashcardScope = { week: number; docId?: string; count: 6 | 10; difficulty?: FlashcardDifficulty; format?: 'short-answer' | 'image-map' };
+export type FlashcardScope = { week: number; docId?: string; count: 6 | 10; difficulty?: FlashcardDifficulty; mode?: 'generated' | 'prepared'; format?: 'short-answer' | 'image-map' };
 export const flashcardDifficultyLabels: Record<FlashcardDifficulty, string> = { recall: 'Recall', explain: 'Explain', apply: 'Apply / discuss' };
 export function flashcardDifficultyPrompt(difficulty: FlashcardDifficulty = 'recall'): string {
   const task = {
@@ -24,12 +26,13 @@ const normalize = (value: string) => value.normalize('NFKC').replace(/\s+/gu, ' 
 
 export function parseFlashcardScope(value: unknown, docs: Document[] = documents): FlashcardScope {
   if (!value || typeof value !== 'object' || Array.isArray(value)) throw new Error('Choose a valid week and card count.');
-  const { week, docId, count, difficulty = 'recall', format } = value as Record<string, unknown>;
+  const { week, docId, count, difficulty = 'recall', format, mode } = value as Record<string, unknown>;
   if (typeof week !== 'number' || !Number.isInteger(week) || !docs.some(doc=>doc.kind==='Lecture'&&doc.week===week) || (count !== 6 && count !== 10)) throw new Error('Choose an available lecture and either 6 or 10 cards.');
   if (docId !== undefined && (typeof docId !== 'string' || !docs.some(doc => doc.id === docId && doc.week === week && doc.kind === 'Lecture'))) throw new Error('Choose lecture slides from the selected lecture.');
   if (difficulty !== 'recall' && difficulty !== 'explain' && difficulty !== 'apply') throw new Error('Choose Recall, Explain or Apply / discuss.');
   if (format !== undefined && format !== 'short-answer' && format !== 'image-map') throw new Error('Choose short answers or image / map identification.');
-  return { week, count, difficulty, ...(format ? {format} : {}), ...(typeof docId === 'string' ? { docId } : {}) };
+  if(mode!==undefined&&mode!=='generated'&&mode!=='prepared')throw new Error('Choose generated or prepared cards.');
+  return { week, count, difficulty,...mode?{mode}: {}, ...(format ? {format} : {}), ...(typeof docId === 'string' ? { docId } : {}) };
 }
 
 /** Keep excerpts within their original page and sample across the selected documents. */
@@ -91,14 +94,16 @@ export function flashcardTargetCount(excerpts: FlashcardExcerpt[], requested: 6 
 }
 
 /** Reviewed text questions remain useful when generation is unavailable. Never widen scope. */
-export function reviewedFlashcardFallback(scope: FlashcardScope, bank: Quiz1Question[] = [...reviewedQuestions,...l4Questions,...l5Questions] as Quiz1Question[], docs: Document[] = documents): Flashcard[] {
+export function reviewedFlashcardFallback(scope: FlashcardScope, bank: Quiz1Question[] = [...reviewedQuestions,...l4Questions,...l5Questions,...l6Cards,...l7Cards] as Quiz1Question[], docs: Document[] = documents, random:()=>number=Math.random): Flashcard[] {
   parseFlashcardScope(scope, docs);
   const seen = new Set<string>();
-  return bank.flatMap(question => {
+  const cards=bank.flatMap(question => {
     const source = question.source;
     const doc = docs.find(item => item.id === source?.docId);
     if (question.kind !== 'short-answer' || question.additionalSources?.length || !doc || doc.kind !== 'Lecture' || doc.week !== scope.week || (scope.docId && doc.id !== scope.docId) || !Number.isInteger(source.page) || source.page < (doc.startPage || 1) || source.page > doc.pages || !question.evidence?.trim() || !question.question?.trim() || !question.answer?.trim() || seen.has(question.id)) return [];
     seen.add(question.id);
     return [{ id: question.id, question: question.question, answer: question.answer, evidence: question.evidence, source: { docId: doc.id, page: source.page, title: doc.title, label: `Slide ${source.page}` } }];
-  }).slice(0, scope.count);
+  });
+  for(let i=cards.length-1;i>0;i--){const j=Math.floor(Math.max(0,Math.min(.999999,random()))*(i+1));[cards[i],cards[j]]=[cards[j],cards[i]];}
+  return cards.slice(0,scope.count);
 }

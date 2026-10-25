@@ -1,3 +1,4 @@
+import {TutorServiceError} from '@/lib/tutor-service-error';
 import { preparedVisualFlashcards } from '@/lib/flashcard-visuals';
 import {tutorConfigured,requestTutor,readTutorText} from '@/lib/tutor-provider';
 import { randomUUID } from 'node:crypto';
@@ -52,20 +53,21 @@ export async function POST(request: Request) {
     if (reviewed) deck.title = `Prepared practice · ${deck.title}`;
     return Response.json({ deck, ...(warning ? { warning } : {}) }, { headers: { 'Cache-Control': 'no-store' } });
   }
-  function fallback(status = 422) {
-    const cards = reviewedFlashcardFallback(scope);
-    if (cards.length) return success(cards, `Using ${cards.length} prepared practice cards from your selected lecture slides. These are prepared practice cards.${scope.difficulty !== 'recall' ? ' These are general recall cards; the selected difficulty could not be generated.' : ''}`, true);
-    return Response.json({ error: 'A reliable generated set is not available for this selection. Choose all slides for this lecture, or use the ready-made General practice sets.' }, { status });
+  function fallback(status=422,reason='The generated cards could not be verified against the selected slides.') {
+    const cards=reviewedFlashcardFallback(scope);
+    if(cards.length)return success(cards,`${reason} Showing ${cards.length} prepared, slide-checked cards instead.${scope.difficulty!=='recall'?' This prepared set uses general recall questions; the selected difficulty could not be generated.':''}`,true);
+    return Response.json({error:`${reason} Please try again later. Your saved decks are still available.`},{status});
   }
   if (scope.format === 'image-map') {
     const cards = preparedVisualFlashcards(scope.week, scope.docId, scope.count);
     if (!cards.length) return Response.json({error:'No reviewed image or map cards are available for these slides yet. Choose short answers.'}, {status:422});
     return success(cards, `Image / map identification: ${cards.length} reviewed cards from the selected lecture slides.`, true);
   }
+  if(scope.mode==='prepared'){const cards=reviewedFlashcardFallback(scope);return cards.length?success(cards,`Using ${cards.length} prepared, slide-checked cards. No generation service is needed.${scope.difficulty!=='recall'?' Prepared sets use general recall questions.':''}`,true):Response.json({error:'No prepared short-answer cards are available for these slides yet.'},{status:422});}
   const excerpts = selectFlashcardExcerpts(scope).map(excerpt=>({...excerpt,text:excerpt.text.slice(0,900)}));
   if (!excerpts.length || excerpts.reduce((total, excerpt) => total + excerpt.text.length, 0) < 300) return fallback();
   const targetCount = flashcardTargetCount(excerpts, scope.count);
-  if (!tutorConfigured()) return fallback(503);
+  if (!tutorConfigured()) return fallback(503,'The generation service is not configured.');
   try {
     const schema=flashcardSchema(excerpts,targetCount);
     const {evidence: _evidence,...properties}=schema.properties.cards.items.properties;
@@ -85,5 +87,8 @@ export async function POST(request: Request) {
     const cards = validateFlashcards(sourced, excerpts, targetCount);
     if (cards.length < 3) return fallback();
     return success(cards, cards.length < scope.count ? `Created ${cards.length} supported cards instead of ${scope.count} to stay within the available course evidence.` : undefined);
-  } catch { return fallback(signal.aborted ? 504 : 502); }
+  } catch(error) {
+    const reason=signal.aborted?'The generation request timed out.':error instanceof TutorServiceError?(error.code==='quota'?'The university generation service has insufficient tokens right now.':error.message):'The generation service could not return a verified set.';
+    return fallback(signal.aborted?504:502,reason);
+  }
 }

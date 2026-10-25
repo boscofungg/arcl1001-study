@@ -281,3 +281,43 @@ storage, rejection of cross-quiz saved data and continued parsing of old Quiz 1
 papers. Browser checks verified hidden Quiz 1 controls, creation of two Quiz 2
 papers, draft reload, submission/model-answer reveal and narrow-screen map layout.
 Native print/PDF export was not re-tested in this release.
+
+## L6/L7 flashcard failure and service-token handling — 25 October 2026
+
+Reproduced the reported ten-card failure for both Lecture 6 and Lecture 7 through
+the production flashcard endpoint (HTTP 502). The screenshot's message advised
+“All slides” despite that scope already being selected, and pointed to General
+practice sets that were not available for those lectures.
+
+Root cause: the configured university endpoint returned HTTP 400 with plain text
+**“Insufficient token.”** This was classified as a generic invalid request. The
+flashcard route hid the service reason behind a generic fallback message, while
+its reviewed fallback bank had no L6/L7 cards.
+
+Changes:
+- Added 17 reviewed, single-slide short-answer cards for each lecture. Both all-
+  slides and document-specific selections support sets of six or ten cards.
+- Normal generation failures now return prepared cards with a clear explanation,
+  including when the provider reports insufficient tokens. Selected advanced
+  difficulty is not falsely applied to a prepared recall set.
+- Added **Use prepared cards · no generation needed**. This uses the normal
+  endpoint and rate limit but makes no university-model call.
+- Shuffled prepared selections to vary new sets. Existing saved decks and their
+  exact retry answers remain unchanged.
+- Added bounded provider-error classification without returning or logging raw
+  error bodies or credential-bearing URLs. Removed the misleading advice to
+  reselect All slides or use missing practice sets.
+
+Validation: 170 automated tests passed, lint, TypeScript and production build
+passed. Local end-to-end requests against the real failing university service
+returned HTTP 200 and ten cards for both lectures. Browser checks verified L6
+prepared creation, answer/source-slide reveal, saved progress after reload and
+L7 automatic fallback. Tests also cover text/JSON quota responses, bounded reads,
+source evidence, scope isolation, shuffled selection and library roundtrips.
+
+Remaining dependency: the university token allowance must be checked/restored
+for new model-generated content. This change restores prepared flashcard study;
+it does not replenish or bypass the provider allowance. No student email,
+identity or original feedback screenshot was committed.
+
+Rollback checkpoint: `checkpoint/pre-l67-flashcard-fix-2026-10-25`.

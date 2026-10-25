@@ -135,3 +135,11 @@ are temporarily hidden; their content and browser saves are preserved separately
 The mock layout adapts the earlier paper and is not an official Quiz 2 specimen.
 Each new paper covers all four lectures. Written answers/maps use source-based
 self-checking, while chronology retains automatic practice feedback.
+
+## Flashcard availability during service limits
+
+Lecture 6 and 7 now each include 17 reviewed short-answer fallback cards. Use
+**Use prepared cards · no generation needed** for a six- or ten-card set. The
+normal Create button also returns prepared cards if generation fails, with a
+clear explanation. New model-generated content still depends on the university
+service's token allowance. Saved decks and progress continue to work locally.

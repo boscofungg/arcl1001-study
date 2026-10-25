@@ -59,11 +59,11 @@ export default function FlashcardStudy({week,topic,onOpen}:{week:number;topic:st
   const showingAnswer=!!card&&revealed===face;
   const known=review?Object.values(review.ratings).filter(rating=>rating==='known').length:0;
   const missed=review?review.deck.cards.filter(item=>review.ratings[item.id]==='again').length:0;
-  async function generate(){
+  async function generate(mode:'generated'|'prepared'='generated'){
     if(request.current||!materials.length)return;
     const controller=new AbortController();request.current=controller;setBusy(true);setError('');setWarning('');
     try{
-      const response=await fetch('/api/flashcards',{method:'POST',headers:{'Content-Type':'application/json'},signal:AbortSignal.any([controller.signal,AbortSignal.timeout(60000)]),body:JSON.stringify({week,docId:selected||undefined,count,difficulty,format:activeFormat})});
+      const response=await fetch('/api/flashcards',{method:'POST',headers:{'Content-Type':'application/json'},signal:AbortSignal.any([controller.signal,AbortSignal.timeout(60000)]),body:JSON.stringify({week,docId:selected||undefined,count,difficulty,format:activeFormat,mode})});
       const data=await response.json() as {deck?:FlashcardDeck;warning?:string;error?:string};
       if(!response.ok||!data.deck)throw new Error(data.error||'Could not generate this set. Please try again.');
       const next=startReview(data.deck);
@@ -107,6 +107,7 @@ export default function FlashcardStudy({week,topic,onOpen}:{week:number;topic:st
       {activeFormat==='short-answer'&&<label>Question difficulty<select aria-label="Flashcard difficulty" value={difficulty} disabled={busy} onChange={event=>setDifficulty(event.target.value as FlashcardDifficulty)}><option value="recall">Recall — key facts</option><option value="explain">Explain — relationships and meaning</option><option value="apply">Apply / discuss — evidence and interpretation</option></select></label>}
       <div className="flashcard-generate-row"><label>Set size<select aria-label="Number of flashcards" value={count} disabled={busy} onChange={event=>setCount(Number(event.target.value) as 6|10)}><option value={6}>6 cards</option><option value={10}>10 cards</option></select></label><button className="primary-button" disabled={busy||library.reviews.length>=MAX_SAVED_DECKS} type="submit"><Sparkles size={15}/>{busy?'Generating…':review?'Create a different set':'Create flashcards'}</button></div>
       <p>{activeFormat==='image-map'?'Reviewed identification questions use cropped slide images; the full original slide appears after reveal.':'Concise open-answer questions from the selected lecture slides.'} These are study aids, not official quiz questions. Creating a different set makes new questions; use Retry for the saved answers.</p>
+      {activeFormat==='short-answer'&&<button className="flashcard-secondary" type="button" disabled={busy||library.reviews.length>=MAX_SAVED_DECKS} onClick={()=>void generate('prepared')}>Use prepared cards · no generation needed</button>}
     </form>}
     {busy&&<div className="flashcard-status" role="status">Reading the slides and checking the cards’ source references…</div>}
     {error&&<p className="flashcard-error" role="alert">{error}{review?' Your existing set is still available.':''}</p>}
