@@ -31,16 +31,26 @@
         "id": "point-1",
         "label": "Darius established Persepolis",
         "patterns": [
-          "\\bdarius\\b.{0,35}\\b(?:establish|found|built|build|creat)",
-          "\\b(?:establish|found|built|build|creat)\\w*.{0,35}\\bdarius\\b"
+          "\\bdarius\\b(?:(?!\\balexander\\b).){0,45}\\b(?:establish\\w*|found(?:ed|s|ing)?|built|build\\w*|creat\\w*)\\b",
+          "\\b(?:establish\\w*|found(?:ed|s|ing)?|built|build\\w*|creat\\w*)\\b(?:(?!\\b(?:alexander|darius)\\b).){0,45}\\bby\\s+darius\\b"
+        ],
+        "clauseBound": true,
+        "excludePatterns": [
+          "\\bdarius\\b(?:(?!\\balexander\\b).){0,45}\\b(?:destroy\\w*|burn\\w*|burnt|sack\\w*|razed)\\b",
+          "\\b(?:destroy\\w*|burn\\w*|burnt|sack\\w*|razed)\\b(?:(?!\\b(?:alexander|darius)\\b).){0,45}\\bby\\s+darius\\b"
         ]
       },
       {
         "id": "point-2",
         "label": "Alexander destroyed Persepolis",
         "patterns": [
-          "\\balexander\\b.{0,35}\\b(?:destroy|burn|sack)",
-          "\\b(?:destroy|burn|sack)\\w*.{0,35}\\balexander\\b"
+          "\\balexander\\b(?:(?!\\bdarius\\b).){0,45}\\b(?:destroy\\w*|burn\\w*|burnt|sack\\w*|razed)\\b",
+          "\\b(?:destroy\\w*|burn\\w*|burnt|sack\\w*|razed)\\b(?:(?!\\b(?:darius|alexander)\\b).){0,45}\\bby\\s+alexander\\b"
+        ],
+        "clauseBound": true,
+        "excludePatterns": [
+          "\\balexander\\b(?:(?!\\bdarius\\b).){0,45}\\b(?:establish\\w*|found(?:ed|s|ing)?|built|build\\w*|creat\\w*)\\b",
+          "\\b(?:establish\\w*|found(?:ed|s|ing)?|built|build\\w*|creat\\w*)\\b(?:(?!\\b(?:darius|alexander)\\b).){0,45}\\bby\\s+alexander\\b"
         ]
       }
     ]

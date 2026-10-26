@@ -7,7 +7,7 @@ import {slideQuestions} from './slide-practice.ts';
 import {matchNumericAnswer} from './numeric-marking.ts';
 import {tolerateSlideSpelling} from './spelling-tolerance.ts';
 import type {NumericRule} from './numeric-marking.ts';
-export type MarkCriterion={id:string;label:string;patterns?:string[];allowNegation?:boolean;excludePatterns?:string[];numeric?:NumericRule;tolerance?:string};
+export type MarkCriterion={id:string;label:string;patterns?:string[];allowNegation?:boolean;clauseBound?:boolean;excludePatterns?:string[];numeric?:NumericRule;tolerance?:string};
 export type SlideRubric={questionId:string;requiredCount?:number;criteria:MarkCriterion[]};
 export type SlideMark={status:'correct'|'partial'|'needs-review';score:number;maxScore:number;feedback:string;criteria:{id:string;label:string;matched:boolean;feedback?:string;tolerance?:string}[];modelAnswer:string};
 const term=(id:string,label:string,...patterns:string[]):MarkCriterion=>({id,label,patterns});
@@ -52,11 +52,10 @@ function patternMatches(text:string,pattern:string,allowNegation=false){
  return false;
 }
 function matchCriterion(answer:string,criterion:MarkCriterion){
- const original=normalize(answer);
- const spelling=tolerateSlideSpelling(original);
- const normalized=spelling.text;
- if(criterion.excludePatterns?.some(pattern=>patternMatches(normalized,pattern)))return {matched:false,feedback:'This part conflicts with the slide evidence.'};
- const wordMatch=criterion.patterns?.some(pattern=>patternMatches(normalized,pattern,criterion.allowNegation))||false;
+ const originals=(criterion.clauseBound?answer.split(/[;,.!?\n]+|\b(?:and|but|whereas|while)\b/i):[answer]).map(normalize);
+ const normalized=originals.map(text=>tolerateSlideSpelling(text).text);
+ if(criterion.excludePatterns?.some(pattern=>normalized.some(text=>patternMatches(text,pattern))))return {matched:false,feedback:'This part conflicts with the slide evidence.'};
+ const wordMatch=criterion.patterns?.some(pattern=>normalized.some(text=>patternMatches(text,pattern,criterion.allowNegation)))||false;
  if(criterion.numeric){
   const numeric=matchNumericAnswer(answer,criterion.numeric);
   // A named period is sufficient only if the student has not also supplied a conflicting explicit date.
@@ -64,7 +63,7 @@ function matchCriterion(answer:string,criterion:MarkCriterion){
   if(wordMatch&&!hasDate)return {matched:true};
   return numeric;
  }
- const correctedMatch=wordMatch&&!criterion.patterns?.some(pattern=>patternMatches(original,pattern,criterion.allowNegation));
+ const correctedMatch=wordMatch&&!criterion.patterns?.some(pattern=>originals.some(text=>patternMatches(text,pattern,criterion.allowNegation)));
  return {matched:wordMatch,...correctedMatch?{feedback:'A minor spelling error was accepted. See the model answer for the standard spelling.'}:{}};
 }
 export function markSlideAnswer(questionId:string,answer:string):SlideMark|null{

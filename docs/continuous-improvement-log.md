@@ -321,3 +321,31 @@ it does not replenish or bypass the provider allowance. No student email,
 identity or original feedback screenshot was committed.
 
 Rollback checkpoint: `checkpoint/pre-l67-flashcard-fix-2026-10-25`.
+
+## Meeting screenshots: reversed roles and tutor rejection — 26 October 2026
+
+Reproduced the reported Persepolis marking error: a response assigning destruction
+to Darius and construction to Alexander incorrectly earned full credit. The
+patterns could cross clause/subject boundaries and attach one person's name to
+the other person's action.
+
+The two criteria now use clause-bounded active/passive role patterns and reject
+explicit reversed assignments. Correct equivalent wording still earns credit;
+one correct role earns partial credit. The model answer is unchanged. Previously
+saved answers are re-evaluated when reopened, so an old incorrect “known” rating
+becomes “again” without deleting the student's response.
+
+Rechecked the live “inca” chatbot request: it still fails because the university
+service reports insufficient tokens/quota. The prior release already replaced
+the generic rejection with an explicit allowance message. This marking fix does
+not replenish that allowance. Prepared flashcards and local practice remain
+available while the account administrator checks the university service.
+
+Tests include the exact screenshot response, swapped active/passive sentences,
+correct paraphrases, partial answers, negation, contradictions and saved-answer
+re-evaluation. No original screenshot or correspondent identity was committed.
+Rollback checkpoint: `checkpoint/pre-role-marking-2026-10-26`.
+
+Validation: 174 tests, lint, TypeScript and production build passed. A browser
+reproduction of the exact screenshot answer now displays **Needs review, 0/2**,
+with both incorrect role assignments identified as conflicting with the evidence.
