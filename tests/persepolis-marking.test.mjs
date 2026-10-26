@@ -10,7 +10,7 @@ test('correct active and passive wording retains full credit',()=>{
 test('negation, contradictions and missing parts are not marked fully correct',()=>{
  assert.equal(mark('Darius established Persepolis.').score,1);
  assert.equal(mark('Alexander destroyed it.').score,1);
- for(const a of ['Darius and Alexander','Darius never established it; Alexander did not destroy it.','Darius built it. Darius destroyed it. Alexander destroyed it.'])assert.notEqual(mark(a).status,'correct',a);
+ for(const a of ['Darius and Alexander',"Darius didn't establish it; Alexander didn't destroy it.",'Darius never established it; Alexander did not destroy it.','Darius built it. Darius destroyed it. Alexander destroyed it.'])assert.notEqual(mark(a).status,'correct',a);
 });
 test('previously saved reversed answers are re-evaluated on reload',async()=>{
  const {parseMarkedSet}=await import('../lib/marked-slide-review.ts');const {slideQuestions}=await import('../lib/slide-practice.ts');const id='l5-text-03';

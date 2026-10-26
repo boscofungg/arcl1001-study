@@ -43,7 +43,7 @@ const normalize=(value:string)=>value.normalize('NFKD').replace(/[\u0300-\u036f]
 function isNegated(text:string,start:number,length:number,allowWithin=false){
  const before=text.slice(0,start).split(/\s+/).slice(-4).join(' ');
  const span=text.slice(start,start+length);
- const negative=/\b(?:not|never|neither|without|isnt|arent|wasnt|werent|dont|doesnt|cannot|cant|no)\b/;
+ const negative=/\b(?:not|never|neither|without|isnt|arent|wasnt|werent|dont|doesnt|didnt|cannot|cant|no)\b/;
  return negative.test(before)||(!allowWithin&&negative.test(span));
 }
 function patternMatches(text:string,pattern:string,allowNegation=false){
