@@ -1,6 +1,6 @@
 # Stratum (beta) — ARCL1001
 
-Public study workspace for Lecture slides 1–7 and assigned readings: a scrolling course reader,
+Public study workspace for Lecture slides 1–9 and assigned readings: a scrolling course reader,
 source-grounded streaming tutor, generated flashcards and unified General practice.
 The shared browser theme preference supports light and dark mode.
 
@@ -143,3 +143,10 @@ Lecture 6 and 7 now each include 17 reviewed short-answer fallback cards. Use
 normal Create button also returns prepared cards if generation fails, with a
 clear explanation. New model-generated content still depends on the university
 service's token allowance. Saved decks and progress continue to work locally.
+
+## Lecture 8–9 upload (11 November 2026)
+
+Tracing Nomads and Politics and Religion are available with their assigned
+readings. The default view is All lectures (1–9); Quiz 2 remains limited to
+L4–7. Duplicate L7 readings were retained as one copy. Raw student feedback
+is not part of the public course library.

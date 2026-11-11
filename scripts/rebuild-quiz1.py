@@ -40,6 +40,10 @@ SOURCES = [
     ('d112', 'Frogley et al. (2025). Trees, terraces and llamas Resilient watershed management and sustainable agriculture the Inca way.pdf', 4, 'Reading', 'Lecture 4 — Trees, Terraces and Llamas', 15),
     ('d122', 'L6-Slides.pptx', 6, 'Lecture', 'Lecture 6 — Food and Foodways', 119),
     ('d123', 'L7-Slides.pptx', 7, 'Lecture', 'Lecture 7 — Violence', 123),
+    ('d124', 'L8-Slides.pptx', 8, 'Lecture', 'Lecture 8 — Tracing Nomads', 86),
+    ('d125', 'L8-Reading-Nomads Invisible Culture (Cribb 1991).pdf', 8, 'Reading', 'Lecture 8 — Nomads: The Invisible Culture?', 19),
+    ('d126', 'L9-Slides.pptx', 9, 'Lecture', 'Lecture 9 — Politics and Religion', 94),
+    ('d127', 'L9-Reading-Interpreting Religion in the Archaeological Past (Steadman 2024).pdf', 9, 'Reading', 'Lecture 9 — Interpreting Religion in the Archaeological Past', 17),
 ]
 
 SOURCE_PATHS = {
@@ -216,6 +220,15 @@ def main():
         l2 = next(source for source in provenance if source['id'] == 'd106')
         if digest(duplicate_l2) == l2['sha256']:
             l2['identicalAttachments'] = [{'filename': duplicate_l2.name, 'sha256': l2['sha256']}]
+    for ident, filename in [('d118', 'L7-Reading-Principles of Archaeology (1).pdf'), ('d119', 'L7-Reading-Mediating the Viking (Tosca Etal 2026) (1).pdf')]:
+        attachment = DOWNLOADS / filename
+        if attachment.exists():
+            source = next(item for item in provenance if item['id'] == ident)
+            if digest(attachment) != source['sha256']:
+                raise ValueError(f'{ident}: new attachment differs; review it before reusing existing import')
+            records = source.setdefault('identicalAttachments', [])
+            if not any(item['filename'] == filename for item in records):
+                records.append({'filename': filename, 'sha256': source['sha256']})
     readings_path = ROOT / 'content/quiz1-web-readings.json'
     readings = json.loads(readings_path.read_text())
     if isinstance(readings, dict):
@@ -240,9 +253,9 @@ def main():
         visuals[ident] = {'representation': 'page', 'sourceType': 'web', 'filename': filename, 'week': week, 'pages': [{'page': 1, 'images': [], 'imageOnly': False, 'textBlocks': []}], 'url': url, 'isSummary': True}
         provenance.append({'id': ident, 'url': url, 'week': week, 'isSummary': True, 'summarySha256': hashlib.sha256(summary.encode()).hexdigest(), 'renderedPages': 0})
     assets = [p for ident, *_ in SOURCES for p in (ROOT / 'public/materials' / ident).glob('*.webp')]
-    report = {'documents': len(documents), 'chunks': len(corpus), 'skipped': [], 'excludedFrontMatterPages': sum(len(s.get('excludedStudyPages', [])) for s in provenance), 'limitations': 'Lecture slides 1–7 and assigned readings. Web readings are original summaries with links, not full articles. Text rectangles reflect extracted PDF text; image-only content requires visual reading. Slide animations are flattened.'}
+    report = {'documents': len(documents), 'chunks': len(corpus), 'skipped': [], 'excludedFrontMatterPages': sum(len(s.get('excludedStudyPages', [])) for s in provenance), 'limitations': 'Lecture slides 1–9 and assigned readings. Web readings are original summaries with links, not full articles. Text rectangles reflect extracted PDF text; image-only content requires visual reading. Slide animations are flattened.'}
     visual_report = {'documents': len(documents), 'pages': sum(len(d['pages']) for d in visuals.values()), 'imageOnlyPages': sum(p['imageOnly'] for d in visuals.values() for p in d['pages']), 'images': len(assets), 'assetBytes': sum(p.stat().st_size for p in assets), 'maximumDimension': 1400, 'quality': 65, 'renderer': 'LibreOffice with hidden slides; PyMuPDF', 'fallbackDocuments': [], 'errors': [], 'limitations': ['Web readings are linked summaries with no page screenshots.', 'Slide animations are flattened; unusual fonts or external media may differ from PowerPoint.', 'Text boxes mark extracted text. The scanned seafood reading uses visually reviewed Tesseract OCR; small chart labels are read from the original image.']}
-    outputs = {'lib/documents.json': documents, 'lib/corpus.json': corpus, 'lib/visuals.json': visuals, 'lib/ingestion-report.json': report, 'lib/visual-ingestion-report.json': visual_report, 'content/quiz1-source-manifest.json': {'scope': 'Lecture slides 1–7 and assigned readings', 'sources': provenance, 'webReadingsInputSha256': digest(readings_path)}}
+    outputs = {'lib/documents.json': documents, 'lib/corpus.json': corpus, 'lib/visuals.json': visuals, 'lib/ingestion-report.json': report, 'lib/visual-ingestion-report.json': visual_report, 'content/quiz1-source-manifest.json': {'scope': 'Lecture slides 1–9 and assigned readings', 'sources': provenance, 'webReadingsInputSha256': digest(readings_path)}}
     for filename, data in outputs.items():
         target = ROOT / filename
         target.parent.mkdir(parents=True, exist_ok=True)

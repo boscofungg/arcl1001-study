@@ -349,3 +349,37 @@ Rollback checkpoint: `checkpoint/pre-role-marking-2026-10-26`.
 Validation: 174 tests, lint, TypeScript and production build passed. A browser
 reproduction of the exact screenshot answer now displays **Needs review, 0/2**,
 with both incorrect role assignments identified as conflicting with the evidence.
+
+## Lecture 8–9 materials — 11 November 2026
+
+Added Lecture 8 **Tracing Nomads** (86 slides) and Lecture 9 **Politics and
+Religion** (94 slides), plus their assigned readings: Cribb's *Nomads: The
+Invisible Culture?* (19 PDF pages) and Steadman's *Interpreting Religion in the
+Archaeological Past* (17 PDF pages). Both readings begin with substantive content,
+so their reader start page is 1. Original page images, searchable excerpts and
+citation coordinates are imported with source hashes.
+
+The two reattached Lecture 7 PDFs have identical SHA256 hashes to d118 and d119.
+They are recorded as duplicate provenance, preserving existing citations and
+avoiding duplicate library entries.
+
+The course now opens in **All lectures · 1–9**, with the latest lecture selected.
+The old dated Quiz 2 banner is replaced by the available lecture range. The
+retained Quiz 2 filter and mock papers remain explicitly restricted to L4–7;
+adding L8–9 does not silently widen that assessment scope. New slides are eligible
+for generated short-answer flashcards, subject to university service availability.
+Prepared practice/fallback cards for L8–9 are not included in this upload.
+
+The supplied feedback workbook was reviewed separately (13 response rows). Its
+recurring themes include citation specificity, difficulty alignment, coverage,
+visual clarity and fuller explanations. These overlap with the existing register;
+no additional improvement is claimed merely from receiving the workbook. The raw
+feedback and respondent information are not public course material and were not
+added to retrieval or the repository.
+
+Rollback checkpoint: `checkpoint/pre-lecture8-9-2026-11-11`.
+
+Validation: 177 automated tests, lint, TypeScript and production build passed.
+All 216 new original-page previews exist; representative slides and first reading
+pages were visually checked. Browser checks confirmed the All lectures default,
+new document access and the retained L4–7-only Quiz 2 navigation boundary.
