@@ -13,7 +13,10 @@ export function isFollowup(question: string): boolean {
   if (!words) return false;
   if (words <= 3) return true;
   if (words >= 16) return false;
-  return continuation.test(question) || (words < 12 && referring.test(question));
+  if (continuation.test(question)) return true;
+  // A question that names its own subject (e.g. "Fu Hao", "Uruk") stands alone even if it uses "her" or "it".
+  const namesSubject = /\s[A-Z\u00C0-\u024F][\p{L}-]+/u.test(question.trim().replace(/^\S+/, ''));
+  return !namesSubject && words < 12 && referring.test(question);
 }
 
 export function retrievalQuery(question: string, history: readonly Turn[] = []): string {
