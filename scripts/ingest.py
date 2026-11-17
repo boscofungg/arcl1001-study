@@ -1,8 +1,11 @@
 """Rebuild the course index from the original materials; requires PyMuPDF."""
-import json, re, zipfile, xml.etree.ElementTree as ET
+import json, os, re, zipfile, xml.etree.ElementTree as ET
 from pathlib import Path
 import pymupdf
-BASE = Path(__file__).resolve().parents[2]
+# Course originals are not committed. Default: the folder that contains this repo (see docs/ingest.md).
+BASE = Path(os.environ.get('STRATUM_COURSE_DIR') or Path(__file__).resolve().parents[2]).resolve()
+if not (BASE / 'ARCL1001-CourseMaterial').is_dir():
+    raise SystemExit(f'Course materials not found in {BASE}. Set STRATUM_COURSE_DIR; see docs/ingest.md.')
 OUT = Path(__file__).resolve().parents[1] / 'lib'
 files = sorted((BASE / 'ARCL1001-CourseMaterial').rglob('*')) + [BASE / 'ARCL1001-ArchaeologyGlobeSyllabus.pdf']
 documents, chunks, skipped = [], [], []

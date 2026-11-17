@@ -8,6 +8,7 @@ from io import BytesIO
 import json
 import posixpath
 from pathlib import Path
+import os
 import re
 import shutil
 import subprocess
@@ -19,7 +20,8 @@ import pymupdf
 from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[1]
-BASE = ROOT.parent
+# Course originals are not committed; see docs/ingest.md.
+BASE = Path(os.environ.get('STRATUM_COURSE_DIR') or ROOT.parent).resolve()
 NS = {'a': 'http://schemas.openxmlformats.org/drawingml/2006/main',
       'c': 'http://schemas.openxmlformats.org/drawingml/2006/chart',
       'r': 'http://schemas.openxmlformats.org/officeDocument/2006/relationships'}

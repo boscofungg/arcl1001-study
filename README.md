@@ -1,152 +1,65 @@
 # Stratum (beta) — ARCL1001
 
-Public study workspace for Lecture slides 1–9 and assigned readings: a scrolling course reader,
-source-grounded streaming tutor, generated flashcards and unified General practice.
-The shared browser theme preference supports light and dark mode.
+Study workspace for ARCL1001 Lectures 1–9 and their assigned readings:
 
-## General practice and flashcards
+- **Read & ask** — a scrolling reader for slides and readings, with a streaming tutor that
+  answers only from the course materials and cites the slide or page it used.
+- **General practice** — slide-based image, map and short-answer questions with automatic
+  practice marking, plus full mock papers (currently Quiz 2 format, Lectures 4–7).
+- **Make flashcards** — generated or prepared cards from lecture slides, with spaced review.
 
-Choose a Lecture 1, 2, 3 or 4 slide deck in the practice navigation. Practice has
-89 slide-supported image-identification, map-labelling and concise-answer
-questions; MCQs have been removed to follow the announced quiz formats.
-Each suggested answer links only to its original lecture slide(s). Multi-part answers receive criterion-based automatic practice marking and
-partial credit. Common paraphrases and explicitly authored numerical tolerances
-are accepted; BCE/CE and elapsed-age units remain distinct. Every reveal shows
-the exact slide-based model answer, accepted practice ranges and source links.
-These are not official exam marks; unusual valid wording may still need review.
+Live site: https://arcl1001-study-boscofungg.vercel.app/ · Release history: [CHANGELOG.md](CHANGELOG.md)
 
-Flashcards also use only lecture slides. The API rejects PDF/web-reading source
-requests; excerpt selection, validation, prepared fallback and saved-deck checks
-all enforce Lecture sources. The practice/flashcard sidebar shows only the four
-slide decks. PDF and web readings remain indexed and selectable in Read & ask,
-and the chatbot can still answer questions about them.
+## How it works
 
-Slide-only practice and flashcards use new browser-storage namespaces. Earlier
-reading-based, mixed-source and MCQ sets remain archived in their previous keys,
-but cannot reappear in the new review flow. Marked responses and results are saved per lecture in the current browser,
-and are marked locally. Reveal-only questions earn no marks and go to review. No cross-device sync exists.
+```
+course files ──(scripts/ingest*.py, run locally)──▶ lib/corpus.json, lib/visuals.json, public/materials/*.webp
+content/*.json (hand-authored questions, rubrics, mock papers) ─┐
+                                                                ▼
+                         Next.js app on Vercel ── /api/chat ───────▶ HKU Claude (Converse / ConverseStream)
+                                               ── /api/flashcards ─▶ HKU Claude, then validated against slides
+                                               ── /api/source  (page text and images)
+browser ── progress, decks, mock-paper drafts, flashcard schedule in localStorage (no accounts, no sync)
+```
 
-The former `/expeditions` URL redirects to `/?view=practice`.
+- Retrieval (`lib/retrieval.ts`) is lexical BM25-style scoring with a few aliases; the tutor
+  receives the top 7 passages plus up to 4 original slide images.
+- The tutor prompt lives in `lib/tutor-prompt.ts`. Short follow-ups reuse the previous
+  question for search (`lib/followup.ts`).
+- Practice and flashcards use **lecture slides only**; readings are available to the tutor.
+- Practice marks are study aids, not official assessment marks.
 
-## Development and hosting
+## Development
 
-Run `npm ci`, set server-only `HKU_CLAUDE_KEY` and optional `HKU_CLAUDE_MODEL` in
-`.env.local`, then `npm run dev`. Verify with `npm run lint`, `npm test`,
-`npm run build`, and `npx tsc --noEmit`. Course page originals are bundled for
-visual model context. Practice marking is browser-local and makes no external requests.
-Existing origin checks and per-instance IP rate limits remain on model APIs.
-Whole-class tutor capacity requires separate quota checks and load testing.
+Requirements: Node 24.
 
-Official project: `arcl1001-study`; production branch: see the linked Vercel project’s Git settings.
-Official site: https://arcl1001-study-boscofungg.vercel.app/
+```bash
+npm ci
+cp .env.example .env.local   # set HKU_CLAUDE_KEY (server-only); HKU_CLAUDE_MODEL is optional
+npm run dev
+```
 
-## Backups
+Checks (also run by GitHub Actions on every push and pull request):
 
-- Before public games: `checkpoint/pre-public-games-2026-09-20`.
-- Before expanding to 45 questions: `checkpoint/pre-question-expansion-2026-09-20`.
-- Before this consolidation: `checkpoint/pre-unified-quiz-practice-2026-09-20`.
-- Consolidated release: `release/unified-quiz-practice-2026-09-20`.
+```bash
+npm run lint && npx tsc --noEmit && npm test && npm run build
+```
 
-To reverse this release, revert its tagged commit and push to the production
-branch. Resolve conflicts if later edits depend on it; avoid force-pushing.
-The former private testing site's source remains backed up in its private
-repository, while its Vercel project has been retired.
+`tests/retrieval-eval.test.mjs` measures whether search finds supporting evidence for the
+questions in `tests/eval/retrieval-cases.json`. Add a case whenever students report a missed topic.
 
-## Slides-only revision
+## Operating procedures
 
-`checkpoint/pre-slides-only-quiz-2026-09-20` preserves the previous mixed-source
-practice. `release/slides-only-quiz-2026-09-20` records this revision. Readings
-remain available to the tutor; exclusion is specific to quiz and flashcard flows.
+- Adding or replacing course materials: [docs/ingest.md](docs/ingest.md)
+- Releasing and rolling back: [docs/release.md](docs/release.md)
+- Student feedback loop: [docs/continuous-improvement-log.md](docs/continuous-improvement-log.md)
+- Work that needs new accounts or keys: [docs/pending-external.md](docs/pending-external.md)
 
-## Lenient slide marking
+## Security and licensing notes
 
-Checkpoint: `checkpoint/pre-lenient-slide-marking-2026-09-20`. Marked slide sets
-use a new versioned browser key, preserving earlier self-check sets separately.
-Tolerances are teaching aids authored for this app, not professor-approved limits.
-
-## Lecture 4 release
-
-The current L4 deck is the supplied 97-slide “Interacting with the Environment”
-file, replacing the older 99-slide version. Restored selected readings are the
-15-page Frogley et al. paper and a labelled National Geographic study summary
-with its original article link. No substantive PowerPoint speaker notes or
-separate L4 lecture-notes file was supplied; the reader provides the original
-slides and their extracted text. The wider research-literature collection stays
-hidden. Ten L4 slide-based practice questions include model answers and marking.
-
-Checkpoint: `checkpoint/pre-lecture4-2026-09-25`.
-
-## University tutor service
-
-The tutor and generated flashcards use HKU Claude Haiku 4.5 through the
-Bedrock-compatible Converse API. Tutor responses use ConverseStream, translated
-to the existing browser SSE format. Original slide images remain attached with
-source labels. Flashcard JSON is validated against supplied slide excerpts;
-prepared fallback cards remain clearly labelled. Subscription credentials are
-server-only and never sent to the browser or committed. Provider URLs and raw
-errors are not logged because HKU authentication uses a query parameter.
-
-Checkpoint before migration: `checkpoint/pre-hku-claude-2026-09-26`.
-
-## Student feedback update
-
-See `docs/student-feedback-changes-2026-09-26.md` for the concise change note.
-The active practice bank has 89 slide-based questions. New sets prioritize
-questions not yet assigned across sessions. Flashcards offer Recall, Explain
-and Apply/discuss levels plus an optional written answer before model reveal.
-Citations show matched source passages; regional China maps have geographic
-context, and short slide captions are now included in retrieval. The original
-feedback workbook and respondent data are not included in the repository.
-
-Checkpoint: `checkpoint/pre-student-feedback-2026-09-26`.
-
-Numbered practice sets preserve earlier progress. Flashcards support multiple saved
-decks per lecture and downloadable/importable backups. Storage is device-local.
-
-## Quiz 2 update (8 October 2026)
-
-Quiz 2 (27 October) opens with Lecture 4–7 scope. Lecture 5 slides and the
-new L5–7 readings are available; L6–7 slides are still required for their
-practice and flashcards. See the continuous improvement log for the complete
-feedback mapping and remaining limitations. The reader shows original pages,
-flashcard retry retains saved answers, and a desktop slider adjusts tutor width.
-
-## Full mock papers (17 October 2026)
-
-General practice now includes **Mock paper · Quiz 1 format**, covering L1–3
-using the supplied six-task structure. It combines 2-of-3 image selection,
-three-sentence answers, map placement, BCE/CE calculations and a seven-sentence
-discussion. Submit to reveal model answers and checklists. Written responses
-and maps are self-reviewed; only chronology has automatic correctness checks.
-Numbered papers and drafts stay local. Print the current view or save as PDF
-through the browser. Quick practice, flashcards and their downloads remain.
-
-## Lecture 6 and 7 slides (22 October 2026)
-
-Both slide decks are now available in Read & ask, Quiz 2 scope and generated
-short-answer flashcards. L6 has 119 slides; L7 has 123. Prepared questions for
-these decks are still pending. See the continuous improvement log for validation
-and the rollback checkpoint.
-
-## Current mock-paper availability (24 October 2026)
-
-**General practice → Mock paper · Quiz 2** now covers Lectures 4–7. Quiz 1 mocks
-are temporarily hidden; their content and browser saves are preserved separately.
-The mock layout adapts the earlier paper and is not an official Quiz 2 specimen.
-Each new paper covers all four lectures. Written answers/maps use source-based
-self-checking, while chronology retains automatic practice feedback.
-
-## Flashcard availability during service limits
-
-Lecture 6 and 7 now each include 17 reviewed short-answer fallback cards. Use
-**Use prepared cards · no generation needed** for a six- or ten-card set. The
-normal Create button also returns prepared cards if generation fails, with a
-clear explanation. New model-generated content still depends on the university
-service's token allowance. Saved decks and progress continue to work locally.
-
-## Lecture 8–9 upload (11 November 2026)
-
-Tracing Nomads and Politics and Religion are available with their assigned
-readings. The default view is All lectures (1–9); Quiz 2 remains limited to
-L4–7. Duplicate L7 readings were retained as one copy. Raw student feedback
-is not part of the public course library.
+- Course slides and readings are licensed to HKU students. The site sends `noindex` to
+  search engines, but the materials are not behind a login. Keep this repository private.
+- The HKU key is server-only and is never logged; the provider puts it in the request URL,
+  so server logs redact URLs and keys (`lib/server-log.ts`).
+- Model routes accept requests only from the study page and are rate-limited per IP
+  (12 questions, 4 flashcard decks per minute). The limit is per server instance.

@@ -42,3 +42,16 @@ export function getSlidePracticePool(lecture: number = 0, kind: Quiz1Kind | 'mix
     (lecture === 0 || [question.source, ...(question.additionalSources ?? [])].every(source => lectures.get(source.docId)?.week === lecture)),
   );
 }
+
+/** Lectures that have at least one prepared slide-based practice question, in course order. */
+export function practiceLectures(): number[] {
+  return [...new Set(documents.filter(doc => doc.kind === 'Lecture').map(doc => doc.week))]
+    .filter(week => getSlidePracticePool(week).length > 0)
+    .sort((a, b) => a - b);
+}
+
+/** Latest lecture with prepared questions, optionally limited to an allowed range. */
+export function latestPracticeLecture(allowed?: readonly number[]): number {
+  const weeks = practiceLectures().filter(week => !allowed || allowed.includes(week));
+  return weeks.at(-1) ?? practiceLectures().at(-1) ?? 1;
+}

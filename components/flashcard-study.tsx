@@ -9,6 +9,8 @@ import documents from '@/lib/documents.json';
 import type { FlashcardDifficulty } from '@/lib/flashcard-generation';
 import type { FlashcardDeck } from '@/lib/flashcard-types';
 import { parseReview, rateCard, reviewMissed, retryReview, startReview, type FlashcardReview } from '@/lib/flashcard-review';
+import { scheduleCard, dueCardIds, nextDue, parseSchedule } from '@/lib/flashcard-schedule';
+const scheduleStorageKey='stratum-flashcard-schedule-v1';
 
 import { restoreLibrary, parseLibrary, saveLibraryReview, deleteLibraryReview, mergeLibrary, MAX_SAVED_DECKS, type FlashcardLibrary } from '@/lib/flashcard-library';
 import './flashcard-library.css';
@@ -34,6 +36,7 @@ export default function FlashcardStudy({week,topic,onOpen}:{week:number;topic:st
   const key=`stratum-flashcard-library-v1-week${week}`;
   const legacyKey=`stratum-flashcards-slides-v3-week${week}`;
   const raw=useSyncExternalStore(subscribe,()=>read(key),emptySnapshot);
+  const schedule=parseSchedule(useSyncExternalStore(subscribe,()=>read(scheduleStorageKey),emptySnapshot));
   const legacy=useSyncExternalStore(subscribe,()=>read(legacyKey),emptySnapshot);
   const library=restoreLibrary(raw,legacy,week);
   const review=library.reviews.find(item=>item.deck.id===library.selectedId)??null;
@@ -75,7 +78,11 @@ export default function FlashcardStudy({week,topic,onOpen}:{week:number;topic:st
   }
   function updateReview(next:FlashcardReview){save(key,saveLibraryReview(library,next));}
   function retry(missedOnly=false){if(!review)return;updateReview(missedOnly?reviewMissed(review):retryReview(review));setRevealed(null);setAnswers({});setWarning('Retrying the saved cards. Questions, model answers and images stay exactly the same.');}
-  function rate(rating:'again'|'known'){if(!review||!showingAnswer)return;updateReview(rateCard(review,rating));setRevealed(null);}
+  function rate(rating:'again'|'known'){if(!review||!showingAnswer||!card)return;saveSchedule(scheduleCard(schedule,review.deck.id,card.id,rating));updateReview(rateCard(review,rating));setRevealed(null);}
+  function saveSchedule(next:ReturnType<typeof parseSchedule>){try{localStorage.setItem(scheduleStorageKey,JSON.stringify(next));}catch{}window.dispatchEvent(new Event('stratum-flashcards'));}
+  const due=review?dueCardIds(review.deck,schedule):[];
+  const upcoming=review?nextDue(review.deck,schedule):null;
+  function reviewDue(){if(!review||!due.length)return;updateReview({...startReview(review.deck),queue:due});setRevealed(null);setAnswers({});setWarning(`Spaced review: ${due.length} card${due.length===1?'':'s'} due from this deck.`);}
   function download(){
     const url=URL.createObjectURL(new Blob([JSON.stringify(library,null,2)],{type:'application/json'}));
     const link=document.createElement('a');link.href=url;link.download=`lecture-${week}-flashcards.json`;link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
@@ -125,7 +132,7 @@ export default function FlashcardStudy({week,topic,onOpen}:{week:number;topic:st
           {showingAnswer?<div className="recall-answer"><span className="eyebrow">MODEL ANSWER</span><p>{card.answer}</p><OriginalSlide key={`${card.source.docId}:${card.source.page}`} docId={card.source.docId} page={card.source.page}/><details><summary>Check the supporting evidence</summary><blockquote>{card.evidence}</blockquote></details><button className="flashcard-source" onClick={()=>onOpen(card.source.docId,card.source.page,card.evidence)}><BookOpen size={14}/><span>{card.source.label} · {card.source.title}</span><ArrowRight size={14}/></button></div>:<div className="recall-prompt"><p>Say the answer in your own words before checking.</p><button className="primary-button" onClick={()=>setRevealed(face)}>Reveal answer <ArrowRight size={16}/></button></div>}
         </article>
         {showingAnswer&&<div className="recall-rating"><p>How did you do?</p><div><button className="recall-again" onClick={()=>rate('again')}><RotateCcw size={16}/> Again</button><button className="recall-known" onClick={()=>rate('known')}><Check size={16}/> Got it</button></div></div>}
-      </>:<div className="recall-complete" role="status"><Check size={28}/><h2>Round complete</h2><p>You marked <strong>{known}</strong> of {review.deck.cards.length} cards recalled and <strong>{missed}</strong> for more practice.</p><div>{missed>0&&<button className="primary-button" onClick={()=>retry(true)}><RotateCcw size={15}/> Review missed cards ({missed})</button>}<button className="flashcard-secondary" onClick={()=>retry()}>Retry same set</button></div></div>}
+      </>:<div className="recall-complete" role="status"><Check size={28}/><h2>Round complete</h2><p>You marked <strong>{known}</strong> of {review.deck.cards.length} cards recalled and <strong>{missed}</strong> for more practice.</p><div>{missed>0&&<button className="primary-button" onClick={()=>retry(true)}><RotateCcw size={15}/> Review missed cards ({missed})</button>}<button className="flashcard-secondary" onClick={()=>retry()}>Retry same set</button>{due.length>0&&<button className="flashcard-secondary" onClick={reviewDue}>Review due cards ({due.length})</button>}</div><p className="flashcard-save-note">{due.length?`${due.length} card${due.length===1?' is':'s are'} due for spaced review now.`:upcoming?`Next spaced review: ${upcoming.toLocaleDateString(undefined,{weekday:'short',day:'numeric',month:'short'})}. Cards you recall come back after 1, 3, 7, 14, then 30 days.`:''}</p></div>}
       {card&&review.position>0&&<button className="flashcard-secondary" disabled={busy} onClick={()=>retry()}>Retry same set · keep model answers</button>}
       <p className="flashcard-save-note">{temporarySets.has(key)?'Device storage is unavailable. This set lasts until you reload.':'This set and review progress are saved in your local library. Generating another set keeps this one.'}</p>
     </div>}

@@ -29,3 +29,5 @@
 .slide-mark-feedback .grade-heading{margin-bottom:20px}.slide-mark-feedback .grade-heading h3{font-size:24px;margin:0 0 10px}.slide-mark-feedback .grade-heading p{font-size:12px;line-height:1.8}.slide-mark-feedback .answer-explanation h3{font-size:22px;margin:0 0 12px}.mark-criteria{list-style:none;padding:0;margin:12px 0}.mark-criteria li{display:flex;align-items:flex-start;gap:10px;padding:8px 0;font-size:12px}.mark-criteria li>span{color:var(--green);font-weight:bold}.mark-criteria small{display:block;color:var(--muted);font-size:11px;margin-top:4px;line-height:1.6}.mark-tolerances{padding:16px;border:1px solid var(--line);border-radius:6px;font-size:12px;line-height:1.8;margin:18px 0}.mark-tolerances strong{font-size:11px}.mark-tolerances ul{padding-left:18px;margin:8px 0}.mark-tolerances small{color:var(--muted);font-size:10px}.feedback-partial .grade-icon{background:#f4e6cb;color:#816135}[data-theme=dark] .feedback-partial .grade-icon{background:#493923;color:#e4c692}
 
 .slide-practice-tabs{grid-template-columns:repeat(auto-fit,minmax(125px,1fr))}
+
+.practice-empty-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}

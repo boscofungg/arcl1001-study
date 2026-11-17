@@ -6,23 +6,17 @@ import { parseFlashcardScope, selectFlashcardExcerpts, validateFlashcards, flash
 import type { Flashcard, FlashcardDeck } from '@/lib/flashcard-types';
 import { weeks } from '@/lib/course';
 import documents from '@/lib/documents.json';
+import { sameOriginError, clientKey, allowRequest, type RateWindow } from '@/lib/request-guard';
+import { logServerError } from '@/lib/server-log';
 
 export const runtime = 'nodejs';
 export const maxDuration = 60;
-const recent = new Map<string, { count: number; at: number }>();
+const recent: RateWindow = new Map();
 
 export async function POST(request: Request) {
-  const origin = request.headers.get('origin');
-  try {
-    if (origin && new URL(origin).host !== (request.headers.get('host') || new URL(request.url).host)) return Response.json({ error: 'Generate cards from the study page.' }, { status: 403 });
-  } catch { return Response.json({ error: 'Invalid request origin.' }, { status: 403 }); }
-  if (request.headers.get('sec-fetch-site') === 'cross-site') return Response.json({ error: 'Generate cards from the study page.' }, { status: 403 });
-  const user = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'local';
-  const now = Date.now();
-  for (const [key, entry] of recent) if (now - entry.at >= 60000) recent.delete(key);
-  const previous = recent.get(user);
-  if ((previous?.count || 0) >= 4 || (!previous && recent.size >= 2000)) return Response.json({ error: 'Please wait a minute before generating another deck.' }, { status: 429, headers: { 'Retry-After': '60' } });
-  recent.set(user, { count: (previous?.count || 0) + 1, at: previous?.at || now });
+  const originError = sameOriginError(request);
+  if (originError) return Response.json({ error: originError === 'invalid' ? 'Invalid request origin.' : 'Generate cards from the study page.' }, { status: 403 });
+  if (!allowRequest(recent, clientKey(request), 4)) return Response.json({ error: 'Please wait a minute before generating another deck.' }, { status: 429, headers: { 'Retry-After': '60' } });
   const signal = AbortSignal.any([request.signal, AbortSignal.timeout(45000)]);
   let scope: ReturnType<typeof parseFlashcardScope>;
   try {
@@ -88,6 +82,7 @@ export async function POST(request: Request) {
     if (cards.length < 3) return fallback();
     return success(cards, cards.length < scope.count ? `Created ${cards.length} supported cards instead of ${scope.count} to stay within the available course evidence.` : undefined);
   } catch(error) {
+    logServerError('flashcards', error, { aborted: signal.aborted, week: scope.week });
     const reason=signal.aborted?'The generation request timed out.':error instanceof TutorServiceError?(error.code==='quota'?'The university generation service has insufficient tokens right now.':error.message):'The generation service could not return a verified set.';
     return fallback(signal.aborted?504:502,reason);
   }

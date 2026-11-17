@@ -29,8 +29,8 @@ async function loadPreview(src:string, signal?:AbortSignal): Promise<Buffer> {
     previewCache.set(src,{buffer,expires:Date.now()+10*60*1000});cachedBytes+=buffer.length;
     return buffer;
   };
-  // Originals are bundled with this function, including on Vercel. Protected beta
-  // assets cannot be fetched anonymously through either deployment's public URL.
+  // Originals are bundled with this function, including on Vercel. Note: the same files
+  // are also served publicly from /materials (no login); see docs/pending-external.md.
   const buffer=await readFile(join(process.cwd(),'public',src.slice(1)),{signal});
   if(buffer.length>maxImageBytes)throw new Error('Image too large');
   return save(buffer);
