@@ -37,6 +37,42 @@
         "title": "HKU/L4-Slides.pptx",
         "label": "Slide 55",
         "evidence": "Pre-classic Period( Formative Maya) | (c. 2000 BCE – 250 CE) | 1000 BCE | 0 CE\n2000 BCE | 1000 CE | 0 CE\n2000 CE | Classic Period (The Golden Age) | Postclassic Period\n(c. 900 – 1500 CE) | (c. 250 – 900 CE) | Civil War\n& Spanish | Kingdom Period | Conquest\n(1525 -1535 | (Local Era)\n(c. 1200 – 1438 CE) | Imperial Period\n(Expansion Era)\n(1438 – 1525 CE) | CE)"
+      },
+      {
+        "docId": "d111",
+        "page": 59,
+        "title": "HKU/L4-Slides.pptx",
+        "label": "Slide 59",
+        "evidence": "Additional photograph or drawing of the same site shown on this slide.",
+        "evidenceKind": "visual"
+      },
+      {
+        "docId": "d111",
+        "page": 56,
+        "title": "HKU/L4-Slides.pptx",
+        "label": "Slide 56",
+        "evidence": "Additional photograph or drawing of the same site shown on this slide.",
+        "evidenceKind": "visual"
+      }
+    ],
+    "images": [
+      {
+        "src": "/mock-paper/quiz2/figure-01.webp",
+        "width": 1400,
+        "height": 703,
+        "alt": "Unlabelled lecture image for identification 1"
+      },
+      {
+        "src": "/mock-paper/quiz2/figure-01-b.webp",
+        "width": 1008,
+        "height": 606,
+        "alt": "Unlabelled lecture image 2 of the same site"
+      },
+      {
+        "src": "/mock-paper/quiz2/figure-01-c.webp",
+        "width": 882,
+        "height": 552,
+        "alt": "Unlabelled lecture image 3 of the same site"
       }
     ]
   },
@@ -71,6 +107,34 @@
         "label": "Slide 70",
         "evidence": "The regional map marks Nakum in Petén in the Maya Southern Lowlands, within Guatemala.",
         "evidenceKind": "visual"
+      },
+      {
+        "docId": "d111",
+        "page": 76,
+        "title": "HKU/L4-Slides.pptx",
+        "label": "Slide 76",
+        "evidence": "Additional photograph or drawing of the same site shown on this slide.",
+        "evidenceKind": "visual"
+      }
+    ],
+    "images": [
+      {
+        "src": "/mock-paper/quiz2/figure-02.webp",
+        "width": 669,
+        "height": 407,
+        "alt": "Unlabelled lecture image for identification 2"
+      },
+      {
+        "src": "/mock-paper/quiz2/figure-02-b.webp",
+        "width": 616,
+        "height": 441,
+        "alt": "Unlabelled lecture image 2 of the same site"
+      },
+      {
+        "src": "/mock-paper/quiz2/figure-02-c.webp",
+        "width": 462,
+        "height": 670,
+        "alt": "Unlabelled lecture image 3 of the same site"
       }
     ]
   },
@@ -147,6 +211,42 @@
         "label": "Slide 31",
         "evidence": "The inset modern map labels Iran for the Persian heartland; the slide identifies Pasargadae as the first Achaemenid capital.",
         "evidenceKind": "visual"
+      },
+      {
+        "docId": "d114",
+        "page": 55,
+        "title": "L5-Slides.pptx",
+        "label": "Slide 55",
+        "evidence": "Additional photograph or drawing of the same site shown on this slide.",
+        "evidenceKind": "visual"
+      },
+      {
+        "docId": "d114",
+        "page": 58,
+        "title": "L5-Slides.pptx",
+        "label": "Slide 58",
+        "evidence": "Additional photograph or drawing of the same site shown on this slide.",
+        "evidenceKind": "visual"
+      }
+    ],
+    "images": [
+      {
+        "src": "/mock-paper/quiz2/figure-04.webp",
+        "width": 768,
+        "height": 748,
+        "alt": "Unlabelled lecture image for identification 4"
+      },
+      {
+        "src": "/mock-paper/quiz2/figure-04-b.webp",
+        "width": 1064,
+        "height": 615,
+        "alt": "Unlabelled lecture image 2 of the same site"
+      },
+      {
+        "src": "/mock-paper/quiz2/figure-04-c.webp",
+        "width": 826,
+        "height": 567,
+        "alt": "Unlabelled lecture image 3 of the same site"
       }
     ]
   },
@@ -180,6 +280,42 @@
         "title": "L6-Slides.pptx",
         "label": "Slide 26",
         "evidence": "Itazuke | Main period: Early Yayoi (ca 400–100 BCE).\nFukuoka, Japan"
+      },
+      {
+        "docId": "d122",
+        "page": 27,
+        "title": "L6-Slides.pptx",
+        "label": "Slide 27",
+        "evidence": "Additional photograph or drawing of the same site shown on this slide.",
+        "evidenceKind": "visual"
+      },
+      {
+        "docId": "d122",
+        "page": 28,
+        "title": "L6-Slides.pptx",
+        "label": "Slide 28",
+        "evidence": "Additional photograph or drawing of the same site shown on this slide.",
+        "evidenceKind": "visual"
+      }
+    ],
+    "images": [
+      {
+        "src": "/mock-paper/quiz2/figure-05.webp",
+        "width": 755,
+        "height": 610,
+        "alt": "Unlabelled lecture image for identification 5"
+      },
+      {
+        "src": "/mock-paper/quiz2/figure-05-b.webp",
+        "width": 980,
+        "height": 481,
+        "alt": "Unlabelled lecture image 2 of the same site"
+      },
+      {
+        "src": "/mock-paper/quiz2/figure-05-c.webp",
+        "width": 700,
+        "height": 410,
+        "alt": "Unlabelled lecture image 3 of the same site"
       }
     ]
   },
@@ -228,6 +364,20 @@
         "label": "Slide 104",
         "evidence": "Kofun | Some has distinct keyhole shape (zempō-koenfun)\nInterior: stone burial chamber housing a coffin and | grave goods"
       }
+    ],
+    "images": [
+      {
+        "src": "/mock-paper/quiz2/figure-06.webp",
+        "width": 978,
+        "height": 577,
+        "alt": "Unlabelled lecture image for identification 6"
+      },
+      {
+        "src": "/mock-paper/quiz2/figure-06-b.webp",
+        "width": 770,
+        "height": 575,
+        "alt": "Unlabelled lecture image 2 of the same site"
+      }
     ]
   },
   {
@@ -267,6 +417,28 @@
         "title": "L7-Slides.pptx",
         "label": "Slide 34",
         "evidence": "Wikipedia | Repton Winter Camp | \"A.D. 874. This year went the army from\nLindsey to Repton, and there took up their\nwinter-quarters\" | The Avalon Project | Mentioned in the Anglo-Saxon Chronicles"
+      },
+      {
+        "docId": "d123",
+        "page": 45,
+        "title": "L7-Slides.pptx",
+        "label": "Slide 45",
+        "evidence": "Additional photograph or drawing of the same site shown on this slide.",
+        "evidenceKind": "visual"
+      }
+    ],
+    "images": [
+      {
+        "src": "/mock-paper/quiz2/figure-07.webp",
+        "width": 538,
+        "height": 279,
+        "alt": "Unlabelled lecture image for identification 7"
+      },
+      {
+        "src": "/mock-paper/quiz2/figure-07-b.webp",
+        "width": 1330,
+        "height": 567,
+        "alt": "Unlabelled lecture image 2 of the same site"
       }
     ]
   },
@@ -315,6 +487,26 @@
         "title": "L7-Slides.pptx",
         "label": "Slide 68",
         "evidence": "Turf house | Grass covered features\nwith minimal timber\nrecourses"
+      }
+    ],
+    "images": [
+      {
+        "src": "/mock-paper/quiz2/figure-08.webp",
+        "width": 1040,
+        "height": 664,
+        "alt": "Unlabelled lecture image for identification 8"
+      },
+      {
+        "src": "/mock-paper/quiz2/figure-08-b.webp",
+        "width": 1064,
+        "height": 678,
+        "alt": "Unlabelled lecture image 2 of the same site"
+      },
+      {
+        "src": "/mock-paper/quiz2/figure-08-c.webp",
+        "width": 1008,
+        "height": 457,
+        "alt": "Unlabelled lecture image 3 of the same site"
       }
     ]
   }

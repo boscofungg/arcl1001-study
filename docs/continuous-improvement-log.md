@@ -26,6 +26,21 @@ Implementation release: [3a12f38](https://github.com/boscofungg/arcl1001-study/c
 | F06 | Broad questions sometimes give examples without a short explanation of the concept. | Tutor prompt requests an evidence-supported definition before examples; search includes short slide captions previously omitted. | Implemented; site-retrieval regressions passed; live hierarchy explanation began with a definition. | Check definitions for clarity and factual support; image-only labels may still be missed. |
 | F07 | Vitrification question appeared to come from crossed-out reading material. | Retained and verified the earlier slides-only boundary for practice and flashcards. Readings remain available to chatbot Q&A. | Already addressed before this feedback release; active-bank regression confirms reading-only vitrification is absent. | Obtain explicit professor guidance before using marked-up reading sections for assessment practice. |
 
+## November 2026 feedback (13/11 and 17/11)
+
+| ID | Feedback or need | Implemented response | Status and verification | Next check |
+| --- | --- | --- | --- | --- |
+| F08 | Real quiz shows several images per site; one image is too hard. | Mock image options show 2–3 views of one site (7 of 8 options; Tomb of Cyrus has one usable view). | Implemented; crops checked by eye so no labels reveal the answer; tests check files and sources. | Ask whether views help without making it too easy. |
+| F09 | Buttons too small (study scope, quiz tabs); feel less “AI-like”. | Larger targets (44–46 px), plainer labels, fewer decorative icons. | Implemented; checked at desktop and phone widths. | Ask the same students to compare. |
+| F10 | Maps only allow single points; want curves and circled regions. | Point / line / area tools with pixel-grid feedback against approximate guide shapes. | Implemented; drawing and feedback checked in the browser; unit tests for the grid comparison. | Guides are hand-placed on a stylised map; refine if feedback seems unfair. |
+| F11 | Wrong answers should resurface; jump to mistakes after a mock; export. | Mistakes & review hub with 1/3/7-day resurfacing, “Re-answer my mistakes”, Markdown/CSV export, nav badge. | Implemented; practice → mistake → re-answer → auto-mark checked in the browser. | Check whether students return to due mistakes. |
+| F12 | Students choose difficulty for image questions. | Easier / standard / harder per image question (set by recognisability; tools and objects are harder). | Implemented; difficulty labels are an initial judgement, not teacher-reviewed. | Ask a TA to review the 16 labels. |
+| F13 | Notes box under each slide. | Per-slide notes, browser-only, with Markdown export and JSON backup/import. | Implemented; saving checked in the browser. | — |
+| F14 | Slide panel should jump to a slide. | Thumbnail strip beside the reader. | Implemented. | — |
+| F15 | Connect concepts across lectures; method examples; examples for Q5/Q6. | Timeline & links (themes, ordering task, methods in action). | Implemented for L1–10; Q5/Q6 model answers unchanged. | Add L11 when slides arrive; consider example banks for Q5/Q6. |
+| F16 | Flashcards not distinctive; quick practice overlaps mock papers. | Flashcards can be made from mistakes and keep slide links; Quick practice merged into Mistakes & review. | Implemented. | — |
+| F17 | Quiz 3 timeline connecting regions and concepts (Kristy). | Quiz 3 scope (L8–11) and timeline focus. | Implemented; a Quiz 3 mock paper waits for the Lecture 11 slides. | Build the Quiz 3 mock once L11 slides are supplied. |
+
 ## Validation record
 
 - 127 automated tests passed for the feedback release.

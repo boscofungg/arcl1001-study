@@ -8,6 +8,7 @@ import { sameOriginError, clientKey, allowRequest, type RateWindow } from '@/lib
 import { logServerError } from '@/lib/server-log';
 import { tutorSystemPrompt } from '@/lib/tutor-prompt';
 import { retrievalQuery } from '@/lib/followup';
+import { courseScopes, isQuizScope } from '@/lib/course-scopes';
 export const runtime = 'nodejs';
 export const maxDuration = 60;
 const recent: RateWindow = new Map();
@@ -19,11 +20,12 @@ export async function POST(request: Request) {
   try { const raw=await request.text(); if(raw.length>40000) throw Error(); body=JSON.parse(raw); if(!body || typeof body!=="object" || Array.isArray(body)) throw Error(); } catch { return Response.json({error:'Please send a shorter question.'},{status:400}); }
   const {question, week = 0, docId, page, stream = false, history=[], courseScope}=body;
   if(typeof question!=='string' || !question.trim() || question.length>2000 || !Number.isInteger(week) || week<0 || (week!==0&&!documents.some(doc=>doc.week===week)) || (docId && !documents.some(d=>d.id===docId&&(!week||d.week===week))) || !Array.isArray(history) || history.length>8 || history.some((h: {role?:string;text?:string})=>!h || !['user','assistant'].includes(h.role||'') || typeof h.text!=='string' || h.text.length>4000)) return Response.json({error:'Please enter a question of up to 2,000 characters.'},{status:400});
-  if(courseScope!==undefined&&courseScope!=='quiz2')return Response.json({error:'Invalid course scope.'},{status:400});
-  if(courseScope==='quiz2'&&((week&&!([4,5,6,7].includes(week)))||(docId&&!documents.some(d=>d.id===docId&&[4,5,6,7].includes(d.week)))))return Response.json({error:'Choose a Lecture 4–7 source for Quiz 2.'},{status:400});
+  if(courseScope!==undefined&&!isQuizScope(courseScope))return Response.json({error:'Invalid course scope.'},{status:400});
+  const scopeWeeks=isQuizScope(courseScope)?courseScopes[courseScope].weeks!:undefined;
+  if(scopeWeeks&&((week&&!scopeWeeks.includes(week))||(docId&&!documents.some(d=>d.id===docId&&scopeWeeks.includes(d.week)))))return Response.json({error:`Choose a ${courseScopes[courseScope as 'quiz2'].label} source.`},{status:400});
   if(typeof stream!=='boolean') return Response.json({error:'Invalid streaming option.'},{status:400});
   if(page!==undefined && (!Number.isInteger(page) || !docId || !getPageSource(docId,page))) return Response.json({error:'Please choose a valid course page.'},{status:400});
-  const sources=tutorSources(retrievalQuery(question,history),week,docId,page,courseScope==='quiz2'?[4,5,6,7]:undefined);
+  const sources=tutorSources(retrievalQuery(question,history),week,docId,page,scopeWeeks);
   if(!sources.length) return Response.json({answer:'I couldn’t find supporting text in the selected materials. Try naming a site, culture, or concept, or broaden the course scope.',sources:[]});
   if(!tutorConfigured()) return Response.json({error:'The tutor is not configured yet. You can still browse and read the course materials.',sources},{status:503});
   const context=sources.map((s,i)=>`[${i+1}] ${s.title} | ${s.label}\n${s.text.slice(0,12000)||'No readable text was extracted. Use the attached original visual if available.'}${s.supplementalText?'\nNative chart/table data:\n'+s.supplementalText:''}`).join('\n\n');
@@ -36,7 +38,7 @@ export async function POST(request: Request) {
     emit({type:'metadata',sources,reviewedSources:visualContext.reviewedSources,visualsUsed:visualContext.visualsUsed,visualWarning:visualContext.failedVisuals?'Some original visuals could not be loaded; the answer may rely on text for those sources.':undefined});
     emit({type:'status',message:'Preparing your answer…'});
     const parts:TutorPart[]=visualContext.parts.map(part=>'text' in part?{text:part.text}:{image:{format:'webp',source:{bytes:part.inlineData.data}}});
-    const messages:TutorMessage[]=[...history.slice(-6).map((h:{role:'user'|'assistant';text:string})=>({role:h.role,content:[{text:h.text}]})),{role:'user',content:[{text:`SCOPE: ${docId ? `Only ${documents.find(d=>d.id===docId)!.title}. Do not use other readings or prior conversation as factual evidence. These are retrieved excerpts, not necessarily the complete document.` : `Selected Lecture ${week||(courseScope==='quiz2'?'4–7':'1–9')} materials.`}\nCOURSE EXCERPTS:\n${context}\n\nVisuals attached for sources: ${visualContext.reviewedSources.join(', ')||'none'}. Failed visual loads: ${visualContext.failedVisuals}.\n\nSTUDENT QUESTION:\n${question}`},...parts]}];
+    const messages:TutorMessage[]=[...history.slice(-6).map((h:{role:'user'|'assistant';text:string})=>({role:h.role,content:[{text:h.text}]})),{role:'user',content:[{text:`SCOPE: ${docId ? `Only ${documents.find(d=>d.id===docId)!.title}. Do not use other readings or prior conversation as factual evidence. These are retrieved excerpts, not necessarily the complete document.` : `Selected Lecture ${week||(scopeWeeks?`${scopeWeeks[0]}–${scopeWeeks.at(-1)}`:'1–11')} materials.`}\nCOURSE EXCERPTS:\n${context}\n\nVisuals attached for sources: ${visualContext.reviewedSources.join(', ')||'none'}. Failed visual loads: ${visualContext.failedVisuals}.\n\nSTUDENT QUESTION:\n${question}`},...parts]}];
     const result=await requestTutor({system:tutorSystemPrompt,messages,maxTokens:1800,stream,signal});
     const finished=stream?await streamTutorText(result,text=>emit({type:'delta',text})):await readTutorText(result);
     if(!stream&&'text' in finished&&typeof finished.text==='string')emit({type:'delta',text:finished.text});

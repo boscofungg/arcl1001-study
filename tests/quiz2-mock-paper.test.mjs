@@ -17,16 +17,20 @@ test('all Quiz 2 mock content is backed by Lecture 4–7 slides with valid image
  const covered=new Set();
  for(const q of Object.values(mockBank).flat()){
   assert.ok(q.question&&q.answer&&q.checklist.length&&q.sources.length);
-  for(const s of q.sources){const doc=docs.find(d=>d.id===s.docId);assert.equal(doc.kind,'Lecture');assert.ok([4,5,6,7].includes(doc.week));covered.add(doc.week);const page=visuals[s.docId].pages.find(p=>p.page===s.page);assert.ok(page);if(s.evidenceKind==='visual'){assert.ok(['d111:53','d111:70','d114:31','d114:48','d123:63'].includes(`${s.docId}:${s.page}`));assert.ok(page.images.length&&s.evidence.length>20);continue;}const text=normal(page.textBlocks.map(b=>b.text).join(' '));for(const token of s.evidence.split(/\s+/).map(normal).filter(t=>t.length>2))assert.ok(text.includes(token),`${q.id} ${s.docId}:${s.page}: ${token}`);}
+  for(const s of q.sources){const doc=docs.find(d=>d.id===s.docId);assert.equal(doc.kind,'Lecture');assert.ok([4,5,6,7].includes(doc.week));covered.add(doc.week);const page=visuals[s.docId].pages.find(p=>p.page===s.page);assert.ok(page);if(s.evidenceKind==='visual'){// Reviewed visual-only evidence, including the slides that supply extra views of each site.
+   assert.ok(['d111:53','d111:70','d114:31','d114:48','d123:63','d111:56','d111:59','d111:76','d114:55','d114:58','d122:27','d122:28','d122:103','d123:45','d123:61'].includes(`${s.docId}:${s.page}`),`${q.id} ${s.docId}:${s.page}`);assert.ok(page.images.length&&s.evidence.length>20);continue;}const text=normal(page.textBlocks.map(b=>b.text).join(' '));for(const token of s.evidence.split(/\s+/).map(normal).filter(t=>t.length>2))assert.ok(text.includes(token),`${q.id} ${s.docId}:${s.page}: ${token}`);}
  }
  assert.deepEqual([...covered].sort(),[4,5,6,7]);
- for(const q of mockBank.images){assert.equal(q.checklist.length,4);assert.ok(existsSync(new URL('../public'+q.image.src,import.meta.url)));}
+ for(const q of mockBank.images){assert.equal(q.checklist.length,4);assert.ok(existsSync(new URL('../public'+q.image.src,import.meta.url)));
+  // Several views of one site, as in the real quiz: the first view is the original figure.
+  const views=q.images||[q.image];assert.ok(views.length>=1&&views.length<=3);assert.equal(views[0].src,q.image.src);for(const v of views)assert.ok(existsSync(new URL('../public'+v.src,import.meta.url)),v.src);}
+ assert.ok(mockBank.images.filter(q=>(q.images||[]).length>=2).length>=6,'most mock image options show several views');
  for(const q of [...mockBank.concepts,...mockBank.significance])assert.ok(sentenceCount(q.answer)<=3,q.id);
  for(const q of mockBank.discussions)assert.ok(sentenceCount(q.answer)<=7,q.id);
 });
 test('Quiz 1 is suspended in the interface but its storage namespace is not overwritten',()=>{
  const ui=readFileSync(new URL('../components/mock-paper.tsx',import.meta.url),'utf8');const main=readFileSync(new URL('../app/(study)/study-client.tsx',import.meta.url),'utf8');
- assert.ok(ui.includes("key='stratum-quiz2-mock-paper-v1'"));assert.ok(!ui.includes("key='stratum-mock-paper-v1'"));assert.ok(!main.includes('Mock paper · Quiz 1 format'));assert.ok(main.includes('Mock paper · Quiz 2'));
+ assert.ok(ui.includes("key='stratum-quiz2-mock-paper-v1'"));assert.ok(!ui.includes("key='stratum-mock-paper-v1'"));assert.ok(!main.includes('Mock paper · Quiz 1 format'));assert.ok(main.includes('<MockPaper'));assert.ok(ui.includes('Quiz 2 mock paper'));
 });
 test('every paper spans all four Quiz 2 lectures',()=>{
  const previous=[];

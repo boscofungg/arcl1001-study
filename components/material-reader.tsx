@@ -1,8 +1,10 @@
 'use client';
 
-import { Fragment, useCallback, useEffect, useId, useRef, useState } from 'react';
+import { Fragment, useCallback, useEffect, useId, useRef, useState, useSyncExternalStore } from 'react';
 import type { RefObject } from 'react';
-import { ArrowDown, ArrowUp, ExternalLink, ImageIcon, MessageSquare, X, ZoomIn, ZoomOut } from 'lucide-react';
+import { ArrowDown, ArrowUp, Download, ExternalLink, ImageIcon, MessageSquare, PanelLeft, StickyNote, Upload, X, ZoomIn, ZoomOut } from 'lucide-react';
+import documentsIndex from '@/lib/documents.json';
+import { mergeNotes, noteKey, notesToMarkdown, parseNotes, rawNotes, saveNotes, setNote, subscribeNotes } from '@/lib/slide-notes';
 import Image from 'next/image';
 import type { VisualPage } from '@/lib/media-types';
 import { findSourceHighlight, findSourceHighlights, sourcePassagePreview, validSourceBox } from '@/lib/source-highlight';
@@ -18,10 +20,13 @@ function HighlightedText({ text, quote }: { text: string; quote?: string }) {
   return <>{matches.map((match, index) => <Fragment key={match.start}>{text.slice(index ? matches[index - 1].end : 0, match.start)}<mark className="mr-text-highlight">{text.slice(match.start, match.end)}</mark></Fragment>)}{text.slice(matches.length ? matches[matches.length - 1].end : 0)}</>;
 }
 
-function ReaderPage({ doc, page, zoom, root, highlight, requestedPage, onReady, onAsk }: {
+function ReaderPage({ doc, page, zoom, root, highlight, requestedPage, onReady, onAsk, note, onNote }: {
   doc: DocumentInfo; page: number; zoom: number; root: RefObject<HTMLDivElement | null>;
   highlight?: SourceHighlight; requestedPage: number; onReady: (page: number) => void; onAsk: (page: number) => void;
+  note: string; onNote: (page: number, text: string) => void;
 }) {
+  const noteTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [noteOpen, setNoteOpen] = useState(false);
   const section = useRef<HTMLElement>(null);
   const [nearby, setNearby] = useState(false);
   const [result, setResult] = useState<{ data?: PageData; error?: string } | null>(null);
@@ -79,6 +84,7 @@ function ReaderPage({ doc, page, zoom, root, highlight, requestedPage, onReady, 
       </section>}
       {showText && <section className="mr-text" aria-label={`${label} ${page} text`}><h4>{doc.isSummary ? 'Summary of linked source' : 'Extracted text'}</h4>{doc.isSummary && <p className="mr-note">This is a source summary. Open the original for its full content and context.</p>}{data?.text ? <div className="mr-extracted-text"><HighlightedText text={data.text} quote={selected ? highlight.text : undefined} /></div> : <p className="mr-note">No readable text was extracted. The original page may contain diagrams, photographs, or scanned text.</p>}{selected && highlight.text && !findSourceHighlights(data?.text || '', highlight.text).length && !findSourceHighlights(data?.visual?.text || '', highlight.text).length && <p className="mr-note">The cited page is marked. An exact text match is not available in this extract.</p>}{data?.visual?.text && <details><summary>Chart and table data</summary><div className="mr-extracted-text"><HighlightedText text={data.visual.text} quote={selected ? highlight.text : undefined} /></div></details>}</section>}
     </div>}
+    {result?.data && <div className="mr-note-box">{note || noteOpen ? <label>My notes · {label.toLowerCase()} {page}<textarea defaultValue={note} maxLength={5000} rows={3} placeholder="Type notes for this slide. Saved in this browser." onChange={event => { const text = event.currentTarget.value; if (noteTimer.current) clearTimeout(noteTimer.current); noteTimer.current = setTimeout(() => onNote(page, text), 400); }} onBlur={event => { if (noteTimer.current) clearTimeout(noteTimer.current); onNote(page, event.currentTarget.value); }} /></label> : <button type="button" onClick={() => setNoteOpen(true)}><StickyNote size={15} /> Add a note to this {label.toLowerCase()}</button>}</div>}
   </article>;
 }
 
@@ -96,6 +102,29 @@ function Reader({ document: doc, initialPage, onClose, onAsk, embedded = false, 
   const pageInputId = useId();
   const label = doc.kind === 'Lecture' ? 'Slide' : 'Page';
   const originalUrl = doc.url && /^https?:\/\//i.test(doc.url) ? doc.url : null;
+  const notes = parseNotes(useSyncExternalStore(subscribeNotes, rawNotes, () => ''));
+  const docNotes = Object.keys(notes).filter(key => key.startsWith(`${doc.id}:`)).length;
+  const [rail, setRail] = useState(true);
+  const railRef = useRef<HTMLElement>(null);
+  const importRef = useRef<HTMLInputElement>(null);
+  const [noteStatus, setNoteStatus] = useState('');
+  const hasRail = !doc.isSummary && totalPages > 1;
+  const saveNote = useCallback((page: number, text: string) => { const current = parseNotes(rawNotes()); if ((current[noteKey(doc.id, page)]?.text || '') === text) return; if (!saveNotes(setNote(current, doc.id, page, text))) setNoteStatus('Notes could not be saved: browser storage is unavailable.'); }, [doc.id]);
+  function exportNotes(kind: 'md' | 'json') {
+    const all = parseNotes(rawNotes());
+    const text = kind === 'md' ? notesToMarkdown(all, Object.fromEntries(documentsIndex.map(item => [item.id, { title: item.title, kind: item.kind }]))) : JSON.stringify(all, null, 2);
+    const url = URL.createObjectURL(new Blob([text], { type: kind === 'md' ? 'text/markdown' : 'application/json' }));
+    const link = window.document.createElement('a'); link.href = url; link.download = kind === 'md' ? 'arcl1001-slide-notes.md' : 'arcl1001-slide-notes-backup.json'; link.click();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  }
+  async function importNotes(file?: File) {
+    if (!file) return;
+    const imported = parseNotes(await file.text());
+    const count = Object.keys(imported).length;
+    if (!count) { setNoteStatus('No notes were found in that file. Choose a Stratum notes backup (.json).'); return; }
+    saveNotes(mergeNotes(parseNotes(rawNotes()), imported));
+    setNoteStatus(`Imported ${count} note${count === 1 ? '' : 's'}. Reopen a document to see them.`);
+  }
 
   useEffect(() => {
     if (embedded) return;
@@ -156,6 +185,7 @@ function Reader({ document: doc, initialPage, onClose, onAsk, embedded = false, 
       root.removeEventListener('keydown', releaseKeyboardJump);
     };
   }, [scrollToPage]);
+  useEffect(() => { railRef.current?.querySelector<HTMLElement>(`[data-thumb="${activePage}"]`)?.scrollIntoView({ block: 'nearest' }); }, [activePage]);
   function jump(page: number) {
     if (!Number.isInteger(page) || page < 1 || page > totalPages) return;
     jumpPending.current = page;
@@ -171,9 +201,14 @@ function Reader({ document: doc, initialPage, onClose, onAsk, embedded = false, 
         <label htmlFor={pageInputId}>{label}</label><input id={pageInputId} type="text" inputMode="numeric" pattern="[0-9]*" value={pageDraft ?? String(activePage)} onBlur={() => setPageDraft(null)} aria-label={`Jump to ${label.toLowerCase()}`} onChange={event => { const value = event.currentTarget.value.trim(); setPageDraft(value); if (/^\d+$/.test(value)) jump(Number(value)); }} onKeyDown={event => { if (event.key === 'ArrowUp' || event.key === 'ArrowDown') { event.preventDefault(); setPageDraft(null); jump(activePage + (event.key === 'ArrowDown' ? 1 : -1)); } }} /><span>of {totalPages}</span>
         <button type="button" aria-label={`Next ${label.toLowerCase()}`} disabled={activePage >= totalPages} onClick={() => jump(activePage + 1)}><span>Next</span><ArrowDown size={22} /></button>
       </div>
+      {hasRail && <button type="button" className="mr-rail-toggle" aria-pressed={rail} onClick={() => setRail(value => !value)}><PanelLeft size={18} /><span>Slides</span></button>}
+      <div className="mr-notes-tools" role="group" aria-label="My notes"><span><StickyNote size={15} /> Notes {docNotes ? `(${docNotes})` : ''}</span><button type="button" onClick={() => exportNotes('md')} title="Download all your notes as Markdown"><Download size={15} /><span>Export</span></button><button type="button" onClick={() => exportNotes('json')} title="Download a backup you can import on another device"><Download size={15} /><span>Backup</span></button><button type="button" onClick={() => importRef.current?.click()} title="Import a notes backup"><Upload size={15} /><span>Import</span></button><input ref={importRef} type="file" accept="application/json,.json" hidden onChange={event => { void importNotes(event.currentTarget.files?.[0]); event.currentTarget.value = ''; }} /></div>
       {!doc.isSummary && <div className="mr-zoom"><button aria-label="Zoom out" disabled={zoom <= 1} onClick={() => setZoom(value => Math.max(1, value - .25))}><ZoomOut size={20} /></button><span>{Math.round(zoom * 100)}%</span><button aria-label="Zoom in" disabled={zoom >= 2.5} onClick={() => setZoom(value => Math.min(2.5, value + .25))}><ZoomIn size={20} /></button></div>}
     </div>
-    <div className="mr-scroll" ref={scroller} tabIndex={0} aria-label="Course pages, scroll to read"><p className="mr-scroll-hint">Scroll through the original pages, or use the arrows to move one page at a time.</p>{Array.from({ length: totalPages }, (_, index) => <ReaderPage key={index + 1} doc={doc} page={index + 1} zoom={zoom} root={scroller} highlight={highlight} requestedPage={requestedPage} onReady={pageReady} onAsk={onAsk} />)}</div>
+    {noteStatus && <p className="mr-note-status" role="status">{noteStatus}</p>}
+    <div className="mr-body">{hasRail && rail && <nav className="mr-rail" ref={railRef} aria-label={`${label} thumbnails`}>{Array.from({ length: totalPages }, (_, index) => <button type="button" key={index + 1} data-thumb={index + 1} aria-current={activePage === index + 1 ? 'true' : undefined} aria-label={`Go to ${label.toLowerCase()} ${index + 1}`} onClick={() => jump(index + 1)}>{/* eslint-disable-next-line @next/next/no-img-element */}
+<img loading="lazy" src={`/materials/${doc.id}/page-${index + 1}.webp`} alt="" width={140} height={doc.kind === 'Lecture' ? 79 : 180} /><span>{index + 1}{notes[noteKey(doc.id, index + 1)] ? ' •' : ''}</span></button>)}</nav>}
+    <div className="mr-scroll" ref={scroller} tabIndex={0} aria-label="Course pages, scroll to read"><p className="mr-scroll-hint">Scroll through the original pages, or use the arrows to move one page at a time.</p>{Array.from({ length: totalPages }, (_, index) => <ReaderPage key={index + 1} doc={doc} page={index + 1} zoom={zoom} root={scroller} highlight={highlight} requestedPage={requestedPage} onReady={pageReady} onAsk={onAsk} note={notes[noteKey(doc.id, index + 1)]?.text || ''} onNote={saveNote} />)}</div></div>
   </div>;
   return embedded ? content : <dialog className="mr-dialog" ref={dialog} aria-labelledby={titleId} onCancel={event => { event.preventDefault(); onClose(); }} onClick={event => { if (event.target === event.currentTarget) onClose(); }}>{content}</dialog>;
 }

@@ -14,6 +14,8 @@ const scheduleStorageKey='stratum-flashcard-schedule-v1';
 
 import { restoreLibrary, parseLibrary, saveLibraryReview, deleteLibraryReview, mergeLibrary, MAX_SAVED_DECKS, type FlashcardLibrary } from '@/lib/flashcard-library';
 import './flashcard-library.css';
+import { openMistakes, parseMistakeBook, rawMistakes, subscribeMistakes } from '@/lib/mistakes';
+import type { Flashcard } from '@/lib/flashcard-types';
 
 const temporarySets=new Map<string,string>();
 function subscribe(listener:()=>void){window.addEventListener('storage',listener);window.addEventListener('stratum-flashcards',listener);return()=>{window.removeEventListener('storage',listener);window.removeEventListener('stratum-flashcards',listener);};}
@@ -36,6 +38,8 @@ export default function FlashcardStudy({week,topic,onOpen}:{week:number;topic:st
   const key=`stratum-flashcard-library-v1-week${week}`;
   const legacyKey=`stratum-flashcards-slides-v3-week${week}`;
   const raw=useSyncExternalStore(subscribe,()=>read(key),emptySnapshot);
+  const mistakeBook=parseMistakeBook(useSyncExternalStore(subscribeMistakes,rawMistakes,()=>''));
+  const mistakeCards:Flashcard[]=openMistakes(mistakeBook).filter(m=>m.week===week&&m.kind!=='chronology'&&!(m.origin==='mock'&&m.kind==='image')).flatMap(m=>{const s=m.sources.find(src=>documents.some(d=>d.kind==='Lecture'&&d.id===src.docId&&d.week===week&&src.page>=(d.startPage||1)&&src.page<=d.pages));if(!s)return [];const card:Flashcard={id:`mistake-${m.questionId}`.slice(0,120),question:m.prompt,answer:m.modelAnswer,evidence:s.evidence||'',source:{docId:s.docId,page:s.page,title:s.title,label:s.label}};const visual={...card,practiceQuestionId:m.questionId};return [m.kind==='image'&&visualFlashcardQuestion(visual)?visual:card];}).filter((card,index,all)=>all.findIndex(other=>other.id===card.id)===index).slice(0,12);
   const schedule=parseSchedule(useSyncExternalStore(subscribe,()=>read(scheduleStorageKey),emptySnapshot));
   const legacy=useSyncExternalStore(subscribe,()=>read(legacyKey),emptySnapshot);
   const library=restoreLibrary(raw,legacy,week);
@@ -76,6 +80,7 @@ export default function FlashcardStudy({week,topic,onOpen}:{week:number;topic:st
     }catch(cause){if(!controller.signal.aborted)setError(cause instanceof Error&&!/fetch|network|JSON/i.test(cause.message)?cause.message:'Could not reach the generator. Please try again.');}
     finally{if(request.current===controller){request.current=null;setBusy(false);}}
   }
+  function mistakeDeck(){if(!mistakeCards.length||library.reviews.length>=MAX_SAVED_DECKS)return;const next=startReview({id:crypto.randomUUID(),week,title:`My mistakes · Lecture ${week}`,createdAt:new Date().toISOString(),cards:mistakeCards});if(!parseReview(JSON.stringify(next))){setError('These mistakes could not be turned into cards.');return;}save(key,saveLibraryReview(library,next));setAnswers({});setRevealed(null);setError('');setWarning(`${mistakeCards.length} card${mistakeCards.length===1?'':'s'} made from your Lecture ${week} mistakes. Each card opens its source slide.`);}
   function updateReview(next:FlashcardReview){save(key,saveLibraryReview(library,next));}
   function retry(missedOnly=false){if(!review)return;updateReview(missedOnly?reviewMissed(review):retryReview(review));setRevealed(null);setAnswers({});setWarning('Retrying the saved cards. Questions, model answers and images stay exactly the same.');}
   function rate(rating:'again'|'known'){if(!review||!showingAnswer||!card)return;saveSchedule(scheduleCard(schedule,review.deck.id,card.id,rating));updateReview(rateCard(review,rating));setRevealed(null);}
@@ -114,7 +119,7 @@ export default function FlashcardStudy({week,topic,onOpen}:{week:number;topic:st
       {activeFormat==='short-answer'&&<label>Question difficulty<select aria-label="Flashcard difficulty" value={difficulty} disabled={busy} onChange={event=>setDifficulty(event.target.value as FlashcardDifficulty)}><option value="recall">Recall — key facts</option><option value="explain">Explain — relationships and meaning</option><option value="apply">Apply / discuss — evidence and interpretation</option></select></label>}
       <div className="flashcard-generate-row"><label>Set size<select aria-label="Number of flashcards" value={count} disabled={busy} onChange={event=>setCount(Number(event.target.value) as 6|10)}><option value={6}>6 cards</option><option value={10}>10 cards</option></select></label><button className="primary-button" disabled={busy||library.reviews.length>=MAX_SAVED_DECKS} type="submit"><Sparkles size={15}/>{busy?'Generating…':review?'Create a different set':'Create flashcards'}</button></div>
       <p>{activeFormat==='image-map'?'Reviewed identification questions use cropped slide images; the full original slide appears after reveal.':'Concise open-answer questions from the selected lecture slides.'} These are study aids, not official quiz questions. Creating a different set makes new questions; use Retry for the saved answers.</p>
-      {activeFormat==='short-answer'&&<button className="flashcard-secondary" type="button" disabled={busy||library.reviews.length>=MAX_SAVED_DECKS} onClick={()=>void generate('prepared')}>Use prepared cards · no generation needed</button>}
+      <button className="flashcard-secondary flashcard-mistakes" type="button" disabled={busy||!mistakeCards.length||library.reviews.length>=MAX_SAVED_DECKS} onClick={mistakeDeck} title={mistakeCards.length?undefined:'Wrong answers from Lecture practice and mock papers appear here'}>Cards from my mistakes ({mistakeCards.length})</button>{activeFormat==='short-answer'&&<button className="flashcard-secondary" type="button" disabled={busy||library.reviews.length>=MAX_SAVED_DECKS} onClick={()=>void generate('prepared')}>Use prepared cards · no generation needed</button>}
     </form>}
     {busy&&<div className="flashcard-status" role="status">Reading the slides and checking the cards’ source references…</div>}
     {error&&<p className="flashcard-error" role="alert">{error}{review?' Your existing set is still available.':''}</p>}

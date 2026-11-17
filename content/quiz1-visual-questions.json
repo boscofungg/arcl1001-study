@@ -20,7 +20,8 @@
     "acceptedAnswers": [
       "Dmanisi",
       "Homo erectus georgicus"
-    ]
+    ],
+    "difficulty": "standard"
   },
   {
     "id": "visual-002",
@@ -44,7 +45,8 @@
       "Engis 2",
       "Neanderthal",
       "Belgium"
-    ]
+    ],
+    "difficulty": "harder"
   },
   {
     "id": "visual-003",
@@ -69,7 +71,8 @@
       "Gobekli Tepe",
       "Türkiye",
       "Turkey"
-    ]
+    ],
+    "difficulty": "easier"
   },
   {
     "id": "visual-004",
@@ -93,7 +96,8 @@
       "Warka Vase",
       "Uruk",
       "Warka"
-    ]
+    ],
+    "difficulty": "standard"
   },
   {
     "id": "visual-005",
@@ -117,7 +121,8 @@
       "bevel-rimmed bowl",
       "beveled rim bowl",
       "Uruk"
-    ]
+    ],
+    "difficulty": "harder"
   },
   {
     "id": "visual-006",
@@ -141,7 +146,8 @@
       "Step Pyramid of Djoser",
       "Djoser",
       "Saqqara"
-    ]
+    ],
+    "difficulty": "easier"
   },
   {
     "id": "visual-007",
@@ -165,7 +171,8 @@
       "Bent Pyramid",
       "Snefru",
       "Sneferu"
-    ]
+    ],
+    "difficulty": "standard"
   },
   {
     "id": "visual-008",
@@ -189,7 +196,8 @@
       "Priest-King",
       "Priest King",
       "Mohenjo-daro"
-    ]
+    ],
+    "difficulty": "easier"
   },
   {
     "id": "visual-009",
@@ -221,7 +229,8 @@
         "title": "L3-Slides.pptx",
         "label": "Slide 24"
       }
-    ]
+    ],
+    "difficulty": "easier"
   },
   {
     "id": "visual-010",
@@ -261,7 +270,8 @@
         "title": "L3-Slides.pptx",
         "label": "Slide 33"
       }
-    ]
+    ],
+    "difficulty": "standard"
   },
   {
     "id": "visual-011",
@@ -300,7 +310,8 @@
         "title": "L3-Slides.pptx",
         "label": "Slide 33"
       }
-    ]
+    ],
+    "difficulty": "harder"
   },
   {
     "id": "visual-012",
@@ -323,7 +334,8 @@
     "acceptedAnswers": [
       "perforated jar",
       "Harappa"
-    ]
+    ],
+    "difficulty": "harder"
   },
   {
     "id": "visual-013",

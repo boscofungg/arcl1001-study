@@ -4,6 +4,32 @@ Release history for Stratum (ARCL1001), newest first. Entries before November 20
 moved here unchanged from the old README. New releases should also be published as
 GitHub Releases from their `release/…` tag (see `docs/release.md`).
 
+## Student feedback 13/11 and Quiz 3 (17 November 2026)
+
+- **New materials:** Lecture 10 slides (111, rendered via PowerPoint PDF export), the Lecture 10
+  reading (Smithsonian NMAI framework) and the Lecture 11 reading (Chirikure 2017). Lecture 11
+  slides have not been supplied yet.
+- **Quiz 3 scope (Lectures 8–11)** in the sidebar, tutor and chat API, alongside Quiz 2 and All 1–11.
+- **Mock papers** are now the main practice tab. Image options show 2–3 views of the same site
+  where the slides have them (7 of 8 options), as in the real quiz.
+- **Mistakes & review** replaces Quick practice: wrong or revealed practice answers, wrong
+  chronology answers and anything marked “I got this wrong” in a mock paper are collected, come
+  back after 1, 3 and 7 days until answered correctly three times, and export to Markdown or CSV.
+  After a mock paper, “Re-answer my mistakes” jumps straight there. Lecture practice sits below.
+- **Flashcards** can be made from your mistakes; each card still opens its source slide.
+- **Map questions:** draw a line (rivers) or circle an area (regions, seas) as well as placing a
+  point. After submission, a coarse pixel-grid comparison with an approximate guide shape gives
+  practice feedback, and the guides are drawn as dashed outlines.
+- **Image difficulty** (easier / standard / harder) for image questions in lecture practice.
+- **Slide notes:** a notes box under every slide or page, saved in the browser, with Markdown
+  export and JSON backup/import.
+- **Slide strip:** thumbnails beside the reader jump straight to a slide.
+- **Timeline & links:** region × period grid of 35 dated items from Lectures 1–10 (each opens its
+  slide), theme filters that link lectures, an “ask the tutor to compare” shortcut, a put-in-order
+  chronology task, and “How do we know?” method examples.
+- **Look and feel:** larger buttons and selectors (study scope, lecture filters, quiz tabs),
+  plainer labels and fewer decorative icons.
+
 ## Support (17 November 2026)
 
 - Search engines are told not to index the site, slide images or API (`noindex` metadata,

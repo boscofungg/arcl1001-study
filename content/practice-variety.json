@@ -16,7 +16,8 @@
       "width": 362,
       "height": 608,
       "alt": "Unlabelled detail from a lecture slide"
-    }
+    },
+    "difficulty": "easier"
   },
   {
     "id": "variety-02",
@@ -100,7 +101,8 @@
       "width": 640,
       "height": 587,
       "alt": "Unlabelled detail from a lecture slide"
-    }
+    },
+    "difficulty": "standard"
   },
   {
     "id": "variety-08",
@@ -193,7 +195,8 @@
       "width": 600,
       "height": 255,
       "alt": "Unlabelled detail from a lecture slide"
-    }
+    },
+    "difficulty": "harder"
   },
   {
     "id": "variety-14",
@@ -286,7 +289,8 @@
       "width": 338,
       "height": 590,
       "alt": "Unlabelled detail from a lecture slide"
-    }
+    },
+    "difficulty": "easier"
   },
   {
     "id": "variety-20",

@@ -1,0 +1,25 @@
+/* November 2026 feedback: larger touch targets and a plainer, less "AI" look. Loaded last. */
+.quiz1-shell .nav-item{min-height:46px;font-size:14px;padding:12px 12px;gap:12px}
+.quiz1-shell .nav-item.active{box-shadow:inset 3px 0 0 var(--accent)}
+.quiz1-shell .nav-badge{margin-left:auto;background:var(--accent);color:#2a2114;border-radius:999px;min-width:22px;height:22px;display:inline-grid;place-items:center;font-size:12px;font-weight:700;padding:0 6px}
+.quiz1-shell .course-range{font-size:13px}
+.quiz1-shell .course-range select{min-height:46px;font-size:14px;padding:10px 12px;border-radius:9px}
+.quiz1-shell .q1-lecture-filter{gap:6px}
+.quiz1-shell .q1-lecture-filter button{min-height:40px;min-width:44px;font-size:13px;padding:8px 10px;border-radius:8px}
+.quiz1-shell .scope-row select{font-size:13px;min-height:40px}
+.quiz1-shell .scope-badge{display:none}
+.quiz1-shell .q1-flashcard-lectures button{min-height:44px;font-size:13px;padding:10px 14px;border-radius:8px}
+.quiz1-shell .slide-practice-tabs button{min-height:64px;padding:14px}
+.quiz1-shell .slide-practice-tabs strong{font-size:14px}
+.quiz1-shell .slide-practice-tabs span{font-size:12px}
+.quiz1-shell .practice-controls select,.quiz1-shell .flashcard-generate-row select{min-height:44px;font-size:14px}
+.quiz1-shell .mock-controls button,.quiz1-shell .mock-controls select{min-height:46px;font-size:14px;padding:10px 16px;border-radius:9px}
+.quiz1-shell .mock-controls .primary,.quiz1-shell .flashcard-generate-row .primary-button{background:var(--accent);color:#2a2114;border:1px solid var(--accent)}
+.quiz1-shell .flashcard-secondary{min-height:44px}
+.quiz1-shell .flashcard-mistakes{border:1px solid var(--accent);font-weight:600}
+.quiz1-shell .section-kicker{letter-spacing:.6px;font-size:11px}
+.quiz1-shell .tutor-icon{background:transparent;border:1px solid var(--line)}
+.quiz1-shell .message-label{letter-spacing:0;text-transform:none;font-size:12px;font-weight:700}
+.quiz1-shell .mr-controls button{min-height:40px}
+.mock-map-overlay .answer{stroke-width:3px}
+.mock-map-overlay .answer.active{stroke-width:4px}

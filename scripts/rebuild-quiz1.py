@@ -44,9 +44,19 @@ SOURCES = [
     ('d125', 'L8-Reading-Nomads Invisible Culture (Cribb 1991).pdf', 8, 'Reading', 'Lecture 8 — Nomads: The Invisible Culture?', 19),
     ('d126', 'L9-Slides.pptx', 9, 'Lecture', 'Lecture 9 — Politics and Religion', 94),
     ('d127', 'L9-Reading-Interpreting Religion in the Archaeological Past (Steadman 2024).pdf', 9, 'Reading', 'Lecture 9 — Interpreting Religion in the Archaeological Past', 17),
+    ('d128', 'L10-Slides.pptx', 10, 'Lecture', 'Lecture 10 — Indigenous and Historical Archaeology in North America', 111),
+    ('d129', 'L10-Reading-Essential Understandings About American Indians.pdf', 10, 'Reading', 'Lecture 10 — Essential Understandings About American Indians', 9),
+    ('d130', 'L11-Reading-Documenting Precolonial Trade in Africa (Chirikure 2017).pdf', 11, 'Reading', 'Lecture 11 — Documenting Precolonial Trade in Africa', 27),
 ]
 
+COURSE_DIR = Path.home() / 'Desktop/HKU/APAI3799 Capstone copy/ARCL1001-CourseMaterial'
+# Slides exported to PDF by PowerPoint when LibreOffice is unavailable (STRATUM_RENDERED_DIR/<stem>.pdf).
+RENDERED_DIR = Path(__import__('os').environ['STRATUM_RENDERED_DIR']) if __import__('os').environ.get('STRATUM_RENDERED_DIR') else None
+
 SOURCE_PATHS = {
+    'd128': COURSE_DIR / 'L10-Slides.pptx',
+    'd129': COURSE_DIR / 'L10-Reading-Essential Understandings About American Indians.pdf',
+    'd130': COURSE_DIR / 'L11-Reading-Documenting Precolonial Trade in Africa (Chirikure 2017).pdf',
     'd112': Path.home() / 'Desktop/HKU/APAI3799 Capstone copy/ARCL1001-CourseMaterial/Week 4/Reading/Frogley et al. (2025). Trees, terraces and llamas Resilient watershed management and sustainable agriculture the Inca way.pdf',
 }
 
@@ -146,7 +156,7 @@ def study_block(item):
     text = item['text']
     if len(text) < 25 or len(re.findall(r'\w+', text)) < 4:
         return False
-    if re.match(r'^(Created from hkuhk|Price, T\. Douglas\. Principles|Copyright ©)', text):
+    if re.match(r'^(Created from hkuhk|Price, T\. Douglas\. Principles|Copyright ©|PRINTED FROM the OXFORD|Subscriber: University of|Documenting Precolonial Trade in Africa$|Native Knowledge 360°: Framework for Essential Understandings about American Indians$)', text):
         return False
     return True
 
@@ -164,7 +174,7 @@ def main():
         for key, filename in {'documents': 'lib/documents.json', 'corpus': 'lib/corpus.json', 'visuals': 'lib/visuals.json', 'manifest': 'content/quiz1-source-manifest.json'}.items():
             previous[key] = json.loads((ROOT / filename).read_text())
     renderer = shutil.which('soffice') or shutil.which('libreoffice')
-    if not renderer and any(s[1].endswith('.pptx') and (not args.only or s[0] in args.only) for s in SOURCES):
+    if not renderer and not RENDERED_DIR and any(s[1].endswith('.pptx') and (not args.only or s[0] in args.only) for s in SOURCES):
         raise RuntimeError('LibreOffice is required to preserve complete slide layouts')
     documents, corpus, visuals, provenance = [], [], {}, []
     for ident, filename, week, kind, title, expected_pages in SOURCES:
@@ -187,7 +197,9 @@ def main():
             raise ValueError(f'{ident}: unexpected presentation slide count')
         with tempfile.TemporaryDirectory(prefix='quiz1-source-') as tmp:
             pdf_path = original
-            if order is not None:
+            if order is not None and RENDERED_DIR and (RENDERED_DIR / (original.stem + '.pdf')).exists():
+                pdf_path = RENDERED_DIR / (original.stem + '.pdf')
+            elif order is not None:
                 subprocess.run([renderer, '-env:UserInstallation=' + (Path(tmp) / 'profile').as_uri(), '--headless', '--convert-to', 'pdf:impress_pdf_Export:{"ExportHiddenSlides":{"type":"boolean","value":"true"}}', '--outdir', tmp, str(original)], capture_output=True, check=True, timeout=240)
                 pdf_path = Path(tmp) / (original.stem + '.pdf')
             pages, indexed = [], set()
@@ -253,8 +265,8 @@ def main():
         visuals[ident] = {'representation': 'page', 'sourceType': 'web', 'filename': filename, 'week': week, 'pages': [{'page': 1, 'images': [], 'imageOnly': False, 'textBlocks': []}], 'url': url, 'isSummary': True}
         provenance.append({'id': ident, 'url': url, 'week': week, 'isSummary': True, 'summarySha256': hashlib.sha256(summary.encode()).hexdigest(), 'renderedPages': 0})
     assets = [p for ident, *_ in SOURCES for p in (ROOT / 'public/materials' / ident).glob('*.webp')]
-    report = {'documents': len(documents), 'chunks': len(corpus), 'skipped': [], 'excludedFrontMatterPages': sum(len(s.get('excludedStudyPages', [])) for s in provenance), 'limitations': 'Lecture slides 1–9 and assigned readings. Web readings are original summaries with links, not full articles. Text rectangles reflect extracted PDF text; image-only content requires visual reading. Slide animations are flattened.'}
-    visual_report = {'documents': len(documents), 'pages': sum(len(d['pages']) for d in visuals.values()), 'imageOnlyPages': sum(p['imageOnly'] for d in visuals.values() for p in d['pages']), 'images': len(assets), 'assetBytes': sum(p.stat().st_size for p in assets), 'maximumDimension': 1400, 'quality': 65, 'renderer': 'LibreOffice with hidden slides; PyMuPDF', 'fallbackDocuments': [], 'errors': [], 'limitations': ['Web readings are linked summaries with no page screenshots.', 'Slide animations are flattened; unusual fonts or external media may differ from PowerPoint.', 'Text boxes mark extracted text. The scanned seafood reading uses visually reviewed Tesseract OCR; small chart labels are read from the original image.']}
+    report = {'documents': len(documents), 'chunks': len(corpus), 'skipped': [], 'excludedFrontMatterPages': sum(len(s.get('excludedStudyPages', [])) for s in provenance), 'limitations': 'Lecture slides 1–10 and assigned readings (L11 reading only so far). Web readings are original summaries with links, not full articles. Text rectangles reflect extracted PDF text; image-only content requires visual reading. Slide animations are flattened.'}
+    visual_report = {'documents': len(documents), 'pages': sum(len(d['pages']) for d in visuals.values()), 'imageOnlyPages': sum(p['imageOnly'] for d in visuals.values() for p in d['pages']), 'images': len(assets), 'assetBytes': sum(p.stat().st_size for p in assets), 'maximumDimension': 1400, 'quality': 65, 'renderer': ('PowerPoint PDF export (L10) and LibreOffice with hidden slides; PyMuPDF' if RENDERED_DIR else 'LibreOffice with hidden slides; PyMuPDF'), 'fallbackDocuments': [], 'errors': [], 'limitations': ['Web readings are linked summaries with no page screenshots.', 'Slide animations are flattened; unusual fonts or external media may differ from PowerPoint.', 'Text boxes mark extracted text. The scanned seafood reading uses visually reviewed Tesseract OCR; small chart labels are read from the original image.']}
     outputs = {'lib/documents.json': documents, 'lib/corpus.json': corpus, 'lib/visuals.json': visuals, 'lib/ingestion-report.json': report, 'lib/visual-ingestion-report.json': visual_report, 'content/quiz1-source-manifest.json': {'scope': 'Lecture slides 1–9 and assigned readings', 'sources': provenance, 'webReadingsInputSha256': digest(readings_path)}}
     for filename, data in outputs.items():
         target = ROOT / filename

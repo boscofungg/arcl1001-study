@@ -21,3 +21,16 @@
 @media print { .mock-map-targets, .mock-map-position, .mock-map-status { display: none; } }
 
 .mock-map-print-labels{display:none}@media print{.mock-map-print-labels{display:block}}
+.mock-map-tools{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.mock-map-tools button{border:1px solid var(--line);border-radius:8px;padding:10px 14px;min-height:44px;font-weight:600;font-size:13px}
+.mock-map-tools button[aria-pressed=true]{background:var(--green);color:var(--paper);border-color:var(--green)}
+.mock-map-tools .mock-map-clear{border-style:dashed;font-weight:400}
+.mock-map-surface.tool-line,.mock-map-surface.tool-area{cursor:crosshair;touch-action:none}
+.mock-map-overlay{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
+.mock-map-overlay .answer{fill:none;stroke:#b5482f;stroke-width:3px;vector-effect:non-scaling-stroke;stroke-linejoin:round;stroke-linecap:round;opacity:.75}
+.mock-map-overlay polygon.answer{fill:rgba(181,72,47,.14)}
+.mock-map-overlay .answer.active{opacity:1;stroke-width:4px}
+.mock-map-overlay .guide{fill:rgba(49,91,71,.12);stroke:#315b47;stroke-width:2px;stroke-dasharray:5 4;vector-effect:non-scaling-stroke}
+.mock-map-overlay polyline.guide{fill:none}
+.mock-map-label{position:absolute;transform:translate(-50%,-50%);background:#b5482f;color:#fff;border-radius:50%;width:20px;height:20px;display:grid;place-items:center;font-size:11px;font-weight:700;pointer-events:none}
+.map-check{font-weight:700}.map-check.good{color:var(--green)}.map-check.partial{color:#9a6a1f}.map-check.off{color:#b5482f}

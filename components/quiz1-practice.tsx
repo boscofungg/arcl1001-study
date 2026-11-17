@@ -6,7 +6,7 @@ import {ArrowRight,BookOpen,Check,RotateCcw} from 'lucide-react';
 import documents from '@/lib/documents.json';
 import {slideQuestions,getSlidePracticePool,latestPracticeLecture} from '@/lib/slide-practice';
 import {quiz1KindLabels} from '@/lib/quiz1-practice';
-import type {Quiz1Kind} from '@/lib/quiz1-types';
+import type {Quiz1Kind,ImageDifficulty} from '@/lib/quiz1-types';
 import {markSlideAnswer,slideRubrics} from '@/lib/slide-marking';
 import {recordSlideResponse,advanceMarkedSet,retryMarkedSet,markedSetTotals} from '@/lib/marked-slide-review';
 import {parsePracticeLibrary,addPracticeSet,updatePracticeSet,addPracticeReview} from '@/lib/practice-library';
@@ -15,6 +15,7 @@ import imageVariants from '@/content/practice-image-variants.json';
 import type {Quiz1Question} from '@/lib/quiz1-types';
 import wordings from '@/content/practice-wordings.json';
 import type {MarkedSlideReview} from '@/lib/marked-slide-review';
+import {addMistake,readMistakeBook,saveMistakeBook} from '@/lib/mistakes';
 import './quiz1-practice.css';
 const temporary=new Map<string,string>();
 const subscribe=(listener:()=>void)=>{window.addEventListener('storage',listener);window.addEventListener('slide-practice',listener);return()=>{window.removeEventListener('storage',listener);window.removeEventListener('slide-practice',listener);};};
@@ -31,6 +32,7 @@ export default function Quiz1Practice({lecture,allowedLectures,onLectureChange,o
  function saveState(value:MarkedSlideReview){save(key,updatePracticeSet(library,value));}
  function retry(){if(!state)return;save(key,addPracticeReview(library,retryMarkedSet(state)));resetFace();setNotice('');}
  const slide=documents.find(doc=>doc.kind==='Lecture'&&doc.week===lecture);
+ const [difficulty,setDifficulty]=useState<'all'|ImageDifficulty>('all');
  const [kind,setKind]=useState<Quiz1Kind|'mixed'>('mixed'),[count,setCount]=useState<5|10>(5),[draft,setDraft]=useState(''),[notice,setNotice]=useState(''),[imageError,setImageError]=useState('');
  const active=useRef<HTMLDivElement>(null),feedback=useRef<HTMLDivElement>(null);
  const baseQuestion=review?bank.find(q=>q.id===review.queue[review.position]):undefined;
@@ -39,15 +41,15 @@ export default function Quiz1Practice({lecture,allowedLectures,onLectureChange,o
  const face=question&&review?`${review.startedAt}:${review.position}:${question.id}`:'';
  const response=question&&state?state.answers[question.id]:undefined;
  const mark=question&&response?.mode==='marked'?markSlideAnswer(question.id,response.text):null;
- const shown=Boolean(response),available=bank.filter(q=>kind==='mixed'||q.kind===kind).length;
+ const shown=Boolean(response),difficultyBank=difficulty==='all'?bank:bank.filter(q=>q.kind!=='image'||(q.difficulty??'standard')===difficulty),available=difficultyBank.filter(q=>kind==='mixed'||q.kind===kind).length;
  const revealedFace=shown?face:'';
  useEffect(()=>{if(revealedFace)feedback.current?.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'center'});},[revealedFace]);
  const totals=state?markedSetTotals(state):null;
  const missed=review?review.queue.filter(id=>review.ratings[id]==='again').length:0;
  useEffect(()=>{if(face)active.current?.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});},[face]);
  function resetFace(){setDraft('');setImageError('');}
- function start(){if(!available)return;save(key,addPracticeSet(library,bank,kind,count,wordings,Math.random,imageVariants));resetFace();setNotice('');}
- function submit(mode:'marked'|'revealed'){if(!state||!question||response||imageError===face)return;saveState(recordSlideResponse(state,draft,mode));setNotice('');}
+ function start(){if(!available)return;save(key,addPracticeSet(library,difficultyBank,kind,count,wordings,Math.random,imageVariants));resetFace();setNotice('');}
+ function submit(mode:'marked'|'revealed'){if(!state||!question||response||imageError===face)return;const next=recordSlideResponse(state,draft,mode);if(next===state)return;saveState(next);setNotice('');const result=mode==='marked'?markSlideAnswer(question.id,draft):null;if(!result||result.status!=='correct')saveMistakeBook(addMistake(readMistakeBook(),{origin:'practice',questionId:question.id,week:lecture,kind:question.kind,prompt:question.question,modelAnswer:question.answer,yourAnswer:mode==='revealed'?'':draft.trim(),images:question.image?[question.image]:undefined,sources:[{...question.source,evidence:question.evidence},...(question.additionalSources||[])]}));}
  function next(){if(!state||!response)return;saveState(advanceMarkedSet(state));resetFace();setNotice(mark?.status==='correct'?'Correct answer recorded.':mark?.status==='partial'?'Partial credit recorded; saved for review.':'Saved for review.');}
 
  const lectureTabs=<div className="slide-practice-tabs" role="group" aria-label="Practice lecture">{documents.filter(doc=>doc.kind==='Lecture'&&(!allowedLectures||allowedLectures.includes(doc.week))).map(doc=><button key={doc.id} aria-pressed={lecture===doc.week} onClick={()=>onLectureChange(doc.week)}><strong>Lecture {doc.week}</strong><span>{getSlidePracticePool(doc.week).length||'No'} questions · {doc.pages} slides</span></button>)}</div>;
@@ -55,12 +57,12 @@ export default function Quiz1Practice({lecture,allowedLectures,onLectureChange,o
  if(!slide)return <section className="quiz1-practice"><h1>Lecture {lecture} practice</h1><p>The readings are available in Read &amp; ask. Practice will be added when the lecture slides are supplied.</p><button className="primary" onClick={()=>onLectureChange(fallbackLecture)}>Practise Lecture {fallbackLecture}</button></section>;
  if(!bank.length)return <section className="quiz1-practice"><h1>Lecture {lecture} practice</h1><p>The lecture slides are available in Read &amp; ask and flashcard generation. Prepared practice questions for this lecture have not been added yet.</p>{lectureTabs}<div className="practice-empty-actions">{fallbackLecture!==lecture&&<button className="primary" onClick={()=>onLectureChange(fallbackLecture)}>Practise Lecture {fallbackLecture}</button>}<button className="secondary" onClick={()=>onOpen(slide.id,slide.startPage)}>Read lecture slides</button></div></section>;
  return <section className="quiz1-practice" aria-labelledby="quiz1-practice-title">
-  <div className="section-kicker">GENERAL PRACTICE · LECTURE SLIDES ONLY</div><h1 id="quiz1-practice-title">General practice</h1>
-  <p className="practice-intro">Start with a lecture deck. Practise image identification, map labels and concise answers using only the slides.</p>
+  <div className="section-kicker">PRACTISE BY LECTURE · LECTURE SLIDES ONLY</div><h2 id="quiz1-practice-title" className="practice-by-lecture-title">Practise by lecture</h2>
+  <p className="practice-intro">Short sets of image, map and short-answer questions from one lecture. Anything you get wrong goes to your mistakes above.</p>
   {lectureTabs}
   <div className="slide-practice-heading"><div><h2>{slide.title}</h2><p>{bank.length} questions from this deck · {slideQuestions.length} slide-based questions in total</p></div><button className="secondary" onClick={()=>onOpen(slide.id,slide.startPage)}><BookOpen size={15}/>View lecture slides</button></div>
   <p className="practice-disclaimer">Practise image, map and short-answer formats; these are study aids, not an official assessment. Readings remain available in the chatbot, but are excluded here and from flashcards. Automatic practice marks recognise key ideas and approximate dates. They are not official exam marks; check the model answer if valid wording was not recognised.</p>
-  <form className="practice-controls" onSubmit={event=>{event.preventDefault();start();}}><label>Question type<select aria-label="Question type" value={kind} onChange={e=>setKind(e.target.value as Quiz1Kind|'mixed')}><option value="mixed">Mixed quiz formats</option>{Object.entries(quiz1KindLabels).map(([value,label])=><option key={value} value={value}>{label}</option>)}</select></label><label>Set size<select aria-label="Set size" value={count} onChange={e=>setCount(Number(e.target.value) as 5|10)}><option value={5}>5 questions</option><option value={10}>10 questions</option></select></label><div className="practice-start"><button className="primary" disabled={!available||library.sets.length>=100}>Start {Math.min(count,available)}-question set<ArrowRight size={15}/></button>{missed>0&&state&&<button type="button" className="secondary" onClick={retry}><RotateCcw size={15}/>Review {missed} again</button>}</div><p>{available?`${available} matching questions. New questions first. Earlier sets stay saved; questions repeat once this pool is exhausted.`:'No questions of this type in this deck. Choose another type or lecture.'}</p></form>
+  <form className="practice-controls" onSubmit={event=>{event.preventDefault();start();}}><label>Question type<select aria-label="Question type" value={kind} onChange={e=>setKind(e.target.value as Quiz1Kind|'mixed')}><option value="mixed">Mixed quiz formats</option>{Object.entries(quiz1KindLabels).map(([value,label])=><option key={value} value={value}>{label}</option>)}</select></label>{(kind==='image'||kind==='mixed')&&bank.some(q=>q.kind==='image')&&<label>Image difficulty<select aria-label="Image difficulty" value={difficulty} onChange={e=>setDifficulty(e.target.value as 'all'|ImageDifficulty)}><option value="all">All images</option><option value="easier">Easier · well-known sites</option><option value="standard">Standard</option><option value="harder">Harder · objects and tools</option></select></label>}<label>Set size<select aria-label="Set size" value={count} onChange={e=>setCount(Number(e.target.value) as 5|10)}><option value={5}>5 questions</option><option value={10}>10 questions</option></select></label><div className="practice-start"><button className="primary" disabled={!available||library.sets.length>=100}>Start {Math.min(count,available)}-question set<ArrowRight size={15}/></button>{missed>0&&state&&<button type="button" className="secondary" onClick={retry}><RotateCcw size={15}/>Review {missed} again</button>}</div><p>{available?`${available} matching questions. New questions first. Earlier sets stay saved; questions repeat once this pool is exhausted.`:'No questions of this type in this deck. Choose another type or lecture.'}</p></form>
   {library.sets.length>0&&<div className="practice-controls"><label>Saved sets<select aria-label="Saved practice sets" value={library.selected} onChange={e=>{save(key,{...library,selected:Number(e.target.value)});resetFace();setNotice('');}}>{library.sets.map(s=><option key={s.id} value={s.id}>{s.label} · {s.state.review.position}/{s.state.review.queue.length} completed</option>)}</select></label><p>{library.sets.length}/100 sets saved for this lecture in this browser. {library.sets.length>=100?'Library full; continue or review a saved set.':''}</p></div>}
   {selected&&<StudyDownload title={`Lecture ${lecture} practice · ${selected.label}`} filename={`lecture-${lecture}-practice-set-${selected.id}`} items={selected.state.review.queue.flatMap(id=>{const q=bank.find(item=>item.id===id);if(!q)return [];const variant=(imageVariants as Record<string,{image:NonNullable<Quiz1Question['image']>;source:Quiz1Question['source'];evidence:string}[]>)[id]?.[(selected.images?.[id]||0)-1];return [{question:(wordings as Record<string,string[]>)[id]?.[(selected.wordings[id]||0)-1]||q.question,answer:q.answer,image:variant?.image||q.image,sources:[...(variant?[variant.source]:[]),q.source,...(q.additionalSources||[])]}];})}/>}
   {temporary.has(key)&&<p role="alert">Browser storage is full or unavailable. These sets will be lost when you reload.</p>}

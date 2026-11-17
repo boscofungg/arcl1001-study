@@ -5,3 +5,9 @@
 .mock-print-answer{display:none}@media print{.mock-print-answer{display:block;white-space:pre-wrap;min-height:5em}.mock-section textarea{display:none}.mock-image-grid article{padding-bottom:30px}.mock-section{border-radius:0}.mock-map-surface img{height:auto}}
 
 @media print{.mock-section{break-inside:auto}.mock-image-grid>article,.mock-feedback{break-inside:avoid}}
+.mock-image-set{display:grid;gap:6px}
+.mock-image-set.count-2,.mock-image-set.count-3{grid-template-columns:1fr 1fr}
+.mock-image-set.count-3 img:first-child{grid-column:1/-1}
+.mock-image-set img{width:100%;height:auto;max-height:260px;object-fit:cover;border-radius:6px;border:1px solid var(--line);background:#fff}
+.mock-image-set.count-1 img{max-height:none;object-fit:contain}
+.mock-image-set small{grid-column:1/-1;color:var(--muted);font-size:12px}

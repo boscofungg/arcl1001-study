@@ -1,9 +1,10 @@
 import quiz1Bank from '../content/mock-paper-bank.json' with {type:'json'};
+import {validMapAnswer,type MapAnswer} from './map-drawing.ts';
 export const mockBank=quiz1Bank;
 export type MockSyllabus={bank:typeof quiz1Bank;mapSets:string[][]};
 export const quiz1Syllabus:MockSyllabus={bank:quiz1Bank,mapSets:[['south-america','tigris','yellow-river'],['egypt','indus','mesopotamia']]};
 export type DatePair={a:{year:number;era:'BCE'|'CE'};b:{year:number;era:'BCE'|'CE'}};
-export type MockPaper={version:1;id:number;images:string[];concept:string;significance:string;discussion:string;map:string[];dates:DatePair[];selected:string[];answers:Record<string,string>;points:Record<string,{x:number;y:number}>;submitted:boolean;createdAt:string};
+export type MockPaper={version:1;id:number;images:string[];concept:string;significance:string;discussion:string;map:string[];dates:DatePair[];selected:string[];answers:Record<string,string>;points:Record<string,MapAnswer>;submitted:boolean;createdAt:string};
 export type MockLibrary={version:1;selected:number;papers:MockPaper[]};
 const shuffle=<T,>(values:T[],random:()=>number)=>{const v=[...values];for(let i=v.length-1;i>0;i--){const j=Math.floor(Math.max(0,Math.min(.999999,random()))*(i+1));[v[i],v[j]]=[v[j],v[i]];}return v;};
 export function createMockPaper(previous:MockPaper[]=[],random:()=>number=Math.random,syllabus:MockSyllabus=quiz1Syllabus):MockPaper{
@@ -31,7 +32,7 @@ export function parseMockLibrary(raw:string,syllabus:MockSyllabus=quiz1Syllabus)
    if(p.version!==1||!Number.isSafeInteger(p.id)||p.id<1||typeof p.createdAt!=='string'||typeof p.submitted!=='boolean'||!Array.isArray(p.images)||p.images.length!==3||new Set(p.images).size!==3||p.images.some((id:unknown)=>!validId(bank.images,id))||!validId(bank.concepts,p.concept)||!validId(bank.significance,p.significance)||!validId(bank.discussions,p.discussion))return empty;
    if(!Array.isArray(p.selected)||p.selected.length>2||new Set(p.selected).size!==p.selected.length||p.selected.some((id:unknown)=>!p.images.includes(id))||!p.answers||typeof p.answers!=='object'||Array.isArray(p.answers)||Object.values(p.answers).some(v=>typeof v!=='string'||v.length>6000))return empty;
    if(!Array.isArray(p.map)||p.map.length!==3||new Set(p.map).size!==3||p.map.some((id:string)=>!mapSets.flat().includes(id)))return empty;
-   if(!p.points||typeof p.points!=='object'||Array.isArray(p.points)||Object.entries(p.points).some(([id,v])=>!p.map.includes(id)||!v||typeof v!=='object'||!Number.isFinite((v as {x:number}).x)||!Number.isFinite((v as {y:number}).y)||(v as {x:number}).x<0||(v as {x:number}).x>1||(v as {y:number}).y<0||(v as {y:number}).y>1))return empty;
+   if(!p.points||typeof p.points!=='object'||Array.isArray(p.points)||Object.entries(p.points).some(([id,v])=>!p.map.includes(id)||!validMapAnswer(v)))return empty;
    if(!Array.isArray(p.dates)||p.dates.length!==2||p.dates.some((d:DatePair)=>!d||[d.a,d.b].some(v=>!v||!['BCE','CE'].includes(v.era)||!Number.isInteger(v.year)||v.year<1||v.year>10000)||d.a.year===d.b.year&&d.a.era===d.b.era))return empty;
   }
   if(new Set(data.papers.map((p:MockPaper)=>p.id)).size!==data.papers.length)return empty;

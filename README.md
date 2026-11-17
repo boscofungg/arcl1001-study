@@ -1,12 +1,16 @@
 # Stratum (beta) — ARCL1001
 
-Study workspace for ARCL1001 Lectures 1–9 and their assigned readings:
+Study workspace for ARCL1001 Lectures 1–11 and their assigned readings (Lecture 11: reading only so far):
 
 - **Read & ask** — a scrolling reader for slides and readings, with a streaming tutor that
   answers only from the course materials and cites the slide or page it used.
-- **General practice** — slide-based image, map and short-answer questions with automatic
-  practice marking, plus full mock papers (currently Quiz 2 format, Lectures 4–7).
-- **Make flashcards** — generated or prepared cards from lecture slides, with spaced review.
+- **Mock papers** — full practice papers (currently Quiz 2 format, Lectures 4–7) with multi-view
+  image options and point/line/area map answers.
+- **Mistakes & review** — wrong answers come back for re-answering and can be exported; lecture
+  practice sets with automatic practice marking sit below.
+- **Flashcards** — generated, prepared or made-from-mistakes cards, with spaced review.
+- **Timeline & links** — region × period grid, cross-lecture themes, ordering practice and method examples.
+- **Slide notes** — personal notes under each slide, exportable.
 
 Live site: https://arcl1001-study-boscofungg.vercel.app/ · Release history: [CHANGELOG.md](CHANGELOG.md)
 
@@ -19,7 +23,7 @@ content/*.json (hand-authored questions, rubrics, mock papers) ─┐
                          Next.js app on Vercel ── /api/chat ───────▶ HKU Claude (Converse / ConverseStream)
                                                ── /api/flashcards ─▶ HKU Claude, then validated against slides
                                                ── /api/source  (page text and images)
-browser ── progress, decks, mock-paper drafts, flashcard schedule in localStorage (no accounts, no sync)
+browser ── progress, decks, mock papers, mistakes, slide notes, flashcard schedule in localStorage (no accounts, no sync)
 ```
 
 - Retrieval (`lib/retrieval.ts`) is lexical BM25-style scoring with a few aliases; the tutor
