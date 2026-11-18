@@ -4,6 +4,15 @@ Release history for Stratum (ARCL1001), newest first. Entries before November 20
 moved here unchanged from the old README. New releases should also be published as
 GitHub Releases from their `release/…` tag (see `docs/release.md`).
 
+## Lecture 11 slides (18 November 2026)
+
+- **New material:** Lecture 11 slides, *Production and Trade in Africa* (65 slides, d131, rendered
+  via PowerPoint PDF export; 48 slides carry searchable text). The document viewer now opens on it.
+- **Timeline & links:** Essouk-Tadmekka (c. 750–1400 CE) and Phalaborwa (c. 200–1900 CE), plus
+  two method cards (studying trade networks; chaîne opératoire), each citing its slide.
+- **Retrieval checks:** four Lecture 11 cases (Tadmekka, Phalaborwa, chaîne opératoire,
+  trans-Saharan trade). The Quiz 3 mock paper is still to be written.
+
 ## Student feedback 13/11 and Quiz 3 (17 November 2026)
 
 - **New materials:** Lecture 10 slides (111, rendered via PowerPoint PDF export), the Lecture 10

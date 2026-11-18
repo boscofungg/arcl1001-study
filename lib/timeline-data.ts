@@ -58,6 +58,8 @@ export const timeline: TimelineEvent[] = [
   { id: 'columbus', label: 'Columbus reaches America', date: '1492 CE', start: 1492, week: 10, region: 'North America', themes: ['colonialism'], source: { docId: 'd128', page: 13 } },
   { id: 'williamsburg', label: 'Williamsburg, capital of the Virginia Colony', date: '1632–1780', start: 1632, end: 1780, week: 10, region: 'North America', themes: ['colonialism'], source: { docId: 'd128', page: 18 } },
   { id: 'michilimackinac', label: 'Fort Michilimackinac (French, then British)', date: '1715–1781', start: 1715, end: 1781, week: 10, region: 'North America', themes: ['colonialism'], source: { docId: 'd128', page: 94 } },
+  { id: 'tadmekka', label: 'Essouk-Tadmekka, trans-Saharan market town', date: 'c. 750–1400 CE', start: 750, end: 1400, week: 11, region: 'Africa', themes: ['cities', 'food', 'mobility'], source: { docId: 'd131', page: 32 } },
+  { id: 'phalaborwa', label: 'Phalaborwa iron-working communities', date: 'c. 200–1900 CE', start: 200, end: 1900, week: 11, region: 'Africa', themes: ['environment', 'food'], source: { docId: 'd131', page: 54 } },
 ];
 
 /** Methods with a worked example from a lecture, answering "how do we know?". */
@@ -71,6 +73,8 @@ export const methods: { id: string; name: string; what: string; example: string;
   { id: 'adna', name: 'Ancient DNA', what: 'Genetic data show relationships between individuals or animals.', example: 'Botai horses: DNA analysis questions whether they were domesticated or corralled.', source: { docId: 'd124', page: 57 } },
   { id: 'zooarch', name: 'Zooarchaeology', what: 'Study of animal remains and human–animal relationships.', example: 'Used for nomadic sites where architecture is scarce.', source: { docId: 'd124', page: 47 } },
   { id: 'ethnography', name: 'Ethnography and Indigenous perspectives', what: 'Living communities’ knowledge and accounts help interpret the past, with care about bias.', example: 'Lecture 10 contrasts ethnographic accounts with a decolonizing perspective (Mescalero Apache).', source: { docId: 'd128', page: 51 } },
+  { id: 'trade-networks', name: 'Studying trade networks', what: 'Provenance of raw materials, distribution of artefacts, organisation of production and scale of consumption (Renfrew & Bahn).', example: 'Essouk-Tadmekka: imported glass beads, wheat and glazed pottery, plus coin moulds with gold residue.', source: { docId: 'd131', page: 22 } },
+  { id: 'chaine', name: 'Chaîne opératoire', what: 'Reconstructing each step of production, from acquiring raw material to the finished object, and the choices behind it.', example: 'Phalaborwa iron: magnetite collection, smelting in furnaces, then smithing the bloom.', source: { docId: 'd131', page: 55 } },
 ];
 
 export function formatYear(year: number): string {

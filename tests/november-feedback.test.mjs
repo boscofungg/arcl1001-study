@@ -96,7 +96,7 @@ test('timeline entries cite real lecture slides whose text contains the stated y
     assert.ok(text.includes(year) || /century/.test(event.date), `${event.id}: ${year} not on ${event.source.docId} slide ${event.source.page}`);
     if (event.end !== undefined) assert.ok(event.end >= event.start, event.id);
   }
-  assert.ok(timeline.some(event => event.week === 10) && timeline.some(event => event.week === 8) && timeline.some(event => event.week === 9));
+  assert.ok(timeline.some(event => event.week === 10) && timeline.some(event => event.week === 8) && timeline.some(event => event.week === 9) && timeline.some(event => event.week === 11));
   for (const method of methods) assert.ok(slideText(method.source.docId, method.source.page).length > 0, method.id);
 });
 
@@ -104,7 +104,7 @@ test('Lectures 10–11 are in the course, Quiz 3 covers L8–11, and new materia
   assert.deepEqual(weeks.map(w => w.n), [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]);
   assert.deepEqual([...courseScopes.quiz3.weeks], [8, 9, 10, 11]);
   assert.ok(inScope('quiz3', 10) && !inScope('quiz3', 7) && inScope('all', 1));
-  for (const id of ['d128', 'd129', 'd130']) {
+  for (const id of ['d128', 'd129', 'd130', 'd131']) {
     const doc = documents.find(d => d.id === id);
     assert.ok(doc, id);
     assert.equal(visuals[id].pages.length, doc.pages);

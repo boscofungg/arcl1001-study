@@ -47,6 +47,7 @@ SOURCES = [
     ('d128', 'L10-Slides.pptx', 10, 'Lecture', 'Lecture 10 — Indigenous and Historical Archaeology in North America', 111),
     ('d129', 'L10-Reading-Essential Understandings About American Indians.pdf', 10, 'Reading', 'Lecture 10 — Essential Understandings About American Indians', 9),
     ('d130', 'L11-Reading-Documenting Precolonial Trade in Africa (Chirikure 2017).pdf', 11, 'Reading', 'Lecture 11 — Documenting Precolonial Trade in Africa', 27),
+    ('d131', 'L11-Slides.pptx', 11, 'Lecture', 'Lecture 11 — Production and Trade in Africa', 65),
 ]
 
 COURSE_DIR = Path.home() / 'Desktop/HKU/APAI3799 Capstone copy/ARCL1001-CourseMaterial'
@@ -57,6 +58,7 @@ SOURCE_PATHS = {
     'd128': COURSE_DIR / 'L10-Slides.pptx',
     'd129': COURSE_DIR / 'L10-Reading-Essential Understandings About American Indians.pdf',
     'd130': COURSE_DIR / 'L11-Reading-Documenting Precolonial Trade in Africa (Chirikure 2017).pdf',
+    'd131': COURSE_DIR / 'L11-Slides.pptx',
     'd112': Path.home() / 'Desktop/HKU/APAI3799 Capstone copy/ARCL1001-CourseMaterial/Week 4/Reading/Frogley et al. (2025). Trees, terraces and llamas Resilient watershed management and sustainable agriculture the Inca way.pdf',
 }
 
@@ -266,7 +268,7 @@ def main():
         provenance.append({'id': ident, 'url': url, 'week': week, 'isSummary': True, 'summarySha256': hashlib.sha256(summary.encode()).hexdigest(), 'renderedPages': 0})
     assets = [p for ident, *_ in SOURCES for p in (ROOT / 'public/materials' / ident).glob('*.webp')]
     report = {'documents': len(documents), 'chunks': len(corpus), 'skipped': [], 'excludedFrontMatterPages': sum(len(s.get('excludedStudyPages', [])) for s in provenance), 'limitations': 'Lecture slides 1–10 and assigned readings (L11 reading only so far). Web readings are original summaries with links, not full articles. Text rectangles reflect extracted PDF text; image-only content requires visual reading. Slide animations are flattened.'}
-    visual_report = {'documents': len(documents), 'pages': sum(len(d['pages']) for d in visuals.values()), 'imageOnlyPages': sum(p['imageOnly'] for d in visuals.values() for p in d['pages']), 'images': len(assets), 'assetBytes': sum(p.stat().st_size for p in assets), 'maximumDimension': 1400, 'quality': 65, 'renderer': ('PowerPoint PDF export (L10) and LibreOffice with hidden slides; PyMuPDF' if RENDERED_DIR else 'LibreOffice with hidden slides; PyMuPDF'), 'fallbackDocuments': [], 'errors': [], 'limitations': ['Web readings are linked summaries with no page screenshots.', 'Slide animations are flattened; unusual fonts or external media may differ from PowerPoint.', 'Text boxes mark extracted text. The scanned seafood reading uses visually reviewed Tesseract OCR; small chart labels are read from the original image.']}
+    visual_report = {'documents': len(documents), 'pages': sum(len(d['pages']) for d in visuals.values()), 'imageOnlyPages': sum(p['imageOnly'] for d in visuals.values() for p in d['pages']), 'images': len(assets), 'assetBytes': sum(p.stat().st_size for p in assets), 'maximumDimension': 1400, 'quality': 65, 'renderer': ('PowerPoint PDF export (L10, L11) and LibreOffice with hidden slides; PyMuPDF' if RENDERED_DIR else 'LibreOffice with hidden slides; PyMuPDF'), 'fallbackDocuments': [], 'errors': [], 'limitations': ['Web readings are linked summaries with no page screenshots.', 'Slide animations are flattened; unusual fonts or external media may differ from PowerPoint.', 'Text boxes mark extracted text. The scanned seafood reading uses visually reviewed Tesseract OCR; small chart labels are read from the original image.']}
     outputs = {'lib/documents.json': documents, 'lib/corpus.json': corpus, 'lib/visuals.json': visuals, 'lib/ingestion-report.json': report, 'lib/visual-ingestion-report.json': visual_report, 'content/quiz1-source-manifest.json': {'scope': 'Lecture slides 1–9 and assigned readings', 'sources': provenance, 'webReadingsInputSha256': digest(readings_path)}}
     for filename, data in outputs.items():
         target = ROOT / filename

@@ -23,5 +23,9 @@
   {"question": "What does provenience mean?", "expect": ["provenience"], "weeks": [2, 3, 6]},
   {"question": "How was irrigation used?", "expect": ["irrigat"], "weeks": [2, 4, 6, 9]},
   {"question": "Compare Mohenjo-daro and Uruk", "expect": ["mohenjo", "uruk"], "weeks": [2, 3, 9]},
-  {"question": "Compare Erlitou and Yinxu", "expect": ["erlitou", "yinxu"], "weeks": [3, 6]}
+  {"question": "Compare Erlitou and Yinxu", "expect": ["erlitou", "yinxu"], "weeks": [3, 6]},
+  {"question": "What evidence shows long-distance trade at Essouk-Tadmekka?", "expect": ["tadmekka"], "weeks": [11]},
+  {"question": "How was iron produced at Phalaborwa?", "expect": ["phalaborwa"], "weeks": [11]},
+  {"question": "What is chaîne opératoire?", "expect": ["op[ée]ratoire"], "weeks": [11]},
+  {"question": "What goods moved along trans-Saharan trade routes?", "expect": ["saharan"], "weeks": [11]}
 ]

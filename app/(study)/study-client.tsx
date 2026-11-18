@@ -38,7 +38,7 @@ export default function StudyWorkspace({initialContext,initialView='tutor'}:{ini
  const [replyStatus,setReplyStatus]=useState('Finding evidence in your materials…');
  const activeRequest=useRef<AbortController|null>(null);
  const [reader,setReader]=useState<{document:Doc;initialPage:number;highlight?:SourceHighlight}|null>(null);
- const [activeDocument,setActiveDocument]=useState<{id:string;page:number;highlight?:SourceHighlight}>(initialContext?{id:initialContext.docId,page:initialContext.page}:{id:'d128',page:1});
+ const [activeDocument,setActiveDocument]=useState<{id:string;page:number;highlight?:SourceHighlight}>(initialContext?{id:initialContext.docId,page:initialContext.page}:{id:'d131',page:1});
  const [lectureFilter,setLectureFilter]=useState(0);
  const [courseRange,setCourseRange]=useState<CourseScope>('all');
  const availableWeeks=weeks.filter(w=>inScope(courseRange,w.n));
