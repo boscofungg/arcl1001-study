@@ -11,7 +11,12 @@ GitHub Releases from their `release/…` tag (see `docs/release.md`).
 - **Timeline & links:** Essouk-Tadmekka (c. 750–1400 CE) and Phalaborwa (c. 200–1900 CE), plus
   two method cards (studying trade networks; chaîne opératoire), each citing its slide.
 - **Retrieval checks:** four Lecture 11 cases (Tadmekka, Phalaborwa, chaîne opératoire,
-  trans-Saharan trade). The Quiz 3 mock paper is still to be written.
+  trans-Saharan trade).
+- **Quiz 3 mock paper (Lectures 8–11):** Mock papers now switch between Quiz 3 (default) and
+  Quiz 2, each with its own saved papers. The Quiz 3 bank has 8 image options (2–3 unlabelled views
+  each: Arzhan 2, Botai, Borobudur, Angkor Wat, Cahokia, Fort Michilimackinac, Essouk-Tadmekka,
+  Phalaborwa), 4 concept, 4 significance and 4 discussion questions, and 10 map targets. Every paper
+  covers all four lectures; every model answer cites slide text checked by `tests/quiz3-mock-paper.test.mjs`.
 
 ## Student feedback 13/11 and Quiz 3 (17 November 2026)
 

@@ -1,0 +1,559 @@
+{
+ "concepts": [
+  {
+   "id": "q3-concept-pastoral-nomadism",
+   "question": "Define pastoral nomadism and explain why nomads have been called an “invisible culture” in archaeology. Use no more than three sentences.",
+   "answer": "Pastoral nomadism combines domesticated animal husbandry with regular migration between grazing areas along established routes, with an economy based on herds and their products. Nomads are called an “invisible culture” because their evidence is ephemeral: they use portable material, lack permanent architecture and leave shallow stratigraphy. Archaeologists therefore rely on burials, short-lived settlements and ethnoarchaeology.",
+   "checklist": [
+    "Define it as animal husbandry plus migration between grazing areas.",
+    "Explain ephemeral evidence: portable material, no permanent architecture, shallow stratigraphy.",
+    "Name sources archaeologists use instead, such as burials, settlements or ethnoarchaeology."
+   ],
+   "sources": [
+    {
+     "docId": "d124",
+     "page": 23,
+     "title": "Lecture 8 — Tracing Nomads",
+     "label": "Slide 23",
+     "evidence": "Pastoral Nomadism domesticated animal husbandry Migration between grazing areas; established routes Economics of herds/ products"
+    },
+    {
+     "docId": "d124",
+     "page": 28,
+     "title": "Lecture 8 — Tracing Nomads",
+     "label": "Slide 28",
+     "evidence": "Invisible culture Ephemeral evidence Portable material Lack of permanent architecture Shallow stratigraphy"
+    },
+    {
+     "docId": "d124",
+     "page": 29,
+     "title": "Lecture 8 — Tracing Nomads",
+     "label": "Slide 29",
+     "evidence": "Burials Settlements Ethnoarchaeology"
+    }
+   ]
+  },
+  {
+   "id": "q3-concept-ritual",
+   "question": "Define ritual and explain why context is important when archaeologists identify it. Use no more than three sentences.",
+   "answer": "A ritual is a patterned, repetitive and symbolic enactment of a cultural, group or individual belief or value, and its meaning can change over time. Archaeologists warn against labelling any unidentified artefact a “ritual item”, so the context of finds is essential. Evidence such as symbols and iconography, sacrifice, feasting and votive offerings in a defined setting makes a ritual interpretation stronger.",
+   "checklist": [
+    "Give the definition: patterned, repetitive, symbolic enactment of a belief or value.",
+    "Explain the danger of calling unknown objects ritual and the importance of context.",
+    "Name archaeological indicators such as iconography, sacrifice, feasting or votive offerings."
+   ],
+   "sources": [
+    {
+     "docId": "d126",
+     "page": 51,
+     "title": "Lecture 9 — Politics and Religion",
+     "label": "Slide 51",
+     "evidence": "patterned, repetitive, and symbolic enactment of a cultural belief or value Fluctuation in meaning"
+    },
+    {
+     "docId": "d126",
+     "page": 53,
+     "title": "Lecture 9 — Politics and Religion",
+     "label": "Slide 53",
+     "evidence": "If you can’t identify the artifact, it must have been a ritual item Importance of context"
+    },
+    {
+     "docId": "d126",
+     "page": 18,
+     "title": "Lecture 9 — Politics and Religion",
+     "label": "Slide 18",
+     "evidence": "Symbols and iconography Ritual performance Sacrifice Feasting Votive offerings"
+    }
+   ]
+  },
+  {
+   "id": "q3-concept-historical-archaeology",
+   "question": "Explain what historical archaeology is and name the types of evidence it combines. Use no more than three sentences.",
+   "answer": "Historical archaeology studies the material remains of past societies that also left some other form of historical evidence. In North America it covers roughly the last 500 years, from the arrival of Columbus in 1492, and often focuses on underprivileged groups missing from written accounts. It combines historical records, material evidence, oral histories and ethnographic studies.",
+   "checklist": [
+    "Define it as studying material remains of societies that also left historical evidence.",
+    "Give its time frame (recent ~500 years; from 1492 in North America) or focus on underprivileged groups.",
+    "List the evidence types: records, material evidence, oral histories, ethnography."
+   ],
+   "sources": [
+    {
+     "docId": "d128",
+     "page": 85,
+     "title": "Lecture 10 — Indigenous and Historical Archaeology in North America",
+     "label": "Slide 85",
+     "evidence": "The study of the material remains of past societies that also left behind some other form of historical evidence"
+    },
+    {
+     "docId": "d128",
+     "page": 86,
+     "title": "Lecture 10 — Indigenous and Historical Archaeology in North America",
+     "label": "Slide 86",
+     "evidence": "Recent history past 500 years Columbus in 1492 Focus on underprivileged groups"
+    },
+    {
+     "docId": "d128",
+     "page": 87,
+     "title": "Lecture 10 — Indigenous and Historical Archaeology in North America",
+     "label": "Slide 87",
+     "evidence": "Historical records Material evidence Oral histories Ethnographic studies"
+    }
+   ]
+  },
+  {
+   "id": "q3-concept-chaine-operatoire",
+   "question": "Explain chaîne opératoire and how it can be applied to iron production. Use no more than three sentences.",
+   "answer": "Chaîne opératoire is the range of processes by which naturally occurring raw materials are selected, shaped and transformed into usable cultural products, from acquisition through use, discard and recycling. It treats production as social and cultural action involving planning, decision making, knowledge and skills. At Phalaborwa, iron production can be followed through mining magnetite ore, smelting it in furnaces into a bloom, and smithing the bloom into objects.",
+   "checklist": [
+    "Define it as the sequence from selecting raw material to a usable product (and beyond).",
+    "Mention the social side: planning, decisions, knowledge or skills.",
+    "Apply it to iron: mining/ore collection, smelting, smithing."
+   ],
+   "sources": [
+    {
+     "docId": "d131",
+     "page": 55,
+     "title": "Lecture 11 — Production and Trade in Africa",
+     "label": "Slide 55",
+     "evidence": "Chaîne Opératoire the range of processes by which naturally occurring raw materials are selected, shaped and transformed into usable cultural products Acquisition Use Discarding Recycle"
+    },
+    {
+     "docId": "d131",
+     "page": 56,
+     "title": "Lecture 11 — Production and Trade in Africa",
+     "label": "Slide 56",
+     "evidence": "Planning and decision making Knowledge, know-hows, and skills"
+    },
+    {
+     "docId": "d131",
+     "page": 57,
+     "title": "Lecture 11 — Production and Trade in Africa",
+     "label": "Slide 57",
+     "evidence": "Iron production in Phalaborwa Mining Smelting Smithing"
+    }
+   ]
+  }
+ ],
+ "significance": [
+  {
+   "id": "q3-significance-botai",
+   "question": "Explain the significance of the Botai horse evidence for the debate on horse domestication. Use no more than three sentences.",
+   "answer": "Botai produced more than 130,000 horse bones, and organic residue and cut-mark analysis show that horses were consumed, including for bone grease. Teeth wear and a horse bit were once taken as evidence of the earliest riding, but later analysis attributes the wear to dental development and natural wear rather than bits. DNA analysis also suggests the horses may have been corralled Przewalski’s horses rather than domesticated, showing how new methods can revise a famous interpretation.",
+   "checklist": [
+    "Use the scale of horse remains (130,000+ bones) and evidence of consumption.",
+    "Explain the riding claim (bit / teeth wear) and why it was challenged.",
+    "Mention DNA / corralling and the wider point about changing interpretations."
+   ],
+   "sources": [
+    {
+     "docId": "d124",
+     "page": 52,
+     "title": "Lecture 8 — Tracing Nomads",
+     "label": "Slide 52",
+     "evidence": "130,000 horse bones"
+    },
+    {
+     "docId": "d124",
+     "page": 56,
+     "title": "Lecture 8 — Tracing Nomads",
+     "label": "Slide 56",
+     "evidence": "Organic residue analysis Cut mark analysis Evidence of horse consumption, includes bone grease"
+    },
+    {
+     "docId": "d124",
+     "page": 55,
+     "title": "Lecture 8 — Tracing Nomads",
+     "label": "Slide 55",
+     "evidence": "Teeth wear analysis on Botai horses Caused by dental development issues and natural wear rather than bit wearing"
+    },
+    {
+     "docId": "d124",
+     "page": 57,
+     "title": "Lecture 8 — Tracing Nomads",
+     "label": "Slide 57",
+     "evidence": "Przewalski's horse Horse corralling rather than domestication? DNA analysis"
+    }
+   ]
+  },
+  {
+   "id": "q3-significance-borobudur",
+   "question": "Explain the significance of Borobudur’s design for understanding a sacred landscape. Use no more than three sentences.",
+   "answer": "Borobudur’s nine-terrace stepped pyramid has a tripartite construction representing Buddhist cosmology, from the Sphere of Desires to the Sphere of Formlessness, and its reliefs become more abstract and difficult at higher levels. Because the monument lacks inner spaces and relics, its sacredness is produced and reinforced through human engagement, such as pilgrims walking the pradakshina ritual around and up the terraces. Later Chinese ceramics and coins from the 11th century CE and 14th-century Javanese poems show it continued as a pilgrimage site.",
+   "checklist": [
+    "Describe the structure as Buddhist cosmology (three spheres / increasing abstraction).",
+    "Explain that sacredness comes from ritual action and human engagement (pradakshina, liminality).",
+    "Use evidence of later pilgrimage (ceramics, coins or poems)."
+   ],
+   "sources": [
+    {
+     "docId": "d126",
+     "page": 38,
+     "title": "Lecture 9 — Politics and Religion",
+     "label": "Slide 38",
+     "evidence": "Tripartite construction: Buddhist cosmology Kamadhatu Sphere of the Desires Arupadhatu Sphere of Formlessness"
+    },
+    {
+     "docId": "d126",
+     "page": 40,
+     "title": "Lecture 9 — Politics and Religion",
+     "label": "Slide 40",
+     "evidence": "Level of abstractness and difficulty of relief increases with the levels"
+    },
+    {
+     "docId": "d126",
+     "page": 43,
+     "title": "Lecture 9 — Politics and Religion",
+     "label": "Slide 43",
+     "evidence": "Significance of a location is produced and reinforced through action Ritual action: liminality"
+    },
+    {
+     "docId": "d126",
+     "page": 44,
+     "title": "Lecture 9 — Politics and Religion",
+     "label": "Slide 44",
+     "evidence": "Lack of inner spaces and relics Chinese ceramics and coins from 11th century CE Pilgrimage site"
+    },
+    {
+     "docId": "d126",
+     "page": 45,
+     "title": "Lecture 9 — Politics and Religion",
+     "label": "Slide 45",
+     "evidence": "Pradakshina ritual"
+    }
+   ]
+  },
+  {
+   "id": "q3-significance-nagpra",
+   "question": "Explain the significance of the Native American Graves Protection and Repatriation Act (NAGPRA) for archaeology. Use no more than three sentences.",
+   "answer": "NAGPRA, passed in 1990, requires the repatriation of Native American remains and cultural items and aims to prevent their looting and trading. It responds to colonial-era collecting, such as pottery and other material removed from Chaco Canyon to the American Museum of Natural History around 1900. It is part of a decolonizing perspective that recognises Indigenous communities’ rights over their ancestors and heritage, although cases such as the alleged theft of Geronimo’s remains show that return can still be contested.",
+   "checklist": [
+    "Give the date (1990) and main aims: repatriation and preventing looting/trading.",
+    "Connect it to colonial collecting (e.g. Chaco Canyon material in museums).",
+    "Explain its decolonizing significance for Indigenous control of remains and heritage."
+   ],
+   "sources": [
+    {
+     "docId": "d128",
+     "page": 57,
+     "title": "Lecture 10 — Indigenous and Historical Archaeology in North America",
+     "label": "Slide 57",
+     "evidence": "Native American Graves Protection and Repatriation Act Passed in 1990 Repatriation of Native American remains and cultural items Prevent looting, trading"
+    },
+    {
+     "docId": "d128",
+     "page": 56,
+     "title": "Lecture 10 — Indigenous and Historical Archaeology in North America",
+     "label": "Slide 56",
+     "evidence": "Pottery from Pueblo Bonito, Chaco Canyon American Museum of Natural History in 1900"
+    },
+    {
+     "docId": "d128",
+     "page": 59,
+     "title": "Lecture 10 — Indigenous and Historical Archaeology in North America",
+     "label": "Slide 59",
+     "evidence": "demand the return of his remains and burial good"
+    }
+   ]
+  },
+  {
+   "id": "q3-significance-tadmekka-coins",
+   "question": "Explain the significance of the gold coin moulds found at Essouk-Tadmekka. Use no more than three sentences.",
+   "answer": "Coin moulds with gold residue show that high-purity gold was made into standardised “blank” coins at Essouk-Tadmekka. This is direct evidence of production for exchange, tying the town to the early Islamic trans-Saharan gold trade. Together with imported glass beads, wheat and glazed, wheel-turned pottery, the moulds show how a market town at a strategic location linked West African gold to long-distance networks.",
+   "checklist": [
+    "Describe the find: moulds with gold residue, high-purity, standardised blank coins.",
+    "Link it to production for trade / the trans-Saharan gold trade.",
+    "Support it with imported materials or the town’s strategic location."
+   ],
+   "sources": [
+    {
+     "docId": "d131",
+     "page": 38,
+     "title": "Lecture 11 — Production and Trade in Africa",
+     "label": "Slide 38",
+     "evidence": "Gold coinage production High purity gold Standardised production Blank coins Discovery of coin molds with gold residue"
+    },
+    {
+     "docId": "d131",
+     "page": 34,
+     "title": "Lecture 11 — Production and Trade in Africa",
+     "label": "Slide 34",
+     "evidence": "Imported material: Glass Beads"
+    },
+    {
+     "docId": "d131",
+     "page": 36,
+     "title": "Lecture 11 — Production and Trade in Africa",
+     "label": "Slide 36",
+     "evidence": "Imported material: Wheat"
+    },
+    {
+     "docId": "d131",
+     "page": 48,
+     "title": "Lecture 11 — Production and Trade in Africa",
+     "label": "Slide 48",
+     "evidence": "Strategic trading location"
+    }
+   ]
+  }
+ ],
+ "discussions": [
+  {
+   "id": "q3-discussion-steppe-burials",
+   "question": "Using Arzhan 2 and Sintashta, discuss what burials can reveal about steppe societies. Use named material examples and no more than seven sentences.",
+   "answer": "Burials are a key source for steppe peoples because their settlements leave little trace. Arzhan 2 in Tuva is a 7th-century BCE Scythian kurgan with a stone ring wall and 27 graves holding 18 people. Burial 5 contained gold beads, gold appliqués of predatory felines made by die shaping, and the king’s dagger, showing elite wealth and skilled metalwork. Horse burials and textiles of fine wool from animals such as yak, cashmere goat and Bactrian camel show the importance of herd animals and wide contacts. At Sintashta, Grave 30 (21st–18th century BCE) contained spoked-wheel chariot remains, cheekpieces for precise horse control and a large amount of weaponry. Together these burials suggest social hierarchy, warfare and the central role of horses. However, burials mainly record elite display and ritual, so they give only a partial view of everyday nomadic life.",
+   "checklist": [
+    "Explain why burials matter for nomads (ephemeral settlement evidence).",
+    "Use specific Arzhan 2 evidence (kurgan, gold appliqués, dagger, horses, textiles).",
+    "Use specific Sintashta evidence (Grave 30, spoked wheels, cheekpieces, weapons).",
+    "Draw conclusions about hierarchy, warfare or horses.",
+    "Note a limitation and stay within seven sentences."
+   ],
+   "sources": [
+    {
+     "docId": "d124",
+     "page": 79,
+     "title": "Lecture 8 — Tracing Nomads",
+     "label": "Slide 79",
+     "evidence": "Arzhan 2 (7th century BCE) Stone ring wall"
+    },
+    {
+     "docId": "d124",
+     "page": 81,
+     "title": "Lecture 8 — Tracing Nomads",
+     "label": "Slide 81",
+     "evidence": "27 graves, 18 people"
+    },
+    {
+     "docId": "d124",
+     "page": 83,
+     "title": "Lecture 8 — Tracing Nomads",
+     "label": "Slide 83",
+     "evidence": "Predatory felines shaped golden appliqués Die shaping King’s Dagger"
+    },
+    {
+     "docId": "d124",
+     "page": 85,
+     "title": "Lecture 8 — Tracing Nomads",
+     "label": "Slide 85",
+     "evidence": "Yak Cashmere Goat Bactrian Camel Textile of fine wool and animal hair"
+    },
+    {
+     "docId": "d124",
+     "page": 66,
+     "title": "Lecture 8 — Tracing Nomads",
+     "label": "Slide 66",
+     "evidence": "Sintashta Grave 30 (21st-18th century BCE) Spoked wheels"
+    },
+    {
+     "docId": "d124",
+     "page": 68,
+     "title": "Lecture 8 — Tracing Nomads",
+     "label": "Slide 68",
+     "evidence": "Innovation in cheekpiece design for precise horse maneuvering"
+    },
+    {
+     "docId": "d124",
+     "page": 67,
+     "title": "Lecture 8 — Tracing Nomads",
+     "label": "Slide 67",
+     "evidence": "Large amount of weaponry"
+    }
+   ]
+  },
+  {
+   "id": "q3-discussion-angkor-power",
+   "question": "Discuss how Angkor Wat connected religion and political authority, including how its use changed over time. Use named material examples and no more than seven sentences.",
+   "answer": "Angkorian kings legitimised their rule through a claimed capacity to harness “life-power” and to mediate with gods and ancestral spirits. The cult of Devaraja, initiated by Jayavarman II, presented the king as a manifestation of Shiva or Vishnu, worshipped in the form of a linga. Angkor Wat was commissioned by Suryavarman II in the early 12th century CE as a Vishnuite temple mountain, with a moat and reliefs of the Churning of the Sea of Milk representing Hindu cosmology. A bas-relief of Suryavarman II and his posthumous name, Paramavishnuloka, tie the king directly to Vishnu. Later, Jayavarman VII made Mahāyāna Buddhism the state religion, and from the 14th century Angkor Wat became a Buddhist temple. Ang Chan completed unfinished 12th-century reliefs and Buddhist statues and inscriptions were added rather than the temple being destroyed. This reuse reflects continuity of sacred power, ancestral respect and a political strategy to affirm regional identity and legitimacy.",
+   "checklist": [
+    "Explain Angkorian kingship (life-power, mediator, Devaraja).",
+    "Use Angkor Wat material: temple mountain, moat, reliefs or Suryavarman II’s bas-relief.",
+    "Describe the transition to Buddhism (Jayavarman VII, 14th-century reuse, Ang Chan).",
+    "Explain why the temple was reused rather than destroyed.",
+    "Stay within seven sentences and cite material evidence."
+   ],
+   "sources": [
+    {
+     "docId": "d126",
+     "page": 79,
+     "title": "Lecture 9 — Politics and Religion",
+     "label": "Slide 79",
+     "evidence": "Mediator with the gods and ancestral spirits Legitimization of kingship based on capacity to harness life-power"
+    },
+    {
+     "docId": "d126",
+     "page": 80,
+     "title": "Lecture 9 — Politics and Religion",
+     "label": "Slide 80",
+     "evidence": "Cult of Devaraja Initiated by Jayavarman II King-god manifestation of Shiva Linga"
+    },
+    {
+     "docId": "d126",
+     "page": 84,
+     "title": "Lecture 9 — Politics and Religion",
+     "label": "Slide 84",
+     "evidence": "Hindu cosmology: Temple Mountain Moat Gods and demons churning the Sea of Milk"
+    },
+    {
+     "docId": "d126",
+     "page": 87,
+     "title": "Lecture 9 — Politics and Religion",
+     "label": "Slide 87",
+     "evidence": "Bas-relief of King Suryavarman II Paramavishnuloka"
+    },
+    {
+     "docId": "d126",
+     "page": 89,
+     "title": "Lecture 9 — Politics and Religion",
+     "label": "Slide 89",
+     "evidence": "Jayavarman VII Mahayana Buddhism as state religion"
+    },
+    {
+     "docId": "d126",
+     "page": 90,
+     "title": "Lecture 9 — Politics and Religion",
+     "label": "Slide 90",
+     "evidence": "Ang Chan Official reanimation Completion of previously unfinished relief from the 12th century CE"
+    },
+    {
+     "docId": "d126",
+     "page": 94,
+     "title": "Lecture 9 — Politics and Religion",
+     "label": "Slide 94",
+     "evidence": "Continuity of its sacred power Ancestral respect Political strategy affirmation of regional identity and legitimacy"
+    }
+   ]
+  },
+  {
+   "id": "q3-discussion-michilimackinac",
+   "question": "How can archaeology at Fort Michilimackinac reveal Indigenous experiences that are missing from colonial documents? Use named material examples and no more than seven sentences.",
+   "answer": "The written record for Fort Michilimackinac comes mainly from missionaries, government and military correspondence, and travel accounts, which say little about Indigenous people inside the fort. Excavation of House C, occupied by the Parant family and later by the German-Jewish fur traders Ezekiel Solomon and Gershon Levy, gives a household-level view. Its food remains include non-kosher foods, wild mammals and birds, lake trout, sturgeon and hominy, showing a diet shaped by local ecology and dependent on Indigenous fishing expertise and locally grown maize. Artefacts such as rosaries and tinkling cones point to mixed material culture. Although there is no historical evidence of intermarriage, a Métis population and the presence of Native American women and children suggest cultural and technological exchange. Extramural settlements of soldiers, traders and seasonal Native American populations are also rarely mentioned in histories. This evidence presents Native Americans as active agents in fort life, not as a passive and defensive community.",
+   "checklist": [
+    "Note the limits of colonial documents (missionary, military, travel accounts).",
+    "Use House C evidence: diet (wild animals, fish, maize) and Indigenous expertise.",
+    "Use artefacts (rosary, tinkling cone) or intermarriage / Métis evidence.",
+    "Conclude with Indigenous agency rather than passivity.",
+    "Stay within seven sentences and cite material evidence."
+   ],
+   "sources": [
+    {
+     "docId": "d128",
+     "page": 93,
+     "title": "Lecture 10 — Indigenous and Historical Archaeology in North America",
+     "label": "Slide 93",
+     "evidence": "Missionary documents and accounts Government and military correspondence Travel accounts"
+    },
+    {
+     "docId": "d128",
+     "page": 102,
+     "title": "Lecture 10 — Indigenous and Historical Archaeology in North America",
+     "label": "Slide 102",
+     "evidence": "House C 1749 - 1765: Parant family German-Jewish fur traders, Ezekiel Solomon and Gershon Levy"
+    },
+    {
+     "docId": "d128",
+     "page": 104,
+     "title": "Lecture 10 — Indigenous and Historical Archaeology in North America",
+     "label": "Slide 104",
+     "evidence": "Diet in House C non-kosher foods dependency on wild animals"
+    },
+    {
+     "docId": "d128",
+     "page": 105,
+     "title": "Lecture 10 — Indigenous and Historical Archaeology in North America",
+     "label": "Slide 105",
+     "evidence": "indigenous geographic and ecological expertise Fishing Purchasing locally-grown maize"
+    },
+    {
+     "docId": "d128",
+     "page": 106,
+     "title": "Lecture 10 — Indigenous and Historical Archaeology in North America",
+     "label": "Slide 106",
+     "evidence": "Rosary Tinkling cone"
+    },
+    {
+     "docId": "d128",
+     "page": 108,
+     "title": "Lecture 10 — Indigenous and Historical Archaeology in North America",
+     "label": "Slide 108",
+     "evidence": "No historical evidence Métis population Presence of Native American women and their children"
+    },
+    {
+     "docId": "d128",
+     "page": 111,
+     "title": "Lecture 10 — Indigenous and Historical Archaeology in North America",
+     "label": "Slide 111",
+     "evidence": "Not passive and defensive indigenous community Agency of Native Americans"
+    }
+   ]
+  },
+  {
+   "id": "q3-discussion-africa-trade",
+   "question": "Compare how Essouk-Tadmekka and Phalaborwa show that the availability of resources and the landscape shaped production and trade in Africa. Use named material examples and no more than seven sentences.",
+   "answer": "Lecture 11 argues that the availability of resources shapes human activity and the shape of the landscape shapes movement. Essouk-Tadmekka in Mali sat at a strategic location on trans-Saharan routes travelled by camel caravans. Imports such as glass beads, wheat and glazed, wheel-turned pottery, together with coin moulds containing gold residue, show it as a market town exchanging West African gold over long distances. Phalaborwa in the South African Lowveld lies on mineral-rich ground, where communities mined magnetite ore and smelted it in forced-draft furnaces. Its people focused on metal production with little evidence of herding or farming, partly in a hot disease-prone setting, and exchanged metal tools for food from more fertile lands. Both sites therefore show specialisation driven by resources, but Tadmekka depended on long-distance exchange while Phalaborwa relied on regional trade. In both cases trade shaped settlement and social organisation.",
+   "checklist": [
+    "State the lecture principle (resources and landscape shape activity and movement).",
+    "Use Tadmekka evidence: location, camels, imports or gold coin moulds.",
+    "Use Phalaborwa evidence: minerals, magnetite, furnaces, specialisation, metal-for-food exchange.",
+    "Make an explicit comparison (long-distance vs regional trade, specialisation).",
+    "Stay within seven sentences and cite material evidence."
+   ],
+   "sources": [
+    {
+     "docId": "d131",
+     "page": 6,
+     "title": "Lecture 11 — Production and Trade in Africa",
+     "label": "Slide 6",
+     "evidence": "availability of resources shapes human activity the shape of the landscape shapes movement"
+    },
+    {
+     "docId": "d131",
+     "page": 30,
+     "title": "Lecture 11 — Production and Trade in Africa",
+     "label": "Slide 30",
+     "evidence": "Dromedary camels Camel Caravan Trade"
+    },
+    {
+     "docId": "d131",
+     "page": 37,
+     "title": "Lecture 11 — Production and Trade in Africa",
+     "label": "Slide 37",
+     "evidence": "Imported material: Glazed and wheel-turned pottery"
+    },
+    {
+     "docId": "d131",
+     "page": 38,
+     "title": "Lecture 11 — Production and Trade in Africa",
+     "label": "Slide 38",
+     "evidence": "Discovery of coin molds with gold residue"
+    },
+    {
+     "docId": "d131",
+     "page": 54,
+     "title": "Lecture 11 — Production and Trade in Africa",
+     "label": "Slide 54",
+     "evidence": "Location rich in minerals"
+    },
+    {
+     "docId": "d131",
+     "page": 60,
+     "title": "Lecture 11 — Production and Trade in Africa",
+     "label": "Slide 60",
+     "evidence": "Forced draft shaft furnace"
+    },
+    {
+     "docId": "d131",
+     "page": 63,
+     "title": "Lecture 11 — Production and Trade in Africa",
+     "label": "Slide 63",
+     "evidence": "Primary focus on metal production little evidence in practicing animal husbandry and agriculture"
+    },
+    {
+     "docId": "d131",
+     "page": 65,
+     "title": "Lecture 11 — Production and Trade in Africa",
+     "label": "Slide 65",
+     "evidence": "Exchange metal tools for food"
+    }
+   ]
+  }
+ ]
+}

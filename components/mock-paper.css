@@ -11,3 +11,7 @@
 .mock-image-set img{width:100%;height:auto;max-height:260px;object-fit:cover;border-radius:6px;border:1px solid var(--line);background:#fff}
 .mock-image-set.count-1 img{max-height:none;object-fit:contain}
 .mock-image-set small{grid-column:1/-1;color:var(--muted);font-size:12px}
+.mock-quiz-switch{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 10px}
+.mock-quiz-switch button{border:1px solid var(--line);border-radius:8px;padding:10px 14px;min-height:44px;font-size:13px;font-weight:600;color:var(--ink)}
+.mock-quiz-switch button[aria-pressed=true]{background:var(--green);color:var(--paper);border-color:var(--green)}
+@media print{.mock-quiz-switch{display:none}}

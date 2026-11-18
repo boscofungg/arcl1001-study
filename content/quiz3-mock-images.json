@@ -1,0 +1,502 @@
+[
+ {
+  "id": "quiz3-mock-image-001",
+  "question": "Identify the pictured evidence by giving its period or approximate date, archaeological site, present-day location, and culture. Use the lecture’s site/period context when an individual object is not dated separately.",
+  "image": {
+   "src": "/mock-paper/quiz3/figure-01.webp",
+   "width": 1260,
+   "height": 513,
+   "alt": "Unlabelled lecture image for identification 1"
+  },
+  "answer": "Period: Early Scythian, 7th century BCE. Site: Arzhan 2, a princely kurgan (burial mound) with a stone ring wall. Modern location: Tuva, southern Siberia (Russia), on the Eurasian steppe. Culture: Scythian (Saka) mounted pastoral nomads; the gold feline appliqués are in the Scythian animal style.",
+  "checklist": [
+   "Early Scythian; 7th century BCE",
+   "Arzhan 2 (kurgan burial)",
+   "Tuva, southern Siberia / Eurasian steppe",
+   "Scythian (Saka) nomads"
+  ],
+  "sources": [
+   {
+    "docId": "d124",
+    "page": 73,
+    "title": "Lecture 8 — Tracing Nomads",
+    "label": "Slide 73",
+    "evidence": "Arzhan 2"
+   },
+   {
+    "docId": "d124",
+    "page": 79,
+    "title": "Lecture 8 — Tracing Nomads",
+    "label": "Slide 79",
+    "evidence": "Arzhan 2 (7th century BCE) Stone ring wall"
+   },
+   {
+    "docId": "d124",
+    "page": 82,
+    "title": "Lecture 8 — Tracing Nomads",
+    "label": "Slide 82",
+    "evidence": "Gold Artifacts from the Early Scythian Princely Tomb Arzhan 2, Tuva"
+   },
+   {
+    "docId": "d124",
+    "page": 83,
+    "title": "Lecture 8 — Tracing Nomads",
+    "label": "Slide 83",
+    "evidence": "Predatory felines shaped golden appliqués"
+   }
+  ],
+  "images": [
+   {
+    "src": "/mock-paper/quiz3/figure-01.webp",
+    "width": 1260,
+    "height": 513,
+    "alt": "Unlabelled lecture image for identification 1"
+   },
+   {
+    "src": "/mock-paper/quiz3/figure-01-b.webp",
+    "width": 686,
+    "height": 378,
+    "alt": "Unlabelled lecture image 2 of the same site"
+   },
+   {
+    "src": "/mock-paper/quiz3/figure-01-c.webp",
+    "width": 350,
+    "height": 496,
+    "alt": "Unlabelled lecture image 3 of the same site"
+   }
+  ]
+ },
+ {
+  "id": "quiz3-mock-image-002",
+  "question": "Identify the pictured evidence by giving its period or approximate date, archaeological site, present-day location, and culture. Use the lecture’s site/period context when an individual object is not dated separately.",
+  "image": {
+   "src": "/mock-paper/quiz3/figure-02.webp",
+   "width": 644,
+   "height": 315,
+   "alt": "Unlabelled lecture image for identification 2"
+  },
+  "answer": "Period: Botai Culture, c. 3700–3100 BCE. Site: Botai settlement, with 200–300 permanent dwellings and a midden of horse bones. Modern location: Kazakhstan, on the Kazakh steppe. Culture: Botai (hunter-gatherers becoming sedentary, heavily dependent on horses).",
+  "checklist": [
+   "Botai Culture; c. 3700–3100 BCE",
+   "Botai settlement",
+   "Kazakhstan (Kazakh steppe)",
+   "Botai culture (horse-dependent hunter-gatherers)"
+  ],
+  "sources": [
+   {
+    "docId": "d124",
+    "page": 51,
+    "title": "Lecture 8 — Tracing Nomads",
+    "label": "Slide 51",
+    "evidence": "Botai Settlement 3700 3100 BCE 200-300 permanent dwellings Reconstruction of Botai Settlement"
+   },
+   {
+    "docId": "d124",
+    "page": 52,
+    "title": "Lecture 8 — Tracing Nomads",
+    "label": "Slide 52",
+    "evidence": "130,000 horse bones Botai, Kazakhstan"
+   }
+  ],
+  "images": [
+   {
+    "src": "/mock-paper/quiz3/figure-02.webp",
+    "width": 644,
+    "height": 315,
+    "alt": "Unlabelled lecture image for identification 2"
+   },
+   {
+    "src": "/mock-paper/quiz3/figure-02-b.webp",
+    "width": 644,
+    "height": 327,
+    "alt": "Unlabelled lecture image 2 of the same site"
+   },
+   {
+    "src": "/mock-paper/quiz3/figure-02-c.webp",
+    "width": 868,
+    "height": 583,
+    "alt": "Unlabelled lecture image 3 of the same site"
+   }
+  ]
+ },
+ {
+  "id": "quiz3-mock-image-003",
+  "question": "Identify the pictured evidence by giving its period or approximate date, archaeological site, present-day location, and culture. Use the lecture’s site/period context when an individual object is not dated separately.",
+  "image": {
+   "src": "/mock-paper/quiz3/figure-03.webp",
+   "width": 1204,
+   "height": 654,
+   "alt": "Unlabelled lecture image for identification 3"
+  },
+  "answer": "Period: Sailendra Dynasty, c. 750–850 CE (8th–9th century CE). Site: Borobudur, a Buddhist stepped-pyramid temple. Modern location: the Kedu Plain, Central Java, Indonesia. Culture: Javanese, Sailendra Dynasty, Mahāyāna Buddhist.",
+  "checklist": [
+   "Sailendra Dynasty; c. 750–850 CE",
+   "Borobudur",
+   "Java, Indonesia",
+   "Sailendra / Mahāyāna Buddhist Java"
+  ],
+  "sources": [
+   {
+    "docId": "d126",
+    "page": 27,
+    "title": "Lecture 9 — Politics and Religion",
+    "label": "Slide 27",
+    "evidence": "Borobudur, Indonesia"
+   },
+   {
+    "docId": "d126",
+    "page": 31,
+    "title": "Lecture 9 — Politics and Religion",
+    "label": "Slide 31",
+    "evidence": "Buddhist temple, from Sailendra Dynasty 750 850 CE"
+   },
+   {
+    "docId": "d126",
+    "page": 34,
+    "title": "Lecture 9 — Politics and Religion",
+    "label": "Slide 34",
+    "evidence": "fertile Kedu Plain"
+   },
+   {
+    "docId": "d126",
+    "page": 30,
+    "title": "Lecture 9 — Politics and Religion",
+    "label": "Slide 30",
+    "evidence": "Aerial view of Borobudur in its landscape, with a map of Java.",
+    "evidenceKind": "visual"
+   },
+   {
+    "docId": "d126",
+    "page": 33,
+    "title": "Lecture 9 — Politics and Religion",
+    "label": "Slide 33",
+    "evidence": "Stonework at Borobudur"
+   }
+  ],
+  "images": [
+   {
+    "src": "/mock-paper/quiz3/figure-03.webp",
+    "width": 1204,
+    "height": 654,
+    "alt": "Unlabelled lecture image for identification 3"
+   },
+   {
+    "src": "/mock-paper/quiz3/figure-03-b.webp",
+    "width": 798,
+    "height": 418,
+    "alt": "Unlabelled lecture image 2 of the same site"
+   },
+   {
+    "src": "/mock-paper/quiz3/figure-03-c.webp",
+    "width": 497,
+    "height": 220,
+    "alt": "Unlabelled lecture image 3 of the same site"
+   }
+  ]
+ },
+ {
+  "id": "quiz3-mock-image-004",
+  "question": "Identify the pictured evidence by giving its period or approximate date, archaeological site, present-day location, and culture. Use the lecture’s site/period context when an individual object is not dated separately.",
+  "image": {
+   "src": "/mock-paper/quiz3/figure-04.webp",
+   "width": 1400,
+   "height": 552,
+   "alt": "Unlabelled lecture image for identification 4"
+  },
+  "answer": "Period: early 12th century CE, commissioned by Suryavarman II (1113–1149 CE) during the Khmer Empire. Site: Angkor Wat, a temple mountain with a moat. Modern location: Angkor, Cambodia. Culture: Khmer (Angkorian); built as a Vishnuite (Hindu) temple and later used as a Buddhist temple.",
+  "checklist": [
+   "Early 12th century CE; Suryavarman II (1113–1149 CE)",
+   "Angkor Wat",
+   "Cambodia",
+   "Khmer Empire; Hindu (Vishnu) temple, later Buddhist"
+  ],
+  "sources": [
+   {
+    "docId": "d126",
+    "page": 74,
+    "title": "Lecture 9 — Politics and Religion",
+    "label": "Slide 74",
+    "evidence": "Angkor Wat, Cambodia"
+   },
+   {
+    "docId": "d126",
+    "page": 83,
+    "title": "Lecture 9 — Politics and Religion",
+    "label": "Slide 83",
+    "evidence": "early 12th century CE: commissioned by Suryavarman II 1113 1149 CE Temple Mountain"
+   },
+   {
+    "docId": "d126",
+    "page": 77,
+    "title": "Lecture 9 — Politics and Religion",
+    "label": "Slide 77",
+    "evidence": "Khmer Empire 9th -15th century CE Established capital at Angkor"
+   }
+  ],
+  "images": [
+   {
+    "src": "/mock-paper/quiz3/figure-04.webp",
+    "width": 1400,
+    "height": 552,
+    "alt": "Unlabelled lecture image for identification 4"
+   },
+   {
+    "src": "/mock-paper/quiz3/figure-04-b.webp",
+    "width": 784,
+    "height": 591,
+    "alt": "Unlabelled lecture image 2 of the same site"
+   }
+  ]
+ },
+ {
+  "id": "quiz3-mock-image-005",
+  "question": "Identify the pictured evidence by giving its period or approximate date, archaeological site, present-day location, and culture. Use the lecture’s site/period context when an individual object is not dated separately.",
+  "image": {
+   "src": "/mock-paper/quiz3/figure-05.webp",
+   "width": 1148,
+   "height": 693,
+   "alt": "Unlabelled lecture image for identification 5"
+  },
+  "answer": "Period: Mississippian culture; Monks Mound ca 900–1150 CE, within Cahokia’s occupation of 700–1300 CE (peak 1050–1200 CE); the Birdman tablet dates to ca 1300 CE. Site: Cahokia Mounds (Monks Mound). Modern location: Illinois, USA, on the Mississippi River floodplain. Culture: Mississippian.",
+  "checklist": [
+   "Mississippian; Monks Mound ca 900–1150 CE (Cahokia 700–1300 CE)",
+   "Cahokia Mounds / Monks Mound",
+   "Illinois, USA (Mississippi floodplain)",
+   "Mississippian culture"
+  ],
+  "sources": [
+   {
+    "docId": "d128",
+    "page": 62,
+    "title": "Lecture 10 — Indigenous and Historical Archaeology in North America",
+    "label": "Slide 62",
+    "evidence": "Cahokia, Monks Mound, ca 900-1150CE"
+   },
+   {
+    "docId": "d128",
+    "page": 63,
+    "title": "Lecture 10 — Indigenous and Historical Archaeology in North America",
+    "label": "Slide 63",
+    "evidence": "Cahokia 700-1300CE Mississippian Culture"
+   },
+   {
+    "docId": "d128",
+    "page": 69,
+    "title": "Lecture 10 — Indigenous and Historical Archaeology in North America",
+    "label": "Slide 69",
+    "evidence": "settlements in floodplain expand Peak: 1050-1200 CE"
+   },
+   {
+    "docId": "d128",
+    "page": 77,
+    "title": "Lecture 10 — Indigenous and Historical Archaeology in North America",
+    "label": "Slide 77",
+    "evidence": "Birdman tablet, ca 1300 CE"
+   },
+   {
+    "docId": "d128",
+    "page": 78,
+    "title": "Lecture 10 — Indigenous and Historical Archaeology in North America",
+    "label": "Slide 78",
+    "evidence": "Building_Monks_Mound_Cahokia_Illinois"
+   }
+  ],
+  "images": [
+   {
+    "src": "/mock-paper/quiz3/figure-05.webp",
+    "width": 1148,
+    "height": 693,
+    "alt": "Unlabelled lecture image for identification 5"
+   },
+   {
+    "src": "/mock-paper/quiz3/figure-05-b.webp",
+    "width": 896,
+    "height": 544,
+    "alt": "Unlabelled lecture image 2 of the same site"
+   }
+  ]
+ },
+ {
+  "id": "quiz3-mock-image-006",
+  "question": "Identify the pictured evidence by giving its period or approximate date, archaeological site, present-day location, and culture. Use the lecture’s site/period context when an individual object is not dated separately.",
+  "image": {
+   "src": "/mock-paper/quiz3/figure-06.webp",
+   "width": 1400,
+   "height": 544,
+   "alt": "Unlabelled lecture image for identification 6"
+  },
+  "answer": "Period: 1715–1781 (French occupation 1715–1761, then British 1761–1781). Site: Fort Michilimackinac, a fortified fur-trading post (1770s reconstruction). Modern location: the Straits of Mackinac between Lake Michigan and Lake Huron, Michigan, USA. Culture: French and British colonial, with Anishnaabeg (Odawa, Ojibwa) and Wendat communities.",
+  "checklist": [
+   "1715–1781 (French, then British)",
+   "Fort Michilimackinac",
+   "Straits of Mackinac, Michigan, USA",
+   "French/British colonial with Anishnaabeg and Wendat"
+  ],
+  "sources": [
+   {
+    "docId": "d128",
+    "page": 88,
+    "title": "Lecture 10 — Indigenous and Historical Archaeology in North America",
+    "label": "Slide 88",
+    "evidence": "Fort Michilimackinac"
+   },
+   {
+    "docId": "d128",
+    "page": 94,
+    "title": "Lecture 10 — Indigenous and Historical Archaeology in North America",
+    "label": "Slide 94",
+    "evidence": "1715: Official establishment of Michilimackinac by the French 1781: Abandonment Michigan’s second state park"
+   },
+   {
+    "docId": "d128",
+    "page": 92,
+    "title": "Lecture 10 — Indigenous and Historical Archaeology in North America",
+    "label": "Slide 92",
+    "evidence": "Fortified trading post"
+   },
+   {
+    "docId": "d128",
+    "page": 97,
+    "title": "Lecture 10 — Indigenous and Historical Archaeology in North America",
+    "label": "Slide 97",
+    "evidence": "Straits of Mackinac"
+   }
+  ],
+  "images": [
+   {
+    "src": "/mock-paper/quiz3/figure-06.webp",
+    "width": 1400,
+    "height": 544,
+    "alt": "Unlabelled lecture image for identification 6"
+   },
+   {
+    "src": "/mock-paper/quiz3/figure-06-b.webp",
+    "width": 588,
+    "height": 575,
+    "alt": "Unlabelled lecture image 2 of the same site"
+   }
+  ]
+ },
+ {
+  "id": "quiz3-mock-image-007",
+  "question": "Identify the pictured evidence by giving its period or approximate date, archaeological site, present-day location, and culture. Use the lecture’s site/period context when an individual object is not dated separately.",
+  "image": {
+   "src": "/mock-paper/quiz3/figure-07.webp",
+   "width": 1400,
+   "height": 536,
+   "alt": "Unlabelled lecture image for identification 7"
+  },
+  "answer": "Period: c. 750–1400 CE (excavated periods from pre-750 to 1300–1400 CE). Site: Essouk-Tadmekka, an early Islamic trans-Saharan market town. Modern location: Mali, on the southern edge of the Sahara. Culture: early Islamic trans-Saharan traders, a mixed population of Muslims of south-Saharan and Sahelian background and possibly nomads.",
+  "checklist": [
+   "c. 750–1400 CE (early Islamic period)",
+   "Essouk-Tadmekka",
+   "Mali (southern Sahara / Sahel)",
+   "Early Islamic trans-Saharan trading town"
+  ],
+  "sources": [
+   {
+    "docId": "d131",
+    "page": 24,
+    "title": "Lecture 11 — Production and Trade in Africa",
+    "label": "Slide 24",
+    "evidence": "Essouk-Tadmekka, Mali"
+   },
+   {
+    "docId": "d131",
+    "page": 32,
+    "title": "Lecture 11 — Production and Trade in Africa",
+    "label": "Slide 32",
+    "evidence": "Period 2: c. 750-950 CE Period 4: c. 1300-1400 CE"
+   },
+   {
+    "docId": "d131",
+    "page": 27,
+    "title": "Lecture 11 — Production and Trade in Africa",
+    "label": "Slide 27",
+    "evidence": "Early Islamic Trans-Saharan Market Town"
+   },
+   {
+    "docId": "d131",
+    "page": 45,
+    "title": "Lecture 11 — Production and Trade in Africa",
+    "label": "Slide 45",
+    "evidence": "Muslims of south- Saharan and Sahelian background"
+   }
+  ],
+  "images": [
+   {
+    "src": "/mock-paper/quiz3/figure-07.webp",
+    "width": 1400,
+    "height": 536,
+    "alt": "Unlabelled lecture image for identification 7"
+   },
+   {
+    "src": "/mock-paper/quiz3/figure-07-b.webp",
+    "width": 910,
+    "height": 496,
+    "alt": "Unlabelled lecture image 2 of the same site"
+   }
+  ]
+ },
+ {
+  "id": "quiz3-mock-image-008",
+  "question": "Identify the pictured evidence by giving its period or approximate date, archaeological site, present-day location, and culture. Use the lecture’s site/period context when an individual object is not dated separately.",
+  "image": {
+   "src": "/mock-paper/quiz3/figure-08.webp",
+   "width": 1400,
+   "height": 473,
+   "alt": "Unlabelled lecture image for identification 8"
+  },
+  "answer": "Period: Iron Age; sites at Phalaborwa date c. 200–1900 CE, with metalworking studied for ca 1000–1880 CE. Site: Phalaborwa, with forced-draft iron furnaces. Modern location: the Lowveld of northeastern South Africa, beside Kruger National Park. Culture: Iron Age metal-working communities specialising in iron (and copper) production.",
+  "checklist": [
+   "Iron Age; c. 200–1900 CE",
+   "Phalaborwa",
+   "Lowveld, South Africa",
+   "Iron Age metal-working (smelting) communities"
+  ],
+  "sources": [
+   {
+    "docId": "d131",
+    "page": 51,
+    "title": "Lecture 11 — Production and Trade in Africa",
+    "label": "Slide 51",
+    "evidence": "Phalaborwa (in the Lowveld), South Africa"
+   },
+   {
+    "docId": "d131",
+    "page": 54,
+    "title": "Lecture 11 — Production and Trade in Africa",
+    "label": "Slide 54",
+    "evidence": "Phalaborwa and the adjacent Kruger National Park dated between c. 200-1900 CE"
+   },
+   {
+    "docId": "d131",
+    "page": 60,
+    "title": "Lecture 11 — Production and Trade in Africa",
+    "label": "Slide 60",
+    "evidence": "Triangular shaped iron furnace Forced draft shaft furnace"
+   },
+   {
+    "docId": "d131",
+    "page": 63,
+    "title": "Lecture 11 — Production and Trade in Africa",
+    "label": "Slide 63",
+    "evidence": "Primary focus on metal production"
+   }
+  ],
+  "images": [
+   {
+    "src": "/mock-paper/quiz3/figure-08.webp",
+    "width": 1400,
+    "height": 473,
+    "alt": "Unlabelled lecture image for identification 8"
+   },
+   {
+    "src": "/mock-paper/quiz3/figure-08-b.webp",
+    "width": 644,
+    "height": 308,
+    "alt": "Unlabelled lecture image 2 of the same site"
+   }
+  ]
+ }
+]

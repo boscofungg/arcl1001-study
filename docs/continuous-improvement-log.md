@@ -39,7 +39,7 @@ Implementation release: [3a12f38](https://github.com/boscofungg/arcl1001-study/c
 | F14 | Slide panel should jump to a slide. | Thumbnail strip beside the reader. | Implemented. | — |
 | F15 | Connect concepts across lectures; method examples; examples for Q5/Q6. | Timeline & links (themes, ordering task, methods in action). | Implemented for L1–10; Q5/Q6 model answers unchanged. | Add L11 when slides arrive; consider example banks for Q5/Q6. |
 | F16 | Flashcards not distinctive; quick practice overlaps mock papers. | Flashcards can be made from mistakes and keep slide links; Quick practice merged into Mistakes & review. | Implemented. | — |
-| F17 | Quiz 3 timeline connecting regions and concepts (Kristy). | Quiz 3 scope (L8–11) and timeline focus. | Implemented; a Quiz 3 mock paper waits for the Lecture 11 slides. | Build the Quiz 3 mock once L11 slides are supplied. |
+| F17 | Quiz 3 timeline connecting regions and concepts (Kristy). | Quiz 3 scope (L8–11) and timeline focus. | Implemented; Quiz 3 mock paper added 18/11 after the Lecture 11 slides. | Build the Quiz 3 mock once L11 slides are supplied. |
 
 ## Validation record
 

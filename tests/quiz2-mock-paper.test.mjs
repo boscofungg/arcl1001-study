@@ -30,7 +30,7 @@ test('all Quiz 2 mock content is backed by Lecture 4–7 slides with valid image
 });
 test('Quiz 1 is suspended in the interface but its storage namespace is not overwritten',()=>{
  const ui=readFileSync(new URL('../components/mock-paper.tsx',import.meta.url),'utf8');const main=readFileSync(new URL('../app/(study)/study-client.tsx',import.meta.url),'utf8');
- assert.ok(ui.includes("key='stratum-quiz2-mock-paper-v1'"));assert.ok(!ui.includes("key='stratum-mock-paper-v1'"));assert.ok(!main.includes('Mock paper · Quiz 1 format'));assert.ok(main.includes('<MockPaper'));assert.ok(ui.includes('Quiz 2 mock paper'));
+ assert.ok(ui.includes("key:'stratum-quiz2-mock-paper-v1'")&&ui.includes("key:'stratum-quiz3-mock-paper-v1'"));assert.ok(!ui.includes("key='stratum-mock-paper-v1'"));assert.ok(!main.includes('Mock paper · Quiz 1 format'));assert.ok(main.includes('<MockPaper'));assert.ok(ui.includes('Quiz 2 mock paper'));
 });
 test('every paper spans all four Quiz 2 lectures',()=>{
  const previous=[];
